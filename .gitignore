@@ -1,0 +1,9 @@
+# Never publish
+secrets/
+.operator/
+
+# Scratch / transient
+*.log
+*.tar
+*.tar.xz
+/tmp/
