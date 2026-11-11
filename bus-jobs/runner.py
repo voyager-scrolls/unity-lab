@@ -23,10 +23,12 @@ def tail(s, n=1500):
 
 
 def write_json(path, obj):
-    tmp = path + '.tmp'
-    with open(tmp, 'w') as f:
+    # Drive-fuse replace-path does not re-upload same-name replaces reliably;
+    # delete-then-write (new file) propagates. Transient absence is fine: poll retries.
+    if os.path.exists(path):
+        os.remove(path)
+    with open(path, 'w') as f:
         json.dump(obj, f)
-    os.replace(tmp, path)
 
 
 def heartbeat(busy):
