@@ -40,7 +40,7 @@ def write_out(jid, payload):
     payload['version'] = VERSION
     write_json(os.path.join(OUT, jid + '.json'), payload)
     with open(os.path.join(BUS, 'audit.jsonl'), 'a') as f:
-        f.write(json.dumps(payload) + '\n')
+        f.write(json.dumps(payload) + chr(10))
 
 
 def run_job(path):
