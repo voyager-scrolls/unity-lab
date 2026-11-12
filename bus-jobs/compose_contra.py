@@ -18,6 +18,24 @@ test -f /content/unity_bin.txt || { echo NO_UNITY_BIN; exit 6; }
 test -x "$UNITY" || { echo NO_EDITOR_BIN; exit 6; }
 echo PREFLIGHT_OK
 
+echo "=== ENSURE WEBGL MODULE ==="
+PEMB=/content/ue/Editor/Data/PlaybackEngines
+if [ -d "$PEMB/WebGLSupport" ]; then
+  echo WEBGL_MODULE_PRESENT
+else
+  TARB=/content/drive/MyDrive/unity-lab/cache/WebGL.tar.xz
+  WURL="https://download.unity3d.com/download_unity/e35f0c77bd8e/LinuxEditorTargetInstaller/UnitySetup-WebGL-Support-for-Editor-6000.3.10f1.tar.xz"
+  if [ ! -s "$TARB" ]; then
+    echo NO_CACHE_TARBALL_CDN_FALLBACK
+    aria2c --allow-overwrite=true -x8 -d /content -o webgl_mod.tar.xz "$WURL" || { echo CDN_DL_FAIL; exit 5; }
+    cp /content/webgl_mod.tar.xz "$TARB" 2>/dev/null || true
+    TARB=/content/webgl_mod.tar.xz
+  fi
+  md5sum "$TARB" | grep -q 74706376db4dd2202532a0d71824a793 || { echo WEB_MD5_FAIL; exit 5; }
+  tar -xJf "$TARB" -C /content/ue || { echo EXTRACT_FAIL; exit 5; }
+  test -d "$PEMB/WebGLSupport" && echo WEBGL_MODULE_EXTRACTED || { echo MODULE_DIR_MISSING; exit 5; }
+fi
+
 echo "=== BUSY CHECK (wait for idle editor) ==="
 BWAIT=0
 while pgrep -x Unity >/dev/null 2>&1; do

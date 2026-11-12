@@ -16,7 +16,10 @@ public static class BuildScript {
         var target = BuildTarget.WebGL; var outDir = "Builds/WebGL/probe";
         if (target == BuildTarget.WebGL) PlayerSettings.WebGL.compressionFormat = WebGLCompressionFormat.Disabled;
         var report = BuildPipeline.BuildPlayer(scenes, outDir, target, BuildOptions.None);
-        if (report.summary.result != UnityEditor.Build.Reporting.BuildResult.Succeeded) throw new System.Exception("BUILD_FAILED: " + report.summary.result);
+        if (report.summary.result != UnityEditor.Build.Reporting.BuildResult.Succeeded) {
+            foreach (var step in report.steps) foreach (var msg in step.messages) Debug.LogError("BUILD_MSG " + msg.type + " " + msg.content);
+            throw new System.Exception("BUILD_FAILED: " + report.summary.result + " errors=" + report.summary.totalErrors);
+        }
         Debug.Log("BUILD_OK " + report.summary.totalSize + " bytes");
     }
 }
