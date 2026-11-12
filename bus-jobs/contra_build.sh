@@ -113,19 +113,20 @@ public class Bullet2D : MonoBehaviour {
     }
 
     void OnTriggerEnter2D(Collider2D other) {
-        if (other == ignore) return;
+        if (other == null || other == ignore) return;
         if (enemyBullet) {
-            var p = other.GetComponent<ContraPlayer>();
+            var p = other.GetComponentInParent<ContraPlayer>();
             if (p != null) p.Kill();
         } else {
-            var e = other.GetComponent<ContraEnemy>();
-            if (e != null) e.Die();
-            var j = other.GetComponent<ContraJumper>();
-            if (j != null) j.Die();
-            var t = other.GetComponent<ContraTurret>();
-            if (t != null) t.Hit();
-            var c = other.GetComponent<ContraCapsule>();
-            if (c != null) c.Collect();
+            // GetComponentInParent: targets may be hit on a child collider (turret body, crate, body sprite)
+            var cap = other.GetComponentInParent<ContraCapsule>();
+            if (cap != null) { cap.Collect(); Destroy(gameObject); return; }
+            var e = other.GetComponentInParent<ContraEnemy>();
+            if (e != null) { e.Die(); Destroy(gameObject); return; }
+            var j = other.GetComponentInParent<ContraJumper>();
+            if (j != null) { j.Die(); Destroy(gameObject); return; }
+            var t = other.GetComponentInParent<ContraTurret>();
+            if (t != null) { t.Hit(); Destroy(gameObject); return; }
         }
         Destroy(gameObject);
     }
@@ -206,11 +207,16 @@ public static class ContraBoot {
         var p = new GameObject("Player");
         p.transform.SetParent(root.transform, false);
         p.transform.position = new Vector3(0f, -1.9f, 0f);
-        var psr = p.AddComponent<SpriteRenderer>();
+        // visual lives on a child so prone can shrink the BODY without moving the pivot:
+        // scaling the root resized the collider around its centre and lifted the player off the ground
+        var body = new GameObject("Body");
+        body.transform.SetParent(p.transform, false);
+        var psr = body.AddComponent<SpriteRenderer>();
         psr.sprite = GameSprites.Get();
         psr.color = new Color(0.25f, 0.55f, 1f);
-        p.transform.localScale = new Vector3(1f, 2f, 1f);
+        body.transform.localScale = new Vector3(1f, 2f, 1f);
         var pcol = p.AddComponent<BoxCollider2D>();
+        pcol.size = new Vector2(1f, 2f);
         pcol.sharedMaterial = new PhysicsMaterial2D("playerSlip") { friction = 0f, bounciness = 0f };
         p.AddComponent<Rigidbody2D>();
         p.AddComponent<ContraPlayer>();
@@ -269,17 +275,21 @@ public static class ContraBoot {
         var go = new GameObject("Turret");
         go.transform.SetParent(parent, false);
         go.transform.position = pos;
-        go.transform.localScale = new Vector3(1f, 1.2f, 1f);
-        var sr = go.AddComponent<SpriteRenderer>();
+        var body = new GameObject("TurretBody");
+        body.transform.SetParent(go.transform, false);
+        body.transform.localScale = new Vector3(1f, 1.2f, 1f);
+        var sr = body.AddComponent<SpriteRenderer>();
         sr.sprite = GameSprites.Get();
         sr.color = new Color(0.55f, 0.3f, 0.3f);
-        go.AddComponent<BoxCollider2D>();
+        var bc = go.AddComponent<BoxCollider2D>();
+        bc.size = new Vector2(1f, 1.2f);
         var tr = go.AddComponent<ContraTurret>();
         tr.facing = facing;
+        tr.bodySr = sr;
         var b = new GameObject("TurretBarrel");
         b.transform.SetParent(go.transform, false);
-        b.transform.localPosition = new Vector3(facing * 0.45f, 0.75f, 0f);
-        b.transform.localScale = new Vector3(0.5f, 0.18f, 1f);
+        b.transform.localPosition = new Vector3(facing * 0.5f, 0f, 0f);
+        b.transform.localScale = new Vector3(0.55f, 0.18f, 1f);
         var bsr = b.AddComponent<SpriteRenderer>();
         bsr.sprite = GameSprites.Get();
         bsr.color = new Color(1f, 0.45f, 0.1f);
@@ -302,7 +312,7 @@ public static class ContraBoot {
         txt.color = new Color(1f, 1f, 1f, 0.85f);
         txt.fontSize = 18;
         txt.alignment = TextAnchor.LowerLeft;
-        txt.text = "A/D move   Space jump   W/S aim   Shift lock   Z fire   S prone / S+Space drop   orange crate = spread   reach the cyan gate";
+        txt.text = "A/D move   Space jump   W/S aim   Shift lock   Z fire   S prone / S+Space drop   cyan diamond = spread   reach the cyan gate";
         Font f = null;
         try { f = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf"); } catch (System.Exception) {}
         if (f == null) { try { f = Resources.GetBuiltinResource<Font>("Arial.ttf"); } catch (System.Exception) {} }
@@ -321,9 +331,9 @@ using UnityEngine;
 
 // Flying power-up: drifts left in a sine arc. Shoot it or touch it to get the spread gun.
 public class ContraCapsule : MonoBehaviour {
-    public float speed = 2.6f;
-    public float centerY = -1.1f;
-    public float amp = 0.9f;
+    public float speed = 2.4f;
+    public float centerY = -1.6f;
+    public float amp = 0.35f;
     float t;
 
     void Update() {
@@ -332,6 +342,7 @@ public class ContraCapsule : MonoBehaviour {
         p.x -= speed * Time.deltaTime;
         p.y = centerY + Mathf.Sin(t * 2.4f) * amp;
         transform.position = p;
+        transform.rotation = Quaternion.Euler(0f, 0f, t * 90f); // spinning diamond reads as a pickup, not an enemy
         var cam = Camera.main;
         if (cam != null && p.x < cam.transform.position.x - 13f) Destroy(gameObject);
     }
@@ -586,6 +597,8 @@ public class ContraPlayer : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<BoxCollider2D>();
         sr = GetComponent<SpriteRenderer>();
+        var bodyT = transform.Find("Body");
+        if (bodyT != null && bodyT.GetComponent<SpriteRenderer>() != null) sr = bodyT.GetComponent<SpriteRenderer>();
         rb.gravityScale = 4f;
         rb.freezeRotation = true;
         cam = Camera.main;
@@ -658,7 +671,7 @@ public class ContraPlayer : MonoBehaviour {
         aimDir = a.normalized;
 
         float ang = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
-        float yOff = prone ? -0.35f : 0f;
+        float yOff = prone ? -0.5f : 0f;
         barrel.position = transform.position + new Vector3(0f, yOff, 0f) + (Vector3)(aimDir * barrelDist);
         barrel.rotation = Quaternion.Euler(0f, 0f, ang);
         barrelSr.color = spread ? new Color(1f, 0.55f, 0.1f) : Color.yellow;
@@ -673,7 +686,16 @@ public class ContraPlayer : MonoBehaviour {
 
     void SetProne(bool p) {
         prone = p;
-        transform.localScale = p ? new Vector3(1f, 1f, 1f) : new Vector3(1f, 2f, 1f);
+        // shrink the BODY and the collider, both anchored to the feet, never the root transform:
+        // scaling the root around its centre made the sprite and hitbox float half a unit off the ground
+        if (sr != null) {
+            sr.transform.localScale = new Vector3(1f, p ? 1f : 2f, 1f);
+            sr.transform.localPosition = new Vector3(0f, p ? -0.5f : 0f, 0f);
+        }
+        if (col != null) {
+            col.size = new Vector2(1f, p ? 1f : 2f);
+            col.offset = new Vector2(0f, p ? -0.5f : 0f);
+        }
     }
 
     void OnCollisionEnter2D(Collision2D c) {
@@ -750,7 +772,7 @@ public class ContraPlayer : MonoBehaviour {
         var bsr = b.AddComponent<SpriteRenderer>();
         bsr.sprite = GameSprites.Get();
         bsr.color = Color.white;
-        b.transform.localScale = new Vector3(0.25f, 0.25f, 1f);
+        b.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
         var bc = b.AddComponent<BoxCollider2D>();
         bc.isTrigger = true;
         var brb = b.AddComponent<Rigidbody2D>();
@@ -845,7 +867,7 @@ public class ContraSpawner : MonoBehaviour {
             jgo.transform.position = new Vector3(x, -2.4f, 0f);
             var jsr = jgo.AddComponent<SpriteRenderer>();
             jsr.sprite = GameSprites.Get();
-            jsr.color = new Color(0.95f, 0.45f, 0.15f);
+            jsr.color = new Color(0.65f, 0.25f, 0.9f);
             jgo.transform.localScale = new Vector3(0.9f, 1.2f, 1f);
             var jbc = jgo.AddComponent<BoxCollider2D>();
             jbc.sharedMaterial = new PhysicsMaterial2D("jumperSlip") { friction = 0f, bounciness = 0f };
@@ -871,12 +893,17 @@ public class ContraSpawner : MonoBehaviour {
         var rootT = GameObject.Find("ContraGame");
         if (rootT == null) return;
         var go = new GameObject("Capsule");
-        go.transform.position = new Vector3(x, -1.1f, 0f);
+        go.transform.position = new Vector3(x, -1.6f, 0f);
         var sr = go.AddComponent<SpriteRenderer>();
         sr.sprite = GameSprites.Get();
-        sr.color = new Color(1f, 0.5f, 0.1f);
+        sr.color = new Color(0.2f, 1f, 0.85f); // cyan diamond - deliberately outside the enemy palette (red runners / purple jumpers / rust turrets)
+        go.transform.localScale = new Vector3(1.15f, 1.15f, 1f);
         var bc = go.AddComponent<BoxCollider2D>();
         bc.isTrigger = true;
+        bc.size = new Vector2(1f, 1f);
+        var crb = go.AddComponent<Rigidbody2D>(); // kinematic body so trigger events are guaranteed against bullets and the player
+        crb.bodyType = RigidbodyType2D.Kinematic;
+        crb.gravityScale = 0f;
         go.transform.SetParent(rootT.transform, true);
         go.AddComponent<ContraCapsule>();
     }
@@ -886,30 +913,65 @@ CSEOF
 cat > "$PROJ/Assets/Contra/ContraTurret.cs" <<'CSEOF'
 using UnityEngine;
 
-// Stationary wall turret: fires straight horizontal shots at standing-chest height,
-// so lying prone lets them pass overhead. Three hits to kill.
+// Wall turret that tracks the player through a full 360 degrees with a limited turn rate.
+// The barrel visibly swings toward you, so the shot is readable and dodgeable;
+// it fires along the barrel at your centre, which means going prone mid-swing can duck the shot.
 public class ContraTurret : MonoBehaviour {
     public int hp = 3;
     public float interval = 1.7f;
-    public float fireSpeed = 6f;
+    public float fireSpeed = 5.5f;
+    public float turnSpeed = 200f;
+    public float range = 15f;
     public float facing = -1f;
-    float timer = 1f;
+    public SpriteRenderer bodySr;
+
+    float timer = 1.2f;
+    float ang;
+    Transform barrel;
+
+    void Awake() {
+        barrel = transform.Find("TurretBarrel");
+        ang = facing < 0f ? 180f : 0f;
+    }
 
     void Update() {
+        Vector2 aimDir = new Vector2(facing, 0f);
+        bool engaged = false;
+
+        var ps = Object.FindObjectsByType<ContraPlayer>(FindObjectsSortMode.None);
+        if (ps.Length > 0) {
+            Vector2 d = (Vector2)(ps[0].transform.position - transform.position);
+            if (d.magnitude <= range) { aimDir = d.normalized; engaged = true; }
+        }
+
+        float want = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
+        ang = Mathf.MoveTowardsAngle(ang, want, turnSpeed * Time.deltaTime);
+        if (barrel != null) {
+            float rad = ang * Mathf.Deg2Rad;
+            barrel.localPosition = new Vector3(Mathf.Cos(rad), Mathf.Sin(rad), 0f) * 0.55f;
+            barrel.localRotation = Quaternion.Euler(0f, 0f, ang);
+        }
+
         timer -= Time.deltaTime;
         if (timer > 0f) return;
         timer = interval;
 
+        if (!engaged) return;
         var cam = Camera.main;
         if (cam != null) {
             float halfW = cam.orthographicSize * cam.aspect;
-            if (transform.position.x > cam.transform.position.x + halfW) return; // do not fire from offscreen
+            if (transform.position.x > cam.transform.position.x + halfW) return; // never fire from offscreen
         }
+        if (Mathf.Abs(Mathf.DeltaAngle(ang, want)) > 20f) return; // still swinging: hold fire
+        Fire(Quaternion.Euler(0f, 0f, ang) * Vector2.right);
+    }
 
+    void Fire(Vector2 dir) {
         var b = new GameObject("EnemyBullet");
-        b.transform.position = transform.position + new Vector3(facing * 0.7f, 0.9f, 0f);
+        b.transform.position = transform.position + (Vector3)(dir * 0.85f);
         b.transform.SetParent(transform.parent, true);
-        b.transform.localScale = new Vector3(0.35f, 0.16f, 1f);
+        b.transform.localScale = new Vector3(0.38f, 0.18f, 1f);
+        b.transform.rotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg);
         var sr = b.AddComponent<SpriteRenderer>();
         sr.sprite = GameSprites.Get();
         sr.color = new Color(1f, 0.45f, 0.1f);
@@ -917,20 +979,19 @@ public class ContraTurret : MonoBehaviour {
         bc.isTrigger = true;
         var brb = b.AddComponent<Rigidbody2D>();
         brb.gravityScale = 0f;
-        brb.linearVelocity = new Vector2(facing * fireSpeed, 0f);
+        brb.linearVelocity = dir * fireSpeed;
         var bl = b.AddComponent<Bullet2D>();
         bl.enemyBullet = true;
     }
 
     public void Hit() {
         hp--;
-        var sr = GetComponent<SpriteRenderer>();
         if (hp <= 0) {
             ContraState.score += 500;
-            if (sr != null) sr.color = Color.white;
+            if (bodySr != null) bodySr.color = Color.white;
             Destroy(gameObject, 0.08f);
-        } else if (sr != null) {
-            sr.color = new Color(1f, 0.45f, 0.35f);
+        } else if (bodySr != null) {
+            bodySr.color = new Color(1f, 0.45f, 0.35f);
         }
     }
 }

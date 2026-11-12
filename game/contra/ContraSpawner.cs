@@ -51,7 +51,7 @@ public class ContraSpawner : MonoBehaviour {
             jgo.transform.position = new Vector3(x, -2.4f, 0f);
             var jsr = jgo.AddComponent<SpriteRenderer>();
             jsr.sprite = GameSprites.Get();
-            jsr.color = new Color(0.95f, 0.45f, 0.15f);
+            jsr.color = new Color(0.65f, 0.25f, 0.9f);
             jgo.transform.localScale = new Vector3(0.9f, 1.2f, 1f);
             var jbc = jgo.AddComponent<BoxCollider2D>();
             jbc.sharedMaterial = new PhysicsMaterial2D("jumperSlip") { friction = 0f, bounciness = 0f };
@@ -77,12 +77,17 @@ public class ContraSpawner : MonoBehaviour {
         var rootT = GameObject.Find("ContraGame");
         if (rootT == null) return;
         var go = new GameObject("Capsule");
-        go.transform.position = new Vector3(x, -1.1f, 0f);
+        go.transform.position = new Vector3(x, -1.6f, 0f);
         var sr = go.AddComponent<SpriteRenderer>();
         sr.sprite = GameSprites.Get();
-        sr.color = new Color(1f, 0.5f, 0.1f);
+        sr.color = new Color(0.2f, 1f, 0.85f); // cyan diamond - deliberately outside the enemy palette (red runners / purple jumpers / rust turrets)
+        go.transform.localScale = new Vector3(1.15f, 1.15f, 1f);
         var bc = go.AddComponent<BoxCollider2D>();
         bc.isTrigger = true;
+        bc.size = new Vector2(1f, 1f);
+        var crb = go.AddComponent<Rigidbody2D>(); // kinematic body so trigger events are guaranteed against bullets and the player
+        crb.bodyType = RigidbodyType2D.Kinematic;
+        crb.gravityScale = 0f;
         go.transform.SetParent(rootT.transform, true);
         go.AddComponent<ContraCapsule>();
     }

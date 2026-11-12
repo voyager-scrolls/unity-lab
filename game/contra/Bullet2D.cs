@@ -9,19 +9,20 @@ public class Bullet2D : MonoBehaviour {
     }
 
     void OnTriggerEnter2D(Collider2D other) {
-        if (other == ignore) return;
+        if (other == null || other == ignore) return;
         if (enemyBullet) {
-            var p = other.GetComponent<ContraPlayer>();
+            var p = other.GetComponentInParent<ContraPlayer>();
             if (p != null) p.Kill();
         } else {
-            var e = other.GetComponent<ContraEnemy>();
-            if (e != null) e.Die();
-            var j = other.GetComponent<ContraJumper>();
-            if (j != null) j.Die();
-            var t = other.GetComponent<ContraTurret>();
-            if (t != null) t.Hit();
-            var c = other.GetComponent<ContraCapsule>();
-            if (c != null) c.Collect();
+            // GetComponentInParent: targets may be hit on a child collider (turret body, crate, body sprite)
+            var cap = other.GetComponentInParent<ContraCapsule>();
+            if (cap != null) { cap.Collect(); Destroy(gameObject); return; }
+            var e = other.GetComponentInParent<ContraEnemy>();
+            if (e != null) { e.Die(); Destroy(gameObject); return; }
+            var j = other.GetComponentInParent<ContraJumper>();
+            if (j != null) { j.Die(); Destroy(gameObject); return; }
+            var t = other.GetComponentInParent<ContraTurret>();
+            if (t != null) { t.Hit(); Destroy(gameObject); return; }
         }
         Destroy(gameObject);
     }

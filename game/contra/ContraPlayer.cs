@@ -32,6 +32,8 @@ public class ContraPlayer : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<BoxCollider2D>();
         sr = GetComponent<SpriteRenderer>();
+        var bodyT = transform.Find("Body");
+        if (bodyT != null && bodyT.GetComponent<SpriteRenderer>() != null) sr = bodyT.GetComponent<SpriteRenderer>();
         rb.gravityScale = 4f;
         rb.freezeRotation = true;
         cam = Camera.main;
@@ -104,7 +106,7 @@ public class ContraPlayer : MonoBehaviour {
         aimDir = a.normalized;
 
         float ang = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
-        float yOff = prone ? -0.35f : 0f;
+        float yOff = prone ? -0.5f : 0f;
         barrel.position = transform.position + new Vector3(0f, yOff, 0f) + (Vector3)(aimDir * barrelDist);
         barrel.rotation = Quaternion.Euler(0f, 0f, ang);
         barrelSr.color = spread ? new Color(1f, 0.55f, 0.1f) : Color.yellow;
@@ -119,7 +121,16 @@ public class ContraPlayer : MonoBehaviour {
 
     void SetProne(bool p) {
         prone = p;
-        transform.localScale = p ? new Vector3(1f, 1f, 1f) : new Vector3(1f, 2f, 1f);
+        // shrink the BODY and the collider, both anchored to the feet, never the root transform:
+        // scaling the root around its centre made the sprite and hitbox float half a unit off the ground
+        if (sr != null) {
+            sr.transform.localScale = new Vector3(1f, p ? 1f : 2f, 1f);
+            sr.transform.localPosition = new Vector3(0f, p ? -0.5f : 0f, 0f);
+        }
+        if (col != null) {
+            col.size = new Vector2(1f, p ? 1f : 2f);
+            col.offset = new Vector2(0f, p ? -0.5f : 0f);
+        }
     }
 
     void OnCollisionEnter2D(Collision2D c) {
@@ -196,7 +207,7 @@ public class ContraPlayer : MonoBehaviour {
         var bsr = b.AddComponent<SpriteRenderer>();
         bsr.sprite = GameSprites.Get();
         bsr.color = Color.white;
-        b.transform.localScale = new Vector3(0.25f, 0.25f, 1f);
+        b.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
         var bc = b.AddComponent<BoxCollider2D>();
         bc.isTrigger = true;
         var brb = b.AddComponent<Rigidbody2D>();

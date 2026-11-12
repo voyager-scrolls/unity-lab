@@ -71,11 +71,16 @@ public static class ContraBoot {
         var p = new GameObject("Player");
         p.transform.SetParent(root.transform, false);
         p.transform.position = new Vector3(0f, -1.9f, 0f);
-        var psr = p.AddComponent<SpriteRenderer>();
+        // visual lives on a child so prone can shrink the BODY without moving the pivot:
+        // scaling the root resized the collider around its centre and lifted the player off the ground
+        var body = new GameObject("Body");
+        body.transform.SetParent(p.transform, false);
+        var psr = body.AddComponent<SpriteRenderer>();
         psr.sprite = GameSprites.Get();
         psr.color = new Color(0.25f, 0.55f, 1f);
-        p.transform.localScale = new Vector3(1f, 2f, 1f);
+        body.transform.localScale = new Vector3(1f, 2f, 1f);
         var pcol = p.AddComponent<BoxCollider2D>();
+        pcol.size = new Vector2(1f, 2f);
         pcol.sharedMaterial = new PhysicsMaterial2D("playerSlip") { friction = 0f, bounciness = 0f };
         p.AddComponent<Rigidbody2D>();
         p.AddComponent<ContraPlayer>();
@@ -134,17 +139,21 @@ public static class ContraBoot {
         var go = new GameObject("Turret");
         go.transform.SetParent(parent, false);
         go.transform.position = pos;
-        go.transform.localScale = new Vector3(1f, 1.2f, 1f);
-        var sr = go.AddComponent<SpriteRenderer>();
+        var body = new GameObject("TurretBody");
+        body.transform.SetParent(go.transform, false);
+        body.transform.localScale = new Vector3(1f, 1.2f, 1f);
+        var sr = body.AddComponent<SpriteRenderer>();
         sr.sprite = GameSprites.Get();
         sr.color = new Color(0.55f, 0.3f, 0.3f);
-        go.AddComponent<BoxCollider2D>();
+        var bc = go.AddComponent<BoxCollider2D>();
+        bc.size = new Vector2(1f, 1.2f);
         var tr = go.AddComponent<ContraTurret>();
         tr.facing = facing;
+        tr.bodySr = sr;
         var b = new GameObject("TurretBarrel");
         b.transform.SetParent(go.transform, false);
-        b.transform.localPosition = new Vector3(facing * 0.45f, 0.75f, 0f);
-        b.transform.localScale = new Vector3(0.5f, 0.18f, 1f);
+        b.transform.localPosition = new Vector3(facing * 0.5f, 0f, 0f);
+        b.transform.localScale = new Vector3(0.55f, 0.18f, 1f);
         var bsr = b.AddComponent<SpriteRenderer>();
         bsr.sprite = GameSprites.Get();
         bsr.color = new Color(1f, 0.45f, 0.1f);
@@ -167,7 +176,7 @@ public static class ContraBoot {
         txt.color = new Color(1f, 1f, 1f, 0.85f);
         txt.fontSize = 18;
         txt.alignment = TextAnchor.LowerLeft;
-        txt.text = "A/D move   Space jump   W/S aim   Shift lock   Z fire   S prone / S+Space drop   orange crate = spread   reach the cyan gate";
+        txt.text = "A/D move   Space jump   W/S aim   Shift lock   Z fire   S prone / S+Space drop   cyan diamond = spread   reach the cyan gate";
         Font f = null;
         try { f = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf"); } catch (System.Exception) {}
         if (f == null) { try { f = Resources.GetBuiltinResource<Font>("Arial.ttf"); } catch (System.Exception) {} }
