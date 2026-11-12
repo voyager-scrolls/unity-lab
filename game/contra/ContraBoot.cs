@@ -41,19 +41,29 @@ public static class ContraBoot {
         cam.backgroundColor = new Color(0.08f, 0.09f, 0.16f);
         camGo.transform.position = new Vector3(0f, 1f, -10f);
         var fc = camGo.AddComponent<FollowCam>();
-        fc.minX = -26f; fc.maxX = 26f;
+        fc.minX = -50f; fc.maxX = 50f;
 
-        MakeBox(root.transform, "Ground", new Vector3(0f, -3.5f, 0f), new Vector3(80f, 1f, 1f), new Color(0.34f, 0.36f, 0.40f));
-        MakeBox(root.transform, "WallL", new Vector3(-40f, 1f, 0f), new Vector3(1f, 14f, 1f), new Color(0f, 0f, 0f, 0f));
-        MakeBox(root.transform, "WallR", new Vector3(40f, 1f, 0f), new Vector3(1f, 14f, 1f), new Color(0f, 0f, 0f, 0f));
+        // ---- THE MARCH: linear jungle gauntlet x -60..+60; water gaps = death ----
+        MakeBox(root.transform, "GroundA", new Vector3(-36f, -3.5f, 0f), new Vector3(48f, 1f, 1f), new Color(0.34f, 0.36f, 0.40f));
+        MakeBox(root.transform, "GroundB", new Vector3(-2f, -3.5f, 0f), new Vector3(12f, 1f, 1f), new Color(0.34f, 0.36f, 0.40f));
+        MakeBox(root.transform, "Bridge", new Vector3(12f, -3.5f, 0f), new Vector3(16f, 1f, 1f), new Color(0.55f, 0.55f, 0.58f));
+        MakeBox(root.transform, "GroundC", new Vector3(42f, -3.5f, 0f), new Vector3(36f, 1f, 1f), new Color(0.34f, 0.36f, 0.40f));
+        MakeBox(root.transform, "Water1", new Vector3(-10f, -3.6f, 0f), new Vector3(4f, 1.1f, 1f), new Color(0.10f, 0.35f, 0.85f));
+        MakeBox(root.transform, "Water2", new Vector3(22f, -3.6f, 0f), new Vector3(4f, 1.1f, 1f), new Color(0.10f, 0.35f, 0.85f));
+        MakeBox(root.transform, "WallL", new Vector3(-60f, 1f, 0f), new Vector3(1f, 14f, 1f), new Color(0f, 0f, 0f, 0f));
+        MakeBox(root.transform, "WallR", new Vector3(60f, 1f, 0f), new Vector3(1f, 14f, 1f), new Color(0f, 0f, 0f, 0f));
 
-        // Ascending terraces left-to-right; tier tops -1.1 / 0.8 / 2.6 (jump apex 2.16 m, clearance >= 0.26 m)
-        // Adjacent edges (gaps 0-2 m) form a climbable catwalk route; tier 2 offset from walk lanes
-        MakePlatform(root.transform, "PlatA", new Vector3(-16f, -1.3f, 0f), new Vector3(8f, 0.4f, 1f));
-        MakePlatform(root.transform, "PlatB", new Vector3(-6f, -1.3f, 0f), new Vector3(8f, 0.4f, 1f));
-        MakePlatform(root.transform, "PlatC", new Vector3(2f, 0.6f, 0f), new Vector3(8f, 0.4f, 1f));
-        MakePlatform(root.transform, "PlatD", new Vector3(12f, 0.6f, 0f), new Vector3(8f, 0.4f, 1f));
-        MakePlatform(root.transform, "PlatE", new Vector3(22f, 2.4f, 0f), new Vector3(9f, 0.4f, 1f));
+        // Terrace steps (one-way, tops -1.1 / 0.8; jump apex 2.16 m, clearance >= 0.26 m)
+        MakePlatform(root.transform, "T1", new Vector3(-50f, -1.3f, 0f), new Vector3(8f, 0.4f, 1f));
+        MakePlatform(root.transform, "T2", new Vector3(-40f, 0.6f, 0f), new Vector3(8f, 0.4f, 1f));
+        MakePlatform(root.transform, "T3", new Vector3(-30f, -1.3f, 0f), new Vector3(8f, 0.4f, 1f));
+        MakePlatform(root.transform, "T4", new Vector3(8f, -1.3f, 0f), new Vector3(8f, 0.4f, 1f));
+        MakePlatform(root.transform, "T5", new Vector3(20f, -1.3f, 0f), new Vector3(8f, 0.4f, 1f)); // spans water gap 2
+        MakePlatform(root.transform, "T6", new Vector3(32f, -1.3f, 0f), new Vector3(8f, 0.4f, 1f));
+        MakePlatform(root.transform, "T7", new Vector3(42f, 0.6f, 0f), new Vector3(8f, 0.4f, 1f));
+        MakePlatform(root.transform, "T8", new Vector3(50f, -1.3f, 0f), new Vector3(8f, 0.4f, 1f));
+
+        MakeGate(root.transform, "Gate", new Vector3(56f, -0.5f, 0f), new Vector3(0.8f, 5f, 1f), new Color(0.2f, 0.9f, 0.7f));
 
         var p = new GameObject("Player");
         p.transform.SetParent(root.transform, false);
@@ -103,6 +113,19 @@ public static class ContraBoot {
         eff.surfaceArc = 90f; // default 180 makes the SIDES solid -> player box catches platform edges and stalls; 90 = top face only
     }
 
+    static void MakeGate(Transform parent, string name, Vector3 pos, Vector3 size, Color color) {
+        var go = new GameObject(name);
+        go.transform.SetParent(parent, false);
+        go.transform.position = pos;
+        go.transform.localScale = size;
+        var sr = go.AddComponent<SpriteRenderer>();
+        sr.sprite = GameSprites.Get();
+        sr.color = color;
+        var bc = go.AddComponent<BoxCollider2D>();
+        bc.isTrigger = true;
+        go.tag = "Finish";
+    }
+
     static void MakeHint(Transform parent) {
         var canvasGo = new GameObject("HintCanvas");
         canvasGo.transform.SetParent(parent, false);
@@ -112,7 +135,7 @@ public static class ContraBoot {
         txt.color = new Color(1f, 1f, 1f, 0.85f);
         txt.fontSize = 18;
         txt.alignment = TextAnchor.LowerLeft;
-        txt.text = "A/D move   Space jump   W/S aim   Shift = aim lock   Z fire   S+Space drop   dodge red";
+        txt.text = "A/D move   Space jump   W/S aim   Shift = aim lock   Z fire   S+Space drop   reach the cyan gate";
         Font f = null;
         try { f = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf"); } catch (System.Exception) {}
         if (f == null) { try { f = Resources.GetBuiltinResource<Font>("Arial.ttf"); } catch (System.Exception) {} }

@@ -2,12 +2,18 @@ using UnityEngine;
 
 public class FollowCam : MonoBehaviour {
     public Transform target;
-    public float minX = -26f;
-    public float maxX = 26f;
+    public float minX = -50f;
+    public float maxX = 50f;
+    float advX; // classic Contra: camera never scrolls backward
+
+    void Start() {
+        advX = target != null ? target.position.x : minX;
+    }
+
     void LateUpdate() {
-        if (target == null) return;
+        if (target != null && target.position.x > advX) advX = target.position.x;
         Vector3 p = transform.position;
-        p.x = Mathf.Clamp(target.position.x, minX, maxX);
+        p.x = Mathf.Clamp(advX, minX, maxX);
         transform.position = p;
     }
 }

@@ -14,7 +14,9 @@ public class ContraSpawner : MonoBehaviour {
         if (cam == null) return;
         var rootT = GameObject.Find("ContraGame");
         if (rootT == null) return;
-        float x = Mathf.Clamp(cam.transform.position.x + 11.5f, -39f, 39f); // just off the visible right edge
+        float x = Mathf.Clamp(cam.transform.position.x + 11.5f, -58f, 55f); // just off the visible right edge
+        var hit = Physics2D.Raycast(new Vector2(x, 0f), Vector2.down, 8f);
+        if (hit.collider == null) return; // water gap ahead: no ground to land on, skip
         var go = new GameObject("Runner");
         go.transform.position = new Vector3(x, -2.4f, 0f);
         var sr = go.AddComponent<SpriteRenderer>();

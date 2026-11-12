@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class ContraPlayer : MonoBehaviour {
     public float runSpeed = 7f;
@@ -21,6 +22,7 @@ public class ContraPlayer : MonoBehaviour {
     Collider2D dropCol;
     public float dropDuration = 0.25f;
     bool dead;
+    bool won;
 
     void Awake() {
         rb = GetComponent<Rigidbody2D>();
@@ -38,7 +40,8 @@ public class ContraPlayer : MonoBehaviour {
     }
 
     void Update() {
-        if (dead) return;
+        if (dead || won) return;
+        if (transform.position.y < -3f) { Die(); return; } // fell into water
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
         bool locked = Input.GetKey(KeyCode.LeftShift);
@@ -89,8 +92,27 @@ public class ContraPlayer : MonoBehaviour {
     }
 
     void OnCollisionEnter2D(Collision2D c) {
-        if (dead) return;
+        if (dead || won) return;
         if (c.collider != null && c.collider.GetComponent<ContraEnemy>() != null) Die();
+    }
+
+    void OnTriggerEnter2D(Collider2D other) {
+        if (dead || won) return;
+        if (other != null && other.CompareTag("Finish")) Win();
+    }
+
+    void Win() {
+        won = true;
+        rb.linearVelocity = Vector2.zero;
+        var sr = GetComponent<SpriteRenderer>();
+        if (sr != null) sr.color = new Color(1f, 0.85f, 0.3f); // gold
+        var hint = GameObject.Find("HintCanvas");
+        if (hint != null) {
+            var t = hint.GetComponent<Text>();
+            if (t != null) t.text = "STAGE CLEAR - you reached the gate";
+        }
+        var sp = GameObject.Find("Spawner");
+        if (sp != null) sp.SetActive(false);
     }
 
     void Die() {

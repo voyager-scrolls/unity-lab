@@ -14,7 +14,9 @@ public class ContraEnemy : MonoBehaviour {
     void FixedUpdate() {
         if (dying) return;
         rb.linearVelocity = new Vector2(-runSpeed, rb.linearVelocity.y);
-        if (transform.position.x < -38f) Destroy(gameObject);
+        var cam = Camera.main;
+        float limit = cam != null ? cam.transform.position.x - 13f : -38f; // despawn behind camera view
+        if (transform.position.x < limit) Destroy(gameObject);
     }
 
     public void Die() {
