@@ -18,6 +18,10 @@ test -f /content/unity_bin.txt || { echo NO_UNITY_BIN; exit 6; }
 test -x "$UNITY" || { echo NO_EDITOR_BIN; exit 6; }
 echo PREFLIGHT_OK
 
+echo "=== BUSY CHECK ==="
+if pgrep -f "Editor/Unity" >/dev/null 2>&1; then echo UNITY_BUSY_ABORT; exit 7; fi
+echo NOT_BUSY
+
 echo "=== PROJECT ==="
 if [ ! -d "$PROJ/Assets" ]; then
   if [ -d "$DEMO/Assets" ]; then
