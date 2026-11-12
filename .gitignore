@@ -7,3 +7,6 @@ secrets/
 *.tar
 *.tar.xz
 /tmp/
+
+# Local playtest artifacts (template builds pulled from Drive)
+builds/
