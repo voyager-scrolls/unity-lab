@@ -34,6 +34,20 @@ fi
 rm -rf "$PROJ/Assets/Demo" "$PROJ/Assets/Scenes" "$PROJ/Builds" "$PROJ/Temp"
 test -d "$PROJ/Assets" || { echo NO_PROJECT; exit 6; }
 mkdir -p "$PROJ/Assets/Editor" "$PROJ/Assets/Contra"
+
+echo "=== ENSURE UGUI (bare -createProject lacks UnityEngine.UI) ==="
+python3 - "$PROJ" <<'PYEOF'
+import json, sys, os
+p = os.path.join(sys.argv[1], 'Packages', 'manifest.json')
+m = json.load(open(p))
+m.setdefault('dependencies', {})
+if 'com.unity.ugui' not in m['dependencies']:
+    m['dependencies']['com.unity.ugui'] = '2.0.0'
+    open(p, 'w').write(json.dumps(m, indent=2))
+    print('UGUI_ADDED')
+else:
+    print('UGUI_PRESENT')
+PYEOF
 echo PROJECT_READY
 '''
 

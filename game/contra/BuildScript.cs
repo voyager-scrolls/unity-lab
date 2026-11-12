@@ -1,4 +1,4 @@
-using System.IO; using System.Linq; using UnityEditor; using UnityEditor.SceneManagement;
+using System.IO; using System.Linq; using UnityEngine; using UnityEditor; using UnityEditor.SceneManagement;
 public static class BuildScript {
     [MenuItem("Build/Perform")]
     public static void PerformBuild() {
