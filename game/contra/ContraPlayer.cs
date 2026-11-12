@@ -14,6 +14,11 @@ public class ContraPlayer : MonoBehaviour {
     float faceDir = 1f;
     Vector2 aimDir = Vector2.right;
     bool grounded;
+    Collider2D groundCol;
+    bool dropping;
+    float dropTimer;
+    Collider2D dropCol;
+    public float dropDuration = 0.25f;
 
     void Awake() {
         rb = GetComponent<Rigidbody2D>();
@@ -42,8 +47,25 @@ public class ContraPlayer : MonoBehaviour {
         }
 
         grounded = CheckGrounded();
-        if (Input.GetKeyDown(KeyCode.Space) && grounded)
+        if (dropping) grounded = false;
+        bool dropWish = grounded && Input.GetKey(KeyCode.S) && Input.GetKeyDown(KeyCode.Space);
+        if (dropWish && groundCol != null && groundCol.GetComponent<PlatformEffector2D>() != null && !dropping) {
+            dropping = true;
+            dropTimer = dropDuration;
+            dropCol = groundCol;
+            Physics2D.IgnoreCollision(col, dropCol, true);
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, -2f);
+        } else if (Input.GetKeyDown(KeyCode.Space) && grounded) {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpSpeed);
+        }
+        if (dropping) {
+            dropTimer -= Time.deltaTime;
+            if (dropTimer <= 0f) {
+                if (dropCol != null) Physics2D.IgnoreCollision(col, dropCol, false);
+                dropCol = null;
+                dropping = false;
+            }
+        }
 
         Vector2 a = new Vector2(h, v);
         if (a.sqrMagnitude < 0.01f) a = new Vector2(faceDir, 0f);
@@ -63,10 +85,12 @@ public class ContraPlayer : MonoBehaviour {
     }
 
     bool CheckGrounded() {
+        groundCol = null;
         Vector2 p = transform.position;
         var hits = Physics2D.OverlapBoxAll(p + Vector2.down * 1.05f, new Vector2(0.7f, 0.16f), 0f);
         foreach (var c in hits) {
             if (c == col || c.isTrigger) continue;
+            groundCol = c;
             return true;
         }
         return false;

@@ -27,10 +27,24 @@ fi
 rm -rf "$PROJ/Assets/Demo" "$PROJ/Assets/Scenes" "$PROJ/Builds" "$PROJ/Temp"
 test -d "$PROJ/Assets" || { echo NO_PROJECT; exit 6; }
 mkdir -p "$PROJ/Assets/Editor" "$PROJ/Assets/Contra"
+
+echo "=== ENSURE UGUI (bare -createProject lacks UnityEngine.UI) ==="
+python3 - "$PROJ" <<'PYEOF'
+import json, sys, os
+p = os.path.join(sys.argv[1], 'Packages', 'manifest.json')
+m = json.load(open(p))
+m.setdefault('dependencies', {})
+if 'com.unity.ugui' not in m['dependencies']:
+    m['dependencies']['com.unity.ugui'] = '2.0.0'
+    open(p, 'w').write(json.dumps(m, indent=2))
+    print('UGUI_ADDED')
+else:
+    print('UGUI_PRESENT')
+PYEOF
 echo PROJECT_READY
 
 cat > "$PROJ/Assets/Editor/BuildScript.cs" <<'CSEOF'
-using System.IO; using System.Linq; using UnityEditor; using UnityEditor.SceneManagement;
+using System.IO; using System.Linq; using UnityEngine; using UnityEditor; using UnityEditor.SceneManagement;
 public static class BuildScript {
     [MenuItem("Build/Perform")]
     public static void PerformBuild() {
@@ -112,6 +126,12 @@ public static class ContraBoot {
         MakeBox("WallL", new Vector3(-40f, 1f, 0f), new Vector3(1f, 14f, 1f), new Color(0f, 0f, 0f, 0f));
         MakeBox("WallR", new Vector3(40f, 1f, 0f), new Vector3(1f, 14f, 1f), new Color(0f, 0f, 0f, 0f));
 
+        MakePlatform("Plat1", new Vector3(-18f, -1.0f, 0f), new Vector3(7f, 0.4f, 1f));
+        MakePlatform("Plat2", new Vector3(-7f, 0.8f, 0f), new Vector3(7f, 0.4f, 1f));
+        MakePlatform("Plat3", new Vector3(5f, -1.0f, 0f), new Vector3(7f, 0.4f, 1f));
+        MakePlatform("Plat4", new Vector3(17f, 0.8f, 0f), new Vector3(7f, 0.4f, 1f));
+        MakePlatform("Plat5", new Vector3(26f, 2.4f, 0f), new Vector3(7f, 0.4f, 1f));
+
         var p = new GameObject("Player");
         p.transform.position = new Vector3(0f, -1.9f, 0f);
         var psr = p.AddComponent<SpriteRenderer>();
@@ -139,6 +159,18 @@ public static class ContraBoot {
         go.AddComponent<BoxCollider2D>();
     }
 
+    static void MakePlatform(string name, Vector3 pos, Vector3 size) {
+        var go = new GameObject(name);
+        go.transform.position = pos;
+        go.transform.localScale = size;
+        var sr = go.AddComponent<SpriteRenderer>();
+        sr.sprite = GameSprites.Get();
+        sr.color = new Color(0.2f, 0.75f, 0.3f);
+        go.AddComponent<BoxCollider2D>();
+        var eff = go.AddComponent<PlatformEffector2D>();
+        eff.useOneWay = true;
+    }
+
     static void MakeHint() {
         var canvasGo = new GameObject("HintCanvas");
         var canvas = canvasGo.AddComponent<Canvas>();
@@ -147,7 +179,7 @@ public static class ContraBoot {
         txt.color = new Color(1f, 1f, 1f, 0.85f);
         txt.fontSize = 18;
         txt.alignment = TextAnchor.LowerLeft;
-        txt.text = "A/D move   Space jump   W/S aim   hold Shift = aim lock   Z fire";
+        txt.text = "A/D move   Space jump   W/S aim   Shift = aim lock   Z fire   S+Space drop";
         Font f = null;
         try { f = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf"); } catch (System.Exception) {}
         if (f == null) { try { f = Resources.GetBuiltinResource<Font>("Arial.ttf"); } catch (System.Exception) {} }
@@ -178,6 +210,11 @@ public class ContraPlayer : MonoBehaviour {
     float faceDir = 1f;
     Vector2 aimDir = Vector2.right;
     bool grounded;
+    Collider2D groundCol;
+    bool dropping;
+    float dropTimer;
+    Collider2D dropCol;
+    public float dropDuration = 0.25f;
 
     void Awake() {
         rb = GetComponent<Rigidbody2D>();
@@ -206,8 +243,25 @@ public class ContraPlayer : MonoBehaviour {
         }
 
         grounded = CheckGrounded();
-        if (Input.GetKeyDown(KeyCode.Space) && grounded)
+        if (dropping) grounded = false;
+        bool dropWish = grounded && Input.GetKey(KeyCode.S) && Input.GetKeyDown(KeyCode.Space);
+        if (dropWish && groundCol != null && groundCol.GetComponent<PlatformEffector2D>() != null && !dropping) {
+            dropping = true;
+            dropTimer = dropDuration;
+            dropCol = groundCol;
+            Physics2D.IgnoreCollision(col, dropCol, true);
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, -2f);
+        } else if (Input.GetKeyDown(KeyCode.Space) && grounded) {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpSpeed);
+        }
+        if (dropping) {
+            dropTimer -= Time.deltaTime;
+            if (dropTimer <= 0f) {
+                if (dropCol != null) Physics2D.IgnoreCollision(col, dropCol, false);
+                dropCol = null;
+                dropping = false;
+            }
+        }
 
         Vector2 a = new Vector2(h, v);
         if (a.sqrMagnitude < 0.01f) a = new Vector2(faceDir, 0f);
@@ -227,10 +281,12 @@ public class ContraPlayer : MonoBehaviour {
     }
 
     bool CheckGrounded() {
+        groundCol = null;
         Vector2 p = transform.position;
         var hits = Physics2D.OverlapBoxAll(p + Vector2.down * 1.05f, new Vector2(0.7f, 0.16f), 0f);
         foreach (var c in hits) {
             if (c == col || c.isTrigger) continue;
+            groundCol = c;
             return true;
         }
         return false;

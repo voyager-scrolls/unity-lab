@@ -40,6 +40,12 @@ public static class ContraBoot {
         MakeBox("WallL", new Vector3(-40f, 1f, 0f), new Vector3(1f, 14f, 1f), new Color(0f, 0f, 0f, 0f));
         MakeBox("WallR", new Vector3(40f, 1f, 0f), new Vector3(1f, 14f, 1f), new Color(0f, 0f, 0f, 0f));
 
+        MakePlatform("Plat1", new Vector3(-18f, -1.0f, 0f), new Vector3(7f, 0.4f, 1f));
+        MakePlatform("Plat2", new Vector3(-7f, 0.8f, 0f), new Vector3(7f, 0.4f, 1f));
+        MakePlatform("Plat3", new Vector3(5f, -1.0f, 0f), new Vector3(7f, 0.4f, 1f));
+        MakePlatform("Plat4", new Vector3(17f, 0.8f, 0f), new Vector3(7f, 0.4f, 1f));
+        MakePlatform("Plat5", new Vector3(26f, 2.4f, 0f), new Vector3(7f, 0.4f, 1f));
+
         var p = new GameObject("Player");
         p.transform.position = new Vector3(0f, -1.9f, 0f);
         var psr = p.AddComponent<SpriteRenderer>();
@@ -67,6 +73,18 @@ public static class ContraBoot {
         go.AddComponent<BoxCollider2D>();
     }
 
+    static void MakePlatform(string name, Vector3 pos, Vector3 size) {
+        var go = new GameObject(name);
+        go.transform.position = pos;
+        go.transform.localScale = size;
+        var sr = go.AddComponent<SpriteRenderer>();
+        sr.sprite = GameSprites.Get();
+        sr.color = new Color(0.2f, 0.75f, 0.3f);
+        go.AddComponent<BoxCollider2D>();
+        var eff = go.AddComponent<PlatformEffector2D>();
+        eff.useOneWay = true;
+    }
+
     static void MakeHint() {
         var canvasGo = new GameObject("HintCanvas");
         var canvas = canvasGo.AddComponent<Canvas>();
@@ -75,7 +93,7 @@ public static class ContraBoot {
         txt.color = new Color(1f, 1f, 1f, 0.85f);
         txt.fontSize = 18;
         txt.alignment = TextAnchor.LowerLeft;
-        txt.text = "A/D move   Space jump   W/S aim   hold Shift = aim lock   Z fire";
+        txt.text = "A/D move   Space jump   W/S aim   Shift = aim lock   Z fire   S+Space drop";
         Font f = null;
         try { f = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf"); } catch (System.Exception) {}
         if (f == null) { try { f = Resources.GetBuiltinResource<Font>("Arial.ttf"); } catch (System.Exception) {} }
