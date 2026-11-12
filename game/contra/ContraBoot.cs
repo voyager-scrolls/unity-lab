@@ -35,6 +35,7 @@ public static class ContraBoot {
         camGo.transform.SetParent(root.transform, false);
         var cam = camGo.AddComponent<Camera>();
         cam.tag = "MainCamera";
+        camGo.AddComponent<AudioListener>();
         cam.orthographic = true;
         cam.orthographicSize = 6f;
         cam.clearFlags = CameraClearFlags.SolidColor;
@@ -64,6 +65,8 @@ public static class ContraBoot {
         MakePlatform(root.transform, "T8", new Vector3(50f, -1.3f, 0f), new Vector3(8f, 0.4f, 1f));
 
         MakeGate(root.transform, "Gate", new Vector3(56f, -0.5f, 0f), new Vector3(0.8f, 5f, 1f), new Color(0.2f, 0.9f, 0.7f));
+        MakeTurret(root.transform, new Vector3(-7f, -2.4f, 0f), -1f);  // guards the far side of water gap 1
+        MakeTurret(root.transform, new Vector3(26f, -2.4f, 0f), -1f);  // rakes the bridge / gap 2 crossing
 
         var p = new GameObject("Player");
         p.transform.SetParent(root.transform, false);
@@ -83,6 +86,7 @@ public static class ContraBoot {
         sp.AddComponent<ContraSpawner>();
 
         MakeHint(root.transform);
+        MakeHUD(root.transform);
         Debug.Log("CONTRA_BOOTED");
     }
 
@@ -126,6 +130,34 @@ public static class ContraBoot {
         go.tag = "Finish";
     }
 
+    static void MakeTurret(Transform parent, Vector3 pos, float facing) {
+        var go = new GameObject("Turret");
+        go.transform.SetParent(parent, false);
+        go.transform.position = pos;
+        go.transform.localScale = new Vector3(1f, 1.2f, 1f);
+        var sr = go.AddComponent<SpriteRenderer>();
+        sr.sprite = GameSprites.Get();
+        sr.color = new Color(0.55f, 0.3f, 0.3f);
+        go.AddComponent<BoxCollider2D>();
+        var tr = go.AddComponent<ContraTurret>();
+        tr.facing = facing;
+        var b = new GameObject("TurretBarrel");
+        b.transform.SetParent(go.transform, false);
+        b.transform.localPosition = new Vector3(facing * 0.45f, 0.75f, 0f);
+        b.transform.localScale = new Vector3(0.5f, 0.18f, 1f);
+        var bsr = b.AddComponent<SpriteRenderer>();
+        bsr.sprite = GameSprites.Get();
+        bsr.color = new Color(1f, 0.45f, 0.1f);
+    }
+
+    static void MakeHUD(Transform parent) {
+        var go = new GameObject("HUDCanvas");
+        go.transform.SetParent(parent, false);
+        var c = go.AddComponent<Canvas>();
+        c.renderMode = RenderMode.ScreenSpaceOverlay;
+        go.AddComponent<ContraHUD>();
+    }
+
     static void MakeHint(Transform parent) {
         var canvasGo = new GameObject("HintCanvas");
         canvasGo.transform.SetParent(parent, false);
@@ -135,7 +167,7 @@ public static class ContraBoot {
         txt.color = new Color(1f, 1f, 1f, 0.85f);
         txt.fontSize = 18;
         txt.alignment = TextAnchor.LowerLeft;
-        txt.text = "A/D move   Space jump   W/S aim   Shift = aim lock   Z fire   S+Space drop   reach the cyan gate";
+        txt.text = "A/D move   Space jump   W/S aim   Shift lock   Z fire   S prone / S+Space drop   orange crate = spread   reach the cyan gate";
         Font f = null;
         try { f = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf"); } catch (System.Exception) {}
         if (f == null) { try { f = Resources.GetBuiltinResource<Font>("Arial.ttf"); } catch (System.Exception) {} }

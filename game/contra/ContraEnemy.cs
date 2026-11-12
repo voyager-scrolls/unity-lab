@@ -7,12 +7,15 @@ public class ContraEnemy : MonoBehaviour {
 
     void Awake() {
         rb = GetComponent<Rigidbody2D>();
-        rb.gravityScale = 4f;
-        rb.freezeRotation = true;
+        if (rb != null) {
+            rb.gravityScale = 4f;
+            rb.freezeRotation = true;
+        }
     }
 
     void FixedUpdate() {
         if (dying) return;
+        if (rb == null) return;
         rb.linearVelocity = new Vector2(-runSpeed, rb.linearVelocity.y);
         var cam = Camera.main;
         float limit = cam != null ? cam.transform.position.x - 13f : -38f; // despawn behind camera view
@@ -22,6 +25,7 @@ public class ContraEnemy : MonoBehaviour {
     public void Die() {
         if (dying) return;
         dying = true;
+        ContraState.score += 100;
         var sr = GetComponent<SpriteRenderer>();
         if (sr != null) sr.color = Color.white; // hit flash
         Destroy(gameObject, 0.08f);

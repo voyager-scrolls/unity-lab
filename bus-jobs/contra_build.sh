@@ -73,13 +73,27 @@ using UnityEngine;
 
 public class Bullet2D : MonoBehaviour {
     public Collider2D ignore;
+    public bool enemyBullet;
+
     void Start() {
         Destroy(gameObject, 2f);
     }
+
     void OnTriggerEnter2D(Collider2D other) {
         if (other == ignore) return;
-        var e = other.GetComponent<ContraEnemy>();
-        if (e != null) e.Die();
+        if (enemyBullet) {
+            var p = other.GetComponent<ContraPlayer>();
+            if (p != null) p.Kill();
+        } else {
+            var e = other.GetComponent<ContraEnemy>();
+            if (e != null) e.Die();
+            var j = other.GetComponent<ContraJumper>();
+            if (j != null) j.Die();
+            var t = other.GetComponent<ContraTurret>();
+            if (t != null) t.Hit();
+            var c = other.GetComponent<ContraCapsule>();
+            if (c != null) c.Collect();
+        }
         Destroy(gameObject);
     }
 }
@@ -123,6 +137,7 @@ public static class ContraBoot {
         camGo.transform.SetParent(root.transform, false);
         var cam = camGo.AddComponent<Camera>();
         cam.tag = "MainCamera";
+        camGo.AddComponent<AudioListener>();
         cam.orthographic = true;
         cam.orthographicSize = 6f;
         cam.clearFlags = CameraClearFlags.SolidColor;
@@ -152,6 +167,8 @@ public static class ContraBoot {
         MakePlatform(root.transform, "T8", new Vector3(50f, -1.3f, 0f), new Vector3(8f, 0.4f, 1f));
 
         MakeGate(root.transform, "Gate", new Vector3(56f, -0.5f, 0f), new Vector3(0.8f, 5f, 1f), new Color(0.2f, 0.9f, 0.7f));
+        MakeTurret(root.transform, new Vector3(-7f, -2.4f, 0f), -1f);  // guards the far side of water gap 1
+        MakeTurret(root.transform, new Vector3(26f, -2.4f, 0f), -1f);  // rakes the bridge / gap 2 crossing
 
         var p = new GameObject("Player");
         p.transform.SetParent(root.transform, false);
@@ -171,6 +188,7 @@ public static class ContraBoot {
         sp.AddComponent<ContraSpawner>();
 
         MakeHint(root.transform);
+        MakeHUD(root.transform);
         Debug.Log("CONTRA_BOOTED");
     }
 
@@ -214,6 +232,34 @@ public static class ContraBoot {
         go.tag = "Finish";
     }
 
+    static void MakeTurret(Transform parent, Vector3 pos, float facing) {
+        var go = new GameObject("Turret");
+        go.transform.SetParent(parent, false);
+        go.transform.position = pos;
+        go.transform.localScale = new Vector3(1f, 1.2f, 1f);
+        var sr = go.AddComponent<SpriteRenderer>();
+        sr.sprite = GameSprites.Get();
+        sr.color = new Color(0.55f, 0.3f, 0.3f);
+        go.AddComponent<BoxCollider2D>();
+        var tr = go.AddComponent<ContraTurret>();
+        tr.facing = facing;
+        var b = new GameObject("TurretBarrel");
+        b.transform.SetParent(go.transform, false);
+        b.transform.localPosition = new Vector3(facing * 0.45f, 0.75f, 0f);
+        b.transform.localScale = new Vector3(0.5f, 0.18f, 1f);
+        var bsr = b.AddComponent<SpriteRenderer>();
+        bsr.sprite = GameSprites.Get();
+        bsr.color = new Color(1f, 0.45f, 0.1f);
+    }
+
+    static void MakeHUD(Transform parent) {
+        var go = new GameObject("HUDCanvas");
+        go.transform.SetParent(parent, false);
+        var c = go.AddComponent<Canvas>();
+        c.renderMode = RenderMode.ScreenSpaceOverlay;
+        go.AddComponent<ContraHUD>();
+    }
+
     static void MakeHint(Transform parent) {
         var canvasGo = new GameObject("HintCanvas");
         canvasGo.transform.SetParent(parent, false);
@@ -223,7 +269,7 @@ public static class ContraBoot {
         txt.color = new Color(1f, 1f, 1f, 0.85f);
         txt.fontSize = 18;
         txt.alignment = TextAnchor.LowerLeft;
-        txt.text = "A/D move   Space jump   W/S aim   Shift = aim lock   Z fire   S+Space drop   reach the cyan gate";
+        txt.text = "A/D move   Space jump   W/S aim   Shift lock   Z fire   S prone / S+Space drop   orange crate = spread   reach the cyan gate";
         Font f = null;
         try { f = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf"); } catch (System.Exception) {}
         if (f == null) { try { f = Resources.GetBuiltinResource<Font>("Arial.ttf"); } catch (System.Exception) {} }
@@ -233,6 +279,34 @@ public static class ContraBoot {
         rt.anchorMax = new Vector2(1f, 0f);
         rt.offsetMin = new Vector2(12f, 8f);
         rt.offsetMax = new Vector2(-12f, 44f);
+    }
+}
+CSEOF
+
+cat > "$PROJ/Assets/Contra/ContraCapsule.cs" <<'CSEOF'
+using UnityEngine;
+
+// Flying power-up: drifts left in a sine arc. Shoot it or touch it to get the spread gun.
+public class ContraCapsule : MonoBehaviour {
+    public float speed = 2.6f;
+    public float centerY = -1.1f;
+    public float amp = 0.9f;
+    float t;
+
+    void Update() {
+        t += Time.deltaTime;
+        var p = transform.position;
+        p.x -= speed * Time.deltaTime;
+        p.y = centerY + Mathf.Sin(t * 2.4f) * amp;
+        transform.position = p;
+        var cam = Camera.main;
+        if (cam != null && p.x < cam.transform.position.x - 13f) Destroy(gameObject);
+    }
+
+    public void Collect() {
+        var ps = Object.FindObjectsByType<ContraPlayer>(FindObjectsSortMode.None);
+        if (ps.Length > 0) ps[0].spread = true;
+        Destroy(gameObject);
     }
 }
 CSEOF
@@ -247,12 +321,15 @@ public class ContraEnemy : MonoBehaviour {
 
     void Awake() {
         rb = GetComponent<Rigidbody2D>();
-        rb.gravityScale = 4f;
-        rb.freezeRotation = true;
+        if (rb != null) {
+            rb.gravityScale = 4f;
+            rb.freezeRotation = true;
+        }
     }
 
     void FixedUpdate() {
         if (dying) return;
+        if (rb == null) return;
         rb.linearVelocity = new Vector2(-runSpeed, rb.linearVelocity.y);
         var cam = Camera.main;
         float limit = cam != null ? cam.transform.position.x - 13f : -38f; // despawn behind camera view
@@ -262,6 +339,7 @@ public class ContraEnemy : MonoBehaviour {
     public void Die() {
         if (dying) return;
         dying = true;
+        ContraState.score += 100;
         var sr = GetComponent<SpriteRenderer>();
         if (sr != null) sr.color = Color.white; // hit flash
         Destroy(gameObject, 0.08f);
@@ -269,9 +347,179 @@ public class ContraEnemy : MonoBehaviour {
 }
 CSEOF
 
+cat > "$PROJ/Assets/Contra/ContraHUD.cs" <<'CSEOF'
+using UnityEngine;
+using UnityEngine.UI;
+
+public static class ContraState {
+    public static int lives = 3;
+    public static int score = 0;
+    public static bool gameOver;
+}
+
+public static class ContraSfx {
+    static AudioSource src;
+    static AudioClip blip;
+    static AudioClip low;
+
+    public static void Init() {
+        if (src != null) return;
+        var go = GameObject.Find("MainCamera");
+        if (go == null) return;
+        src = go.GetComponent<AudioSource>();
+        if (src == null) src = go.AddComponent<AudioSource>();
+        src.playOnAwake = false;
+        src.volume = 0.22f;
+        if (blip == null) blip = MakeClip(880f, 0.05f);
+        if (low == null) low = MakeClip(160f, 0.22f);
+    }
+
+    public static void PlayBlip() { if (src != null && blip != null) src.PlayOneShot(blip); }
+    public static void PlayLow() { if (src != null && low != null) src.PlayOneShot(low); }
+
+    static AudioClip MakeClip(float freq, float dur) {
+        int rate = 44100;
+        int n = Mathf.Max(1, (int)(rate * dur));
+        var data = new float[n];
+        for (int i = 0; i < n; i++) {
+            float t = (float)i / rate;
+            float env = 1f - (float)i / n;
+            data[i] = Mathf.Sign(Mathf.Sin(2f * Mathf.PI * freq * t)) * 0.5f * env;
+        }
+        var c = AudioClip.Create("sfx", n, 1, rate, false);
+        c.SetData(data, 0);
+        return c;
+    }
+}
+
+public class ContraHUD : MonoBehaviour {
+    Text hud;
+    Text big;
+    float introT = 2.6f;
+
+    void Start() {
+        hud = MakeText("HudText", 20, TextAnchor.UpperLeft);
+        var rt = hud.rectTransform;
+        rt.anchorMin = new Vector2(0f, 1f);
+        rt.anchorMax = new Vector2(0f, 1f);
+        rt.pivot = new Vector2(0f, 1f);
+        rt.anchoredPosition = new Vector2(14f, -10f);
+        rt.sizeDelta = new Vector2(560f, 40f);
+
+        big = MakeText("BigText", 44, TextAnchor.MiddleCenter);
+        var bt = big.rectTransform;
+        bt.anchorMin = new Vector2(0f, 0f);
+        bt.anchorMax = new Vector2(1f, 1f);
+        bt.offsetMin = new Vector2(0f, 0f);
+        bt.offsetMax = new Vector2(0f, 60f);
+    }
+
+    Text MakeText(string name, int size, TextAnchor anchor) {
+        var go = new GameObject(name);
+        go.transform.SetParent(transform, false);
+        var t = go.AddComponent<Text>();
+        t.fontSize = size;
+        t.alignment = anchor;
+        t.color = Color.white;
+        t.horizontalOverflow = HorizontalWrapMode.Overflow;
+        t.verticalOverflow = VerticalWrapMode.Overflow;
+        Font f = null;
+        try { f = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf"); } catch (System.Exception) {}
+        if (f == null) { try { f = Resources.GetBuiltinResource<Font>("Arial.ttf"); } catch (System.Exception) {} }
+        t.font = f;
+        return t;
+    }
+
+    void Update() {
+        if (hud != null) hud.text = "LIVES " + ContraState.lives + "     SCORE " + ContraState.score;
+        if (big == null) return;
+
+        if (ContraState.gameOver) {
+            big.color = Color.white;
+            big.text = "GAME OVER - press R";
+            if (Input.GetKeyDown(KeyCode.R)) {
+                ContraState.lives = 3;
+                ContraState.score = 0;
+                ContraState.gameOver = false;
+                ContraRestarter.Schedule(0.05f);
+            }
+            return;
+        }
+
+        if (introT > 0f) {
+            introT -= Time.deltaTime;
+            big.text = "STAGE 1  JUNGLE";
+            big.color = new Color(1f, 1f, 1f, Mathf.Clamp01(introT));
+        } else if (big.text.Length > 0) {
+            big.text = "";
+        }
+    }
+}
+CSEOF
+
+cat > "$PROJ/Assets/Contra/ContraJumper.cs" <<'CSEOF'
+using UnityEngine;
+
+// Arc-jumper: parabolic hops toward the player. Leaps up THROUGH one-way platforms
+// and lands on catwalks, so it chases vertically as well as horizontally.
+public class ContraJumper : MonoBehaviour {
+    public float hopVx = 4.5f;
+    public float hopVy = 10f;
+    public float hopInterval = 1.0f;
+
+    Rigidbody2D rb;
+    Collider2D col;
+    float timer;
+    bool dying;
+
+    void Awake() {
+        rb = GetComponent<Rigidbody2D>();
+        col = GetComponent<Collider2D>();
+        if (rb != null) {
+            rb.gravityScale = 4f;
+            rb.freezeRotation = true;
+        }
+        timer = Random.Range(0.15f, 0.5f);
+    }
+
+    void FixedUpdate() {
+        if (dying) return;
+        if (rb == null) return;
+        timer -= Time.fixedDeltaTime;
+
+        bool onGround = false;
+        if (rb.linearVelocity.y <= 0.5f && col != null) {
+            var b = col.bounds;
+            var hit = Physics2D.Raycast(new Vector2(b.center.x, b.min.y + 0.05f), Vector2.down, 0.25f);
+            onGround = hit.collider != null && hit.collider != col;
+        }
+
+        if (onGround && timer <= 0f) {
+            var ps = Object.FindObjectsByType<ContraPlayer>(FindObjectsSortMode.None);
+            float dir = -1f;
+            if (ps.Length > 0) dir = Mathf.Sign(ps[0].transform.position.x - transform.position.x);
+            rb.linearVelocity = new Vector2(dir * hopVx, hopVy);
+            timer = hopInterval + Random.Range(0f, 0.5f);
+        }
+
+        var cam = Camera.main;
+        float limit = cam != null ? cam.transform.position.x - 13f : -38f;
+        if (transform.position.x < limit) Destroy(gameObject);
+    }
+
+    public void Die() {
+        if (dying) return;
+        dying = true;
+        ContraState.score += 100;
+        var sr = GetComponent<SpriteRenderer>();
+        if (sr != null) sr.color = Color.white;
+        Destroy(gameObject, 0.08f);
+    }
+}
+CSEOF
+
 cat > "$PROJ/Assets/Contra/ContraPlayer.cs" <<'CSEOF'
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ContraPlayer : MonoBehaviour {
@@ -280,9 +528,13 @@ public class ContraPlayer : MonoBehaviour {
     public float bulletSpeed = 14f;
     public float fireCooldown = 0.16f;
     public float barrelDist = 0.75f;
+    public float dropDuration = 0.25f;
+    public bool spread;
 
     Rigidbody2D rb;
-    Collider2D col;
+    BoxCollider2D col;
+    SpriteRenderer sr;
+    SpriteRenderer barrelSr;
     Transform barrel;
     float fireTimer;
     float faceDir = 1f;
@@ -292,41 +544,42 @@ public class ContraPlayer : MonoBehaviour {
     bool dropping;
     float dropTimer;
     Collider2D dropCol;
-    public float dropDuration = 0.25f;
     bool dead;
     bool won;
+    bool prone;
+    Camera cam;
 
     void Awake() {
         rb = GetComponent<Rigidbody2D>();
-        col = GetComponent<Collider2D>();
+        col = GetComponent<BoxCollider2D>();
+        sr = GetComponent<SpriteRenderer>();
         rb.gravityScale = 4f;
         rb.freezeRotation = true;
+        cam = Camera.main;
         var b = new GameObject("Barrel");
-        var sr = b.AddComponent<SpriteRenderer>();
-        sr.sprite = GameSprites.Get();
-        sr.color = Color.yellow;
+        barrelSr = b.AddComponent<SpriteRenderer>();
+        barrelSr.sprite = GameSprites.Get();
+        barrelSr.color = Color.yellow;
         b.transform.localScale = new Vector3(0.45f, 0.18f, 1f);
         barrel = b.transform;
         barrel.SetParent(transform.parent, true);
         barrel.position = transform.position;
+        ContraSfx.Init();
     }
 
     void Update() {
         if (dead || won) return;
+        if (cam == null) cam = Camera.main;
         if (transform.position.y < -3f) { Die(); return; } // fell into water
+
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
         bool locked = Input.GetKey(KeyCode.LeftShift);
-
         if (h != 0f) faceDir = Mathf.Sign(h);
-        if (locked) {
-            rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
-        } else {
-            rb.linearVelocity = new Vector2(h * runSpeed, rb.linearVelocity.y);
-        }
 
         grounded = CheckGrounded();
         if (dropping) grounded = false;
+
         bool dropWish = grounded && Input.GetKey(KeyCode.S) && Input.GetKeyDown(KeyCode.Space);
         if (dropWish && groundCol != null && groundCol.GetComponent<PlatformEffector2D>() != null && !dropping) {
             dropping = true;
@@ -335,6 +588,7 @@ public class ContraPlayer : MonoBehaviour {
             Physics2D.IgnoreCollision(col, dropCol, true);
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, -2f);
         } else if (Input.GetKeyDown(KeyCode.Space) && grounded) {
+            SetProne(false);
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpSpeed);
         }
         if (dropping) {
@@ -346,14 +600,35 @@ public class ContraPlayer : MonoBehaviour {
             }
         }
 
-        Vector2 a = new Vector2(h, v);
-        if (a.sqrMagnitude < 0.01f) a = new Vector2(faceDir, 0f);
-        if (grounded && !locked && v < 0f && h == 0f) a = new Vector2(faceDir, 0f);
+        // prone: hold S on the ground (classic down = lie flat, bullets pass overhead)
+        bool wantProne = grounded && !dropping && Input.GetKey(KeyCode.S) && v <= 0f;
+        if (wantProne != prone) SetProne(wantProne);
+
+        if (prone || locked) rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+        else rb.linearVelocity = new Vector2(h * runSpeed, rb.linearVelocity.y);
+
+        // no-backscroll camera: the left edge of the view is a hard wall
+        if (cam != null) {
+            float halfW = cam.orthographicSize * cam.aspect;
+            float minX = cam.transform.position.x - halfW + 0.7f;
+            if (rb.position.x < minX) rb.position = new Vector2(minX, rb.position.y);
+        }
+
+        Vector2 a;
+        if (prone) {
+            a = new Vector2(faceDir, 0f);
+        } else {
+            a = new Vector2(h, v);
+            if (a.sqrMagnitude < 0.01f) a = new Vector2(faceDir, 0f);
+            if (grounded && !locked && v < 0f && h == 0f) a = new Vector2(faceDir, 0f);
+        }
         aimDir = a.normalized;
 
         float ang = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
-        barrel.position = transform.position + (Vector3)(aimDir * barrelDist);
+        float yOff = prone ? -0.35f : 0f;
+        barrel.position = transform.position + new Vector3(0f, yOff, 0f) + (Vector3)(aimDir * barrelDist);
         barrel.rotation = Quaternion.Euler(0f, 0f, ang);
+        barrelSr.color = spread ? new Color(1f, 0.55f, 0.1f) : Color.yellow;
 
         fireTimer -= Time.deltaTime;
         bool fireHeld = Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.Z);
@@ -363,21 +638,41 @@ public class ContraPlayer : MonoBehaviour {
         }
     }
 
+    void SetProne(bool p) {
+        prone = p;
+        transform.localScale = p ? new Vector3(1f, 1f, 1f) : new Vector3(1f, 2f, 1f);
+    }
+
     void OnCollisionEnter2D(Collision2D c) {
         if (dead || won) return;
-        if (c.collider != null && c.collider.GetComponent<ContraEnemy>() != null) Die();
+        if (c.collider == null) return;
+        if (c.collider.GetComponent<ContraEnemy>() != null || c.collider.GetComponent<ContraJumper>() != null) Die();
     }
 
     void OnTriggerEnter2D(Collider2D other) {
+        if (dead || won || other == null) return;
+        if (other.CompareTag("Finish")) { Win(); return; }
+        var cap = other.GetComponent<ContraCapsule>();
+        if (cap != null) cap.Collect();
+    }
+
+    public void Kill() { Die(); }
+
+    void Die() {
         if (dead || won) return;
-        if (other != null && other.CompareTag("Finish")) Win();
+        dead = true;
+        ContraState.lives--;
+        if (sr != null) sr.color = new Color(0.9f, 0.15f, 0.15f);
+        if (barrel != null) barrel.gameObject.SetActive(false);
+        ContraSfx.PlayLow();
+        if (ContraState.lives <= 0) ContraState.gameOver = true;
+        else ContraRestarter.Schedule(0.75f);
     }
 
     void Win() {
         won = true;
         rb.linearVelocity = Vector2.zero;
-        var sr = GetComponent<SpriteRenderer>();
-        if (sr != null) sr.color = new Color(1f, 0.85f, 0.3f); // gold
+        if (sr != null) sr.color = new Color(1f, 0.9f, 0.3f);
         var hint = GameObject.Find("HintCanvas");
         if (hint != null) {
             var t = hint.GetComponent<Text>();
@@ -387,18 +682,11 @@ public class ContraPlayer : MonoBehaviour {
         if (sp != null) sp.SetActive(false);
     }
 
-    void Die() {
-        dead = true;
-        var sr = GetComponent<SpriteRenderer>();
-        if (sr != null) sr.color = new Color(0.9f, 0.15f, 0.15f);
-        if (barrel != null) barrel.gameObject.SetActive(false);
-        ContraRestarter.Schedule(0.6f);
-    }
-
     bool CheckGrounded() {
         groundCol = null;
-        Vector2 p = transform.position;
-        var hits = Physics2D.OverlapBoxAll(p + Vector2.down * 1.05f, new Vector2(0.7f, 0.16f), 0f);
+        var b = col.bounds;
+        Vector2 p = new Vector2(b.center.x, b.min.y - 0.03f);
+        var hits = Physics2D.OverlapBoxAll(p, new Vector2(b.size.x * 0.75f, 0.1f), 0f);
         foreach (var c in hits) {
             if (c == col || c.isTrigger) continue;
             groundCol = c;
@@ -408,19 +696,33 @@ public class ContraPlayer : MonoBehaviour {
     }
 
     void Fire() {
+        ContraSfx.PlayBlip();
+        if (spread) {
+            for (int i = -2; i <= 2; i++) SpawnBullet(i * 12f);
+        } else {
+            SpawnBullet(0f);
+        }
+    }
+
+    void SpawnBullet(float deg) {
+        Vector2 dir = aimDir;
+        if (deg != 0f) {
+            float r = deg * Mathf.Deg2Rad;
+            dir = new Vector2(aimDir.x * Mathf.Cos(r) - aimDir.y * Mathf.Sin(r),
+                              aimDir.x * Mathf.Sin(r) + aimDir.y * Mathf.Cos(r));
+        }
         var b = new GameObject("Bullet");
-        b.transform.position = barrel.position + (Vector3)(aimDir * 0.25f);
+        b.transform.position = barrel.position + (Vector3)(dir * 0.3f);
         b.transform.SetParent(transform.parent, true);
-        var sr = b.AddComponent<SpriteRenderer>();
-        sr.sprite = GameSprites.Get();
-        sr.color = Color.white;
+        var bsr = b.AddComponent<SpriteRenderer>();
+        bsr.sprite = GameSprites.Get();
+        bsr.color = Color.white;
         b.transform.localScale = new Vector3(0.25f, 0.25f, 1f);
         var bc = b.AddComponent<BoxCollider2D>();
         bc.isTrigger = true;
-        bc.size = Vector2.one;
         var brb = b.AddComponent<Rigidbody2D>();
         brb.gravityScale = 0f;
-        brb.linearVelocity = aimDir * bulletSpeed;
+        brb.linearVelocity = dir * bulletSpeed;
         var bl = b.AddComponent<Bullet2D>();
         bl.ignore = col;
     }
@@ -462,30 +764,141 @@ using UnityEngine;
 public class ContraSpawner : MonoBehaviour {
     public float interval = 2.5f;
     public int maxAlive = 6;
+    public int maxJumpers = 2;
     float timer;
+    bool cap1;
+    bool cap2;
+
+    // Zone choreography along the march: teach -> ambush -> breath -> pressure -> crossfire -> gauntlet
+    static readonly float[] ZMin = { -60f, -30f, -12f, -8f, 4f, 24f };
+    static readonly float[] ZMax = { -30f, -12f, -8f, 4f, 24f, 54f };
+    static readonly float[] ZInt = { 3.5f, 2.8f, 2.2f, 2.2f, 2.6f, 1.9f };
+    static readonly float[] ZJump = { 0f, 0.35f, 0.4f, 0.4f, 0.25f, 0.4f };
+
+    void Update() {
+        if (ContraState.gameOver) return;
+        var ps = Object.FindObjectsByType<ContraPlayer>(FindObjectsSortMode.None);
+        if (ps.Length == 0) return;
+        float px = ps[0].transform.position.x;
+
+        if (!cap1 && px > 0f) { cap1 = true; SpawnCapsule(px + 12f); }
+        if (!cap2 && px > 34f) { cap2 = true; SpawnCapsule(px + 12f); }
+
+        timer -= Time.deltaTime;
+        if (timer > 0f) return;
+
+        // breath windows: the march stands down before each water crossing
+        if ((px > -15f && px < -5f) || (px > 17f && px < 27f)) { timer = 0.4f; return; }
+
+        int z = 0;
+        for (int i = 0; i < ZMin.Length; i++) {
+            if (px >= ZMin[i] && px < ZMax[i]) { z = i; break; }
+        }
+        timer = ZInt[z];
+
+        var cam = Camera.main;
+        if (cam == null) return;
+        var rootT = GameObject.Find("ContraGame");
+        if (rootT == null) return;
+        float x = Mathf.Clamp(cam.transform.position.x + 11.5f, -58f, 55f);
+        var hit = Physics2D.Raycast(new Vector2(x, 0f), Vector2.down, 8f);
+        if (hit.collider == null) return; // water gap ahead: no ground to land on, skip
+
+        int jumpers = Object.FindObjectsByType<ContraJumper>(FindObjectsSortMode.None).Length;
+        int runners = Object.FindObjectsByType<ContraEnemy>(FindObjectsSortMode.None).Length;
+
+        if (jumpers < maxJumpers && Random.value < ZJump[z]) {
+            var jgo = new GameObject("Jumper");
+            jgo.transform.position = new Vector3(x, -2.4f, 0f);
+            var jsr = jgo.AddComponent<SpriteRenderer>();
+            jsr.sprite = GameSprites.Get();
+            jsr.color = new Color(0.95f, 0.45f, 0.15f);
+            jgo.transform.localScale = new Vector3(0.9f, 1.2f, 1f);
+            var jbc = jgo.AddComponent<BoxCollider2D>();
+            jbc.sharedMaterial = new PhysicsMaterial2D("jumperSlip") { friction = 0f, bounciness = 0f };
+            jgo.AddComponent<Rigidbody2D>();
+            jgo.transform.SetParent(rootT.transform, true);
+            jgo.AddComponent<ContraJumper>();
+        } else if (runners < maxAlive) {
+            var go = new GameObject("Runner");
+            go.transform.position = new Vector3(x, -2.4f, 0f);
+            var sr = go.AddComponent<SpriteRenderer>();
+            sr.sprite = GameSprites.Get();
+            sr.color = new Color(0.85f, 0.2f, 0.2f);
+            go.transform.localScale = new Vector3(0.9f, 1.2f, 1f);
+            var bc = go.AddComponent<BoxCollider2D>();
+            bc.sharedMaterial = new PhysicsMaterial2D("enemySlip") { friction = 0f, bounciness = 0f };
+            go.AddComponent<Rigidbody2D>();
+            go.transform.SetParent(rootT.transform, true);
+            go.AddComponent<ContraEnemy>();
+        }
+    }
+
+    void SpawnCapsule(float x) {
+        var rootT = GameObject.Find("ContraGame");
+        if (rootT == null) return;
+        var go = new GameObject("Capsule");
+        go.transform.position = new Vector3(x, -1.1f, 0f);
+        var sr = go.AddComponent<SpriteRenderer>();
+        sr.sprite = GameSprites.Get();
+        sr.color = new Color(1f, 0.5f, 0.1f);
+        var bc = go.AddComponent<BoxCollider2D>();
+        bc.isTrigger = true;
+        go.transform.SetParent(rootT.transform, true);
+        go.AddComponent<ContraCapsule>();
+    }
+}
+CSEOF
+
+cat > "$PROJ/Assets/Contra/ContraTurret.cs" <<'CSEOF'
+using UnityEngine;
+
+// Stationary wall turret: fires straight horizontal shots at standing-chest height,
+// so lying prone lets them pass overhead. Three hits to kill.
+public class ContraTurret : MonoBehaviour {
+    public int hp = 3;
+    public float interval = 1.7f;
+    public float fireSpeed = 6f;
+    public float facing = -1f;
+    float timer = 1f;
 
     void Update() {
         timer -= Time.deltaTime;
         if (timer > 0f) return;
         timer = interval;
-        if (Object.FindObjectsByType<ContraEnemy>(FindObjectsSortMode.None).Length >= maxAlive) return;
+
         var cam = Camera.main;
-        if (cam == null) return;
-        var rootT = GameObject.Find("ContraGame");
-        if (rootT == null) return;
-        float x = Mathf.Clamp(cam.transform.position.x + 11.5f, -58f, 55f); // just off the visible right edge
-        var hit = Physics2D.Raycast(new Vector2(x, 0f), Vector2.down, 8f);
-        if (hit.collider == null) return; // water gap ahead: no ground to land on, skip
-        var go = new GameObject("Runner");
-        go.transform.position = new Vector3(x, -2.4f, 0f);
-        var sr = go.AddComponent<SpriteRenderer>();
+        if (cam != null) {
+            float halfW = cam.orthographicSize * cam.aspect;
+            if (transform.position.x > cam.transform.position.x + halfW) return; // do not fire from offscreen
+        }
+
+        var b = new GameObject("EnemyBullet");
+        b.transform.position = transform.position + new Vector3(facing * 0.7f, 0.9f, 0f);
+        b.transform.SetParent(transform.parent, true);
+        b.transform.localScale = new Vector3(0.35f, 0.16f, 1f);
+        var sr = b.AddComponent<SpriteRenderer>();
         sr.sprite = GameSprites.Get();
-        sr.color = new Color(0.85f, 0.2f, 0.2f);
-        go.transform.localScale = new Vector3(0.9f, 1.2f, 1f);
-        var bc = go.AddComponent<BoxCollider2D>();
-        bc.sharedMaterial = new PhysicsMaterial2D("enemySlip") { friction = 0f, bounciness = 0f };
-        go.transform.SetParent(rootT.transform, true);
-        go.AddComponent<ContraEnemy>();
+        sr.color = new Color(1f, 0.45f, 0.1f);
+        var bc = b.AddComponent<BoxCollider2D>();
+        bc.isTrigger = true;
+        var brb = b.AddComponent<Rigidbody2D>();
+        brb.gravityScale = 0f;
+        brb.linearVelocity = new Vector2(facing * fireSpeed, 0f);
+        var bl = b.AddComponent<Bullet2D>();
+        bl.enemyBullet = true;
+    }
+
+    public void Hit() {
+        hp--;
+        var sr = GetComponent<SpriteRenderer>();
+        if (hp <= 0) {
+            ContraState.score += 500;
+            if (sr != null) sr.color = Color.white;
+            Destroy(gameObject, 0.08f);
+        } else if (sr != null) {
+            sr.color = new Color(1f, 0.45f, 0.35f);
+        }
     }
 }
 CSEOF
