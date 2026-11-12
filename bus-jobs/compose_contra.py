@@ -18,8 +18,15 @@ test -f /content/unity_bin.txt || { echo NO_UNITY_BIN; exit 6; }
 test -x "$UNITY" || { echo NO_EDITOR_BIN; exit 6; }
 echo PREFLIGHT_OK
 
-echo "=== BUSY CHECK ==="
-if pgrep -f "Editor/Unity" >/dev/null 2>&1; then echo UNITY_BUSY_ABORT; exit 7; fi
+echo "=== BUSY CHECK (wait for idle editor) ==="
+BWAIT=0
+while pgrep -f "Editor/Unity" >/dev/null 2>&1; do
+  BWAIT=$((BWAIT+1))
+  if [ "$BWAIT" -gt 90 ]; then echo UNITY_BUSY_TIMEOUT; exit 7; fi
+  echo "UNITY_BUSY_WAITING $BWAIT"
+  sleep 20
+done
+echo UNITY_IDLE
 echo NOT_BUSY
 
 echo "=== PROJECT ==="
