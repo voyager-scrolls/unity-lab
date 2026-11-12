@@ -13,12 +13,13 @@ echo PREFLIGHT_OK
 
 echo "=== BUSY CHECK (wait for idle editor) ==="
 BWAIT=0
-while pgrep -f "Editor/Unity" >/dev/null 2>&1; do
+while pgrep -x Unity >/dev/null 2>&1; do
   BWAIT=$((BWAIT+1))
   if [ "$BWAIT" -gt 90 ]; then echo UNITY_BUSY_TIMEOUT; exit 7; fi
   echo "UNITY_BUSY_WAITING $BWAIT"
   sleep 20
 done
+pgrep -ax Unity || echo NO_EDITOR_PROCS
 echo UNITY_IDLE
 echo NOT_BUSY
 
