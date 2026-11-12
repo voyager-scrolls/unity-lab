@@ -78,6 +78,8 @@ public class Bullet2D : MonoBehaviour {
     }
     void OnTriggerEnter2D(Collider2D other) {
         if (other == ignore) return;
+        var e = other.GetComponent<ContraEnemy>();
+        if (e != null) e.Die();
         Destroy(gameObject);
     }
 }
@@ -108,10 +110,17 @@ public static class ContraBoot {
     static void Boot() {
         var stale = GameObject.Find("Cube");
         if (stale != null) Object.Destroy(stale);
+        Build();
+    }
+
+    // Re-callable after death reset (RuntimeInitializeOnLoadMethod only fires once per Play session,
+    // so restart = destroy the ContraGame root + Build() again from ContraRestarter)
+    public static void Build() {
         if (GameObject.Find("ContraGame") != null) return;
-        new GameObject("ContraGame");
+        var root = new GameObject("ContraGame");
 
         var camGo = new GameObject("MainCamera");
+        camGo.transform.SetParent(root.transform, false);
         var cam = camGo.AddComponent<Camera>();
         cam.tag = "MainCamera";
         cam.orthographic = true;
@@ -122,36 +131,42 @@ public static class ContraBoot {
         var fc = camGo.AddComponent<FollowCam>();
         fc.minX = -26f; fc.maxX = 26f;
 
-        MakeBox("Ground", new Vector3(0f, -3.5f, 0f), new Vector3(80f, 1f, 1f), new Color(0.34f, 0.36f, 0.40f));
-        MakeBox("WallL", new Vector3(-40f, 1f, 0f), new Vector3(1f, 14f, 1f), new Color(0f, 0f, 0f, 0f));
-        MakeBox("WallR", new Vector3(40f, 1f, 0f), new Vector3(1f, 14f, 1f), new Color(0f, 0f, 0f, 0f));
+        MakeBox(root.transform, "Ground", new Vector3(0f, -3.5f, 0f), new Vector3(80f, 1f, 1f), new Color(0.34f, 0.36f, 0.40f));
+        MakeBox(root.transform, "WallL", new Vector3(-40f, 1f, 0f), new Vector3(1f, 14f, 1f), new Color(0f, 0f, 0f, 0f));
+        MakeBox(root.transform, "WallR", new Vector3(40f, 1f, 0f), new Vector3(1f, 14f, 1f), new Color(0f, 0f, 0f, 0f));
 
-        // Reachability: jump apex 2.16 m (jumpSpeed 13, gravity x4). Tier tops -1.1 / 0.8 / 2.6 -> clearance >= 0.26 m
-        MakePlatform("Plat1", new Vector3(-18f, -1.3f, 0f), new Vector3(7f, 0.4f, 1f));
-        MakePlatform("Plat2", new Vector3(-7f, 0.6f, 0f), new Vector3(7f, 0.4f, 1f));
-        MakePlatform("Plat3", new Vector3(5f, -1.3f, 0f), new Vector3(7f, 0.4f, 1f));
-        MakePlatform("Plat4", new Vector3(15f, 0.6f, 0f), new Vector3(7f, 0.4f, 1f));
-        MakePlatform("Plat5", new Vector3(25f, 2.4f, 0f), new Vector3(7f, 0.4f, 1f));
+        // Ascending terraces left-to-right; tier tops -1.1 / 0.8 / 2.6 (jump apex 2.16 m, clearance >= 0.26 m)
+        // Adjacent edges (gaps 0-2 m) form a climbable catwalk route; tier 2 offset from walk lanes
+        MakePlatform(root.transform, "PlatA", new Vector3(-16f, -1.3f, 0f), new Vector3(8f, 0.4f, 1f));
+        MakePlatform(root.transform, "PlatB", new Vector3(-6f, -1.3f, 0f), new Vector3(8f, 0.4f, 1f));
+        MakePlatform(root.transform, "PlatC", new Vector3(2f, 0.6f, 0f), new Vector3(8f, 0.4f, 1f));
+        MakePlatform(root.transform, "PlatD", new Vector3(12f, 0.6f, 0f), new Vector3(8f, 0.4f, 1f));
+        MakePlatform(root.transform, "PlatE", new Vector3(22f, 2.4f, 0f), new Vector3(9f, 0.4f, 1f));
 
         var p = new GameObject("Player");
+        p.transform.SetParent(root.transform, false);
         p.transform.position = new Vector3(0f, -1.9f, 0f);
         var psr = p.AddComponent<SpriteRenderer>();
         psr.sprite = GameSprites.Get();
         psr.color = new Color(0.25f, 0.55f, 1f);
         p.transform.localScale = new Vector3(1f, 2f, 1f);
-        p.AddComponent<BoxCollider2D>();
-        var pcol = p.GetComponent<BoxCollider2D>();
-        pcol.sharedMaterial = new PhysicsMaterial2D("playerSlip") { friction = 0f, bounciness = 0f }; // no edge-grip; velocity is set directly each frame
+        var pcol = p.AddComponent<BoxCollider2D>();
+        pcol.sharedMaterial = new PhysicsMaterial2D("playerSlip") { friction = 0f, bounciness = 0f };
         p.AddComponent<Rigidbody2D>();
         p.AddComponent<ContraPlayer>();
         fc.target = p.transform;
 
-        MakeHint();
+        var sp = new GameObject("Spawner");
+        sp.transform.SetParent(root.transform, false);
+        sp.AddComponent<ContraSpawner>();
+
+        MakeHint(root.transform);
         Debug.Log("CONTRA_BOOTED");
     }
 
-    static void MakeBox(string name, Vector3 pos, Vector3 size, Color color) {
+    static void MakeBox(Transform parent, string name, Vector3 pos, Vector3 size, Color color) {
         var go = new GameObject(name);
+        go.transform.SetParent(parent, false);
         go.transform.position = pos;
         go.transform.localScale = size;
         if (color.a > 0f) {
@@ -162,8 +177,9 @@ public static class ContraBoot {
         go.AddComponent<BoxCollider2D>();
     }
 
-    static void MakePlatform(string name, Vector3 pos, Vector3 size) {
+    static void MakePlatform(Transform parent, string name, Vector3 pos, Vector3 size) {
         var go = new GameObject(name);
+        go.transform.SetParent(parent, false);
         go.transform.position = pos;
         go.transform.localScale = size;
         var sr = go.AddComponent<SpriteRenderer>();
@@ -175,15 +191,16 @@ public static class ContraBoot {
         eff.surfaceArc = 90f; // default 180 makes the SIDES solid -> player box catches platform edges and stalls; 90 = top face only
     }
 
-    static void MakeHint() {
+    static void MakeHint(Transform parent) {
         var canvasGo = new GameObject("HintCanvas");
+        canvasGo.transform.SetParent(parent, false);
         var canvas = canvasGo.AddComponent<Canvas>();
         canvas.renderMode = RenderMode.ScreenSpaceOverlay;
         var txt = canvasGo.AddComponent<Text>();
         txt.color = new Color(1f, 1f, 1f, 0.85f);
         txt.fontSize = 18;
         txt.alignment = TextAnchor.LowerLeft;
-        txt.text = "A/D move   Space jump   W/S aim   Shift = aim lock   Z fire   S+Space drop";
+        txt.text = "A/D move   Space jump   W/S aim   Shift = aim lock   Z fire   S+Space drop   dodge red";
         Font f = null;
         try { f = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf"); } catch (System.Exception) {}
         if (f == null) { try { f = Resources.GetBuiltinResource<Font>("Arial.ttf"); } catch (System.Exception) {} }
@@ -197,8 +214,39 @@ public static class ContraBoot {
 }
 CSEOF
 
+cat > "$PROJ/Assets/Contra/ContraEnemy.cs" <<'CSEOF'
+using UnityEngine;
+
+public class ContraEnemy : MonoBehaviour {
+    public float runSpeed = 3.5f;
+    Rigidbody2D rb;
+    bool dying;
+
+    void Awake() {
+        rb = GetComponent<Rigidbody2D>();
+        rb.gravityScale = 4f;
+        rb.freezeRotation = true;
+    }
+
+    void FixedUpdate() {
+        if (dying) return;
+        rb.linearVelocity = new Vector2(-runSpeed, rb.linearVelocity.y);
+        if (transform.position.x < -38f) Destroy(gameObject);
+    }
+
+    public void Die() {
+        if (dying) return;
+        dying = true;
+        var sr = GetComponent<SpriteRenderer>();
+        if (sr != null) sr.color = Color.white; // hit flash
+        Destroy(gameObject, 0.08f);
+    }
+}
+CSEOF
+
 cat > "$PROJ/Assets/Contra/ContraPlayer.cs" <<'CSEOF'
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ContraPlayer : MonoBehaviour {
     public float runSpeed = 7f;
@@ -219,6 +267,7 @@ public class ContraPlayer : MonoBehaviour {
     float dropTimer;
     Collider2D dropCol;
     public float dropDuration = 0.25f;
+    bool dead;
 
     void Awake() {
         rb = GetComponent<Rigidbody2D>();
@@ -231,10 +280,12 @@ public class ContraPlayer : MonoBehaviour {
         sr.color = Color.yellow;
         b.transform.localScale = new Vector3(0.45f, 0.18f, 1f);
         barrel = b.transform;
+        barrel.SetParent(transform.parent, true);
         barrel.position = transform.position;
     }
 
     void Update() {
+        if (dead) return;
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
         bool locked = Input.GetKey(KeyCode.LeftShift);
@@ -284,6 +335,19 @@ public class ContraPlayer : MonoBehaviour {
         }
     }
 
+    void OnCollisionEnter2D(Collision2D c) {
+        if (dead) return;
+        if (c.collider != null && c.collider.GetComponent<ContraEnemy>() != null) Die();
+    }
+
+    void Die() {
+        dead = true;
+        var sr = GetComponent<SpriteRenderer>();
+        if (sr != null) sr.color = new Color(0.9f, 0.15f, 0.15f);
+        if (barrel != null) barrel.gameObject.SetActive(false);
+        ContraRestarter.Schedule(0.6f);
+    }
+
     bool CheckGrounded() {
         groundCol = null;
         Vector2 p = transform.position;
@@ -299,6 +363,7 @@ public class ContraPlayer : MonoBehaviour {
     void Fire() {
         var b = new GameObject("Bullet");
         b.transform.position = barrel.position + (Vector3)(aimDir * 0.25f);
+        b.transform.SetParent(transform.parent, true);
         var sr = b.AddComponent<SpriteRenderer>();
         sr.sprite = GameSprites.Get();
         sr.color = Color.white;
@@ -311,6 +376,67 @@ public class ContraPlayer : MonoBehaviour {
         brb.linearVelocity = aimDir * bulletSpeed;
         var bl = b.AddComponent<Bullet2D>();
         bl.ignore = col;
+    }
+}
+CSEOF
+
+cat > "$PROJ/Assets/Contra/ContraRestarter.cs" <<'CSEOF'
+using UnityEngine;
+
+// Survives the ContraGame root destroy; rebuilds the level once after player death.
+// Root renamed BEFORE destroy so Build()'s find-guard passes in the same frame.
+public class ContraRestarter : MonoBehaviour {
+    float t;
+    float delay;
+
+    public static void Schedule(float d) {
+        var go = new GameObject("ContraRestarter");
+        var r = go.AddComponent<ContraRestarter>();
+        r.delay = d;
+    }
+
+    void Update() {
+        t += Time.deltaTime;
+        if (t < delay) return;
+        var old = GameObject.Find("ContraGame");
+        if (old != null) {
+            old.name = "ContraGameOld";
+            Object.Destroy(old);
+        }
+        ContraBoot.Build();
+        Destroy(gameObject);
+    }
+}
+CSEOF
+
+cat > "$PROJ/Assets/Contra/ContraSpawner.cs" <<'CSEOF'
+using UnityEngine;
+
+public class ContraSpawner : MonoBehaviour {
+    public float interval = 2.5f;
+    public int maxAlive = 6;
+    float timer;
+
+    void Update() {
+        timer -= Time.deltaTime;
+        if (timer > 0f) return;
+        timer = interval;
+        if (Object.FindObjectsByType<ContraEnemy>(FindObjectsSortMode.None).Length >= maxAlive) return;
+        var cam = Camera.main;
+        if (cam == null) return;
+        var rootT = GameObject.Find("ContraGame");
+        if (rootT == null) return;
+        float x = Mathf.Clamp(cam.transform.position.x + 11.5f, -39f, 39f); // just off the visible right edge
+        var go = new GameObject("Runner");
+        go.transform.position = new Vector3(x, -2.4f, 0f);
+        var sr = go.AddComponent<SpriteRenderer>();
+        sr.sprite = GameSprites.Get();
+        sr.color = new Color(0.85f, 0.2f, 0.2f);
+        go.transform.localScale = new Vector3(0.9f, 1.2f, 1f);
+        var bc = go.AddComponent<BoxCollider2D>();
+        bc.sharedMaterial = new PhysicsMaterial2D("enemySlip") { friction = 0f, bounciness = 0f };
+        go.transform.SetParent(rootT.transform, true);
+        go.AddComponent<ContraEnemy>();
     }
 }
 CSEOF

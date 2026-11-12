@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ContraPlayer : MonoBehaviour {
     public float runSpeed = 7f;
@@ -19,6 +20,7 @@ public class ContraPlayer : MonoBehaviour {
     float dropTimer;
     Collider2D dropCol;
     public float dropDuration = 0.25f;
+    bool dead;
 
     void Awake() {
         rb = GetComponent<Rigidbody2D>();
@@ -31,10 +33,12 @@ public class ContraPlayer : MonoBehaviour {
         sr.color = Color.yellow;
         b.transform.localScale = new Vector3(0.45f, 0.18f, 1f);
         barrel = b.transform;
+        barrel.SetParent(transform.parent, true);
         barrel.position = transform.position;
     }
 
     void Update() {
+        if (dead) return;
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
         bool locked = Input.GetKey(KeyCode.LeftShift);
@@ -84,6 +88,19 @@ public class ContraPlayer : MonoBehaviour {
         }
     }
 
+    void OnCollisionEnter2D(Collision2D c) {
+        if (dead) return;
+        if (c.collider != null && c.collider.GetComponent<ContraEnemy>() != null) Die();
+    }
+
+    void Die() {
+        dead = true;
+        var sr = GetComponent<SpriteRenderer>();
+        if (sr != null) sr.color = new Color(0.9f, 0.15f, 0.15f);
+        if (barrel != null) barrel.gameObject.SetActive(false);
+        ContraRestarter.Schedule(0.6f);
+    }
+
     bool CheckGrounded() {
         groundCol = null;
         Vector2 p = transform.position;
@@ -99,6 +116,7 @@ public class ContraPlayer : MonoBehaviour {
     void Fire() {
         var b = new GameObject("Bullet");
         b.transform.position = barrel.position + (Vector3)(aimDir * 0.25f);
+        b.transform.SetParent(transform.parent, true);
         var sr = b.AddComponent<SpriteRenderer>();
         sr.sprite = GameSprites.Get();
         sr.color = Color.white;

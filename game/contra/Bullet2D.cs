@@ -7,6 +7,8 @@ public class Bullet2D : MonoBehaviour {
     }
     void OnTriggerEnter2D(Collider2D other) {
         if (other == ignore) return;
+        var e = other.GetComponent<ContraEnemy>();
+        if (e != null) e.Die();
         Destroy(gameObject);
     }
 }
