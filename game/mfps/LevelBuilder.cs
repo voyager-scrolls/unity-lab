@@ -177,6 +177,26 @@ public static class LevelBuilder
         }
 
         // Integrity gate 1: every spawn point and room centre must be mutually reachable on the NavMesh
+        try
+        {
+            var tri = UnityEngine.AI.NavMesh.CalculateTriangulation();
+            Debug.Log("NAVMESH_VERIFY tris=" + (tri.indices.Length / 3) + " verts=" + tri.vertices.Length);
+            if (tri.vertices.Length > 0)
+            {
+                Vector3 mn = tri.vertices[0], mx = tri.vertices[0];
+                foreach (Vector3 v in tri.vertices)
+                {
+                    mn = Vector3.Min(mn, v);
+                    mx = Vector3.Max(mx, v);
+                }
+                Debug.Log("NAVMESH_BOUNDS min=" + mn.ToString("F1") + " max=" + mx.ToString("F1"));
+            }
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogWarning("NAVMESH_VERIFY_FAIL " + e.Message);
+        }
+
         var navPoints = new System.Collections.Generic.List<Vector3>(spawnPositions);
         foreach (LevelRoomData room in layout.rooms)
         {
@@ -185,6 +205,13 @@ public static class LevelBuilder
             Vector3 rmax = ToV3(room.bounds.max, Vector3.zero);
             navPoints.Add(new Vector3((rmin.x + rmax.x) * 0.5f, 0.4f, (rmin.z + rmax.z) * 0.5f));
         }
+        for (int i = 0; i < navPoints.Count; i++)
+        {
+            UnityEngine.AI.NavMeshHit hit;
+            bool ok = UnityEngine.AI.NavMesh.SamplePosition(navPoints[i], out hit, 3f, UnityEngine.AI.NavMesh.AllAreas);
+            Debug.Log("NAVPOINT " + i + " " + navPoints[i].ToString("F1") +
+                (ok ? (" -> " + hit.position.ToString("F1")) : " NO_SAMPLE"));
+        }
         int navPairs = 0;
         int navFails = 0;
         for (int i = 0; i < navPoints.Count; i++)
@@ -192,10 +219,12 @@ public static class LevelBuilder
             for (int j = i + 1; j < navPoints.Count; j++)
             {
                 navPairs++;
-                if (!NavReachable(navPoints[i], navPoints[j]))
+                UnityEngine.AI.NavMeshPath path = new UnityEngine.AI.NavMeshPath();
+                string failReason = NavReachableDetail(navPoints[i], navPoints[j], path);
+                if (failReason != null)
                 {
                     navFails++;
-                    Debug.LogWarning("NAV_CONNECT_FAIL " + i + "->" + j);
+                    Debug.LogWarning("NAV_CONNECT_FAIL " + i + "->" + j + " reason=" + failReason);
                 }
             }
         }
@@ -269,16 +298,18 @@ public static class LevelBuilder
         return def;
     }
 
-    // Both points snapped onto the NavMesh, then a complete path must exist
-    static bool NavReachable(Vector3 a, Vector3 b)
+    // Both points snapped onto the NavMesh, then a complete path must exist.
+    // Returns null when reachable, otherwise a diagnostic reason.
+    static string NavReachableDetail(Vector3 a, Vector3 b, UnityEngine.AI.NavMeshPath path)
     {
         UnityEngine.AI.NavMeshHit ha;
         UnityEngine.AI.NavMeshHit hb;
-        if (!UnityEngine.AI.NavMesh.SamplePosition(a, out ha, 3f, UnityEngine.AI.NavMesh.AllAreas)) return false;
-        if (!UnityEngine.AI.NavMesh.SamplePosition(b, out hb, 3f, UnityEngine.AI.NavMesh.AllAreas)) return false;
-        var path = new UnityEngine.AI.NavMeshPath();
-        return UnityEngine.AI.NavMesh.CalculatePath(ha.position, hb.position, UnityEngine.AI.NavMesh.AllAreas, path) &&
-               path.status == UnityEngine.AI.NavMeshPathStatus.PathComplete;
+        if (!UnityEngine.AI.NavMesh.SamplePosition(a, out ha, 3f, UnityEngine.AI.NavMesh.AllAreas)) return "sampleA";
+        if (!UnityEngine.AI.NavMesh.SamplePosition(b, out hb, 3f, UnityEngine.AI.NavMesh.AllAreas)) return "sampleB";
+        bool ok = UnityEngine.AI.NavMesh.CalculatePath(ha.position, hb.position, UnityEngine.AI.NavMesh.AllAreas, path);
+        if (!ok) return "calc";
+        if (path.status != UnityEngine.AI.NavMeshPathStatus.PathComplete) return path.status.ToString();
+        return null;
     }
 
     static void MarkStaticRecursive(Transform t)

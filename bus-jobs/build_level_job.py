@@ -271,9 +271,10 @@ grep -E "LEVEL_BUILDER: (scene saved|wired|spawn)" /content/level_build.log | he
 echo "LEVEL_SCENE_OK"
 
 echo "=== INTEGRITY GATES ==="
+grep -n "NAVMESH_VERIFY\|NAVMESH_BOUNDS\|NAVPOINT" /content/level_build.log | head -20
 if grep -q "NAV_CONNECT_FAILED" /content/level_build.log 2>/dev/null; then
   echo "NAV_GATE_FAIL"
-  grep -n "NAV_CONNECT_FAIL" /content/level_build.log | head -20
+  grep -n "NAV_CONNECT_FAIL" /content/level_build.log | head -25
   exit 6
 fi
 grep -n "nav connectivity\|invisible colliders\|cover points\|NavMesh baked" /content/level_build.log | head -8
