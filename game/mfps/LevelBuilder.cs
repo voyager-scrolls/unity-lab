@@ -192,6 +192,34 @@ public static class LevelBuilder
             Debug.LogWarning("LEVEL_BUILDER: NavMeshSurface bake failed (non-fatal): " + e.Message);
         }
 
+        // Dump the baked navmesh triangles for offline visualisation (specs/render_navmesh.py)
+        try
+        {
+            var tri = UnityEngine.AI.NavMesh.CalculateTriangulation();
+            var sb = new System.Text.StringBuilder();
+            sb.Append("{\"vertices\":[");
+            for (int i = 0; i < tri.vertices.Length; i++)
+            {
+                if (i > 0) sb.Append(",");
+                sb.Append("[").Append(Fmt(tri.vertices[i].x)).Append(",")
+                  .Append(Fmt(tri.vertices[i].y)).Append(",")
+                  .Append(Fmt(tri.vertices[i].z)).Append("]");
+            }
+            sb.Append("],\"indices\":[");
+            for (int i = 0; i < tri.indices.Length; i++)
+            {
+                if (i > 0) sb.Append(",");
+                sb.Append(tri.indices[i]);
+            }
+            sb.Append("]}");
+            File.WriteAllText("/content/navmesh.json", sb.ToString());
+            Debug.Log("NAVMESH_DUMP verts=" + tri.vertices.Length + " tris=" + (tri.indices.Length / 3));
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogWarning("NAVMESH_DUMP_FAIL " + e.Message);
+        }
+
         // Integrity gate 1: every spawn point and room centre must be mutually reachable on the NavMesh
         try
         {
@@ -308,6 +336,11 @@ public static class LevelBuilder
         inst.name = goName;
         Debug.Log("LEVEL_BUILDER: wired " + goName);
         return inst;
+    }
+
+    static string Fmt(float v)
+    {
+        return v.ToString("0.##", System.Globalization.CultureInfo.InvariantCulture);
     }
 
     static Vector3 ToV3(float[] a, Vector3 def)

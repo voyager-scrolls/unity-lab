@@ -287,8 +287,6 @@ for x in (-5.0, 0.0, 5.0):
 # PC towers on the floor against the back wall (never blocking the side aisles)
 for tx in (-6.4, 0.0, 6.4):
     add('teller', 'SM_Prop_Computer_01', tx, 14.35, 0.0)
-add('teller', 'SM_Prop_Shelf_01', 12.0, 12.2, 270.0)
-add('teller', 'SM_Prop_Drawers_01', -12.0, 12.2, 90.0)
 # display cases against the side walls (they previously blocked the z=15 passages)
 add('teller', 'SM_Prop_DisplayCase_01', -12.15, 12.5, 90.0, key='tcase1')
 add('teller', 'SM_Prop_Jewellery_Necklace_02', -12.15, 12.3, 0.0, y=0.80)
