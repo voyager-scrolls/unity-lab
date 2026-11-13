@@ -154,7 +154,9 @@ cat > "$PROJ/Assets/Editor/McpBridge.cs" << 'CSEOF'
 using System;
 using System.IO;
 using System.Threading.Tasks;
+using MCPForUnity.Editor.Helpers;
 using MCPForUnity.Editor.Tools;
+using MCPForUnity.Editor.Tools.GameObjects;
 using MCPForUnity.Editor.Tools.Prefabs;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
