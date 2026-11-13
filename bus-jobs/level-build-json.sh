@@ -1,5 +1,5 @@
 #!/bin/bash
-# level-build-json.sh — build a Heist level from a JSON layout file
+# level-build-json.sh — build a Heist level from a pre-generated LevelLayout Asset
 # Requires: MFPS project already set up on VM (run heist-catalog-build.sh first)
 set -e
 
@@ -14,23 +14,21 @@ test -x "$UNITY" || { echo NO_EDITOR_BIN; exit 6; }
 test -d "$PROJ/Assets/MFPS" || { echo NO_PROJECT; exit 6; }
 echo PREFLIGHT_OK
 
-echo "=== WRITE LEVEL BUILDER SCRIPTS ==="
-mkdir -p "$PROJ/Assets/Editor"
-cp /content/drive/MyDrive/unity-lab/templates/mfps-2.0-v1.75/LevelBuilder.cs "$PROJ/Assets/Editor/LevelBuilder.cs" && echo "LEVELBUILDER_WRITTEN" || { echo "LEVELBUILDER_COPY_FAIL"; exit 6; }
-cp /content/drive/MyDrive/unity-lab/templates/mfps-2.0-v1.75/PoissonDiskSampler.cs "$PROJ/Assets/Editor/PoissonDiskSampler.cs" && echo "POISSON_WRITTEN" || { echo "POISSON_COPY_FAIL"; exit 6; }
+echo "=== GENERATE LEVEL LAYOUT ASSET ==="
+"$UNITY" -batchmode -nographics -quit -projectPath "$PROJ" -executeMethod LevelLayoutGenerator.Generate -logFile /content/levellayout_gen.log 2>&1
+GEN_RC=$?
+echo "GENERATE_RC=$GEN_RC"
+if [ "$GEN_RC" != "0" ]; then
+  echo "GENERATE_FAILED"
+  tail -10 /content/levellayout_gen.log
+  exit 6
+fi
+echo "GENERATE_OK"
 
-echo "=== WRITE LEVEL LAYOUT JSON ==="
-# The layout JSON is uploaded to Drive as specs/heist-bank-v1.json
-cp "$MFPSROOT/specs/heist-bank-v1.json" /content/level-layout.json && echo "LAYOUT_WRITTEN" || { echo "LAYOUT_COPY_FAIL"; exit 6; }
-
-echo "=== COMPILE + BUILD LEVEL ==="
-rm -rf "$PROJ/Temp"
-mkdir -p /tmp/xdg; chmod 700 /tmp/xdg
-export XDG_RUNTIME_DIR=/tmp/xdg
-printf 'pcm.!default { type null }\nctl.!default { type null }\n' > /etc/asound.conf
-"$UNITY" -batchmode -nographics -quit -projectPath "$PROJ" -executeMethod LevelBuilder.BuildFromJson -logFile /content/level_build.log 2>&1
+echo "=== BUILD LEVEL FROM ASSET ==="
+"$UNITY" -batchmode -nographics -quit -projectPath "$PROJ" -executeMethod LevelBuilder.BuildFromLayoutAsset -logFile /content/level_build.log 2>&1
 BUILD_RC=$?
-echo "BUILD_LEVEL_RC=$BUILD_RC"
+echo "BUILD_RC=$BUILD_RC"
 CS_ERRORS=$(grep -c "error CS" /content/level_build.log 2>/dev/null || true)
 echo "CS_ERRORS=$CS_ERRORS"
 if [ "$CS_ERRORS" != "0" ]; then
@@ -46,7 +44,6 @@ fi
 echo "LEVEL_BUILD_OK"
 
 echo "=== BUILD WINDOWS ==="
-# Write MfpsBuild.cs that builds the current scene (HeistLevel or default)
 cat > "$PROJ/Assets/Editor/MfpsBuild.cs" << 'CSEOF'
 using System.IO;
 using UnityEditor;
