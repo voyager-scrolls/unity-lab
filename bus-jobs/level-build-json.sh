@@ -189,7 +189,6 @@ public class LevelLayoutData
 }
 
 [System.Serializable]
-[System.Serializable]
 public class LevelBoundsData
 {
     [JsonProperty("min")]
@@ -198,6 +197,7 @@ public class LevelBoundsData
     public float[] max;
 }
 
+[System.Serializable]
 public class LevelRoomData
 {
     [JsonProperty("id")]
