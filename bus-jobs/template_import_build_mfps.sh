@@ -141,6 +141,11 @@ print("MANIFEST_REWRITTEN")
 PYEOF
 rm -f "$PROJ/Packages/packages-lock.json"
 
+echo "=== PERF SCRIPT (low-end profile: no post-processing, cheap shadows, 720p window, FPS readout) ==="
+mkdir -p "$PROJ/Assets/Perf"
+cp /content/drive/MyDrive/unity-lab/templates/mfps-2.0-v1.75/PerfTune.cs "$PROJ/Assets/Perf/PerfTune.cs" || { echo PERF_COPY_FAILED; exit 6; }
+test -s "$PROJ/Assets/Perf/PerfTune.cs" && echo PERF_SCRIPT_WRITTEN || { echo PERF_SCRIPT_FAILED; exit 6; }
+
 echo "=== COMPILE GATE ==="
 "$UNITY" -batchmode -nographics -quit -projectPath "$PROJ" -logFile /content/mfps_compile.log
 echo "COMPILE_RC=$?"
