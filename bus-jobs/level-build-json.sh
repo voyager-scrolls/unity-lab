@@ -474,7 +474,7 @@ public static class LevelBuilder
 
         // Assign Photon scene-view IDs (PUN needs 1..999 for scene objects; ID 0 breaks
         // RPC delivery -> countdown never finishes -> player never spawns)
-        Photon.Pun.PhotonView[] pvs = Object.FindObjectsByType<Photon.Pun.PhotonView>(FindObjectsSortMode.None);
+        Photon.Pun.PhotonView[] pvs = UnityEngine.Object.FindObjectsByType<Photon.Pun.PhotonView>(FindObjectsSortMode.None);
         int sid = 1;
         foreach (Photon.Pun.PhotonView pv in pvs)
         {
