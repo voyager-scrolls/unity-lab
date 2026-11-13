@@ -93,32 +93,36 @@ namespace CoverShooter
                 var sp0 = new GameObject("DeltaSpawn_0");
                 SceneManager.MoveGameObjectToScene(sp0, scene);
                 sp0.transform.position = new Vector3(0, 1, 0);
-                sp0.AddComponent<bl_SpawnPoint>();
-                Debug.Log("CREATED: DeltaSpawn_0");
+                var bsp0 = sp0.AddComponent<bl_SpawnPoint>();
+                bsp0.m_Team = (global::Team)1;
+                Debug.Log("CREATED: DeltaSpawn_0 (Team1)");
             }
             if (GameObject.Find("DeltaSpawn_1") == null)
             {
                 var sp1 = new GameObject("DeltaSpawn_1");
                 SceneManager.MoveGameObjectToScene(sp1, scene);
                 sp1.transform.position = new Vector3(8, 1, 8);
-                sp1.AddComponent<bl_SpawnPoint>();
-                Debug.Log("CREATED: DeltaSpawn_1");
+                var bsp1 = sp1.AddComponent<bl_SpawnPoint>();
+                bsp1.m_Team = (global::Team)1;
+                Debug.Log("CREATED: DeltaSpawn_1 (Team1)");
             }
             if (GameObject.Find("DeltaSpawn_2") == null)
             {
                 var sp2 = new GameObject("DeltaSpawn_2");
                 SceneManager.MoveGameObjectToScene(sp2, scene);
                 sp2.transform.position = new Vector3(-8, 1, -8);
-                sp2.AddComponent<bl_SpawnPoint>();
-                Debug.Log("CREATED: DeltaSpawn_2");
+                var bsp2 = sp2.AddComponent<bl_SpawnPoint>();
+                bsp2.m_Team = (global::Team)2;
+                Debug.Log("CREATED: DeltaSpawn_2 (Team2)");
             }
             if (GameObject.Find("DeltaSpawn_3") == null)
             {
                 var sp3 = new GameObject("DeltaSpawn_3");
                 SceneManager.MoveGameObjectToScene(sp3, scene);
                 sp3.transform.position = new Vector3(0, 1, -12);
-                sp3.AddComponent<bl_SpawnPoint>();
-                Debug.Log("CREATED: DeltaSpawn_3");
+                var bsp3 = sp3.AddComponent<bl_SpawnPoint>();
+                bsp3.m_Team = (global::Team)2;
+                Debug.Log("CREATED: DeltaSpawn_3 (Team2)");
             }
 
             // Add KillZone if it doesn't exist
