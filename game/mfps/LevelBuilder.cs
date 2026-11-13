@@ -40,27 +40,27 @@ public static class LevelBuilder
                         GameObject prefab = UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>(pf);
                         if (prefab == null) { Debug.LogWarning("Prefab not found: " + pf); continue; }
 
-                        // Position
+                        // Position using Value<float>()
                         float px = 0f, py = 0f, pz = 0f;
                         if (prop["position"] is JArray pos && pos.Count >= 3)
                         {
-                            px = (float)pos[0]; py = (float)pos[1]; pz = (float)pos[2];
+                            px = pos[0].Value<float>(); py = pos[1].Value<float>(); pz = pos[2].Value<float>();
                         }
                         Vector3 position = new Vector3(px, py, pz);
 
-                        // Rotation
- float rx = 0f, ry = 0f, rz = 0f;
+                        // Rotation using Value<float>()
+                        float rx = 0f, ry = 0f, rz = 0f;
                         if (prop["rotation"] is JArray rot && rot.Count >= 3)
                         {
-                            rx = (float)rot[0]; ry = (float)rot[1]; rz = (float)rot[2];
+                            rx = rot[0].Value<float>(); ry = rot[1].Value<float>(); rz = rot[2].Value<float>();
                         }
                         Vector3 rotation = new Vector3(rx, ry, rz);
 
-                        // Scale
+                        // Scale using Value<float>()
                         float sx = 1f, sy = 1f, sz = 1f;
                         if (prop["scale"] is JArray scl && scl.Count >= 3)
                         {
-                            sx = (float)scl[0]; sy = (float)scl[1]; sz = (float)scl[2];
+                            sx = scl[0].Value<float>(); sy = scl[1].Value<float>(); sz = scl[2].Value<float>();
                         }
                         Vector3 scale = new Vector3(sx, sy, sz);
 
@@ -81,10 +81,10 @@ public static class LevelBuilder
                         float spx = 0f, spy = 1f, spz = 2f;
                         if (sp["position"] is JArray spPos && spPos.Count >= 3)
                         {
-                            spx = (float)spPos[0]; spy = (float)spPos[1]; spz = (float)spPos[2];
+                            spx = spPos[0].Value<float>(); spy = spPos[1].Value<float>(); spz = spPos[2].Value<float>();
                         }
                         int team = 1;
-                        if (sp["team"] != null) team = (int)sp["team"];
+                        if (sp["team"] != null) team = sp["team"].Value<int>();
 
                         GameObject spObj = new GameObject("Spawn_T" + team);
                         spObj.transform.position = new Vector3(spx, spy, spz);
@@ -101,12 +101,12 @@ public static class LevelBuilder
                         float kzx = 0f, kzy = 1f, kzz = 10f;
                         if (kz["position"] is JArray kzPos && kzPos.Count >= 3)
                         {
-                            kzx = (float)kzPos[0]; kzy = (float)kzPos[1]; kzz = (float)kzPos[2];
+                            kzx = kzPos[0].Value<float>(); kzy = kzPos[1].Value<float>(); kzz = kzPos[2].Value<float>();
                         }
                         float kzSx = 10f, kzSy = 1f, kzSz = 10f;
                         if (kz["size"] is JArray kzSzArr && kzSzArr.Count >= 3)
                         {
-                            kzSx = (float)kzSzArr[0]; kzSy = (float)kzSzArr[1]; kzSz = (float)kzSzArr[2];
+                            kzSx = kzSzArr[0].Value<float>(); kzSy = kzSzArr[1].Value<float>(); kzSz = kzSzArr[2].Value<float>();
                         }
 
                         GameObject kzObj = new GameObject("KillZone");
