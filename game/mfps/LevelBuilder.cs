@@ -28,11 +28,25 @@ public static class LevelBuilder
         // Floor so nothing falls through the grey plane
         GameObject floor = GameObject.CreatePrimitive(PrimitiveType.Plane);
         floor.name = "Floor";
-        floor.transform.position = new Vector3(0f, 0f, 0f);
+        floor.transform.position = new Vector3(0f, -0.05f, 0f);
         floor.transform.localScale = new Vector3(20f, 1f, 20f);
+
+        // Sun + ambient so the scene is not flat grey
+        GameObject sunGo = new GameObject("Sun");
+        Light sun = sunGo.AddComponent<Light>();
+        sun.type = LightType.Directional;
+        sun.intensity = 1.15f;
+        sun.color = new Color(1f, 0.95f, 0.88f);
+        sun.shadows = LightShadows.Soft;
+        sunGo.transform.rotation = Quaternion.Euler(52f, -35f, 0f);
+        RenderSettings.ambientMode = UnityEngine.Rendering.AmbientMode.Flat;
+        RenderSettings.ambientLight = new Color(0.42f, 0.45f, 0.5f);
+        Debug.Log("LEVEL_BUILDER: lighting set (sun + ambient)");
 
         GameObject levelRoot = new GameObject("LevelRoot_" + layout.levelName.Replace(" ", "_"));
         spawnCounter = 0;
+        int placed = 0;
+        int missing = 0;
 
         foreach (LevelRoomData room in layout.rooms)
         {
@@ -49,6 +63,7 @@ public static class LevelBuilder
                     if (prefab == null)
                     {
                         Debug.LogWarning("LEVEL_BUILDER: prefab not found: " + prop.prefabPath);
+                        missing++;
                         continue;
                     }
                     GameObject inst = (GameObject)PrefabUtility.InstantiatePrefab(prefab, scene);
@@ -56,6 +71,7 @@ public static class LevelBuilder
                     inst.transform.eulerAngles = ToV3(prop.rotation, Vector3.zero);
                     inst.transform.localScale = ToV3(prop.scale, Vector3.one);
                     inst.transform.SetParent(roomRoot.transform, true);
+                    placed++;
                 }
             }
 
@@ -143,7 +159,8 @@ public static class LevelBuilder
         buildScenes.Add(new EditorBuildSettingsScene(savePath, true));
         EditorBuildSettings.scenes = buildScenes.ToArray();
 
-        Debug.Log("LEVEL_BUILDER: scene saved " + savePath + " spawns=" + spawnCounter + " BUILD_SCENES_SET");
+        Debug.Log("LEVEL_BUILDER: scene saved " + savePath + " spawns=" + spawnCounter +
+            " props=" + placed + " missing=" + missing + " BUILD_SCENES_SET");
     }
 
     static void CreateSpawnPoint(LevelSpawnPointData sp, Scene scene)
@@ -183,7 +200,8 @@ public static class LevelBuilder
     {
         foreach (Transform child in t)
         {
-            child.gameObject.isStatic = true;
+            bool skip = child.name.Contains("Ceiling") || child.name.Contains("Roof");
+            child.gameObject.isStatic = !skip;
             MarkStaticRecursive(child);
         }
     }

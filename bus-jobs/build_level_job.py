@@ -14,7 +14,7 @@ SOURCES = [
     ("PerfTune.cs", "game/mfps/PerfTune.cs", "CSEOF3"),
 ]
 MFPBUILD = ("MfpsBuild.cs", None, "CSEOF4")  # content inline below
-LAYOUT_JSON = os.path.join(ROOT, "specs", "heist-bank-v1.json")
+LAYOUT_JSON = os.path.join(ROOT, "specs", "heist-bank-v2.json")
 
 MFPS_BUILD_CS = """using System.IO;
 using UnityEditor;
