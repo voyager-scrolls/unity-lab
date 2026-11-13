@@ -49,11 +49,25 @@ public static class HeistSceneBuilder
             }
         }
 
-        // Bake NavMesh (best-effort; legacy builder).
+        // Bake NavMesh (modern API; legacy BuildNavMesh() removed in Unity 6).
+        // Creates a NavMeshData asset; bots need com.unity.ai.navigation + NavMeshSurface for full pathfinding (T2).
         try
         {
-            NavMeshBuilder.BuildNavMesh();
-            Debug.Log("HEIST_NAVMESH_BAKED");
+            var sources = new System.Collections.Generic.List<NavMeshBuildSource>();
+            var markups = new System.Collections.Generic.List<NavMeshBuildMarkup>();
+            var bounds = new Bounds(Vector3.zero, Vector3.one * 500f);
+            NavMeshBuilder.CollectSources(bounds, ~0, NavMeshCollectGeometry.RenderMeshes, 0, markups, sources);
+            var data = NavMeshBuilder.BuildNavMeshData(NavMesh.GetSettingsByID(0), sources, bounds, Vector3.zero, Quaternion.identity);
+            if (data != null)
+            {
+                string assetPath = "Assets/MFPS/Scenes/HeistLevelNavMesh.asset";
+                AssetDatabase.CreateAsset(data, assetPath);
+                Debug.Log("HEIST_NAVMESH_DATA_CREATED: " + assetPath + " sources=" + sources.Count);
+            }
+            else
+            {
+                Debug.LogWarning("HEIST_NAVMESH_NO_DATA");
+            }
         }
         catch (System.Exception e)
         {
