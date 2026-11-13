@@ -105,6 +105,12 @@ public static class LevelBuilder
         EditorSceneManager.SaveScene(scene, savePath);
 
         var buildScenes = new System.Collections.Generic.List<EditorBuildSettingsScene>();
+        string mainMenuPath = "Assets/MFPS/Scenes/MainMenu.unity";
+        if (File.Exists(mainMenuPath))
+        {
+            buildScenes.Add(new EditorBuildSettingsScene(mainMenuPath, true));
+            Debug.Log("LEVEL_BUILDER: MainMenu added to build list (safety)");
+        }
         buildScenes.Add(new EditorBuildSettingsScene(savePath, true));
         EditorBuildSettings.scenes = buildScenes.ToArray();
 

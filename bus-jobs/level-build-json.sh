@@ -150,6 +150,12 @@ rm -f "$PROJ/Assets/Editor/LevelLayout.cs"
 rm -f "$PROJ/Assets/Editor/PoissonDiskSampler.cs"
 echo "STALE_PURGED"
 
+echo "=== OFFLINE MODE (play HeistLevel directly, no Photon AppId; proven t1-5 recipe) ==="
+GD="$PROJ/Assets/MFPS/Resources/GameData.asset"
+test -f "$GD" || { echo NO_GAMEDATA; exit 6; }
+sed -i 's/  offlineMode: 0/  offlineMode: 1/' "$GD"
+grep -q 'offlineMode: 1' "$GD" && echo OFFLINE_MODE_ON || { echo OFFLINE_FLIP_FAILED; grep -n 'offlineMode' "$GD"; exit 6; }
+
 echo "=== WRITE LAYOUT JSON ==="
 cat > /content/level-layout.json <<'JSONEOF'
 {
@@ -472,6 +478,12 @@ public static class LevelBuilder
         EditorSceneManager.SaveScene(scene, savePath);
 
         var buildScenes = new System.Collections.Generic.List<EditorBuildSettingsScene>();
+        string mainMenuPath = "Assets/MFPS/Scenes/MainMenu.unity";
+        if (File.Exists(mainMenuPath))
+        {
+            buildScenes.Add(new EditorBuildSettingsScene(mainMenuPath, true));
+            Debug.Log("LEVEL_BUILDER: MainMenu added to build list (safety)");
+        }
         buildScenes.Add(new EditorBuildSettingsScene(savePath, true));
         EditorBuildSettings.scenes = buildScenes.ToArray();
 
