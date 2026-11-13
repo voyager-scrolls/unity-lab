@@ -118,10 +118,17 @@ echo "=== IMPORT MATH LIBRARY (tolerant) ==="
 MATH_DIR_OK=0
 if [ -d "$PROJ/Assets/MathLibrary" ] || [ -d "$PROJ/Assets/Math Library" ] || [ -d "$PROJ/Assets/MathLibraryForUnity" ]; then MATH_DIR_OK=1; echo "MATH_DIR_OK"; else echo "MATH_DIR_NOT_FOUND (checking all dirs)"; find "$PROJ/Assets" -maxdepth 1 -type d | head -20; fi
 
-echo "=== PATCH MATH LIBRARY (Unity 6 compat: Handles.DotCap removed in Unity 5+) ==="
+echo "=== PATCH MATH LIBRARY (Unity 6 compat: Handles.DotCap -> DotHandleCap + EventType) ==="
 DOTCAP_FILE=$(find "$PROJ/Assets/MathLibraryForUnity" -name "SplineBaseEditor.cs" 2>/dev/null | head -1)
 if [ -n "$DOTCAP_FILE" ]; then
-  python3 -c "import re; p='$DOTCAP_FILE'; s=open(p).read(); s=s.replace('Handles.DotCap','Handles.DotHandleCap'); open(p,'w').write(s); print('DOTCAP_PATCHED')"
+  python3 -c "
+p='$DOTCAP_FILE'
+s=open(p).read()
+s=s.replace('Handles.DotCap','Handles.DotHandleCap')
+s=s.replace('HandleUtility.GetHandleSize(pointIn) * .1f);','HandleUtility.GetHandleSize(pointIn) * .1f, EventType.Repaint);')
+open(p,'w').write(s)
+print('DOTCAP_PATCHED')
+"
 else
   echo "DOTCAP_FILE_NOT_FOUND (non-fatal)"
 fi
