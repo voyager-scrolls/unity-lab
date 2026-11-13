@@ -79,37 +79,46 @@ def _emit(room, name, x, y, z, rot, extra=None):
     return p
 
 
+def rot_center(name, rot):
+    """Offset from prefab pivot to the centre of its rotated AABB (kit pieces use corner pivots)."""
+    dx0, dx1, dz0, dz1, _, _ = rot_box(name, rot)
+    return (dx0 + dx1) / 2.0, (dz0 + dz1) / 2.0
+
+
 def add(room, name, x, z, rot=0.0, y=None, key=None):
-    """Place on the floor by default (bottom at y=0), exact pivot-aware."""
-    _, _, _, _, _, _ = (0, 0, 0, 0, 0, 0)
+    """Place with the footprint CENTRE at (x, z); bottom at y (default floor)."""
     if y is None:
         y = -P(name)['bounds']['min'][1]
-    p = _emit(room, name, x, y, z, rot)
+    cx, cz = rot_center(name, rot)
+    px_, pz_ = x - cx, z - cz
+    p = _emit(room, name, px_, y, pz_, rot)
     if key:
-        TRACK[key] = {'room': room, 'name': name, 'x': x, 'y': y, 'z': z, 'rot': rot,
-                      'top': y + P(name)['bounds']['max'][1]}
+        TRACK[key] = {'room': room, 'name': name, 'x': px_, 'y': y, 'z': pz_, 'rot': rot,
+                      'top': y + P(name)['bounds']['max'][1], 'cx': x, 'cz': z}
     return p
 
 
 def add_on(room, key, name, dx, dz, rot=0.0, lift=0.0):
-    """Stack onto a tracked host surface (top of host), offset dx/dz in world axes."""
+    """Stack onto a tracked host surface, offset from the host footprint centre."""
     h = TRACK[key]
+    tx, tz = h['cx'] + dx, h['cz'] + dz
     y = h['top'] - P(name)['bounds']['min'][1] + lift + GAP
-    p = _emit(room, name, h['x'] + dx, y, h['z'] + dz, rot, {'surface': True})
+    cx, cz = rot_center(name, rot)
+    p = _emit(room, name, tx - cx, y, tz - cz, rot, {'surface': True})
     return p
 
 
 def add_mount(room, name, axis, plane, room_dir, u, h, rot):
-    """Mount a fixture flush to a wall plane. axis 'z' or 'x'; room_dir is the side the room is on."""
+    """Mount a fixture flush to a wall plane; u is the AABB CENTRE coordinate along the wall."""
     dx0, dx1, dz0, dz1, dy0, dy1 = rot_box(name, rot)
     if axis == 'z':
-        x = u
+        x = u - (dx0 + dx1) / 2.0
         if room_dir > 0:
             z = plane + GAP - dz0
         else:
             z = plane - GAP - dz1
     else:
-        z = u
+        z = u - (dz0 + dz1) / 2.0
         if room_dir > 0:
             x = plane + GAP - dx0
         else:
@@ -276,8 +285,8 @@ MOUNTED.append(add_mount('teller', 'SM_Prop_AlarmButton_01', 'z', 10.0, 1, 9.2, 
 # ------------------------------------------------------------------ vault (3m)
 for z in (17.5, 22.5):
     pass
-MOUNTED.append(add_mount('vault', 'SM_Prop_SafeDepositBoxes_01', 'x', -7.5, 1, 17.5, 0.0, 270.0))
-MOUNTED.append(add_mount('vault', 'SM_Prop_SafeDepositBoxes_01', 'x', 7.5, -1, 22.5, 0.0, 90.0))
+MOUNTED.append(add_mount('vault', 'SM_Prop_SafeDepositBoxes_01', 'x', -7.5, 1, 20.0, 0.0, 270.0))
+MOUNTED.append(add_mount('vault', 'SM_Prop_SafeDepositBoxes_01', 'x', 7.5, -1, 20.0, 0.0, 90.0))
 add('vault', 'SM_Prop_Table_01', 0.0, 20.0, 0.0, key='vtable')
 add_on('vault', 'vtable', 'SM_Prop_GoldBar_01', -0.6, 0.0, 20.0)
 add_on('vault', 'vtable', 'SM_Prop_GoldBar_02', -0.2, 0.05, 65.0)
