@@ -1,0 +1,80 @@
+{
+  "name": "Heist Bank v1",
+  "version": 1,
+  "author": "Unity Lab",
+  "description": "First data-driven level: bank heist with vault, teller, lobby, exterior",
+  "rooms": [
+    {
+      "id": "vault",
+      "bounds": { "min": [-5, 0, -5], "max": [5, 4, 5] },
+      "props": [
+        { "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_SafeDepositBox_01.prefab", "position": [-3, 0, -3], "rotation": [0, 0, 0], "tag": "cover" },
+        { "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_SafeDepositBox_01.prefab", "position": [3, 0, -3], "rotation": [0, 90, 0], "tag": "cover" },
+        { "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_VaultDoor_01.prefab", "position": [0, 0, 5], "rotation": [0, 180, 0], "tag": "objective" },
+        { "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_GoldBar_01.prefab", "position": [0, 1, 0], "rotation": [0, 45, 0], "tag": "objective" },
+        { "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Wall_Interior_01.prefab", "position": [0, 0, -5], "rotation": [0, 0, 0] },
+        { "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Wall_Interior_01.prefab", "position": [-5, 0, 0], "rotation": [0, 90, 0] },
+        { "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Wall_Interior_01.prefab", "position": [5, 0, 0], "rotation": [0, 270, 0] }
+      ],
+      "spawnPoints": [
+        { "position": [-2, 1, 2], "team": 1, "type": "delta" },
+        { "position": [2, 1, 2], "team": 2, "type": "recon" }
+      ],
+      "zones": [
+        { "id": "vault", "polygon": [[-5, -5], [5, -5], [5, 5], [-5, 5]], "type": "objective" }
+      ],
+      "killZones": [
+        { "position": [0, -5, 0], "size": [20, 1, 20] }
+      ]
+    },
+    {
+      "id": "teller",
+      "bounds": { "min": [-8, 0, 5], "max": [8, 4, 12] },
+      "props": [
+        { "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_TellerDesk_01.prefab", "position": [-4, 0, 7], "rotation": [0, 0, 0], "tag": "cover" },
+        { "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_TellerDesk_01.prefab", "position": [0, 0, 7], "rotation": [0, 0, 0], "tag": "cover" },
+        { "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_TellerDesk_01.prefab", "position": [4, 0, 7], "rotation": [0, 0, 0], "tag": "cover" },
+        { "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_ATM_01.prefab", "position": [-6, 0, 9], "rotation": [0, 90, 0] },
+        { "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_ATM_01.prefab", "position": [6, 0, 9], "rotation": [0, 270, 0] },
+        { "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Wall_Interior_01.prefab", "position": [0, 0, 5], "rotation": [0, 0, 0] },
+        { "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Wall_Interior_01.prefab", "position": [-8, 0, 8.5], "rotation": [0, 90, 0] },
+        { "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Wall_Interior_01.prefab", "position": [8, 0, 8.5], "rotation": [0, 270, 0] }
+      ],
+      "spawnPoints": [
+        { "position": [-3, 1, 9], "team": 1, "type": "delta" },
+        { "position": [3, 1, 9], "team": 2, "type": "recon" }
+      ],
+      "zones": [
+        { "id": "teller", "polygon": [[-8, 5], [8, 5], [8, 12], [-8, 12]], "type": "trigger" }
+      ]
+    },
+    {
+      "id": "lobby",
+      "bounds": { "min": [-10, 0, 12], "max": [10, 4, 20] },
+      "props": [
+        { "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Couch_01.prefab", "position": [-5, 0, 14], "rotation": [0, 45, 0], "tag": "cover" },
+        { "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Couch_01.prefab", "position": [5, 0, 14], "rotation": [0, 315, 0], "tag": "cover" },
+        { "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Plant_01.prefab", "position": [-8, 0, 13], "rotation": [0, 0, 0] },
+        { "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Plant_01.prefab", "position": [8, 0, 13], "rotation": [0, 0, 0] },
+        { "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Wall_Exterior_01.prefab", "position": [0, 0, 12], "rotation": [0, 0, 0] },
+        { "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Wall_Exterior_01.prefab", "position": [-10, 0, 16], "rotation": [0, 90, 0] },
+        { "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Wall_Exterior_01.prefab", "position": [10, 0, 16], "rotation": [0, 270, 0] }
+      ],
+      "spawnPoints": [
+        { "position": [0, 1, 18], "team": 1, "type": "delta" }
+      ],
+      "zones": [
+        { "id": "lobby", "polygon": [[-10, 12], [10, 12], [10, 20], [-10, 20]], "type": "trigger" }
+      ]
+    }
+  ],
+  "globalSpawnPoints": [
+    { "position": [0, 1, 22], "team": 2, "type": "recon" }
+  ],
+  "navMesh": {
+    "agentRadius": 0.5,
+    "agentHeight": 2.0,
+    "maxSlope": 45.0,
+    "stepHeight": 0.4
+  }
+}

@@ -1,0 +1,106 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "MFPS Heist Level Layout",
+  "description": "Data-driven level layout for MFPS 2.0 Heist mode",
+  "type": "object",
+  "required": ["name", "version", "rooms"],
+  "properties": {
+    "name": { "type": "string", "description": "Level name (e.g. 'Heist Bank v1')" },
+    "version": { "type": "integer", "description": "Layout version for tracking iterations" },
+    "author": { "type": "string" },
+    "description": { "type": "string" },
+    "rooms": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "bounds"],
+        "properties": {
+          "id": { "type": "string", "description": "Unique room identifier (e.g. 'vault', 'lobby', 'teller')" },
+          "bounds": {
+            "type": "object",
+            "required": ["min", "max"],
+            "properties": {
+              "min": { "type": "array", "items": { "type": "number" }, "minItems": 3, "maxItems": 3 },
+              "max": { "type": "array", "items": { "type": "number" }, "minItems": 3, "maxItems": 3 }
+            }
+          },
+          "props": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["prefab", "position"],
+              "properties": {
+                "prefab": { "type": "string", "description": "Path to prefab (e.g. 'Assets/PolygonHeist/Prefab/Props/SM_Prop_Desk_01.prefab')" },
+                "position": { "type": "array", "items": { "type": "number" }, "minItems": 3, "maxItems": 3 },
+                "rotation": { "type": "array", "items": { "type": "number" }, "minItems": 3, "maxItems": 3, "default": [0, 0, 0] },
+                "scale": { "type": "array", "items": { "type": "number" }, "minItems": 3, "maxItems": 3, "default": [1, 1, 1] },
+                "tag": { "type": "string", "description": "Optional gameplay tag (e.g. 'cover', 'spawn', 'objective')" }
+              }
+            }
+          },
+          "spawnPoints": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["position", "team"],
+              "properties": {
+                "position": { "type": "array", "items": { "type": "number" }, "minItems": 3, "maxItems": 3 },
+                "team": { "type": "integer", "enum": [1, 2], "description": "1=Team1 (Delta), 2=Team2 (Recon)" },
+                "type": { "type": "string", "enum": ["delta", "recon", "generic"], "default": "delta" }
+              }
+            }
+          },
+          "zones": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["id", "polygon"],
+              "properties": {
+                "id": { "type": "string", "description": "Zone name (e.g. 'vault', 'lobby')" },
+                "polygon": {
+                  "type": "array",
+                  "items": { "type": "array", "items": { "type": "number" }, "minItems": 2, "maxItems": 2 },
+                  "description": "2D polygon points (x, z) defining the zone"
+                },
+                "type": { "type": "string", "enum": ["trigger", "objective", "safe", "danger"], "default": "trigger" }
+              }
+            }
+          },
+          "killZones": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["position", "size"],
+              "properties": {
+                "position": { "type": "array", "items": { "type": "number" }, "minItems": 3, "maxItems": 3 },
+                "size": { "type": "array", "items": { "type": "number" }, "minItems": 3, "maxItems": 3 }
+              }
+            }
+          }
+        }
+      }
+    },
+    "globalSpawnPoints": {
+      "type": "array",
+      "description": "Spawn points outside any room (e.g. exterior)",
+      "items": {
+        "type": "object",
+        "required": ["position", "team"],
+        "properties": {
+          "position": { "type": "array", "items": { "type": "number" }, "minItems": 3, "maxItems": 3 },
+          "team": { "type": "integer", "enum": [1, 2] },
+          "type": { "type": "string", "enum": ["delta", "recon", "generic"], "default": "delta" }
+        }
+      }
+    },
+    "navMesh": {
+      "type": "object",
+      "properties": {
+        "agentRadius": { "type": "number", "default": 0.5 },
+        "agentHeight": { "type": "number", "default": 2.0 },
+        "maxSlope": { "type": "number", "default": 45.0 },
+        "stepHeight": { "type": "number", "default": 0.4 }
+      }
+    }
+  }
+}
