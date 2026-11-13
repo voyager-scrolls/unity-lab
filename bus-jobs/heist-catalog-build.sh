@@ -286,6 +286,6 @@ else
 fi
 
 echo "=== STAGE CATALOG TO DRIVE ==="
-cp /content/heist-catalog.json "$MFPSROOT/catalogs/heist-catalog.json" && echo "CATALOG_STAGED_OK" || { echo "CATALOG_STAGE_FAIL"; exit 6; }
+mkdir -p "$MFPSROOT/catalogs" && cp /content/heist-catalog.json "$MFPSROOT/catalogs/heist-catalog.json" && echo "CATALOG_STAGED_OK" || { echo "CATALOG_STAGE_FAIL"; exit 6; }
 
 echo "=== HEIST_CATALOG_COMPLETE ==="
