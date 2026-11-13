@@ -137,8 +137,10 @@ public static class LevelBuilder
         // Mark level geometry static and bake later (after first save, so the
         // baked navmesh has a scene path and is stored with the scene)
         floor.isStatic = true;
+        floor.layer = 8; // NavGround: only ground geometry participates in the bake
         levelRoot.isStatic = true;
         MarkStaticRecursive(levelRoot.transform);
+        SetNavLayerRecursive(levelRoot.transform);
 
         // Assign Photon scene-view IDs (PUN needs 1..999 for scene objects; ID 0 breaks
         // RPC delivery -> countdown never finishes -> player never spawns)
@@ -183,6 +185,8 @@ public static class LevelBuilder
             var surface = navGo.AddComponent<Unity.AI.Navigation.NavMeshSurface>();
             surface.collectObjects = Unity.AI.Navigation.CollectObjects.All;
             surface.useGeometry = UnityEngine.AI.NavMeshCollectGeometry.PhysicsColliders;
+            // Only the NavGround layer (layer 8): excludes ceilings, roof and any upper surfaces
+            surface.layerMask = 1 << 8;
             surface.BuildNavMesh();
             EditorSceneManager.SaveScene(scene, savePath);
             Debug.Log("LEVEL_BUILDER: NavMeshSurface baked+saved");
@@ -370,6 +374,18 @@ public static class LevelBuilder
             bool skip = child.name.Contains("Ceiling") || child.name.Contains("Roof");
             child.gameObject.isStatic = !skip;
             MarkStaticRecursive(child);
+        }
+    }
+
+    // Layer 8 (NavGround): ground geometry for the navmesh bake. Ceilings/roof stay on the default layer
+    // so the bake cannot create walkable surfaces above the playable floor.
+    static void SetNavLayerRecursive(Transform t)
+    {
+        foreach (Transform child in t)
+        {
+            bool skip = child.name.Contains("Ceiling") || child.name.Contains("Roof");
+            child.gameObject.layer = skip ? 0 : 8;
+            SetNavLayerRecursive(child);
         }
     }
 }
