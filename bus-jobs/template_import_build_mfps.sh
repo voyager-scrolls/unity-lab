@@ -151,6 +151,10 @@ mkdir -p "$PROJ/Assets/Editor"
 cp /content/drive/MyDrive/unity-lab/templates/mfps-2.0-v1.75/HeistSceneBuilder.cs "$PROJ/Assets/Editor/HeistSceneBuilder.cs" || { echo HEIST_BUILDER_COPY_FAILED; exit 6; }
 test -s "$PROJ/Assets/Editor/HeistSceneBuilder.cs" && echo HEIST_BUILDER_WRITTEN || { echo HEIST_BUILDER_FAILED; exit 6; }
 
+echo "=== REMOVE MCP BRIDGE (dev tool, not part of game build) ==="
+rm -f "$PROJ/Assets/Editor/McpBridge.cs" "$PROJ/Assets/Editor/McpBridge.cs.meta"
+echo "MCP_BRIDGE_REMOVED"
+
 echo "=== COMPILE GATE ==="
 "$UNITY" -batchmode -nographics -quit -projectPath "$PROJ" -logFile /content/mfps_compile.log
 echo "COMPILE_RC=$?"
