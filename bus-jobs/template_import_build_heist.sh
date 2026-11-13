@@ -225,6 +225,7 @@ echo "=== STAGE ==="
 cd "$PROJ/Builds/Win"
 zip -r "/content/mfps-win-$STAMP.zip" . >/dev/null 2>&1
 ls -lh "/content/mfps-win-$STAMP.zip"
-rclone copyto "/content/mfps-win-$STAMP.zip" "gdrive:unity-lab/builds/mfps-win-$STAMP.zip" && echo MFPS_STAGED_OK || { echo STAGE_FAIL; exit 6; }
+mkdir -p /content/drive/MyDrive/unity-lab/builds
+cp "/content/mfps-win-$STAMP.zip" "/content/drive/MyDrive/unity-lab/builds/mfps-win-$STAMP.zip" && echo MFPS_STAGED_OK || { echo STAGE_FAIL; exit 6; }
 echo "MFPS_ZIP=mfps-win-$STAMP.zip"
 echo "MFPS_BUNDLE_SIZE=$(du -sh /content/mfps-win-$STAMP.zip | cut -f1)"
