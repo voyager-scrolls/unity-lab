@@ -29,7 +29,8 @@ public static class PrefabAnatomy
         "SM_Prop_DisplayCase_01", "SM_Prop_DisplayCase_02", "SM_Prop_SafeDepositBoxes_01",
         "SM_Prop_VaultTrolley_01", "SM_Prop_Desk_01", "SM_Prop_Desk_02", "SM_Prop_Seat_01",
         "SM_Prop_Table_01", "SM_Prop_Sign_Bank_01", "SM_Prop_Aircon_01", "SM_Prop_AirVent_01",
-        "SM_Env_Wall_Interior_Door_01", "SM_Env_Wall_Exterior_DoubleDoor_01", "SM_Env_Wall_Exterior_Window_01"
+        "SM_Env_Wall_Interior_Door_01", "SM_Env_Wall_Exterior_DoubleDoor_01", "SM_Env_Wall_Exterior_Window_01",
+        "SM_Env_VaultDoor_Frame_01", "SM_Env_VaultGate_Door_01", "SM_Env_VaultGate_Wall_01"
     };
 
     public static void Dump()

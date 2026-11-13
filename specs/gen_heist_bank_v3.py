@@ -273,27 +273,29 @@ for wx in (-10, -5, 5, 10):
     MOUNTED.append(add_mount('lobby', 'SM_Env_Wall_Window_Blinds_01', 'z', 0.0, 1, wx, 0.87, 0.0))
 
 # ------------------------------------------------------------------ teller (3m suspended ceiling)
-for x in (-6.0, -2.0, 2.0, 6.0):
+for x in (-5.0, 0.0, 5.0):
     k = 'desk%d' % int(x * 10)
     add('teller', 'SM_Prop_TellerDesk_01', x, 11.8, 180.0, key=k)
     add('teller', 'SM_Prop_TellerDesk_Barrier_01', x, 10.45, 180.0)
     add('teller', 'SM_Prop_Seat_01', x, 13.2, 180.0)
-    # desk-top items only (screen/keyboard/mouse sit ON the 1.3m desk; the PC tower stays on the floor)
     add_on('teller', k, 'SM_Prop_Computer_Screen_01', 0.0, -0.12, 180.0)
     add_on('teller', k, 'SM_Prop_Computer_Keyboard_01', 0.0, -0.38, 180.0)
     add_on('teller', k, 'SM_Prop_Computer_Mouse_01', 0.35, -0.38, 180.0)
     add_on('teller', k, 'SM_Prop_Money_Stack_01', -0.55, 0.25, 15.0)
     add_on('teller', k, 'SM_Prop_Folder_01', 0.65, 0.15, 90.0)
     add_on('teller', k, 'SM_Prop_DeskLight_01', -0.85, 0.1, 180.0)
-    add('teller', 'SM_Prop_Computer_01', x + 1.55, 12.6, 0.0)
-add('teller', 'SM_Prop_Shelf_01', 11.4, 12.0, 270.0)
-add('teller', 'SM_Prop_Drawers_01', -11.4, 12.0, 90.0)
-add('teller', 'SM_Prop_DisplayCase_01', -10.5, 14.5, 0.0, key='tcase1')
-add('teller', 'SM_Prop_Jewellery_Necklace_02', -10.7, 14.5, 0.0, y=0.80)
-add('teller', 'SM_Prop_Jewellery_04', -10.3, 14.5, 0.0, y=0.80)
-add('teller', 'SM_Prop_DisplayCase_02', 10.5, 14.5, 0.0, key='tcase2')
-add('teller', 'SM_Prop_Jewellery_02', 10.3, 14.5, 0.0, y=0.52)
-add('teller', 'SM_Prop_Jewellery_Ring_01', 10.7, 14.5, 0.0, y=0.52)
+# PC towers on the floor against the back wall (never blocking the side aisles)
+for tx in (-6.4, 0.0, 6.4):
+    add('teller', 'SM_Prop_Computer_01', tx, 14.35, 0.0)
+add('teller', 'SM_Prop_Shelf_01', 12.0, 12.2, 270.0)
+add('teller', 'SM_Prop_Drawers_01', -12.0, 12.2, 90.0)
+# display cases against the side walls (they previously blocked the z=15 passages)
+add('teller', 'SM_Prop_DisplayCase_01', -12.15, 12.5, 90.0, key='tcase1')
+add('teller', 'SM_Prop_Jewellery_Necklace_02', -12.15, 12.3, 0.0, y=0.80)
+add('teller', 'SM_Prop_Jewellery_04', -12.15, 12.7, 0.0, y=0.80)
+add('teller', 'SM_Prop_DisplayCase_02', 12.15, 12.5, 270.0, key='tcase2')
+add('teller', 'SM_Prop_Jewellery_02', 12.15, 12.3, 0.0, y=0.52)
+add('teller', 'SM_Prop_Jewellery_Ring_01', 12.15, 12.7, 0.0, y=0.52)
 MOUNTED.append(add_mount('teller', 'SM_Prop_AirVent_01', 'z', 15.0, -1, 8.0, 2.6, 0.0))
 add_ceiling('teller', 'SM_Prop_Camera_01', -8.0, 14.6, 0.0, 3.0)
 MOUNTED.append(add_mount('teller', 'SM_Prop_AlarmButton_01', 'z', 10.0, 1, 9.2, 1.2, 0.0))
@@ -361,8 +363,8 @@ ROOMS['lobby']['spawnPoints'] = [
     {'position': [8.0, 1.0, 2.0], 'team': 1, 'type': 'delta'},
     {'position': [0.0, 1.0, 6.5], 'team': 1, 'type': 'delta'},
 ]
-ROOMS['teller']['spawnPoints'] = [{'position': [0.0, 1.0, 13.0], 'team': 2, 'type': 'recon'}]
-ROOMS['vault']['spawnPoints'] = [{'position': [0.0, 1.0, 20.0], 'team': 2, 'type': 'recon'}]
+ROOMS['teller']['spawnPoints'] = [{'position': [-9.8, 1.0, 14.2], 'team': 2, 'type': 'recon'}]
+ROOMS['vault']['spawnPoints'] = [{'position': [0.0, 1.0, 22.5], 'team': 2, 'type': 'recon'}]
 ROOMS['exterior']['spawnPoints'] = [
     {'position': [0.0, 1.0, -8.0], 'team': 2, 'type': 'recon'},
     {'position': [-10.0, 1.0, -5.0], 'team': 2, 'type': 'recon'},
@@ -373,11 +375,11 @@ ROOMS['lobby']['killZones'] = [{'position': [0.0, -5.0, 0.0], 'size': [80.0, 1.0
 # ---------------------------------------------------------------- AI cover points
 # Positions behind designed cover (couches, pillars, cases, desks, vehicles), spacing >= 2m.
 COVER = {
-    'lobby': [(-8.0, 2.0), (8.0, 2.0), (-8.0, 8.0), (8.0, 8.0), (-5.0, 5.0), (5.0, 5.0),
-              (-9.8, 3.2), (9.8, 3.2), (-3.0, 1.6), (3.0, 1.6), (0.0, 7.2), (-11.0, 5.5),
+    'lobby': [(-7.2, 1.0), (7.2, 1.0), (-7.0, 8.8), (7.0, 8.8), (-5.0, 4.3), (5.0, 4.3),
+              (-9.8, 3.2), (9.8, 3.2), (-2.0, 1.6), (2.0, 1.6), (0.0, 7.2), (-11.0, 5.5),
               (11.0, 5.5)],
-    'teller': [(-6.0, 12.8), (-2.0, 12.8), (2.0, 12.8), (6.0, 12.8), (-10.0, 13.6), (10.0, 13.6)],
-    'vault': [(-6.0, 16.6), (6.0, 16.6), (-6.0, 23.4), (6.0, 23.4), (0.0, 21.5)],
+    'teller': [(-7.0, 12.9), (7.0, 12.9), (-3.0, 14.0), (3.0, 14.0), (-10.0, 13.6), (10.0, 13.6)],
+    'vault': [(-6.0, 16.6), (6.0, 16.6), (-6.0, 23.4), (6.0, 23.4), (0.0, 21.8)],
     'corridorL': [(-10.0, 17.8), (-10.0, 22.0)],
     'corridorR': [(10.0, 17.8), (10.0, 22.0)],
     'exterior': [(-9.0, -5.0), (9.0, -7.0), (0.0, -9.5), (-12.0, -3.0), (12.0, -3.0)],

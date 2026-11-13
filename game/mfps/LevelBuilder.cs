@@ -75,6 +75,17 @@ public static class LevelBuilder
                     inst.transform.eulerAngles = ToV3(prop.rotation, Vector3.zero);
                     inst.transform.localScale = ToV3(prop.scale, Vector3.one);
                     inst.transform.SetParent(roomRoot.transform, true);
+                    // The vault door prefab embeds its closed round Lid (with collider).
+                    // Open the vault by disabling the lid so the doorway is passable.
+                    if (inst.name.Contains("VaultDoor_Frame"))
+                    {
+                        Transform lid = inst.transform.Find("SM_Env_VaultDoor_Lid_01");
+                        if (lid != null)
+                        {
+                            lid.gameObject.SetActive(false);
+                            Debug.Log("LEVEL_BUILDER: vault lid opened");
+                        }
+                    }
                     placed++;
                 }
             }
@@ -203,12 +214,14 @@ public static class LevelBuilder
         }
 
         var navPoints = new System.Collections.Generic.List<Vector3>(spawnPositions);
+        // Probe each room at its first designed cover point (clear floor), not the geometric centre
+        // (centres can land inside desk/case pockets and falsely fail the gate).
         foreach (LevelRoomData room in layout.rooms)
         {
-            if (room == null || room.bounds == null) continue;
-            Vector3 rmin = ToV3(room.bounds.min, Vector3.zero);
-            Vector3 rmax = ToV3(room.bounds.max, Vector3.zero);
-            navPoints.Add(new Vector3((rmin.x + rmax.x) * 0.5f, 0.4f, (rmin.z + rmax.z) * 0.5f));
+            if (room == null || room.coverPoints == null || room.coverPoints.Length == 0) continue;
+            Vector3 cp = ToV3(room.coverPoints[0].position, Vector3.zero);
+            cp.y = 0.4f;
+            navPoints.Add(cp);
         }
         for (int i = 0; i < navPoints.Count; i++)
         {
