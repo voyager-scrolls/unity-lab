@@ -119,6 +119,7 @@ fi
 
 echo "=== ENSURE WINDOWS MODULE ==="
 PEMB=/content/ue/Editor/Data/PlaybackEngines
+rm -rf "$PEMB/WindowsPlayer"
 if [ ! -d "$PEMB/WindowsStandaloneSupport" ]; then
   echo "WIN_MODULE_MISSING - extracting from Drive cache"
   TARB=$MFPSROOT/cache/Windows.pkg
@@ -128,11 +129,19 @@ if [ ! -d "$PEMB/WindowsStandaloneSupport" ]; then
   7z x "$TARB" -o/tmp/pkgm1 >/dev/null 2>&1
   PAYLOAD=$(find /tmp/pkgm1 -name 'Payload*' | head -1)
   7z x "$PAYLOAD" -o/tmp/pkgm2 >/dev/null 2>&1
-  INNER=$(find /tmp/pkgm2 -type d -name 'WindowsStandaloneSupport' | head -1)
-  if [ -z "$INNER" ]; then INNER=$(find /tmp/pkgm2 -type d | grep -i windows | head -1); fi
-  cp -a "$INNER" "$PEMB/" && echo WIN_MODULE_INSTALLED || { echo WIN_MODULE_FAIL; exit 6; }
+  EXT_DLL=$(find /tmp/pkgm2 -name 'UnityEditor.WindowsStandalone.Extensions.dll' | head -1)
+  if [ -z "$EXT_DLL" ]; then echo NO_MODULE_DLL; find /tmp/pkgm2 -maxdepth 1 | head -10; exit 6; fi
+  MODROOT=$(dirname "$EXT_DLL")
+  mkdir -p "$PEMB/WindowsStandaloneSupport"
+  cp -a "$MODROOT/." "$PEMB/WindowsStandaloneSupport/" && echo WIN_MODULE_INSTALLED || { echo WIN_MODULE_FAIL; exit 6; }
 else
   echo WIN_MODULE_PRESENT
+fi
+if [ -f "$PEMB/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll" ]; then
+  echo WIN_MODULE_VERIFIED
+else
+  echo WIN_MODULE_NOT_VERIFIED
+  exit 6
 fi
 
 echo "=== CREATE PROJECT (if missing) ==="
