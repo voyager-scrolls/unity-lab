@@ -7,7 +7,7 @@ set -u
 MFPSROOT=/content/drive/MyDrive/unity-lab/templates/mfps-2.0-v1.75
 PKG=$MFPSROOT/mfps-2.0-v1.7.5.unitypackage
 PUN2ZIP=$MFPSROOT/pun2-v2.16-mirror3.zip
-HEISTPKG=$MFPSROOT/../assets/polygon-heist-v1.5/POLYGON-Heist-Pack-v1.5.unitypackage
+HEISTPKG=/content/drive/MyDrive/unity-lab/assets/polygon-heist-v1.5/POLYGON-Heist-Pack-v1.5.unitypackage
 ULF=/content/drive/MyDrive/unity-lab/secrets/Unity_lic.ulf
 PROJ=/content/work/mfps
 UNITY=/content/ue/Editor/Unity
