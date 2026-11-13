@@ -22,10 +22,21 @@ public class LevelLayoutData
 }
 
 [System.Serializable]
+[System.Serializable]
+public class LevelBoundsData
+{
+    [JsonProperty("min")]
+    public float[] min;
+    [JsonProperty("max")]
+    public float[] max;
+}
+
 public class LevelRoomData
 {
     [JsonProperty("id")]
     public string roomId;
+    [JsonProperty("bounds")]
+    public LevelBoundsData bounds;
     [JsonProperty("props")]
     public LevelPropData[] props;
     [JsonProperty("spawnPoints")]

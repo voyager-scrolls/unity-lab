@@ -270,6 +270,15 @@ fi
 grep -E "LEVEL_BUILDER: (scene saved|wired|spawn)" /content/level_build.log | head -20
 echo "LEVEL_SCENE_OK"
 
+echo "=== INTEGRITY GATES ==="
+if grep -q "NAV_CONNECT_FAILED" /content/level_build.log 2>/dev/null; then
+  echo "NAV_GATE_FAIL"
+  grep -n "NAV_CONNECT_FAIL" /content/level_build.log | head -20
+  exit 6
+fi
+grep -n "nav connectivity\|invisible colliders\|cover points\|NavMesh baked" /content/level_build.log | head -8
+echo "NAV_GATE_OK"
+
 echo "=== BUILD WINDOWS ==="
 "$UNITY" -batchmode -nographics -quit -projectPath "$PROJ" -executeMethod MfpsBuild.BuildWindows -logFile /content/win_build.log 2>&1 || true
 if grep -q "Aborting batchmode" /content/win_build.log 2>/dev/null; then

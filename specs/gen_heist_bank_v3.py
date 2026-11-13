@@ -128,6 +128,17 @@ def add_mount(room, name, axis, plane, room_dir, u, h, rot):
     return {'x': x, 'y': y, 'z': z, 'rot': rot, 'name': name, 'axis': axis, 'plane': plane, 'room_dir': room_dir}
 
 
+CEILING_MOUNTED = []
+
+
+def add_ceiling(room, name, x, z, rot, ceil_y):
+    """Hang a pendant fixture from the ceiling (its AABB top touches ceil_y)."""
+    y = ceil_y - P(name)['bounds']['max'][1]
+    cx, cz = rot_center(name, rot)
+    _emit(room, name, x - cx, y, z - cz, rot, {'mounted': True})
+    CEILING_MOUNTED.append({'name': name, 'x': x, 'z': z, 'top': y + P(name)['bounds']['max'][1], 'ceil': ceil_y})
+
+
 MOUNTED = []
 
 # ------------------------------------------------------------------ floors (5m kit)
@@ -161,15 +172,16 @@ CEILINGS = ['SM_Env_Ceiling_01', 'SM_Env_Ceiling_02', 'SM_Env_Ceiling_03',
             'SM_Env_Ceiling_04', 'SM_Env_Ceiling_05']
 ci = 0
 for x in (-10, -5, 0, 5, 10):
-    for z in (2.5, 7.5):
-        add('lobby', CEILINGS[ci % len(CEILINGS)], x, z, y=6.0 - P(CEILINGS[ci % len(CEILINGS)])['bounds']['min'][1])
-        ci += 1
-for x in (-10, -5, 0, 5, 10):
     for z in (12.5, 17.5, 22.5):
         rid = room_at(x, z)
         n = CEILINGS[ci % len(CEILINGS)]
         add(rid, n, x, z, y=3.0 - P(n)['bounds']['min'][1])
         ci += 1
+
+# Roof caps the entire footprint at 6m. The lobby has no ceiling tiles - the roof underside IS its ceiling.
+for x in (-10, -5, 0, 5, 10):
+    for z in (2.5, 7.5, 12.5, 17.5, 22.5):
+        add('lobby', 'SM_Env_Roof_05', x, z, y=6.0 - P('SM_Env_Roof_05')['bounds']['min'][1])
 
 # ------------------------------------------------------------------ walls (two 3m courses)
 W_EXT = 'SM_Env_Wall_Exterior_01'
@@ -250,26 +262,28 @@ add('lobby', 'SM_Prop_Jewellery_Necklace_01', 9.0, 1.65, 0.0, key='jR2', y=0.52)
 add('lobby', 'SM_Prop_Jewellery_Rings_01', 9.0, 1.8, 0.0, key='jR3', y=0.52)
 # wall fixtures
 MOUNTED.append(add_mount('lobby', 'SM_Prop_Sign_Bank_01', 'z', 10.0, -1, 0.0, 3.3, 180.0))
-MOUNTED.append(add_mount('lobby', 'SM_Prop_Camera_01', 'z', 0.0, 1, -9.5, 2.9, 180.0))
-MOUNTED.append(add_mount('lobby', 'SM_Prop_Camera_01', 'z', 0.0, 1, 9.5, 2.9, 180.0))
-MOUNTED.append(add_mount('lobby', 'SM_Prop_Camera_01', 'x', -12.5, 1, 5.0, 2.9, 90.0))
+# ceiling pendant cameras (the kit's Camera_01 hangs below its pivot - mount at ceiling, not wall)
+add_ceiling('lobby', 'SM_Prop_Camera_01', -9.5, 0.35, 180.0, 6.0)
+add_ceiling('lobby', 'SM_Prop_Camera_01', 9.5, 0.35, 180.0, 6.0)
+add_ceiling('lobby', 'SM_Prop_Camera_01', -12.1, 5.0, 90.0, 6.0)
 MOUNTED.append(add_mount('lobby', 'SM_Prop_AlarmButton_01', 'z', 10.0, -1, 9.2, 1.2, 180.0))
 for wx in (-10, -5, 5, 10):
     MOUNTED.append(add_mount('lobby', 'SM_Env_Wall_Window_Blinds_01', 'z', 0.0, 1, wx, 0.87, 0.0))
 
 # ------------------------------------------------------------------ teller (3m suspended ceiling)
 for x in (-6.0, -2.0, 2.0, 6.0):
-    add('teller', 'SM_Prop_TellerDesk_01', x, 11.8, 180.0, key='desk%d' % int(x * 10))
-    add('teller', 'SM_Prop_TellerDesk_Barrier_01', x, 10.45, 180.0)
-    add('teller', 'SM_Prop_Seat_01', x, 13.0, 180.0)
     k = 'desk%d' % int(x * 10)
-    add_on('teller', k, 'SM_Prop_Computer_01', 0.0, 0.0, 180.0)
-    add_on('teller', k, 'SM_Prop_Computer_Screen_01', 0.0, -0.1, 180.0, lift=0.18)
-    add_on('teller', k, 'SM_Prop_Computer_Keyboard_01', 0.0, -0.45, 180.0)
-    add_on('teller', k, 'SM_Prop_Money_Stack_01', -0.6, 0.2, 15.0)
-    add_on('teller', k, 'SM_Prop_Money_Stack_02', 0.55, 0.25, 200.0)
-    add_on('teller', k, 'SM_Prop_Folder_01', 0.75, -0.2, 90.0)
-    add_on('teller', k, 'SM_Prop_DeskLight_01', -0.9, -0.35, 180.0)
+    add('teller', 'SM_Prop_TellerDesk_01', x, 11.8, 180.0, key=k)
+    add('teller', 'SM_Prop_TellerDesk_Barrier_01', x, 10.45, 180.0)
+    add('teller', 'SM_Prop_Seat_01', x, 13.2, 180.0)
+    # desk-top items only (screen/keyboard/mouse sit ON the 1.3m desk; the PC tower stays on the floor)
+    add_on('teller', k, 'SM_Prop_Computer_Screen_01', 0.0, -0.12, 180.0)
+    add_on('teller', k, 'SM_Prop_Computer_Keyboard_01', 0.0, -0.38, 180.0)
+    add_on('teller', k, 'SM_Prop_Computer_Mouse_01', 0.35, -0.38, 180.0)
+    add_on('teller', k, 'SM_Prop_Money_Stack_01', -0.55, 0.25, 15.0)
+    add_on('teller', k, 'SM_Prop_Folder_01', 0.65, 0.15, 90.0)
+    add_on('teller', k, 'SM_Prop_DeskLight_01', -0.85, 0.1, 180.0)
+    add('teller', 'SM_Prop_Computer_01', x + 1.55, 12.6, 0.0)
 add('teller', 'SM_Prop_Shelf_01', 11.4, 12.0, 270.0)
 add('teller', 'SM_Prop_Drawers_01', -11.4, 12.0, 90.0)
 add('teller', 'SM_Prop_DisplayCase_01', -10.5, 14.5, 0.0, key='tcase1')
@@ -278,8 +292,8 @@ add('teller', 'SM_Prop_Jewellery_04', -10.3, 14.5, 0.0, y=0.80)
 add('teller', 'SM_Prop_DisplayCase_02', 10.5, 14.5, 0.0, key='tcase2')
 add('teller', 'SM_Prop_Jewellery_02', 10.3, 14.5, 0.0, y=0.52)
 add('teller', 'SM_Prop_Jewellery_Ring_01', 10.7, 14.5, 0.0, y=0.52)
-MOUNTED.append(add_mount('teller', 'SM_Prop_Camera_01', 'z', 15.0, -1, -8.0, 2.6, 0.0))
 MOUNTED.append(add_mount('teller', 'SM_Prop_AirVent_01', 'z', 15.0, -1, 8.0, 2.6, 0.0))
+add_ceiling('teller', 'SM_Prop_Camera_01', -8.0, 14.6, 0.0, 3.0)
 MOUNTED.append(add_mount('teller', 'SM_Prop_AlarmButton_01', 'z', 10.0, 1, 9.2, 1.2, 0.0))
 
 # ------------------------------------------------------------------ vault (3m)
@@ -299,8 +313,8 @@ add_on('vault', 'vtrolley', 'SM_Prop_Money_Stack_02', 0.0, 0.0, 0.0)
 add_on('vault', 'vtrolley', 'SM_Prop_Money_Stack_03', 0.3, 0.2, 40.0)
 add('vault', 'SM_Item_DuffleBag_Full_01', -3.4, 18.2, 270.0)
 add('vault', 'SM_Item_DuffleBag_Open_Empty_01', -4.2, 21.5, 90.0)
-MOUNTED.append(add_mount('vault', 'SM_Prop_Camera_01', 'z', 25.0, -1, 0.0, 2.6, 0.0))
 MOUNTED.append(add_mount('vault', 'SM_Prop_AirVent_01', 'x', -7.5, 1, 20.0, 2.6, 90.0))
+add_ceiling('vault', 'SM_Prop_Camera_01', 0.0, 24.6, 0.0, 3.0)
 
 # ------------------------------------------------------------------ corridors / offices
 add('corridorL', 'SM_Prop_Desk_01', -10.0, 17.0, 90.0, key='ldesk')
@@ -311,7 +325,7 @@ add_on('corridorL', 'ldesk', 'SM_Prop_Folder_02', -0.4, -0.2, 90.0)
 add('corridorL', 'SM_Prop_Shelf_01', -12.0, 20.0, 90.0)
 add('corridorL', 'SM_Prop_Drawers_01', -10.0, 23.0, 0.0)
 add('corridorL', 'SM_Prop_Plant_02', -8.8, 23.6, 0.0)
-MOUNTED.append(add_mount('corridorL', 'SM_Prop_Camera_01', 'x', -12.5, 1, 22.0, 2.6, 90.0))
+add_ceiling('corridorL', 'SM_Prop_Camera_01', -12.1, 22.0, 90.0, 3.0)
 add('corridorR', 'SM_Prop_Desk_02', 10.0, 17.0, 270.0, key='rdesk')
 add('corridorR', 'SM_Prop_Seat_01', 8.6, 17.0, 90.0)
 add_on('corridorR', 'rdesk', 'SM_Prop_Computer_01', 0.0, 0.3, 270.0)
@@ -319,7 +333,7 @@ add_on('corridorR', 'rdesk', 'SM_Prop_Folder_03', 0.4, -0.2, 270.0)
 add('corridorR', 'SM_Prop_Shelf_01', 12.0, 20.0, 270.0)
 add('corridorR', 'SM_Prop_WaterCooler_01', 8.4, 23.4, 0.0)
 add('corridorR', 'SM_Prop_Drawers_01', 10.0, 23.0, 0.0)
-MOUNTED.append(add_mount('corridorR', 'SM_Prop_Camera_01', 'x', 12.5, -1, 22.0, 2.6, 270.0))
+add_ceiling('corridorR', 'SM_Prop_Camera_01', 12.1, 22.0, 270.0, 3.0)
 
 # ------------------------------------------------------------------ exterior
 add('exterior', 'SM_Env_Pillar_Exterior_Floor_01', -14.5, -3.0, 0.0)
@@ -417,8 +431,12 @@ for rid in ORDER:
         else:
             COUNTS[rid]['props'] += 1
 
-EXPECT = {'lobby': (10, 10), 'teller': (5, 5), 'vault': (6, 6),
+EXPECT = {'lobby': (10, 0), 'teller': (5, 5), 'vault': (6, 6),
           'corridorL': (2, 2), 'corridorR': (2, 2), 'exterior': (40, 0)}
+ROOF_COUNT = sum(1 for p in ROOMS['lobby']['props']
+                 if p['prefab'].split('/')[-1].startswith('SM_Env_Roof'))
+if ROOF_COUNT != 25:
+    FAIL.append('roof tiles=%d expected 25' % ROOF_COUNT)
 for rid, (ef, ec) in EXPECT.items():
     if COUNTS[rid]['floors'] != ef:
         FAIL.append('%s floors=%d expected %d' % (rid, COUNTS[rid]['floors'], ef))
@@ -445,6 +463,11 @@ for m in MOUNTED:
         near = (m['x'] + dx0) if m['room_dir'] > 0 else (m['x'] + dx1)
     if abs(near - m['plane']) > 0.05:
         FAIL.append('mount not flush: %s gap=%.3f' % (m['name'], near - m['plane']))
+
+# pendant fixtures: their AABB top must touch the ceiling
+for m in CEILING_MOUNTED:
+    if abs(m['top'] - m['ceil']) > 0.05:
+        FAIL.append('pendant not on ceiling: %s gap=%.3f' % (m['name'], m['top'] - m['ceil']))
 
 # prop containment + furniture overlap (surface items exempt)
 FURNITURE_EXEMPT = ('SM_Prop_Rug', 'SM_Prop_Money', 'SM_Prop_Folder', 'SM_Prop_GoldBar',

@@ -11,6 +11,7 @@ using UnityEngine.SceneManagement;
 public static class LevelBuilder
 {
     static int spawnCounter;
+    static readonly System.Collections.Generic.List<Vector3> spawnPositions = new System.Collections.Generic.List<Vector3>();
 
     public static void BuildFromLayoutAsset()
     {
@@ -47,6 +48,7 @@ public static class LevelBuilder
 
         GameObject levelRoot = new GameObject("LevelRoot_" + layout.levelName.Replace(" ", "_"));
         spawnCounter = 0;
+        spawnPositions.Clear();
         int placed = 0;
         int missing = 0;
 
@@ -174,6 +176,50 @@ public static class LevelBuilder
             Debug.LogWarning("LEVEL_BUILDER: NavMesh bake failed (non-fatal): " + e.Message);
         }
 
+        // Integrity gate 1: every spawn point and room centre must be mutually reachable on the NavMesh
+        var navPoints = new System.Collections.Generic.List<Vector3>(spawnPositions);
+        foreach (LevelRoomData room in layout.rooms)
+        {
+            if (room == null || room.bounds == null) continue;
+            Vector3 rmin = ToV3(room.bounds.min, Vector3.zero);
+            Vector3 rmax = ToV3(room.bounds.max, Vector3.zero);
+            navPoints.Add(new Vector3((rmin.x + rmax.x) * 0.5f, 0.4f, (rmin.z + rmax.z) * 0.5f));
+        }
+        int navPairs = 0;
+        int navFails = 0;
+        for (int i = 0; i < navPoints.Count; i++)
+        {
+            for (int j = i + 1; j < navPoints.Count; j++)
+            {
+                navPairs++;
+                if (!NavReachable(navPoints[i], navPoints[j]))
+                {
+                    navFails++;
+                    Debug.LogWarning("NAV_CONNECT_FAIL " + i + "->" + j);
+                }
+            }
+        }
+        Debug.Log("LEVEL_BUILDER: nav connectivity fails=" + navFails + "/" + navPairs);
+        if (navFails > 0)
+        {
+            Debug.LogError("NAV_CONNECT_FAILED total=" + navFails);
+        }
+
+        // Integrity gate 2: report colliders with no renderer (invisible-wall suspects)
+        int invisible = 0;
+        foreach (Collider col in UnityEngine.Object.FindObjectsByType<Collider>(FindObjectsSortMode.None))
+        {
+            if (col == null) continue;
+            if (col.GetComponent<Renderer>() != null) continue;
+            if (col.GetComponentInChildren<Renderer>() != null) continue;
+            string n = col.gameObject.name;
+            if (n.Contains("KillZone") || n.Contains("Spawn") || n.Contains("Manager") ||
+                n.Contains("UI") || n.Contains("Canvas") || n.Contains("Floor")) continue;
+            invisible++;
+            Debug.LogWarning("INVISIBLE_COLLIDER " + n + " (" + col.GetType().Name + ")");
+        }
+        Debug.Log("LEVEL_BUILDER: invisible colliders=" + invisible);
+
         var buildScenes = new System.Collections.Generic.List<EditorBuildSettingsScene>();
         string mainMenuPath = "Assets/MFPS/Scenes/MainMenu.unity";
         if (File.Exists(mainMenuPath))
@@ -196,6 +242,7 @@ public static class LevelBuilder
         GameObject obj = new GameObject(name);
         SceneManager.MoveGameObjectToScene(obj, scene);
         obj.transform.position = ToV3(sp.position, new Vector3(0f, 1f, 0f));
+        spawnPositions.Add(obj.transform.position);
         bl_SpawnPoint bsp = obj.AddComponent<bl_SpawnPoint>();
         int team = sp.team <= 0 ? 1 : sp.team;
         bsp.m_Team = (global::Team)team;
@@ -220,6 +267,18 @@ public static class LevelBuilder
     {
         if (a != null && a.Length >= 3) return new Vector3(a[0], a[1], a[2]);
         return def;
+    }
+
+    // Both points snapped onto the NavMesh, then a complete path must exist
+    static bool NavReachable(Vector3 a, Vector3 b)
+    {
+        UnityEngine.AI.NavMeshHit ha;
+        UnityEngine.AI.NavMeshHit hb;
+        if (!UnityEngine.AI.NavMesh.SamplePosition(a, out ha, 3f, UnityEngine.AI.NavMesh.AllAreas)) return false;
+        if (!UnityEngine.AI.NavMesh.SamplePosition(b, out hb, 3f, UnityEngine.AI.NavMesh.AllAreas)) return false;
+        var path = new UnityEngine.AI.NavMeshPath();
+        return UnityEngine.AI.NavMesh.CalculatePath(ha.position, hb.position, UnityEngine.AI.NavMesh.AllAreas, path) &&
+               path.status == UnityEngine.AI.NavMeshPathStatus.PathComplete;
     }
 
     static void MarkStaticRecursive(Transform t)
