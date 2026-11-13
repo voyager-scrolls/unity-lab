@@ -252,6 +252,7 @@ public class LevelLayoutData
     public LevelSpawnPointData[] globalSpawnPoints;
 }
 
+[System.Serializable]
 public class LevelRoomData
 {
     [JsonProperty("id")]
@@ -264,6 +265,7 @@ public class LevelRoomData
     public LevelKillZoneData[] killZones;
 }
 
+[System.Serializable]
 public class LevelPropData
 {
     [JsonProperty("prefab")]
@@ -278,6 +280,7 @@ public class LevelPropData
     public string tag;
 }
 
+[System.Serializable]
 public class LevelSpawnPointData
 {
     [JsonProperty("position")]
@@ -288,6 +291,7 @@ public class LevelSpawnPointData
     public string type;
 }
 
+[System.Serializable]
 public class LevelKillZoneData
 {
     [JsonProperty("position")]
@@ -339,7 +343,14 @@ public static class LevelLayoutGenerator
         string assetPath = "Assets/Resources/LevelLayout.asset";
         UnityEditor.AssetDatabase.CreateAsset(asset, assetPath);
         UnityEditor.AssetDatabase.SaveAssets();
-        Debug.Log("LEVEL_LAYOUT: generated " + assetPath + " name=" + asset.levelName + " rooms=" + asset.rooms.Length);
+        LevelLayout verify = Resources.Load<LevelLayout>("LevelLayout");
+        if (verify == null || verify.rooms == null || verify.rooms.Length == 0)
+        {
+            throw new Exception("LEVEL_LAYOUT: asset did not serialize rooms (verify=" +
+                (verify == null ? "LOAD_FAIL" : "rooms_null") + ")");
+        }
+        Debug.Log("LEVEL_LAYOUT: generated " + assetPath + " name=" + asset.levelName +
+            " rooms=" + asset.rooms.Length + " VERIFY_ROOMS=" + verify.rooms.Length);
     }
 }
 #endif
@@ -364,7 +375,8 @@ public static class LevelBuilder
         LevelLayout layout = Resources.Load<LevelLayout>("LevelLayout");
         if (layout == null || layout.rooms == null)
         {
-            throw new Exception("LEVEL_BUILDER: LevelLayout asset missing. Run LevelLayoutGenerator.Generate first.");
+            throw new Exception("LEVEL_BUILDER: LevelLayout asset unusable (loaded=" + (layout != null) +
+                " rooms_null=" + (layout != null && layout.rooms == null) + "). Run LevelLayoutGenerator.Generate first.");
         }
 
         Debug.Log("LEVEL_BUILDER: building '" + layout.levelName + "' v" + layout.version + " rooms=" + layout.rooms.Length);

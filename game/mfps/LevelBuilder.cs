@@ -17,7 +17,8 @@ public static class LevelBuilder
         LevelLayout layout = Resources.Load<LevelLayout>("LevelLayout");
         if (layout == null || layout.rooms == null)
         {
-            throw new Exception("LEVEL_BUILDER: LevelLayout asset missing. Run LevelLayoutGenerator.Generate first.");
+            throw new Exception("LEVEL_BUILDER: LevelLayout asset unusable (loaded=" + (layout != null) +
+                " rooms_null=" + (layout != null && layout.rooms == null) + "). Run LevelLayoutGenerator.Generate first.");
         }
 
         Debug.Log("LEVEL_BUILDER: building '" + layout.levelName + "' v" + layout.version + " rooms=" + layout.rooms.Length);
