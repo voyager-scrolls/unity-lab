@@ -362,7 +362,7 @@ ROOMS['lobby']['spawnPoints'] = [
     {'position': [0.0, 1.0, 6.5], 'team': 1, 'type': 'delta'},
 ]
 ROOMS['teller']['spawnPoints'] = [{'position': [-9.8, 1.0, 14.2], 'team': 2, 'type': 'recon'}]
-ROOMS['vault']['spawnPoints'] = [{'position': [0.0, 1.0, 22.5], 'team': 2, 'type': 'recon'}]
+ROOMS['vault']['spawnPoints'] = [{'position': [-3.5, 1.0, 23.5], 'team': 2, 'type': 'recon'}]
 ROOMS['exterior']['spawnPoints'] = [
     {'position': [0.0, 1.0, -8.0], 'team': 2, 'type': 'recon'},
     {'position': [-10.0, 1.0, -5.0], 'team': 2, 'type': 'recon'},
@@ -377,9 +377,9 @@ COVER = {
               (-9.8, 3.2), (9.8, 3.2), (-2.0, 1.6), (2.0, 1.6), (0.0, 7.2), (-11.0, 5.5),
               (11.0, 5.5)],
     'teller': [(-7.0, 12.9), (7.0, 12.9), (-3.0, 14.0), (3.0, 14.0), (-10.0, 13.6), (10.0, 13.6)],
-    'vault': [(-6.0, 16.6), (6.0, 16.6), (-6.0, 23.4), (6.0, 23.4), (0.0, 21.8)],
-    'corridorL': [(-10.0, 17.8), (-10.0, 22.0)],
-    'corridorR': [(10.0, 17.8), (10.0, 22.0)],
+    'vault': [(-6.0, 16.6), (6.0, 16.6), (-3.5, 23.5), (3.5, 23.5)],
+    'corridorL': [(-11.3, 19.6), (-8.7, 21.5)],
+    'corridorR': [(11.3, 19.6), (8.7, 21.5)],
     'exterior': [(-9.0, -5.0), (9.0, -7.0), (0.0, -9.5), (-12.0, -3.0), (12.0, -3.0)],
 }
 for rid, pts in COVER.items():

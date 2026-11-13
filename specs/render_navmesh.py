@@ -89,24 +89,69 @@ for r in DATA['rooms']:
         col = (120, 120, 120) if n.startswith('SM_Env_') else (205, 205, 205)
         d.rectangle([a[0], a[1], c[0], c[1]], fill=col)
 
-# navmesh triangles (green, alpha-blended via overlay)
-overlay = Image.new('RGBA', (W, H), (0, 0, 0, 0))
-od = ImageDraw.Draw(overlay)
+# navmesh triangles: colour by connected component (shared vertices) so islands are visible
 verts = NAV.get('vertices', [])
 idx = NAV.get('indices', [])
-tris = 0
-for i in range(0, len(idx) - 2, 3):
-    pts = []
-    for k in (idx[i], idx[i + 1], idx[i + 2]):
-        if k < 0 or k >= len(verts):
+tri_count = len(idx) // 3
+
+parent = list(range(tri_count))
+def find(a):
+    while parent[a] != a:
+        parent[a] = parent[parent[a]]
+        a = parent[a]
+    return a
+def union(a, b):
+    ra, rb = find(a), find(b)
+    if ra != rb:
+        parent[rb] = ra
+
+vert_to_tri = {}
+def weld_key(vi):
+    v = verts[vi]
+    return (round(v[0] * 10), round(v[1] * 10), round(v[2] * 10))
+
+for t in range(tri_count):
+    for k in range(3):
+        vi = idx[t * 3 + k]
+        if vi < 0 or vi >= len(verts):
             continue
-        v = verts[k]
+        key = weld_key(vi)
+        if key in vert_to_tri:
+            union(t, vert_to_tri[key])
+        else:
+            vert_to_tri[key] = t
+
+comp_size = {}
+for t in range(tri_count):
+    r = find(t)
+    comp_size[r] = comp_size.get(r, 0) + 1
+
+PALETTE = [(0, 200, 80), (230, 140, 0), (200, 0, 200), (0, 140, 230), (230, 220, 0),
+           (120, 60, 0), (0, 200, 200), (150, 0, 0), (100, 100, 255), (0, 100, 0)]
+root_to_col = {}
+order = sorted(comp_size.items(), key=lambda kv: -kv[1])
+for rank, (root, _) in enumerate(order):
+    root_to_col[root] = PALETTE[rank % len(PALETTE)]
+
+overlay = Image.new('RGBA', (W, H), (0, 0, 0, 0))
+od = ImageDraw.Draw(overlay)
+for t in range(tri_count):
+    pts = []
+    ok = True
+    for k in range(3):
+        vi = idx[t * 3 + k]
+        if vi < 0 or vi >= len(verts):
+            ok = False
+            break
+        v = verts[vi]
         pts.append(px(v[0], v[2]))
-    if len(pts) == 3:
-        od.polygon(pts, fill=(0, 200, 80, 90))
-        tris += 1
+    if not ok:
+        continue
+    col = root_to_col[find(t)]
+    od.polygon(pts, fill=(col[0], col[1], col[2], 110))
 img = Image.alpha_composite(img.convert('RGBA'), overlay).convert('RGB')
 d = ImageDraw.Draw(img)
+print('COMPONENTS', len(comp_size), 'sizes', sorted(comp_size.values(), reverse=True)[:10])
 
 # spawns + cover points
 for r in DATA['rooms']:
@@ -118,7 +163,8 @@ for r in DATA['rooms']:
         c = px(cp['position'][0], cp['position'][2])
         d.rectangle([c[0] - 3, c[1] - 3, c[0] + 3, c[1] + 3], fill=(0, 120, 220))
 
-d.text((MARGIN, H - 30), 'navmesh tris=%d verts=%d  |  %s' % (tris, len(verts), os.path.basename(NAVMESH)),
+d.text((MARGIN, H - 30), 'navmesh components=%d tris=%d verts=%d  |  %s' % (
+    len(comp_size), tri_count, len(verts), os.path.basename(NAVMESH)),
        fill=(40, 40, 40), font=font)
 img.save(OUT)
-print('WROTE', OUT, img.size, 'tris', tris, 'verts', len(verts))
+print('WROTE', OUT, img.size, 'components', len(comp_size), 'verts', len(verts))

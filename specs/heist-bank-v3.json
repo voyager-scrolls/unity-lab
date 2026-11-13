@@ -3902,42 +3902,6 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Shelf_01.prefab",
-          "position": [
-            12.0,
-            0,
-            12.2
-          ],
-          "rotation": [
-            0.0,
-            270.0,
-            0.0
-          ],
-          "scale": [
-            1.0,
-            1.0,
-            1.0
-          ]
-        },
-        {
-          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Drawers_01.prefab",
-          "position": [
-            -12.0,
-            0,
-            12.2
-          ],
-          "rotation": [
-            0.0,
-            90.0,
-            0.0
-          ],
-          "scale": [
-            1.0,
-            1.0,
-            1.0
-          ]
-        },
-        {
           "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_DisplayCase_01.prefab",
           "position": [
             -12.15,
@@ -4929,9 +4893,9 @@
       "spawnPoints": [
         {
           "position": [
-            0.0,
+            -3.5,
             1.0,
-            22.5
+            23.5
           ],
           "team": 2,
           "type": "recon"
@@ -4954,23 +4918,16 @@
         },
         {
           "position": [
-            -6.0,
+            -3.5,
             0.1,
-            23.4
+            23.5
           ]
         },
         {
           "position": [
-            6.0,
+            3.5,
             0.1,
-            23.4
-          ]
-        },
-        {
-          "position": [
-            0.0,
-            0.1,
-            21.8
+            23.5
           ]
         }
       ],
@@ -5342,16 +5299,16 @@
       "coverPoints": [
         {
           "position": [
-            -10.0,
+            -11.3,
             0.1,
-            17.8
+            19.6
           ]
         },
         {
           "position": [
-            -10.0,
+            -8.7,
             0.1,
-            22.0
+            21.5
           ]
         }
       ],
@@ -5704,16 +5661,16 @@
       "coverPoints": [
         {
           "position": [
-            10.0,
+            11.3,
             0.1,
-            17.8
+            19.6
           ]
         },
         {
           "position": [
-            10.0,
+            8.7,
             0.1,
-            22.0
+            21.5
           ]
         }
       ],
