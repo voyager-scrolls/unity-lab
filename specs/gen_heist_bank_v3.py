@@ -198,9 +198,12 @@ def wall(room, name, x, z, rot, course):
     add(room, name, x, z, rot, y=course * 3.0 - P(name)['bounds']['min'][1])
 
 
-# facade Z=0: entry centre, windows lower + upper courses
-for x, n in ((-10, W_EXT_WIN), (-5, W_EXT_WIN), (0, W_EXT_DD), (5, W_EXT_WIN), (10, W_EXT_WIN)):
+# facade Z=0: 5m entrance opening flanked by windows (no closed-door module: its mesh/collider blocks passage)
+for x, n in ((-10, W_EXT_WIN), (-5, W_EXT_WIN), (5, W_EXT_WIN), (10, W_EXT_WIN)):
     wall('lobby', n, x, 0.0, 0.0, 0)
+# hinged-open door panels inside the entrance
+add('lobby', 'SM_Env_Door_01', -2.45, 0.62, 90.0)
+add('lobby', 'SM_Env_Door_02', 2.45, 0.62, 270.0)
 for x, n in ((-10, W_EXT_WIN), (-5, W_EXT_WIN), (0, W_EXT), (5, W_EXT_WIN), (10, W_EXT_WIN)):
     wall('lobby', n, x, 0.0, 0.0, 1)
 # back Z=25: two courses (6m shell)
@@ -216,14 +219,13 @@ for z in (2.5, 7.5, 12.5, 17.5, 22.5):
     rid = room_at(12.4, z)
     wall(rid, W_EXT_WIN if z == 7.5 else W_EXT, 12.5, z, 270.0, 0)
     wall(rid, W_EXT, 12.5, z, 270.0, 1)
-# lobby/teller wall Z=10: openings lower, solid upper (lobby is 6m)
-for x, n in ((-10, W_INT_DOOR), (-5, W_INT_WIN), (0, W_INT_WIN), (5, W_INT_WIN), (10, W_INT_DOOR)):
+# lobby/teller wall Z=10: open passages at +-10 (closed door modules block the NavMesh)
+for x, n in ((-5, W_INT_WIN), (0, W_INT_WIN), (5, W_INT_WIN)):
     wall('teller', n, x, 10.0, 0.0, 0)
 for x in (-10, -5, 0, 5, 10):
     wall('lobby', W_INT, x, 10.0, 0.0, 1)
-# teller/vault wall Z=15
-for x, n, r in ((-10, W_INT_DOOR, 'corridorL'), (-5, V_WALL, 'vault'), (0, V_FRAME, 'vault'),
-                (5, V_WALL, 'vault'), (10, W_INT_DOOR, 'corridorR')):
+# teller/vault wall Z=15: open passages at +-10, vault front at centre
+for x, n, r in ((-5, V_WALL, 'vault'), (0, V_FRAME, 'vault'), (5, V_WALL, 'vault')):
     wall(r, n, x, 15.0, 0.0, 0)
 # vault side walls
 for z in (17.5, 22.5):
@@ -443,11 +445,11 @@ for rid, (ef, ec) in EXPECT.items():
     if COUNTS[rid]['ceilings'] != ec:
         FAIL.append('%s ceilings=%d expected %d' % (rid, COUNTS[rid]['ceilings'], ec))
 
-for label, names in (('front-lower', [W_EXT_WIN, W_EXT_WIN, W_EXT_DD, W_EXT_WIN, W_EXT_WIN]),
-                     ('front-upper', [W_EXT_WIN, W_EXT_WIN, W_EXT, W_EXT_WIN, W_EXT_WIN]),
-                     ('z10-lower', [W_INT_DOOR, W_INT_WIN, W_INT_WIN, W_INT_WIN, W_INT_DOOR]),
-                     ('z15', [W_INT_DOOR, V_WALL, V_FRAME, V_WALL, W_INT_DOOR])):
-    span = sum(sz(n)[0] for n in names)
+for label, names, opens in (('front-lower', [W_EXT_WIN, W_EXT_WIN, W_EXT_WIN, W_EXT_WIN], 1),
+                            ('front-upper', [W_EXT_WIN, W_EXT_WIN, W_EXT, W_EXT_WIN, W_EXT_WIN], 0),
+                            ('z10-lower', [W_INT_WIN, W_INT_WIN, W_INT_WIN], 2),
+                            ('z15', [V_WALL, V_FRAME, V_WALL], 2)):
+    span = sum(sz(n)[0] for n in names) + 5.0 * opens
     if abs(span - 25.0) > 0.01:
         FAIL.append('%s wall span %.2f != 25' % (label, span))
 side = sum(sz(W_EXT_WIN if z == 7.5 else W_EXT)[0] for z in (2.5, 7.5, 12.5, 17.5, 22.5))

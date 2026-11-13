@@ -1778,24 +1778,6 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Wall_Exterior_DoubleDoor_01.prefab",
-          "position": [
-            2.5,
-            0.0,
-            -0.1103
-          ],
-          "rotation": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "scale": [
-            1.0,
-            1.0,
-            1.0
-          ]
-        },
-        {
           "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Wall_Exterior_Window_01.prefab",
           "position": [
             7.5,
@@ -1823,6 +1805,42 @@
           "rotation": [
             0.0,
             0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Door_01.prefab",
+          "position": [
+            -2.45,
+            0,
+            0.1195
+          ],
+          "rotation": [
+            0.0,
+            90.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Door_02.prefab",
+          "position": [
+            2.45,
+            0,
+            0.1186
+          ],
+          "rotation": [
+            0.0,
+            270.0,
             0.0
           ],
           "scale": [
@@ -3272,24 +3290,6 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Wall_Interior_Door_01.prefab",
-          "position": [
-            -7.5,
-            0.0,
-            9.9182
-          ],
-          "rotation": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "scale": [
-            1.0,
-            1.0,
-            1.0
-          ]
-        },
-        {
           "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Wall_Interior_Window_01.prefab",
           "position": [
             -2.5,
@@ -3329,24 +3329,6 @@
           "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Wall_Interior_Window_01.prefab",
           "position": [
             7.5,
-            0.0,
-            9.9182
-          ],
-          "rotation": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "scale": [
-            1.0,
-            1.0,
-            1.0
-          ]
-        },
-        {
-          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Wall_Interior_Door_01.prefab",
-          "position": [
-            12.5,
             0.0,
             9.9182
           ],
@@ -5376,24 +5358,6 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Wall_Interior_Door_01.prefab",
-          "position": [
-            -7.5,
-            0.0,
-            14.9182
-          ],
-          "rotation": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "scale": [
-            1.0,
-            1.0,
-            1.0
-          ]
-        },
-        {
           "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Desk_01.prefab",
           "position": [
             -9.7828,
@@ -5766,24 +5730,6 @@
           "rotation": [
             0.0,
             270.0,
-            0.0
-          ],
-          "scale": [
-            1.0,
-            1.0,
-            1.0
-          ]
-        },
-        {
-          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Wall_Interior_Door_01.prefab",
-          "position": [
-            12.5,
-            0.0,
-            14.9182
-          ],
-          "rotation": [
-            0.0,
-            0.0,
             0.0
           ],
           "scale": [
