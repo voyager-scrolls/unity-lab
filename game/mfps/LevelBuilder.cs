@@ -39,9 +39,11 @@ public static class LevelBuilder
         sun.color = new Color(1f, 0.95f, 0.88f);
         sun.shadows = LightShadows.Soft;
         sunGo.transform.rotation = Quaternion.Euler(52f, -35f, 0f);
-        RenderSettings.ambientMode = UnityEngine.Rendering.AmbientMode.Flat;
-        RenderSettings.ambientLight = new Color(0.42f, 0.45f, 0.5f);
-        Debug.Log("LEVEL_BUILDER: lighting set (sun + ambient)");
+        RenderSettings.ambientMode = UnityEngine.Rendering.AmbientMode.Trilight;
+        RenderSettings.ambientSkyColor = new Color(0.68f, 0.66f, 0.62f);
+        RenderSettings.ambientEquatorColor = new Color(0.55f, 0.51f, 0.46f);
+        RenderSettings.ambientGroundColor = new Color(0.34f, 0.31f, 0.27f);
+        Debug.Log("LEVEL_BUILDER: lighting set (sun + warm trilight ambient)");
 
         GameObject levelRoot = new GameObject("LevelRoot_" + layout.levelName.Replace(" ", "_"));
         spawnCounter = 0;
@@ -94,9 +96,27 @@ public static class LevelBuilder
 
         // MFPS wiring (heist-t1-5 recipe)
         InstantiateMfpsPrefab(scene, "Assets/MFPS/Content/Prefabs/Network/GameManager.prefab", "GameManager");
-        InstantiateMfpsPrefab(scene, "Assets/MFPS/Content/Prefabs/GamePlay/AIManager.prefab", "AIManager");
+        GameObject aiManager = InstantiateMfpsPrefab(scene, "Assets/MFPS/Content/Prefabs/GamePlay/AIManager.prefab", "AIManager");
         InstantiateMfpsPrefab(scene, "Assets/MFPS/Content/Prefabs/GamePlay/ItemManager.prefab", "ItemManager");
         InstantiateMfpsPrefab(scene, "Assets/MFPS/Content/Prefabs/UI/UI.prefab", "UI");
+
+        // AI cover points (bots seek these via bl_AICovertPointManager; no points = no pursuit)
+        int coverCount = 0;
+        foreach (LevelRoomData room in layout.rooms)
+        {
+            if (room == null || room.coverPoints == null) continue;
+            foreach (LevelCoverPointData cp in room.coverPoints)
+            {
+                if (cp == null) continue;
+                GameObject cpObj = new GameObject("CoverPoint_" + coverCount);
+                SceneManager.MoveGameObjectToScene(cpObj, scene);
+                cpObj.transform.SetParent(aiManager.transform, true);
+                cpObj.transform.position = ToV3(cp.position, new Vector3(0f, 0.1f, 0f));
+                cpObj.AddComponent<bl_AICoverPoint>();
+                coverCount++;
+            }
+        }
+        Debug.Log("LEVEL_BUILDER: cover points=" + coverCount);
 
         GameObject gameModes = new GameObject("GameModes");
         gameModes.transform.position = Vector3.zero;
@@ -182,7 +202,7 @@ public static class LevelBuilder
         Debug.Log("LEVEL_BUILDER: spawn " + name + " team=" + team + " type=" + sp.type);
     }
 
-    static void InstantiateMfpsPrefab(Scene scene, string path, string goName)
+    static GameObject InstantiateMfpsPrefab(Scene scene, string path, string goName)
     {
         GameObject prefab = AssetDatabase.LoadAssetAtPath<GameObject>(path);
         if (prefab == null)
@@ -193,6 +213,7 @@ public static class LevelBuilder
         inst.transform.position = Vector3.zero;
         inst.name = goName;
         Debug.Log("LEVEL_BUILDER: wired " + goName);
+        return inst;
     }
 
     static Vector3 ToV3(float[] a, Vector3 def)

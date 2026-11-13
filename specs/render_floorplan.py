@@ -133,6 +133,13 @@ for r in LAYOUT_DATA['rooms']:
         d.ellipse([c[0] - 7, c[1] - 7, c[0] + 7, c[1] + 7], fill=col)
         d.text((c[0] - 4, c[1] - 7), 'T' + str(sp.get('team', '?')), fill=(255, 255, 255), font=small)
 
+# AI cover points
+for r in LAYOUT_DATA['rooms']:
+    for cp in r.get('coverPoints', []) or []:
+        x, z = cp['position'][0], cp['position'][2]
+        c = px(x, z)
+        d.rectangle([c[0] - 4, c[1] - 4, c[0] + 4, c[1] + 4], fill=(0, 200, 220))
+
 # legend
 ly = H - 70
 items = [((70, 70, 70), 'walls'), ((255, 165, 60), 'doors'), ((120, 160, 220), 'props'),

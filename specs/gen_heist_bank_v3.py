@@ -354,6 +354,24 @@ ROOMS['exterior']['spawnPoints'] = [
 ]
 ROOMS['lobby']['killZones'] = [{'position': [0.0, -5.0, 0.0], 'size': [80.0, 1.0, 80.0]}]
 
+# ---------------------------------------------------------------- AI cover points
+# Positions behind designed cover (couches, pillars, cases, desks, vehicles), spacing >= 2m.
+COVER = {
+    'lobby': [(-8.0, 2.0), (8.0, 2.0), (-8.0, 8.0), (8.0, 8.0), (-5.0, 5.0), (5.0, 5.0),
+              (-9.8, 3.2), (9.8, 3.2), (-3.0, 1.6), (3.0, 1.6), (0.0, 7.2), (-11.0, 5.5),
+              (11.0, 5.5)],
+    'teller': [(-6.0, 12.8), (-2.0, 12.8), (2.0, 12.8), (6.0, 12.8), (-10.0, 13.6), (10.0, 13.6)],
+    'vault': [(-6.0, 16.6), (6.0, 16.6), (-6.0, 23.4), (6.0, 23.4), (0.0, 21.5)],
+    'corridorL': [(-10.0, 17.8), (-10.0, 22.0)],
+    'corridorR': [(10.0, 17.8), (10.0, 22.0)],
+    'exterior': [(-9.0, -5.0), (9.0, -7.0), (0.0, -9.5), (-12.0, -3.0), (12.0, -3.0)],
+}
+for rid, pts in COVER.items():
+    ROOMS[rid]['coverPoints'] = [{'position': [x, 0.1, z]} for (x, z) in pts]
+
+for r in ROOMS.values():
+    r.setdefault('coverPoints', [])
+
 ORDER = ('exterior', 'lobby', 'teller', 'vault', 'corridorL', 'corridorR')
 out = {
     'name': 'Heist Bank v3',
@@ -370,6 +388,7 @@ for rid in ORDER:
                          'bounds': {'min': r['min'], 'max': r['max']},
                          'props': r['props'],
                          'spawnPoints': r['spawnPoints'],
+                         'coverPoints': r['coverPoints'],
                          'killZones': r['killZones']})
 
 # ------------------------------------------------------------------ validation
@@ -451,6 +470,24 @@ for rid in ORDER:
             c, fc = furn[j]
             if fa[0] < fc[2] - 0.08 and fc[0] < fa[2] - 0.08 and fa[1] < fc[3] - 0.08 and fc[1] < fa[3] - 0.08:
                 WARN.append('%s OVERLAP: %s <-> %s' % (rid, a, c))
+
+# cover point validation: inside room bounds + spacing
+all_cp = []
+for rid in ORDER:
+    b = ROOMS[rid]
+    for cp in ROOMS[rid]['coverPoints']:
+        x, z = cp['position'][0], cp['position'][2]
+        if not (b['min'][0] <= x <= b['max'][0] and b['min'][2] <= z <= b['max'][2]):
+            FAIL.append('%s cover point outside bounds at %s,%s' % (rid, x, z))
+        all_cp.append((rid, x, z))
+for i in range(len(all_cp)):
+    for j in range(i + 1, len(all_cp)):
+        dx = all_cp[i][1] - all_cp[j][1]
+        dz = all_cp[i][2] - all_cp[j][2]
+        if dx * dx + dz * dz < 4.0:
+            FAIL.append('cover points closer than 2m: %s<->%s' % (all_cp[i], all_cp[j]))
+if len(all_cp) < 20:
+    FAIL.append('only %d cover points (need >= 20 for bot coverage)' % len(all_cp))
 
 print('ROOMS:', ORDER)
 for rid in ORDER:

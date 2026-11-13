@@ -30,8 +30,17 @@ public class LevelRoomData
     public LevelPropData[] props;
     [JsonProperty("spawnPoints")]
     public LevelSpawnPointData[] spawnPoints;
+    [JsonProperty("coverPoints")]
+    public LevelCoverPointData[] coverPoints;
     [JsonProperty("killZones")]
     public LevelKillZoneData[] killZones;
+}
+
+[System.Serializable]
+public class LevelCoverPointData
+{
+    [JsonProperty("position")]
+    public float[] position;
 }
 
 [System.Serializable]
