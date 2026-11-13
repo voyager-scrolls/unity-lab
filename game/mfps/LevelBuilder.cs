@@ -75,16 +75,28 @@ public static class LevelBuilder
                     inst.transform.eulerAngles = ToV3(prop.rotation, Vector3.zero);
                     inst.transform.localScale = ToV3(prop.scale, Vector3.one);
                     inst.transform.SetParent(roomRoot.transform, true);
-                    // The vault door prefab embeds its closed round Lid (with collider).
-                    // Open the vault by disabling the lid so the doorway is passable.
+                    // The vault door prefab embeds its closed round Lid AND a frame collider that can seal
+                    // the 5m doorway. Make the vault passable: disable the Lid visual and drop all
+                    // colliders belonging to the frame instance (walls around it keep the room sealed).
                     if (inst.name.Contains("VaultDoor_Frame"))
                     {
-                        Transform lid = inst.transform.Find("SM_Env_VaultDoor_Lid_01");
-                        if (lid != null)
+                        int lids = 0;
+                        foreach (Transform child in inst.transform)
                         {
-                            lid.gameObject.SetActive(false);
-                            Debug.Log("LEVEL_BUILDER: vault lid opened");
+                            if (child.name.Contains("Lid"))
+                            {
+                                child.gameObject.SetActive(false);
+                                lids++;
+                            }
                         }
+                        int cols = 0;
+                        foreach (Collider c in inst.GetComponentsInChildren<Collider>(true))
+                        {
+                            UnityEngine.Object.DestroyImmediate(c);
+                            cols++;
+                        }
+                        Debug.Log("LEVEL_BUILDER: vault opened lids=" + lids + " collidersRemoved=" + cols +
+                            " children=" + inst.transform.childCount);
                     }
                     placed++;
                 }
