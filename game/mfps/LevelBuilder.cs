@@ -85,6 +85,35 @@ public static class LevelBuilder
         GameObject gameModes = new GameObject("GameModes");
         gameModes.transform.position = Vector3.zero;
 
+        // Mark level geometry static and bake a NavMesh so AI agents can navigate
+        floor.isStatic = true;
+        levelRoot.isStatic = true;
+        MarkStaticRecursive(levelRoot.transform);
+        try
+        {
+            UnityEditor.AI.NavMeshBuilder.BuildNavMesh();
+            Debug.Log("LEVEL_BUILDER: NavMesh baked");
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogWarning("LEVEL_BUILDER: NavMesh bake failed (non-fatal): " + e.Message);
+        }
+
+        // Assign Photon scene-view IDs (PUN needs 1..999 for scene objects; ID 0 breaks
+        // RPC delivery -> countdown never finishes -> player never spawns)
+        Photon.Pun.PhotonView[] pvs = Object.FindObjectsByType<Photon.Pun.PhotonView>(FindObjectsSortMode.None);
+        int sid = 1;
+        foreach (Photon.Pun.PhotonView pv in pvs)
+        {
+            if (pv == null) continue;
+            if (pv.Owner == null && pv.ViewID == 0)
+            {
+                pv.ViewID = sid;
+                sid++;
+            }
+        }
+        Debug.Log("LEVEL_BUILDER: photon scene views assigned=" + (sid - 1));
+
         string kzPath = "Assets/MFPS/Content/Prefabs/GamePlay/Level/KillZone.prefab";
         GameObject kzPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(kzPath);
         if (kzPrefab != null)
@@ -148,5 +177,14 @@ public static class LevelBuilder
     {
         if (a != null && a.Length >= 3) return new Vector3(a[0], a[1], a[2]);
         return def;
+    }
+
+    static void MarkStaticRecursive(Transform t)
+    {
+        foreach (Transform child in t)
+        {
+            child.gameObject.isStatic = true;
+            MarkStaticRecursive(child);
+        }
     }
 }
