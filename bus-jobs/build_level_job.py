@@ -14,7 +14,7 @@ SOURCES = [
     ("PerfTune.cs", "game/mfps/PerfTune.cs", "CSEOF3"),
 ]
 MFPBUILD = ("MfpsBuild.cs", None, "CSEOF4")  # content inline below
-LAYOUT_JSON = os.path.join(ROOT, "specs", "heist-bank-v2.json")
+LAYOUT_JSON = os.path.join(ROOT, "specs", "heist-bank-v3.json")
 
 MFPS_BUILD_CS = """using System.IO;
 using UnityEditor;
@@ -29,8 +29,14 @@ public static class MfpsBuild
         Directory.CreateDirectory(outDir);
         string exePath = Path.Combine(outDir, "MFPSPrototype.exe");
 
+        string map = "Assets/MFPS/Scenes/HeistLevel.unity";
+        string menu = "Assets/MFPS/Scenes/MainMenu.unity";
+        var sceneList = new System.Collections.Generic.List<string>();
+        sceneList.Add(map);              // index 0 = boot scene (offline mode plays the map directly)
+        if (File.Exists(menu)) sceneList.Add(menu);
+
         BuildPlayerOptions opts = new BuildPlayerOptions();
-        opts.scenes = new[] { "Assets/MFPS/Scenes/HeistLevel.unity" };
+        opts.scenes = sceneList.ToArray();
         opts.locationPathName = exePath;
         opts.target = BuildTarget.StandaloneWindows64;
         opts.options = BuildOptions.None;
@@ -45,6 +51,7 @@ public static class MfpsBuild
                         Debug.LogError("BUILD_MSG " + msg.content);
             throw new System.Exception("BUILD_FAILED: " + report.summary.result);
         }
+        Debug.Log("BUILD_SCENE_COUNT=" + sceneList.Count);
         Debug.Log("BUILD_RESULT Succeeded errors=" + report.summary.totalErrors + " warnings=" + report.summary.totalWarnings + " size=" + report.summary.totalSize);
     }
 }

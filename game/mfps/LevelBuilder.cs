@@ -101,19 +101,11 @@ public static class LevelBuilder
         GameObject gameModes = new GameObject("GameModes");
         gameModes.transform.position = Vector3.zero;
 
-        // Mark level geometry static and bake a NavMesh so AI agents can navigate
+        // Mark level geometry static and bake later (after first save, so the
+        // baked navmesh has a scene path and is stored with the scene)
         floor.isStatic = true;
         levelRoot.isStatic = true;
         MarkStaticRecursive(levelRoot.transform);
-        try
-        {
-            UnityEditor.AI.NavMeshBuilder.BuildNavMesh();
-            Debug.Log("LEVEL_BUILDER: NavMesh baked");
-        }
-        catch (System.Exception e)
-        {
-            Debug.LogWarning("LEVEL_BUILDER: NavMesh bake failed (non-fatal): " + e.Message);
-        }
 
         // Assign Photon scene-view IDs (PUN needs 1..999 for scene objects; ID 0 breaks
         // RPC delivery -> countdown never finishes -> player never spawns)
@@ -148,6 +140,19 @@ public static class LevelBuilder
         string savePath = "Assets/MFPS/Scenes/HeistLevel.unity";
         Directory.CreateDirectory("Assets/MFPS/Scenes");
         EditorSceneManager.SaveScene(scene, savePath);
+
+        // Bake NavMesh only now that the scene has a path, then save again so the
+        // baked data ships with the scene (baking an unsaved scene silently discards it)
+        try
+        {
+            UnityEditor.AI.NavMeshBuilder.BuildNavMesh();
+            EditorSceneManager.SaveScene(scene, savePath);
+            Debug.Log("LEVEL_BUILDER: NavMesh baked+saved");
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogWarning("LEVEL_BUILDER: NavMesh bake failed (non-fatal): " + e.Message);
+        }
 
         var buildScenes = new System.Collections.Generic.List<EditorBuildSettingsScene>();
         string mainMenuPath = "Assets/MFPS/Scenes/MainMenu.unity";
