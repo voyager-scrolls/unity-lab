@@ -163,17 +163,22 @@ public static class LevelBuilder
         Directory.CreateDirectory("Assets/MFPS/Scenes");
         EditorSceneManager.SaveScene(scene, savePath);
 
-        // Bake NavMesh only now that the scene has a path, then save again so the
-        // baked data ships with the scene (baking an unsaved scene silently discards it)
+        // Bake NavMesh via the Unity 6 AI Navigation package (legacy NavMeshBuilder no-ops in Unity 6),
+        // then save again so the baked data ships with the scene.
         try
         {
-            UnityEditor.AI.NavMeshBuilder.BuildNavMesh();
+            GameObject navGo = new GameObject("NavMeshSurface");
+            SceneManager.MoveGameObjectToScene(navGo, scene);
+            var surface = navGo.AddComponent<Unity.AI.Navigation.NavMeshSurface>();
+            surface.collectObjects = Unity.AI.Navigation.CollectObjects.All;
+            surface.useGeometry = UnityEngine.AI.NavMeshCollectGeometry.PhysicsColliders;
+            surface.BuildNavMesh();
             EditorSceneManager.SaveScene(scene, savePath);
-            Debug.Log("LEVEL_BUILDER: NavMesh baked+saved");
+            Debug.Log("LEVEL_BUILDER: NavMeshSurface baked+saved");
         }
         catch (System.Exception e)
         {
-            Debug.LogWarning("LEVEL_BUILDER: NavMesh bake failed (non-fatal): " + e.Message);
+            Debug.LogWarning("LEVEL_BUILDER: NavMeshSurface bake failed (non-fatal): " + e.Message);
         }
 
         // Integrity gate 1: every spawn point and room centre must be mutually reachable on the NavMesh

@@ -66,6 +66,7 @@ manifest = {
     "com.unity.ugui": "2.0.0",
     "com.unity.postprocessing": "3.2.2",
     "com.unity.nuget.newtonsoft-json": "3.2.1",
+    "com.unity.ai.navigation": "2.0.0",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.animation": "1.0.0",
     "com.unity.modules.audio": "1.0.0",
