@@ -146,6 +146,11 @@ mkdir -p "$PROJ/Assets/Perf"
 cp /content/drive/MyDrive/unity-lab/templates/mfps-2.0-v1.75/PerfTune.cs "$PROJ/Assets/Perf/PerfTune.cs" || { echo PERF_COPY_FAILED; exit 6; }
 test -s "$PROJ/Assets/Perf/PerfTune.cs" && echo PERF_SCRIPT_WRITTEN || { echo PERF_SCRIPT_FAILED; exit 6; }
 
+echo "=== HEIST SCENE BUILDER ==="
+mkdir -p "$PROJ/Assets/Editor"
+cp /content/drive/MyDrive/unity-lab/templates/mfps-2.0-v1.75/HeistSceneBuilder.cs "$PROJ/Assets/Editor/HeistSceneBuilder.cs" || { echo HEIST_BUILDER_COPY_FAILED; exit 6; }
+test -s "$PROJ/Assets/Editor/HeistSceneBuilder.cs" && echo HEIST_BUILDER_WRITTEN || { echo HEIST_BUILDER_FAILED; exit 6; }
+
 echo "=== COMPILE GATE ==="
 "$UNITY" -batchmode -nographics -quit -projectPath "$PROJ" -logFile /content/mfps_compile.log
 echo "COMPILE_RC=$?"
@@ -175,7 +180,7 @@ using UnityEngine;
 
 public class MfpsBuild {
     public static void Perform() {
-        string scene = "Assets/MFPS/Scenes/ExampleLevel.unity";
+        string scene = "Assets/MFPS/Scenes/HeistLevel.unity";
         if (!File.Exists(scene)) {
             Debug.LogError("MISSING_SCENE " + scene);
             EditorApplication.Exit(6);
@@ -199,6 +204,18 @@ public class MfpsBuild {
     }
 }
 CSEOF
+
+echo "=== BUILD HEIST SCENE ==="
+"$UNITY" -batchmode -nographics -quit -projectPath "$PROJ" -executeMethod CoverShooter.HeistSceneBuilder.BuildHeistScene -logFile /content/mfps_heist_scene.log
+echo "HEIST_SCENE_RC=$?"
+grep -nE "INSTANTIATED|CREATED|NAV MESH|HEIST_SCENE_SAVED|BUILD_SCENES_SET|ERROR|Exception" /content/mfps_heist_scene.log | head -25
+if grep -q "HEIST_SCENE_SAVED" /content/mfps_heist_scene.log; then
+  echo HEIST_SCENE_OK
+else
+  echo HEIST_SCENE_FAILED
+  tail -20 /content/mfps_heist_scene.log
+  exit 6
+fi
 
 echo "=== BUILD WINDOWS ==="
 "$UNITY" -batchmode -nographics -quit -projectPath "$PROJ" -executeMethod MfpsBuild.Perform -logFile /content/mfps_build.log
