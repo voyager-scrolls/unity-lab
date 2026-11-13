@@ -1,94 +1,119 @@
+using System;
 using System.IO;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using UnityEngine;
 
-// LevelLayout holds pre-parsed level data from JSON. Generated once and saved as Asset.
-[CreateAssetMenu(fileName = "LevelLayout", menu = "Tools/Level Layout")]
+// Data classes deserialized from the level layout JSON (specs/heist-bank-v1.json).
+// Positions are float[] because System.Text.Json cannot map a JSON array onto UnityEngine.Vector3.
+public class LevelLayoutData
+{
+    [JsonPropertyName("name")]
+    public string levelName;
+    [JsonPropertyName("version")]
+    public int version;
+    [JsonPropertyName("description")]
+    public string description;
+    [JsonPropertyName("rooms")]
+    public LevelRoomData[] rooms;
+    [JsonPropertyName("globalSpawnPoints")]
+    public LevelSpawnPointData[] globalSpawnPoints;
+}
+
+public class LevelRoomData
+{
+    [JsonPropertyName("id")]
+    public string roomId;
+    [JsonPropertyName("props")]
+    public LevelPropData[] props;
+    [JsonPropertyName("spawnPoints")]
+    public LevelSpawnPointData[] spawnPoints;
+    [JsonPropertyName("killZones")]
+    public LevelKillZoneData[] killZones;
+}
+
+public class LevelPropData
+{
+    [JsonPropertyName("prefab")]
+    public string prefabPath;
+    [JsonPropertyName("position")]
+    public float[] position;
+    [JsonPropertyName("rotation")]
+    public float[] rotation;
+    [JsonPropertyName("scale")]
+    public float[] scale;
+    [JsonPropertyName("tag")]
+    public string tag;
+}
+
+public class LevelSpawnPointData
+{
+    [JsonPropertyName("position")]
+    public float[] position;
+    [JsonPropertyName("team")]
+    public int team;
+    [JsonPropertyName("type")]
+    public string type;
+}
+
+public class LevelKillZoneData
+{
+    [JsonPropertyName("position")]
+    public float[] position;
+    [JsonPropertyName("size")]
+    public float[] size;
+}
+
+// ScriptableObject mirror of the layout data; saved as an asset that the
+// scene builder reads. Lives in Assets/Editor (editor-only pipeline).
 public class LevelLayout : ScriptableObject
 {
     public string levelName;
     public int version;
-    public LevelRoom[] rooms;
-    public GlobalSpawnData globalSpawns;
-    public string layoutJsonPath; // original JSON for reference
+    public string description;
+    public LevelRoomData[] rooms;
+    public LevelSpawnPointData[] globalSpawnPoints;
+    public string layoutJsonPath;
 }
 
-[System.Serializable]
-public class LevelRoom
-{
-    public string roomId;
-    public string roomName;
-    public Bounds bounds; // min/max extents
-    public LevelProp[] props;
-    public LevelSpawnPoint[] spawnPoints;
-    public LevelKillZone[] killZones;
-}
-
-[System.Serializable]
-public class LevelProp
-{
-    public string prefabPath;
-    public Vector3 position;
-    public Vector3 rotation;
-    public Vector3 scale;
-    public string tag;
-}
-
-[System.Serializable]
-public class LevelSpawnPoint
-{
-    public Vector3 position;
-    public int team;
-    public string type; // delta, recon, generic
-}
-
-[System.Serializable]
-public class LevelKillZone
-{
-    public Vector3 position;
-    public Vector3 size; // extents for BoxCollider (half-sizes)
-    public bool isTrigger = true;
-}
-
-[System.Serializable]
-public class GlobalSpawnData
-{
-    public LevelSpawnPoint[] spawnPoints;
-}
-
+#if UNITY_EDITOR
 public static class LevelLayoutGenerator
 {
-    private static readonly JsonSerializerOptions JsonOpts = new JsonSerializerOptions
+    static readonly JsonSerializerOptions JsonOpts = new JsonSerializerOptions
     {
-        PropertyNameCaseInsensitive = true
+        PropertyNameCaseInsensitive = true,
+        IncludeFields = true
     };
 
-    [MenuItem("Tools/Generate Level Layout Asset")]
     public static void Generate()
     {
         string jsonPath = "/content/level-layout.json";
         if (!File.Exists(jsonPath))
         {
-            Debug.LogError("LEVEL_LAYOUT: No layout file at " + jsonPath);
-            return;
+            Debug.LogError("LEVEL_LAYOUT: no layout file at " + jsonPath);
+            throw new Exception("LEVEL_LAYOUT: no layout file at " + jsonPath);
         }
 
         string json = File.ReadAllText(jsonPath);
-        LevelLayout asset = JsonSerializer.Deserialize<LevelLayout>(json, JsonOpts);
-
-        if (asset == null)
+        LevelLayoutData data = JsonSerializer.Deserialize<LevelLayoutData>(json, JsonOpts);
+        if (data == null || data.rooms == null || data.rooms.Length == 0)
         {
-            Debug.LogError("LEVEL_LAYOUT: Failed to deserialize LevelLayout from JSON");
-            return;
+            throw new Exception("LEVEL_LAYOUT: failed to deserialize layout JSON");
         }
 
+        LevelLayout asset = ScriptableObject.CreateInstance<LevelLayout>();
+        asset.levelName = string.IsNullOrEmpty(data.levelName) ? "Unnamed" : data.levelName;
+        asset.version = data.version;
+        asset.description = data.description;
+        asset.rooms = data.rooms;
+        asset.globalSpawnPoints = data.globalSpawnPoints;
         asset.layoutJsonPath = jsonPath;
 
-        // Save as Asset
-        string assetPath = "Assets/LevelLayout.asset";
-        AssetDatabase.CreateAsset(asset, assetPath);
-        AssetDatabase.SaveAssets();
-        AssetDatabase.Refresh();
-        Debug.Log("LEVEL_LAYOUT: Generated LevelLayout Asset at " + assetPath + " (" + asset.rooms.Length + " rooms)");
+        System.IO.Directory.CreateDirectory("Assets/Resources");
+        string assetPath = "Assets/Resources/LevelLayout.asset";
+        UnityEditor.AssetDatabase.CreateAsset(asset, assetPath);
+        UnityEditor.AssetDatabase.SaveAssets();
+        Debug.Log("LEVEL_LAYOUT: generated " + assetPath + " name=" + asset.levelName + " rooms=" + asset.rooms.Length);
     }
 }
+#endif
