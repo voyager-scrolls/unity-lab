@@ -156,8 +156,8 @@ echo COMPILE_GATE_OK
 echo "=== OFFLINE MODE (play ExampleLevel directly, no Photon AppId) ==="
 GD="$PROJ/Assets/MFPS/Resources/GameData.asset"
 test -s "$GD" || { echo GAMEDATA_MISSING; exit 6; }
-sed -i 's/^offlineMode: 0/offlineMode: 1/' "$GD"
-grep -n '^offlineMode:' "$GD" || { echo OFFLINE_FLIP_FAILED; exit 6; }
+sed -i 's/  offlineMode: 0/  offlineMode: 1/' "$GD"
+grep -n 'offlineMode: 1' "$GD" || { echo OFFLINE_FLIP_FAILED; exit 6; }
 echo OFFLINE_MODE_ON
 
 echo "=== BUILD SCRIPT ==="
