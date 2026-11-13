@@ -265,7 +265,7 @@ printf 'pcm.!default { type null }\nctl.!default { type null }\n' > /etc/asound.
 "$UNITY" -batchmode -nographics -quit -projectPath "$PROJ" -executeMethod HeistCatalogBuilder.Build -logFile /content/catalog_compile.log 2>&1
 COMPILE_RC=$?
 echo "COMPILE_RC=$COMPILE_RC"
-CS_ERRORS=$(grep -c "error CS" /content/catalog_compile.log 2>/dev/null || echo 0)
+CS_ERRORS=$(grep -c "error CS" /content/catalog_compile.log 2>/dev/null || true)
 echo "CS_ERRORS=$CS_ERRORS"
 if [ "$CS_ERRORS" != "0" ]; then
   echo "COMPILE_GATE_FAIL"
