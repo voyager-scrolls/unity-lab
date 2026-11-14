@@ -370,6 +370,16 @@ ROOMS['exterior']['spawnPoints'] = [
 ]
 ROOMS['lobby']['killZones'] = [{'position': [0.0, -5.0, 0.0], 'size': [80.0, 1.0, 80.0]}]
 
+# ---------------------------------------------------------------- sightline checks (builder raycasts these)
+LOS_CHECKS = [
+    {'name': 'lobby-teller-wall', 'from': [0.0, 0.8, 5.0], 'to': [0.0, 0.8, 12.5], 'blocked': True},
+    {'name': 'teller-vault-wall', 'from': [3.0, 0.8, 13.0], 'to': [3.0, 0.8, 20.0], 'blocked': True},
+    {'name': 'vault-corridorL-wall', 'from': [3.0, 0.8, 22.0], 'to': [-10.0, 0.8, 20.0], 'blocked': True},
+    {'name': 'vault-corridorR-wall', 'from': [-3.0, 0.8, 22.0], 'to': [10.0, 0.8, 20.0], 'blocked': True},
+    {'name': 'lobby-exterior-window', 'from': [-9.0, 0.8, 3.0], 'to': [-9.0, 0.8, -5.0], 'blocked': True},
+    {'name': 'entrance-open', 'from': [1.2, 0.8, -8.0], 'to': [1.2, 0.8, 4.0], 'blocked': False},
+]
+
 # ---------------------------------------------------------------- AI cover points
 # Positions behind designed cover (couches, pillars, cases, desks, vehicles), spacing >= 2m.
 COVER = {
@@ -395,6 +405,7 @@ out = {
     'description': '6m grand lobby, wall-mounted fixtures, surface-stacked valuables, two-course shell',
     'rooms': [],
     'globalSpawnPoints': [],
+    'losChecks': LOS_CHECKS,
     'navMesh': {'agentRadius': 0.4, 'agentHeight': 2.0, 'maxSlope': 45.0, 'stepHeight': 0.4},
 }
 for rid in ORDER:

@@ -149,10 +149,11 @@ public static class LevelBuilder
         // Mark level geometry static and bake later (after first save, so the
         // baked navmesh has a scene path and is stored with the scene)
         floor.isStatic = true;
-        floor.layer = 8; // NavGround: only ground geometry participates in the bake
         levelRoot.isStatic = true;
         MarkStaticRecursive(levelRoot.transform);
-        SetNavLayerRecursive(levelRoot.transform);
+        // Gameplay geometry stays on Default (0) so MFPS AI/weapon raycasts hit walls.
+        // Only ceilings/roof go to layer 9 (NoNav) and are excluded from the bake.
+        SetNoNavLayerRecursive(levelRoot.transform);
 
         // Assign Photon scene-view IDs (PUN needs 1..999 for scene objects; ID 0 breaks
         // RPC delivery -> countdown never finishes -> player never spawns)
@@ -197,8 +198,9 @@ public static class LevelBuilder
             var surface = navGo.AddComponent<Unity.AI.Navigation.NavMeshSurface>();
             surface.collectObjects = Unity.AI.Navigation.CollectObjects.All;
             surface.useGeometry = UnityEngine.AI.NavMeshCollectGeometry.PhysicsColliders;
-            // Only the NavGround layer (layer 8): excludes ceilings, roof and any upper surfaces
-            surface.layerMask = 1 << 8;
+            // Bake ground geometry only: everything except the NoNav layer (ceilings/roof, layer 9).
+            // Gameplay objects stay on Default so AI/weapon raycasts collide with walls normally.
+            surface.layerMask = ~(1 << 9);
             surface.BuildNavMesh();
             EditorSceneManager.SaveScene(scene, savePath);
             Debug.Log("LEVEL_BUILDER: NavMeshSurface baked+saved");
@@ -311,6 +313,33 @@ public static class LevelBuilder
         }
         Debug.Log("LEVEL_BUILDER: invisible colliders=" + invisible);
 
+        // Integrity gate 3: sightlines. Walls must block listed lines; openings must stay clear.
+        int losFails = 0;
+        int losCount = 0;
+        if (layout.losChecks != null)
+        {
+            foreach (LevelLosCheckData chk in layout.losChecks)
+            {
+                if (chk == null) continue;
+                losCount++;
+                Vector3 a = ToV3(chk.from, new Vector3(0f, 0.8f, 0f));
+                Vector3 b = ToV3(chk.to, new Vector3(0f, 0.8f, 0f));
+                UnityEngine.RaycastHit hitInfo;
+                bool blocked = Physics.Linecast(a, b, out hitInfo, 1 << 0);
+                if (blocked != chk.blocked)
+                {
+                    losFails++;
+                    Debug.LogWarning("LOS_FAIL " + chk.name + " blocked=" + blocked +
+                        " expected=" + chk.blocked + (blocked ? (" hit=" + hitInfo.collider.name) : ""));
+                }
+            }
+        }
+        Debug.Log("LEVEL_BUILDER: los fails=" + losFails + "/" + losCount);
+        if (losFails > 0)
+        {
+            Debug.LogError("LOS_GATE_FAILED total=" + losFails);
+        }
+
         var buildScenes = new System.Collections.Generic.List<EditorBuildSettingsScene>();
         string mainMenuPath = "Assets/MFPS/Scenes/MainMenu.unity";
         if (File.Exists(mainMenuPath))
@@ -389,15 +418,15 @@ public static class LevelBuilder
         }
     }
 
-    // Layer 8 (NavGround): ground geometry for the navmesh bake. Ceilings/roof stay on the default layer
-    // so the bake cannot create walkable surfaces above the playable floor.
-    static void SetNavLayerRecursive(Transform t)
+    // Layer 9 (NoNav): ceilings/roof, excluded from the navmesh bake. Everything else stays on
+    // Default (layer 0) so MFPS AI LOS and weapon raycasts collide with walls, props and floors.
+    static void SetNoNavLayerRecursive(Transform t)
     {
         foreach (Transform child in t)
         {
-            bool skip = child.name.Contains("Ceiling") || child.name.Contains("Roof");
-            child.gameObject.layer = skip ? 0 : 8;
-            SetNavLayerRecursive(child);
+            bool noNav = child.name.Contains("Ceiling") || child.name.Contains("Roof");
+            child.gameObject.layer = noNav ? 9 : 0;
+            SetNoNavLayerRecursive(child);
         }
     }
 }

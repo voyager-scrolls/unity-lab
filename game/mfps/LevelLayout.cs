@@ -19,6 +19,21 @@ public class LevelLayoutData
     public LevelRoomData[] rooms;
     [JsonProperty("globalSpawnPoints")]
     public LevelSpawnPointData[] globalSpawnPoints;
+    [JsonProperty("losChecks")]
+    public LevelLosCheckData[] losChecks;
+}
+
+[System.Serializable]
+public class LevelLosCheckData
+{
+    [JsonProperty("name")]
+    public string name;
+    [JsonProperty("from")]
+    public float[] from;
+    [JsonProperty("to")]
+    public float[] to;
+    [JsonProperty("blocked")]
+    public bool blocked;
 }
 
 [System.Serializable]
@@ -98,6 +113,7 @@ public class LevelLayout : ScriptableObject
     public string description;
     public LevelRoomData[] rooms;
     public LevelSpawnPointData[] globalSpawnPoints;
+    public LevelLosCheckData[] losChecks;
     public string layoutJsonPath;
 }
 
@@ -126,6 +142,7 @@ public static class LevelLayoutGenerator
         asset.description = data.description;
         asset.rooms = data.rooms;
         asset.globalSpawnPoints = data.globalSpawnPoints;
+        asset.losChecks = data.losChecks;
         asset.layoutJsonPath = jsonPath;
 
         System.IO.Directory.CreateDirectory("Assets/Resources");

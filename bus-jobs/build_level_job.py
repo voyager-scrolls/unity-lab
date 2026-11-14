@@ -287,6 +287,12 @@ if grep -q "NAV_CONNECT_FAILED" /content/level_build.log 2>/dev/null; then
   grep -n "NAV_CONNECT_FAIL" /content/level_build.log | head -25
   exit 6
 fi
+if grep -q "LOS_GATE_FAILED" /content/level_build.log 2>/dev/null; then
+  echo "LOS_GATE_FAIL"
+  grep -n "LOS_FAIL\|los fails" /content/level_build.log | head -15
+  exit 6
+fi
+grep -n "los fails\|nav connectivity" /content/level_build.log | head -4
 grep -n "nav connectivity\|invisible colliders\|cover points\|NavMesh baked" /content/level_build.log | head -8
 echo "NAV_GATE_OK"
 
