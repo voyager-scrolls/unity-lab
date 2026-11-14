@@ -37,21 +37,21 @@ public static class CaptureExterior
 
         Vector3[] pos = new Vector3[]
         {
-            new Vector3(0f, 2.2f, -20f),
-            new Vector3(-12f, 1.7f, -12f),
-            new Vector3(12f, 1.7f, -14f),
-            new Vector3(0f, 1.6f, -6.2f),
-            new Vector3(0f, 1.7f, -14f)
+            new Vector3(-7f, 2.6f, -31f),
+            new Vector3(-22f, 1.7f, -20f),
+            new Vector3(22f, 1.7f, -20f),
+            new Vector3(-16f, 1.7f, -20f),
+            new Vector3(0f, 26f, -40f)
         };
         Vector3[] look = new Vector3[]
         {
-            new Vector3(0f, 3.0f, 0f),
+            new Vector3(0f, 3.2f, 0f),
             new Vector3(0f, 2.2f, -2f),
-            new Vector3(0f, 2.0f, -3f),
-            new Vector3(-3.2f, 1.1f, -2.6f),
-            new Vector3(0f, 7.6f, 1.2f)
+            new Vector3(0f, 2.2f, -2f),
+            new Vector3(-16f, 1.0f, -12f),
+            new Vector3(0f, 2f, -6f)
         };
-        float[] fov = new float[] { 60f, 65f, 65f, 46f, 55f };
+        float[] fov = new float[] { 55f, 65f, 65f, 55f, 55f };
 
         for (int i = 0; i < pos.Length; i++)
         {

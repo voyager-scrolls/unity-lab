@@ -53,7 +53,7 @@ def rot_box(name, rot):
 
 
 ROOMS = {
-    'exterior':  {'min': [-20, 0, -25], 'max': [20, 6, 0], 'h': 0},
+    'exterior':  {'min': [-30, 0, -40], 'max': [30, 6, 0], 'h': 0},
     'lobby':     {'min': [-12.5, 0, 0], 'max': [12.5, 6, 10], 'h': 6},
     'teller':    {'min': [-12.5, 0, 10], 'max': [12.5, 3, 15], 'h': 3},
     'vault':     {'min': [-7.5, 0, 15], 'max': [7.5, 3, 25], 'h': 3},
@@ -172,9 +172,12 @@ for x in (-10, 10):
     for z in (17.5, 22.5):
         add('corridorL' if x < 0 else 'corridorR',
             FLOOR_A if (x + z) % 10 == 0 else FLOOR_B, x, z)
-for x in (-17.5, -12.5, -7.5, -2.5, 2.5, 7.5, 12.5, 17.5):
-    for z in (-2.5, -7.5, -12.5, -17.5, -22.5):
+for x in (-27.5, -22.5, -17.5, -12.5, -7.5, -2.5, 2.5, 7.5, 12.5, 17.5, 22.5, 27.5):
+    for z in (-2.5, -7.5, -12.5, -17.5, -22.5, -27.5, -32.5):
         add('exterior', PLAZA, x, z, y=PLAZA_Y)
+# road strip along the south edge of the build range (z -40..-35)
+for x in (-27.5, -22.5, -17.5, -12.5, -7.5, -2.5, 2.5, 7.5, 12.5, 17.5, 22.5, 27.5):
+    add('exterior', 'SM_Env_Road_01', x, -37.5, 0.0, y=0.0)
 
 # ------------------------------------------------------------------ ceilings (bottom at room height)
 # Ceilings: one design per room so tile joins are invisible (a mixed-design ceiling
@@ -347,10 +350,10 @@ MOUNTED.append(add_mount('lobby', 'SM_Prop_Sign_Jewellery_01', 'x', 12.5, -1, 4.
 MOUNTED.append(add_mount('lobby', 'SM_Prop_Aircon_01', 'x', -12.5, 1, 8.40, 4.80, 90.0))
 MOUNTED.append(add_mount('lobby', 'SM_Prop_Aircon_01', 'x', 12.5, -1, 8.40, 4.80, 270.0))
 # ---- the BANK wall becomes a hero composition: four flags in vertical rhythm around the sign ----
-MOUNTED.append(add_mount('lobby', 'SM_Prop_Flag_Wall_01', 'z', 10.0, -1, -3.20, 4.15, 180.0))
-MOUNTED.append(add_mount('lobby', 'SM_Prop_Flag_Wall_02', 'z', 10.0, -1, 3.20, 4.15, 180.0))
-MOUNTED.append(add_mount('lobby', 'SM_Prop_Flag_Wall_01', 'z', 10.0, -1, -6.40, 4.35, 180.0))
-MOUNTED.append(add_mount('lobby', 'SM_Prop_Flag_Wall_02', 'z', 10.0, -1, 6.40, 4.35, 180.0))
+MOUNTED.append(add_mount('lobby', 'SM_Prop_Flag_Wall_01', 'z', 10.0, -1, -3.20, 3.75, 180.0))
+MOUNTED.append(add_mount('lobby', 'SM_Prop_Flag_Wall_02', 'z', 10.0, -1, 3.20, 3.75, 180.0))
+MOUNTED.append(add_mount('lobby', 'SM_Prop_Flag_Wall_01', 'z', 10.0, -1, -6.40, 3.95, 180.0))
+MOUNTED.append(add_mount('lobby', 'SM_Prop_Flag_Wall_02', 'z', 10.0, -1, 6.40, 3.95, 180.0))
 # security checkpoint in the side nooks, clear of the coffee tables and cases
 add('lobby', 'SM_Prop_MetalDetector_01', -11.60, 3.20, 90.0)
 add('lobby', 'SM_Prop_MetalDetector_Baggage_01', 11.60, 3.20, 270.0)
@@ -415,8 +418,8 @@ MOUNTED.append(add_mount('teller', 'SM_Prop_AirVent_01', 'z', 14.92, -1, 5.0, 2.
 add_ceiling('teller', 'SM_Prop_Camera_01', -8.0, 14.6, 0.0, 3.0)
 MOUNTED.append(add_mount('teller', 'SM_Prop_AlarmButton_01', 'z', 10.0, 1, 7.0, 1.2, 0.0))
 # back-office wall dressing: AC units on both side walls, ceiling utility kit
-MOUNTED.append(add_mount('teller', 'SM_Prop_Aircon_01', 'x', -12.5, 1, 12.60, 2.70, 90.0))
-MOUNTED.append(add_mount('teller', 'SM_Prop_Aircon_01', 'x', 12.5, -1, 12.60, 2.70, 270.0))
+MOUNTED.append(add_mount('teller', 'SM_Prop_Aircon_01', 'x', -12.5, 1, 12.60, 2.55, 90.0))
+MOUNTED.append(add_mount('teller', 'SM_Prop_Aircon_01', 'x', 12.5, -1, 12.60, 2.55, 270.0))
 add('teller', 'SM_Prop_Sprinkler_01', -6.0, 11.0, 0.0, y=3.0)
 add('teller', 'SM_Prop_Sprinkler_01', 6.0, 11.0, 0.0, y=3.0)
 
@@ -479,7 +482,7 @@ add('corridorL', 'SM_Prop_Drawers_01', -10.0, 23.0, 0.0)
 add('corridorL', 'SM_Prop_Plant_02', -8.8, 23.6, 0.0)
 add_ceiling('corridorL', 'SM_Prop_Camera_01', -12.1, 22.0, 90.0, 3.0)
 add('corridorL', 'SM_Prop_Money_Stack_01', -8.60, 19.40, 25.0)
-MOUNTED.append(add_mount('corridorL', 'SM_Prop_Aircon_01', 'x', -12.5, 1, 19.00, 2.60, 90.0))
+MOUNTED.append(add_mount('corridorL', 'SM_Prop_Aircon_01', 'x', -12.5, 1, 19.00, 2.55, 90.0))
 MOUNTED.append(add_mount('corridorL', 'SM_Prop_AirVent_01', 'z', 25.0, -1, -10.50, 2.55, 180.0))
 add('corridorL', 'SM_Prop_Sprinkler_01', -10.0, 17.0, 0.0, y=3.0)
 add('corridorR', 'SM_Prop_Desk_02', 10.0, 17.0, 270.0, key='rdesk')
@@ -493,7 +496,7 @@ add('corridorR', 'SM_Prop_WaterCooler_01', 8.4, 23.4, 0.0)
 add('corridorR', 'SM_Prop_Drawers_01', 10.0, 23.0, 0.0)
 add_ceiling('corridorR', 'SM_Prop_Camera_01', 12.1, 22.0, 270.0, 3.0)
 add('corridorR', 'SM_Item_Briefcase_01', 9.40, 19.20, 95.0, y=0.10)
-MOUNTED.append(add_mount('corridorR', 'SM_Prop_Aircon_01', 'x', 12.5, -1, 19.00, 2.60, 270.0))
+MOUNTED.append(add_mount('corridorR', 'SM_Prop_Aircon_01', 'x', 12.5, -1, 19.00, 2.55, 270.0))
 MOUNTED.append(add_mount('corridorR', 'SM_Prop_AirVent_01', 'z', 25.0, -1, 10.50, 2.55, 180.0))
 add('corridorR', 'SM_Prop_Sprinkler_01', 10.0, 17.0, 0.0, y=3.0)
 
@@ -518,22 +521,69 @@ for px in (-3.0, 3.0):
 for px in (-9.0, -7.0, -5.0, -3.0, 3.0, 5.0, 7.0, 9.0):
     add('exterior', 'SM_Prop_RopeBarrier_Pole_01', px, -5.6, 0.0)
 for px in (-8.0, -6.0, -4.0, 4.0, 6.0, 8.0):
-    add('exterior', 'SM_Prop_RopeBarrier_01', px, -5.6, 0.0)
+    add('exterior', 'SM_Prop_RopeBarrier_01', px, -5.6, 0.0, y=0.67)
 add('exterior', 'SM_Veh_SwatVan_01', -12.0, -13.0, 20.0)
 add('exterior', 'SM_Veh_Car_Police_Heist_01', 12.5, -3.5, 290.0)
 add('exterior', 'SM_Prop_Box_01', 6.2, -10.2, 15.0)
 add('exterior', 'SM_Prop_Box_01', 5.6, -10.8, 340.0)
 add('exterior', 'SM_Prop_Box_01', -11.6, -6.6, 20.0)
-# ---- squads: entrance flankers, cordon pair, van crew, rooftop overwatch ----
-add('exterior', 'Character_Male_SWAT_01', -3.20, -2.60, 160.0, y=0.11)
-add('exterior', 'Character_Male_SWAT_01', 3.20, -2.60, 200.0, y=0.11)
-add('exterior', 'Character_Male_SWAT_01', -6.60, -6.40, 180.0, y=0.11)
-add('exterior', 'Character_Male_SWAT_01', 6.60, -6.40, 180.0, y=0.11)
-add('exterior', 'Character_Male_SWAT_01', 6.40, -9.60, 20.0, y=0.11)
-add('exterior', 'Character_Male_SWAT_01', -5.50, 1.20, 180.0, y=7.02)
-add('exterior', 'Character_Male_SWAT_01', 5.50, 1.20, 180.0, y=7.02)
-add('exterior', 'Character_Male_FBI', -10.80, -9.20, 70.0, y=0.11)
-add('exterior', 'Character_Female_FBI', 10.20, -12.00, 300.0, y=0.11)
+# ---- zero characters: law-enforcement presence is set dressing only (vehicles, kit, cordons) ----
+
+# ---------------------------------------------------------------- outdoor district (x -30..30, z -40..0)
+# site walls close the build range so the plaza reads as a bounded operation zone
+for z in (-32.5, -27.5, -22.5, -17.5, -12.5, -7.5, -2.5):
+    wall('exterior', W_EXT, -29.5, z, 90.0, 0)
+    wall('exterior', W_EXT, 29.5, z, 270.0, 0)
+for x in (-27.5, -22.5, -17.5, -12.5, -7.5, -2.5, 2.5, 7.5, 12.5, 17.5, 22.5, 27.5):
+    wall('exterior', W_EXT, x, -39.5, 0.0, 0)
+# NW service block (x -29..-19, z -35..-25) with a 5 m doorway on the plaza face
+wall('exterior', W_EXT, -26.5, -25.0, 0.0, 0)
+wall('exterior', W_EXT, -26.5, -35.0, 0.0, 0)
+wall('exterior', W_EXT, -21.5, -35.0, 0.0, 0)
+wall('exterior', W_EXT, -29.0, -32.5, 90.0, 0)
+wall('exterior', W_EXT, -29.0, -27.5, 90.0, 0)
+wall('exterior', W_EXT, -19.0, -32.5, 270.0, 0)
+wall('exterior', W_EXT, -19.0, -27.5, 270.0, 0)
+# NE service block (x 19..29, z -35..-25) mirrored
+wall('exterior', W_EXT, 26.5, -25.0, 0.0, 0)
+wall('exterior', W_EXT, 21.5, -35.0, 0.0, 0)
+wall('exterior', W_EXT, 26.5, -35.0, 0.0, 0)
+wall('exterior', W_EXT, 29.0, -32.5, 270.0, 0)
+wall('exterior', W_EXT, 29.0, -27.5, 270.0, 0)
+wall('exterior', W_EXT, 19.0, -32.5, 90.0, 0)
+wall('exterior', W_EXT, 19.0, -27.5, 90.0, 0)
+# walkable roofs at 3 m - overwatch positions with real exposure cost
+for rx in (-26.5, -21.5, 21.5, 26.5):
+    for rz in (-32.5, -27.5):
+        add('exterior', 'SM_Env_Roof_05', rx, rz, 0.0, y=3.0)
+# far cordon at z -26 with a 6 m centre breach (the only straight line to the door)
+for px in (-15.0, -13.0, -11.0, -9.0, -7.0, -5.0, -4.0, -3.0, 3.0, 4.0, 5.0, 7.0, 9.0, 11.0, 13.0, 15.0):
+    add('exterior', 'SM_Prop_RopeBarrier_Pole_01', px, -26.0, 0.0)
+for px in (-14.0, -12.0, -10.0, -8.0, -6.0, -4.642, 4.642, 6.0, 8.0, 10.0, 12.0, 14.0):
+    add('exterior', 'SM_Prop_RopeBarrier_01', px, -26.0, 0.0, y=0.67)
+# cover field: crate pairs every 8-12 m along both flank lanes
+for cx, cz, cr in ((-19.8, -15.2, 15.0), (-19.2, -14.6, 340.0), (-4.8, -18.2, 20.0), (-4.2, -17.6, 300.0),
+                   (5.2, -13.7, 10.0), (5.9, -13.2, 330.0), (19.3, -17.2, 25.0), (18.7, -16.6, 345.0)):
+    add('exterior', 'SM_Prop_Box_01', cx, cz, cr)
+add('exterior', 'SM_Prop_Plant_03', -9.0, -20.0, 0.0)
+add('exterior', 'SM_Prop_Plant_03', 9.0, -20.0, 0.0)
+# west command post: van, offload crates, laid-out kit
+add('exterior', 'SM_Veh_SwatVan_01', -24.0, -21.0, 20.0)
+for cx, cz, cr in ((-21.5, -19.5, 15.0), (-22.6, -18.6, 340.0), (-20.8, -17.6, 20.0)):
+    add('exterior', 'SM_Prop_Box_01', cx, cz, cr)
+add('exterior', 'SM_Wep_RifleBandit_01', -20.2, -20.2, 80.0, y=0.16)
+add('exterior', 'SM_Item_AmmoPack_01', -19.7, -19.6, 30.0)
+add('exterior', 'SM_Item_Briefcase_02', -20.9, -21.0, 75.0, y=0.10)
+# east media pen: angled cruiser and a crate wall
+add('exterior', 'SM_Veh_Car_Police_Heist_01', 25.0, -20.0, 90.0)
+for cx, cz, cr in ((20.5, -21.5, 15.0), (21.6, -22.6, 340.0), (20.2, -23.7, 20.0), (22.4, -20.6, 300.0)):
+    add('exterior', 'SM_Prop_Box_01', cx, cz, cr)
+add('exterior', 'SM_Prop_Plant_03', 27.8, -22.5, 0.0)
+# monument sign: the south landmark that orients every approach
+add('exterior', 'SM_Prop_Sign_Base_01', 13.5, -33.0, 0.0)
+add('exterior', 'SM_Prop_Sign_Money_Bank_01', 13.5, -33.0, 0.0, y=1.05)
+add('exterior', 'SM_Prop_Bin_01', -28.0, -36.0, 0.0)
+add('exterior', 'SM_Prop_Bin_01', 28.0, -36.0, 0.0)
 
 # ------------------------------------------------------------------ spawns + killzone
 ROOMS['lobby']['spawnPoints'] = [
@@ -615,7 +665,7 @@ COUNTS = {rid: {'floors': 0, 'ceilings': 0, 'walls': 0, 'props': 0} for rid in O
 for rid in ORDER:
     for p in ROOMS[rid]['props']:
         n = p['prefab'].split('/')[-1].replace('.prefab', '')
-        if n.startswith('SM_Env_Floor') or n.startswith('SM_Env_Sidewalk'):
+        if n.startswith('SM_Env_Floor') or n.startswith('SM_Env_Sidewalk') or n.startswith('SM_Env_Road'):
             COUNTS[rid]['floors'] += 1
         elif n.startswith('SM_Env_Ceiling_Light'):
             COUNTS[rid]['lights'] = COUNTS[rid].get('lights', 0) + 1
@@ -627,7 +677,7 @@ for rid in ORDER:
             COUNTS[rid]['props'] += 1
 
 EXPECT = {'lobby': (10, 0), 'teller': (5, 5), 'vault': (6, 6),
-          'corridorL': (2, 2), 'corridorR': (2, 2), 'exterior': (40, 0)}
+          'corridorL': (2, 2), 'corridorR': (2, 2), 'exterior': (96, 0)}
 ROOF_COUNT = sum(1 for p in ROOMS['lobby']['props']
                  if p['prefab'].split('/')[-1].startswith('SM_Env_Roof'))
 if ROOF_COUNT != 25:

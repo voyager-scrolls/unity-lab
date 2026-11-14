@@ -475,14 +475,7 @@ public static class LevelBuilder
                             UnityEngine.Object.DestroyImmediate(c);
                             ccols++;
                         }
-                        foreach (Transform t in inst.GetComponentsInChildren<Transform>(true))
-                        {
-                            string bn = t.name;
-                            if (bn == "Shoulder_L") t.localRotation = t.localRotation * Quaternion.Euler(0f, 0f, 72f);
-                            else if (bn == "Shoulder_R") t.localRotation = t.localRotation * Quaternion.Euler(0f, 0f, -72f);
-                            else if (bn == "Elbow_L") t.localRotation = t.localRotation * Quaternion.Euler(0f, 0f, 12f);
-                            else if (bn == "Elbow_R") t.localRotation = t.localRotation * Quaternion.Euler(0f, 0f, -12f);
-                        }
+                        RelaxArms(inst);
                         characterCount++;
                         if (characterCount == 1)
                             Debug.Log("LEVEL_BUILDER: characters posed collidersRemoved=" + ccols);
@@ -505,7 +498,6 @@ public static class LevelBuilder
             " pointLights=" + lightCount + " plazaTilesTinted=" + tintedCount +
             " characters=" + characterCount);
 
-        AddEmergencyLighting(scene);
 
         if (layout.globalSpawnPoints != null)
         {
@@ -550,6 +542,9 @@ public static class LevelBuilder
         // Gameplay geometry stays on Default (0) so MFPS AI/weapon raycasts hit walls.
         // Only ceilings/roof go to layer 9 (NoNav) and are excluded from the bake.
         SetNoNavLayerRecursive(levelRoot.transform);
+        // The POLYGON kit ships with shadow casting off on many meshes; without it the
+        // perimeter spot lights pass straight through the facade and tint the interior.
+        EnableCastShadows(levelRoot.transform);
 
         // Assign Photon scene-view IDs (PUN needs 1..999 for scene objects; ID 0 breaks
         // RPC delivery -> countdown never finishes -> player never spawns)
@@ -828,40 +823,44 @@ public static class LevelBuilder
         }
     }
 
-    // Police perimeter lighting: alternating red/blue spots washing the facade so the
-    // exterior reads as an active crime scene rather than a neutral day shot.
-    static void AddEmergencyLighting(Scene scene)
+    static Transform FindDeep(Transform root, string name)
     {
-        Vector3[] pos = new Vector3[]
+        foreach (Transform t in root.GetComponentsInChildren<Transform>(true))
+            if (t.name == name) return t;
+        return null;
+    }
+
+    static void EnableCastShadows(Transform root)
+    {
+        foreach (Renderer r in root.GetComponentsInChildren<Renderer>(true))
         {
-            new Vector3(-6.0f, 3.4f, -2.6f),
-            new Vector3(6.0f, 3.4f, -2.6f),
-            new Vector3(-10.0f, 3.8f, -6.0f),
-            new Vector3(10.0f, 3.8f, -6.0f)
-        };
-        Color[] cols = new Color[]
-        {
-            new Color(1.00f, 0.12f, 0.10f),
-            new Color(0.12f, 0.30f, 1.00f),
-            new Color(0.12f, 0.30f, 1.00f),
-            new Color(1.00f, 0.12f, 0.10f)
-        };
-        for (int i = 0; i < pos.Length; i++)
-        {
-            GameObject go = new GameObject("EmergencyLight_" + i);
-            SceneManager.MoveGameObjectToScene(go, scene);
-            go.transform.position = pos[i];
-            Vector3 target = new Vector3(pos[i].x * 0.25f, 2.2f, 0.2f);
-            go.transform.rotation = Quaternion.LookRotation((target - pos[i]).normalized, Vector3.up);
-            Light l = go.AddComponent<Light>();
-            l.type = LightType.Spot;
-            l.spotAngle = 90f;
-            l.range = 26f;
-            l.intensity = 4.0f;
-            l.color = cols[i];
-            l.shadows = LightShadows.None;
+            r.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
+            r.receiveShadows = true;
         }
-        Debug.Log("LEVEL_BUILDER: emergency lights=4");
+    }
+
+    // Point the upper arm straight down and the forearm slightly forward, in world space, so
+    // the pose does not depend on the rig's bind axes.
+    static void RelaxArms(GameObject inst)
+    {
+        Transform sl = FindDeep(inst.transform, "Shoulder_L");
+        Transform el = FindDeep(inst.transform, "Elbow_L");
+        Transform sr = FindDeep(inst.transform, "Shoulder_R");
+        Transform er = FindDeep(inst.transform, "Elbow_R");
+        Transform hl = FindDeep(inst.transform, "Hand_L");
+        Transform hr = FindDeep(inst.transform, "Hand_R");
+        AlignBone(sl, el, new Vector3(-0.16f, -1f, 0.05f).normalized);
+        AlignBone(sr, er, new Vector3(0.16f, -1f, 0.05f).normalized);
+        AlignBone(el, hl, new Vector3(-0.10f, -0.75f, 0.66f).normalized);
+        AlignBone(er, hr, new Vector3(0.10f, -0.75f, 0.66f).normalized);
+    }
+
+    static void AlignBone(Transform bone, Transform child, Vector3 targetDir)
+    {
+        if (bone == null || child == null) return;
+        Vector3 dir = child.position - bone.position;
+        if (dir.sqrMagnitude < 0.0001f) return;
+        bone.rotation = Quaternion.FromToRotation(dir.normalized, targetDir) * bone.rotation;
     }
 }
 CSEOF2
