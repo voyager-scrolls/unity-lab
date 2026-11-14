@@ -377,7 +377,7 @@ LOS_CHECKS = [
     {'name': 'vault-corridorL-wall', 'from': [3.0, 0.8, 22.0], 'to': [-10.0, 0.8, 20.0], 'blocked': True},
     {'name': 'vault-corridorR-wall', 'from': [-3.0, 0.8, 22.0], 'to': [10.0, 0.8, 20.0], 'blocked': True},
     {'name': 'lobby-exterior-window', 'from': [-9.0, 0.8, 3.0], 'to': [-9.0, 0.8, -5.0], 'blocked': True},
-    {'name': 'entrance-open', 'from': [1.2, 0.8, -8.0], 'to': [1.2, 0.8, 4.0], 'blocked': False},
+    {'name': 'entrance-open', 'from': [0.6, 0.8, -8.0], 'to': [0.6, 0.8, 4.0], 'blocked': False},
 ]
 
 # ---------------------------------------------------------------- AI cover points
