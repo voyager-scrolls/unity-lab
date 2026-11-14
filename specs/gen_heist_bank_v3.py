@@ -253,9 +253,12 @@ for x in (-5, 0, 5):
     wall('teller', W_INT, x, 10.0, 0.0, 0)
 for x in (-10, -5, 0, 5, 10):
     wall('lobby', W_INT, x, 10.0, 0.0, 1)
-# teller/vault wall Z=15 (solid walls either side of the vault door frame, no bars)
-for x, n, r in ((-5, W_EXT, 'vault'), (0, V_FRAME, 'vault'), (5, W_EXT, 'vault')):
-    wall(r, n, x, 15.0, 0.0, 0)
+# teller/vault wall Z=15: solid walls either side of the vault door.
+# The door frame module is 0.74m deep - it is pushed back so its face is flush with the
+# teller-side wall face (14.92), which removes the protruding slab and the edge slivers.
+for x in (-5, 5):
+    wall('vault', W_EXT, x, 15.0, 0.0, 0)
+add('vault', V_FRAME, 0.0, 15.39, 0.0, y=0.0)
 # vault side walls (solid)
 for z in (17.5, 22.5):
     wall('vault', W_EXT, -7.5, z, 90.0, 0)
@@ -289,10 +292,10 @@ add('lobby', 'SM_Prop_DisplayCase_01', -9.0, 1.6, 90.0, key='caseL1')
 add('lobby', 'SM_Prop_Jewellery_01', -9.0, 1.45, 0.0, key='jL1', y=0.80)
 add('lobby', 'SM_Prop_Jewellery_02', -9.0, 1.6, 0.0, key='jL2', y=0.80)
 add('lobby', 'SM_Prop_Jewellery_Ring_01', -9.0, 1.75, 0.0, key='jL3', y=0.80)
-add('lobby', 'SM_Prop_DisplayCase_02', 9.0, 1.6, 270.0, key='caseR1')
-add('lobby', 'SM_Prop_Jewellery_03', 9.0, 1.45, 0.0, key='jR1', y=0.52)
-add('lobby', 'SM_Prop_Jewellery_Necklace_01', 9.0, 1.65, 0.0, key='jR2', y=0.52)
-add('lobby', 'SM_Prop_Jewellery_Rings_01', 9.0, 1.8, 0.0, key='jR3', y=0.52)
+add('lobby', 'SM_Prop_DisplayCase_01', 9.0, 1.6, 270.0, key='caseR1')
+add('lobby', 'SM_Prop_Jewellery_03', 9.0, 1.15, 0.0, key='jR1', y=0.80)
+add('lobby', 'SM_Prop_Jewellery_Necklace_01', 9.0, 1.6, 0.0, key='jR2', y=0.80)
+add('lobby', 'SM_Prop_Jewellery_Rings_01', 9.0, 2.05, 0.0, key='jR3', y=0.80)
 # two more jewellery counters against the facade wall, flanking the entrance
 add('lobby', 'SM_Prop_DisplayCase_01', -4.0, 0.75, 0.0, key='caseL2')
 add('lobby', 'SM_Prop_Jewellery_Necklace_03', -4.75, 0.75, 0.0, key='jL4', y=0.80)
@@ -327,10 +330,11 @@ for x, s in ((-5.0, 1.0), (0.0, -1.0), (5.0, -1.0)):
 add('teller', 'SM_Prop_DisplayCase_01', -12.15, 12.5, 90.0, key='tcase1')
 add('teller', 'SM_Prop_Jewellery_Necklace_02', -12.15, 12.3, 0.0, y=0.80)
 add('teller', 'SM_Prop_Jewellery_04', -12.15, 12.7, 0.0, y=0.80)
-add('teller', 'SM_Prop_DisplayCase_02', 12.15, 12.5, 270.0, key='tcase2')
-add('teller', 'SM_Prop_Jewellery_02', 12.15, 12.3, 0.0, y=0.52)
-add('teller', 'SM_Prop_Jewellery_Ring_01', 12.15, 12.7, 0.0, y=0.52)
-MOUNTED.append(add_mount('teller', 'SM_Prop_AirVent_01', 'z', 15.0, -1, 5.0, 2.6, 0.0))
+add('teller', 'SM_Prop_DisplayCase_01', 12.15, 12.5, 270.0, key='tcase2')
+add('teller', 'SM_Prop_Jewellery_02', 12.15, 12.1, 0.0, y=0.80)
+add('teller', 'SM_Prop_Jewellery_Ring_01', 12.15, 12.5, 0.0, y=0.80)
+add('teller', 'SM_Prop_Jewellery_Rings_01', 12.15, 12.9, 0.0, y=0.80)
+MOUNTED.append(add_mount('teller', 'SM_Prop_AirVent_01', 'z', 14.92, -1, 5.0, 2.6, 0.0))
 add_ceiling('teller', 'SM_Prop_Camera_01', -8.0, 14.6, 0.0, 3.0)
 MOUNTED.append(add_mount('teller', 'SM_Prop_AlarmButton_01', 'z', 10.0, 1, 7.0, 1.2, 0.0))
 
@@ -354,6 +358,14 @@ add('vault', 'SM_Prop_VaultTrolley_01', 3.2, 21.0, 0.0, key='vtrolley')
 add('vault', 'SM_Item_DuffleBag_Full_01', -3.4, 18.2, 270.0)
 add('vault', 'SM_Item_DuffleBag_Open_Empty_01', -4.2, 21.5, 90.0)
 add('vault', 'SM_Item_DuffleBag_Open_Full_01', 1.6, 18.4, 90.0)
+# hijacked-vault dressing: robber gear and a charge at the door
+add('vault', 'SM_Item_Bomb_01', -2.9, 16.5, 25.0)
+add('vault', 'SM_Wep_RifleBandit_01', -5.9, 18.6, 90.0, y=0.16)
+add('vault', 'SM_Item_AmmoPack_01', -5.4, 19.5, 30.0)
+add('vault', 'SM_Item_Mask_Balaclava_01', -4.9, 19.2, 200.0, y=0.11)
+add('vault', 'SM_Item_Mask_Hockey_01', -4.5, 19.9, 120.0, y=0.10)
+add('vault', 'SM_Item_Briefcase_01', 2.4, 19.2, 40.0, y=0.10)
+add('vault', 'SM_Item_Hacksaw_01', 5.8, 18.9, 15.0, y=0.11)
 MOUNTED.append(add_mount('vault', 'SM_Prop_AirVent_01', 'z', 25.0, -1, -3.5, 2.6, 0.0))
 add_ceiling('vault', 'SM_Prop_Camera_01', 0.0, 24.6, 0.0, 3.0)
 

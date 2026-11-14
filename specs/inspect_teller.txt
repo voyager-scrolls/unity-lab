@@ -1,0 +1,148 @@
+RENDERERS=349
+== TELLER ROOM (z 9.2..16.2, |x|<=13) ==
+SM_Env_Wall_Exterior_01 | pos=(12.58,0.00,10.00) size=(0.16,3.00,5.00) centre=(12.50,1.50,7.50) mat=PolygonHeist_Material_01_A
+SM_Env_Floor_02 | pos=(-2.50,0.00,5.00) size=(5.00,0.00,5.00) centre=(-5.00,0.00,7.50) mat=PolygonHeist_Material_01_A
+SM_Env_Roof_05 | pos=(-2.50,6.00,10.00) size=(5.00,0.91,5.00) centre=(-5.00,6.45,7.50) mat=PolygonHeist_Material_01_A
+SM_Env_Floor_02 | pos=(12.50,0.00,5.00) size=(5.00,0.00,5.00) centre=(10.00,0.00,7.50) mat=PolygonHeist_Material_01_A
+SM_Env_Ceiling_01 | pos=(2.50,3.45,15.00) size=(5.00,0.45,5.00) centre=(0.00,3.22,17.50) mat=PolygonHeist_Material_01_A
+SM_Prop_AlarmButton_01 | pos=(7.00,1.20,9.83) size=(0.25,0.14,0.32) centre=(7.00,1.27,9.83) mat=PolygonHeist_Material_01_A
+SM_Prop_DisplayCase_Glass_02_Broken | pos=(12.15,0.00,12.50) size=(0.56,0.51,0.56) centre=(12.15,0.25,12.50) mat=PolygonHeist_Material_01_A_Glass
+SM_Prop_DisplayCase_Glass_02 | pos=(12.15,0.00,12.50) size=(0.55,0.50,0.55) centre=(12.15,0.25,12.50) mat=PolygonHeist_Material_01_A_Glass
+SM_Prop_DisplayCase_02 | pos=(12.15,0.00,12.50) size=(0.56,0.51,0.56) centre=(12.15,0.25,12.50) mat=PolygonHeist_Material_01_A
+SM_Env_Wall_Interior_01 | pos=(7.50,3.00,9.92) size=(5.00,3.00,0.16) centre=(5.00,4.50,10.00) mat=PolygonHeist_Material_01_A
+SM_Env_Wall_Exterior_01 | pos=(-12.58,0.00,15.00) size=(0.16,3.00,5.00) centre=(-12.50,1.50,17.50) mat=PolygonHeist_Material_01_A
+SM_Env_Ceiling_Light_01 | pos=(0.00,3.00,12.50) size=(0.73,0.06,0.73) centre=(0.00,2.97,12.50) mat=Emission
+SM_Env_Roof_05 | pos=(7.50,6.00,15.00) size=(5.00,0.91,5.00) centre=(5.00,6.45,12.50) mat=PolygonHeist_Material_01_A
+SM_Env_Wall_Interior_01 | pos=(2.50,3.00,9.92) size=(5.00,3.00,0.16) centre=(0.00,4.50,10.00) mat=PolygonHeist_Material_01_A
+SM_Prop_Plant_01 | pos=(11.40,0.00,9.00) size=(0.65,1.51,0.84) centre=(11.40,0.76,9.00) mat=PolygonHeist_Material_01_A
+SM_Prop_Jewellery_02 | pos=(12.15,0.52,12.30) size=(0.69,0.31,0.20) centre=(12.15,0.67,12.30) mat=PolygonHeist_Material_01_A
+SM_Env_Wall_Interior_01 | pos=(-2.50,3.00,9.92) size=(5.00,3.00,0.16) centre=(-5.00,4.50,10.00) mat=PolygonHeist_Material_01_A
+SM_Env_Wall_Exterior_01 | pos=(-7.58,0.00,15.00) size=(0.16,3.00,5.00) centre=(-7.50,1.50,17.50) mat=PolygonHeist_Material_01_A
+SM_Prop_AirVent_01 | pos=(5.00,2.81,14.94) size=(0.85,0.43,0.05) centre=(5.00,2.81,14.96) mat=PolygonHeist_Material_01_A
+SM_Env_Roof_05 | pos=(12.50,6.00,15.00) size=(5.00,0.91,5.00) centre=(10.00,6.45,12.50) mat=PolygonHeist_Material_01_A
+SM_Env_Ceiling_03 | pos=(-2.50,3.45,15.00) size=(5.00,0.45,5.00) centre=(-5.00,3.22,17.50) mat=PolygonHeist_Material_01_A
+SM_Prop_DisplayCase_Glass_1_Broken | pos=(-12.15,0.00,12.50) size=(0.44,0.44,2.45) centre=(-12.15,0.99,12.50) mat=PolygonHeist_Material_01_A_Glass
+SM_Prop_DisplayCase_Glass_01 | pos=(-12.15,0.00,12.50) size=(0.44,0.44,2.45) centre=(-12.15,0.99,12.50) mat=PolygonHeist_Material_01_A_Glass
+SM_Prop_DisplayCase_01 | pos=(-12.15,0.00,12.50) size=(0.55,1.24,2.59) centre=(-12.15,0.62,12.50) mat=PolygonHeist_Material_01_A
+SM_Prop_Jewellery_04 | pos=(-12.15,0.80,12.70) size=(0.62,0.07,0.13) centre=(-12.15,0.83,12.70) mat=PolygonHeist_Material_01_A
+SM_Prop_Sign_Bank_01 | pos=(0.00,3.30,9.91) size=(2.98,0.93,0.16) centre=(0.00,3.77,9.91) mat=PolygonHeist_Material_03_A
+SM_Env_Wall_Exterior_01 | pos=(12.58,3.00,10.00) size=(0.16,3.00,5.00) centre=(12.50,4.50,7.50) mat=PolygonHeist_Material_01_A
+SM_Env_Ceiling_04 | pos=(7.50,3.45,15.00) size=(5.00,0.45,5.00) centre=(5.00,3.22,17.50) mat=PolygonHeist_Material_01_A
+SM_Env_Ceiling_01 | pos=(12.50,3.45,10.00) size=(5.00,0.45,5.00) centre=(10.00,3.22,12.50) mat=PolygonHeist_Material_01_A
+SM_Env_Sidewalk_01 | pos=(7.50,-0.03,20.00) size=(5.00,0.03,5.00) centre=(5.00,-0.02,17.50) mat=PolygonHeist_Material_01_A
+SM_Env_Roof_05 | pos=(7.50,6.00,20.00) size=(5.00,0.91,5.00) centre=(5.00,6.45,17.50) mat=PolygonHeist_Material_01_A
+SM_Env_Floor_02 | pos=(-2.50,0.00,10.00) size=(5.00,0.00,5.00) centre=(-5.00,0.00,12.50) mat=PolygonHeist_Material_01_A
+SM_Env_Ceiling_02 | pos=(-2.50,3.45,10.00) size=(5.00,0.45,5.00) centre=(-5.00,3.22,12.50) mat=PolygonHeist_Material_01_A
+SM_Env_Roof_05 | pos=(-2.50,6.00,15.00) size=(5.00,0.91,5.00) centre=(-5.00,6.45,12.50) mat=PolygonHeist_Material_01_A
+SM_Env_Floor_02 | pos=(-7.50,0.00,5.00) size=(5.00,0.00,5.00) centre=(-10.00,0.00,7.50) mat=PolygonHeist_Material_01_A
+SM_Env_Sidewalk_01 | pos=(2.50,-0.03,20.00) size=(5.00,0.03,5.00) centre=(0.00,-0.02,17.50) mat=PolygonHeist_Material_01_A
+SM_Prop_Camera_Head_01 | pos=(-7.99,2.71,14.63) size=(0.25,0.28,0.38) centre=(-8.00,2.59,14.60) mat=PolygonHeist_Material_01_A
+SM_Prop_Camera_01 | pos=(-8.00,3.00,14.59) size=(0.14,0.31,0.16) centre=(-7.99,2.85,14.63) mat=PolygonHeist_Material_01_A
+SM_Env_Wall_Exterior_01 | pos=(7.50,0.00,14.92) size=(5.00,3.00,0.16) centre=(5.00,1.50,15.00) mat=PolygonHeist_Material_01_A
+SM_Env_Wall_Interior_01 | pos=(-2.50,0.00,9.92) size=(5.00,3.00,0.16) centre=(-5.00,1.50,10.00) mat=PolygonHeist_Material_01_A
+SM_Env_Wall_Exterior_01 | pos=(-12.58,0.00,5.00) size=(0.16,3.00,5.00) centre=(-12.50,1.50,7.50) mat=PolygonHeist_Material_01_A
+SM_Env_Ceiling_Light_01 | pos=(-8.00,3.00,12.50) size=(0.73,0.06,0.73) centre=(-8.00,2.97,12.50) mat=Emission
+SM_Env_Roof_05 | pos=(-2.50,6.00,20.00) size=(5.00,0.91,5.00) centre=(-5.00,6.45,17.50) mat=PolygonHeist_Material_01_A
+SM_Env_Roof_05 | pos=(-7.50,6.00,20.00) size=(5.00,0.91,5.00) centre=(-10.00,6.45,17.50) mat=PolygonHeist_Material_01_A
+SM_Env_Wall_Interior_01 | pos=(-7.50,3.00,9.92) size=(5.00,3.00,0.16) centre=(-10.00,4.50,10.00) mat=PolygonHeist_Material_01_A
+SM_Env_Wall_Interior_01 | pos=(2.50,0.00,9.92) size=(5.00,3.00,0.16) centre=(0.00,1.50,10.00) mat=PolygonHeist_Material_01_A
+SM_Env_Roof_05 | pos=(-7.50,6.00,15.00) size=(5.00,0.91,5.00) centre=(-10.00,6.45,12.50) mat=PolygonHeist_Material_01_A
+SM_Env_Ceiling_01 | pos=(-7.50,3.45,10.00) size=(5.00,0.45,5.00) centre=(-10.00,3.22,12.50) mat=PolygonHeist_Material_01_A
+SM_Env_Wall_Exterior_01 | pos=(7.58,0.00,20.00) size=(0.16,3.00,5.00) centre=(7.50,1.50,17.50) mat=PolygonHeist_Material_01_A
+SM_Env_Floor_02 | pos=(7.50,0.00,10.00) size=(5.00,0.00,5.00) centre=(5.00,0.00,12.50) mat=PolygonHeist_Material_01_A
+SM_Env_Roof_05 | pos=(2.50,6.00,20.00) size=(5.00,0.91,5.00) centre=(0.00,6.45,17.50) mat=PolygonHeist_Material_01_A
+SM_Prop_Plant_03 | pos=(-11.36,0.00,8.98) size=(0.45,0.57,0.42) centre=(-11.40,0.28,9.00) mat=PolygonHeist_Material_01_A
+SM_Env_Wall_Interior_01 | pos=(12.50,3.00,9.92) size=(5.00,3.00,0.16) centre=(10.00,4.50,10.00) mat=PolygonHeist_Material_01_A
+SM_Env_Wall_Exterior_01 | pos=(-12.58,3.00,5.00) size=(0.16,3.00,5.00) centre=(-12.50,4.50,7.50) mat=PolygonHeist_Material_01_A
+SM_Env_Floor_02 | pos=(2.50,0.00,10.00) size=(5.00,0.00,5.00) centre=(0.00,0.00,12.50) mat=PolygonHeist_Material_01_A
+SM_Env_Roof_05 | pos=(2.50,6.00,10.00) size=(5.00,0.91,5.00) centre=(0.00,6.45,7.50) mat=PolygonHeist_Material_01_A
+SM_Env_Wall_Exterior_01 | pos=(12.58,0.00,20.00) size=(0.16,3.00,5.00) centre=(12.50,1.50,17.50) mat=PolygonHeist_Material_01_A
+SM_Prop_AlarmButton_01 | pos=(7.00,1.20,10.17) size=(0.25,0.14,0.32) centre=(7.00,1.27,10.17) mat=PolygonHeist_Material_01_A
+SM_Env_Wall_Exterior_01 | pos=(12.58,3.00,15.00) size=(0.16,3.00,5.00) centre=(12.50,4.50,12.50) mat=PolygonHeist_Material_01_A
+SM_Env_Wall_Exterior_01 | pos=(-12.58,3.00,15.00) size=(0.16,3.00,5.00) centre=(-12.50,4.50,17.50) mat=PolygonHeist_Material_01_A
+SM_Env_Floor_02 | pos=(12.50,0.00,10.00) size=(5.00,0.00,5.00) centre=(10.00,0.00,12.50) mat=PolygonHeist_Material_01_A
+SM_Env_Floor_02 | pos=(7.50,0.00,5.00) size=(5.00,0.00,5.00) centre=(5.00,0.00,7.50) mat=PolygonHeist_Material_01_A
+SM_Env_Ceiling_05 | pos=(2.50,3.45,10.00) size=(5.00,0.45,5.00) centre=(0.00,3.22,12.50) mat=PolygonHeist_Material_01_A
+SM_Env_Floor_02 | pos=(12.50,0.00,15.00) size=(5.00,0.00,5.00) centre=(10.00,0.00,17.50) mat=PolygonHeist_Material_01_A
+SM_Env_Wall_Exterior_01 | pos=(12.58,3.00,20.00) size=(0.16,3.00,5.00) centre=(12.50,4.50,17.50) mat=PolygonHeist_Material_01_A
+SM_Env_Roof_05 | pos=(12.50,6.00,20.00) size=(5.00,0.91,5.00) centre=(10.00,6.45,17.50) mat=PolygonHeist_Material_01_A
+SM_Env_Sidewalk_01 | pos=(-2.50,-0.03,20.00) size=(5.00,0.03,5.00) centre=(-5.00,-0.02,17.50) mat=PolygonHeist_Material_01_A
+SM_Env_Ceiling_04 | pos=(12.50,3.45,15.00) size=(5.00,0.45,5.00) centre=(10.00,3.22,17.50) mat=PolygonHeist_Material_01_A
+SM_Env_Ceiling_03 | pos=(7.50,3.45,10.00) size=(5.00,0.45,5.00) centre=(5.00,3.22,12.50) mat=PolygonHeist_Material_01_A
+SM_Prop_Desk_02 | pos=(10.00,0.00,17.00) size=(0.87,0.87,1.96) centre=(10.00,0.43,17.00) mat=PolygonHeist_Material_01_A
+SM_Env_Wall_Exterior_01 | pos=(-12.58,0.00,10.00) size=(0.16,3.00,5.00) centre=(-12.50,1.50,12.50) mat=PolygonHeist_Material_01_A
+SM_Prop_Desk_Glass_01 | pos=(-9.78,0.00,16.96) size=(1.77,0.02,1.98) centre=(-9.99,1.06,16.42) mat=PolygonHeist_Material_01_A_Glass
+SM_Prop_Desk_01 | pos=(-9.78,0.00,16.96) size=(1.78,1.35,3.14) centre=(-10.00,0.67,17.00) mat=PolygonHeist_Material_01_A
+SM_Env_Floor_02 | pos=(2.50,0.00,5.00) size=(5.00,0.00,5.00) centre=(0.00,0.00,7.50) mat=PolygonHeist_Material_01_A
+SM_Env_Roof_05 | pos=(-7.50,6.00,10.00) size=(5.00,0.91,5.00) centre=(-10.00,6.45,7.50) mat=PolygonHeist_Material_01_A
+SM_Env_Ceiling_04 | pos=(-7.50,3.45,15.00) size=(5.00,0.45,5.00) centre=(-10.00,3.22,17.50) mat=PolygonHeist_Material_01_A
+SM_Env_VaultDoor_Handle_02 | pos=(-0.88,1.40,15.16) size=(0.69,0.69,0.06) centre=(-0.88,1.40,15.16) mat=PolygonHeist_Material_01_A
+SM_Env_VaultDoor_Handle_01 | pos=(0.00,1.40,15.40) size=(1.23,1.38,0.14) centre=(0.00,1.40,15.40) mat=PolygonHeist_Material_01_A
+SM_Env_VaultDoor_Lid_01 | pos=(1.31,1.04,15.03) size=(2.82,2.50,0.86) centre=(0.06,1.39,15.02) mat=PolygonHeist_Material_01_A
+SM_Env_VaultDoor_Frame_01 | pos=(2.50,0.00,14.53) size=(5.00,3.00,0.74) centre=(0.00,1.50,14.90) mat=PolygonHeist_Material_01_A
+SM_Prop_Jewellery_Ring_01 | pos=(12.15,0.52,12.70) size=(0.10,0.08,0.11) centre=(12.15,0.56,12.70) mat=PolygonHeist_Material_01_A
+SM_Prop_Jewellery_Necklace_02 | pos=(-12.15,0.80,12.30) size=(0.38,0.35,0.28) centre=(-12.15,0.97,12.30) mat=PolygonHeist_Material_01_A
+SM_Env_Roof_05 | pos=(7.50,6.00,10.00) size=(5.00,0.91,5.00) centre=(5.00,6.45,7.50) mat=PolygonHeist_Material_01_A
+SM_Env_Wall_Exterior_01 | pos=(-12.58,3.00,10.00) size=(0.16,3.00,5.00) centre=(-12.50,4.50,12.50) mat=PolygonHeist_Material_01_A
+SM_Env_Floor_02 | pos=(-7.50,0.00,10.00) size=(5.00,0.00,5.00) centre=(-10.00,0.00,12.50) mat=PolygonHeist_Material_01_A
+SM_Env_Wall_Exterior_01 | pos=(12.58,0.00,15.00) size=(0.16,3.00,5.00) centre=(12.50,1.50,12.50) mat=PolygonHeist_Material_01_A
+SM_Env_Wall_Exterior_01 | pos=(-2.50,0.00,14.92) size=(5.00,3.00,0.16) centre=(-5.00,1.50,15.00) mat=PolygonHeist_Material_01_A
+SM_Env_Floor_02 | pos=(-7.50,0.00,15.00) size=(5.00,0.00,5.00) centre=(-10.00,0.00,17.50) mat=PolygonHeist_Material_01_A
+SM_Env_Roof_05 | pos=(2.50,6.00,15.00) size=(5.00,0.91,5.00) centre=(0.00,6.45,12.50) mat=PolygonHeist_Material_01_A
+SM_Env_Roof_05 | pos=(12.50,6.00,10.00) size=(5.00,0.91,5.00) centre=(10.00,6.45,7.50) mat=PolygonHeist_Material_01_A
+SM_Env_Wall_Interior_01 | pos=(7.50,0.00,9.92) size=(5.00,3.00,0.16) centre=(5.00,1.50,10.00) mat=PolygonHeist_Material_01_A
+SM_Env_Ceiling_Light_01 | pos=(8.00,3.00,12.50) size=(0.73,0.06,0.73) centre=(8.00,2.97,12.50) mat=Emission
+Floor | pos=(0.00,-0.05,0.00) size=(200.00,0.00,200.00) centre=(0.00,-0.05,0.00) mat=Default-Material
+== VAULT DOOR WALL BAND (z 14.2..15.8) ==
+SM_Env_Ceiling_01 | pos=(2.50,3.45,15.00) size=(5.00,0.45,5.00) minz=15.00 maxz=20.00 minx=-2.50 maxx=2.50 mat=PolygonHeist_Material_01_A
+SM_Env_Wall_Exterior_01 | pos=(-12.58,0.00,15.00) size=(0.16,3.00,5.00) minz=15.00 maxz=20.00 minx=-12.58 maxx=-12.42 mat=PolygonHeist_Material_01_A
+SM_Env_Roof_05 | pos=(7.50,6.00,15.00) size=(5.00,0.91,5.00) minz=10.00 maxz=15.00 minx=2.50 maxx=7.50 mat=PolygonHeist_Material_01_A
+SM_Env_Wall_Exterior_01 | pos=(-7.58,0.00,15.00) size=(0.16,3.00,5.00) minz=15.00 maxz=20.00 minx=-7.58 maxx=-7.42 mat=PolygonHeist_Material_01_A
+SM_Prop_AirVent_01 | pos=(5.00,2.81,14.94) size=(0.85,0.43,0.05) minz=14.94 maxz=14.99 minx=4.58 maxx=5.42 mat=PolygonHeist_Material_01_A
+SM_Env_Roof_05 | pos=(12.50,6.00,15.00) size=(5.00,0.91,5.00) minz=10.00 maxz=15.00 minx=7.50 maxx=12.50 mat=PolygonHeist_Material_01_A
+SM_Env_Ceiling_03 | pos=(-2.50,3.45,15.00) size=(5.00,0.45,5.00) minz=15.00 maxz=20.00 minx=-7.50 maxx=-2.50 mat=PolygonHeist_Material_01_A
+SM_Env_Ceiling_04 | pos=(7.50,3.45,15.00) size=(5.00,0.45,5.00) minz=15.00 maxz=20.00 minx=2.50 maxx=7.50 mat=PolygonHeist_Material_01_A
+SM_Env_Ceiling_01 | pos=(12.50,3.45,10.00) size=(5.00,0.45,5.00) minz=10.00 maxz=15.00 minx=7.50 maxx=12.50 mat=PolygonHeist_Material_01_A
+SM_Env_Sidewalk_01 | pos=(7.50,-0.03,20.00) size=(5.00,0.03,5.00) minz=15.00 maxz=20.00 minx=2.50 maxx=7.50 mat=PolygonHeist_Material_01_A
+SM_Env_Roof_05 | pos=(7.50,6.00,20.00) size=(5.00,0.91,5.00) minz=15.00 maxz=20.00 minx=2.50 maxx=7.50 mat=PolygonHeist_Material_01_A
+SM_Env_Floor_02 | pos=(-2.50,0.00,10.00) size=(5.00,0.00,5.00) minz=10.00 maxz=15.00 minx=-7.50 maxx=-2.50 mat=PolygonHeist_Material_01_A
+SM_Env_Ceiling_02 | pos=(-2.50,3.45,10.00) size=(5.00,0.45,5.00) minz=10.00 maxz=15.00 minx=-7.50 maxx=-2.50 mat=PolygonHeist_Material_01_A
+SM_Env_Roof_05 | pos=(-2.50,6.00,15.00) size=(5.00,0.91,5.00) minz=10.00 maxz=15.00 minx=-7.50 maxx=-2.50 mat=PolygonHeist_Material_01_A
+SM_Env_Sidewalk_01 | pos=(2.50,-0.03,20.00) size=(5.00,0.03,5.00) minz=15.00 maxz=20.00 minx=-2.50 maxx=2.50 mat=PolygonHeist_Material_01_A
+SM_Prop_Camera_Head_01 | pos=(-7.99,2.71,14.63) size=(0.25,0.28,0.38) minz=14.41 maxz=14.79 minx=-8.13 maxx=-7.87 mat=PolygonHeist_Material_01_A
+SM_Prop_Camera_01 | pos=(-8.00,3.00,14.59) size=(0.14,0.31,0.16) minz=14.55 maxz=14.71 minx=-8.06 maxx=-7.92 mat=PolygonHeist_Material_01_A
+SM_Env_Wall_Exterior_01 | pos=(7.50,0.00,14.92) size=(5.00,3.00,0.16) minz=14.92 maxz=15.08 minx=2.50 maxx=7.50 mat=PolygonHeist_Material_01_A
+SM_Env_Roof_05 | pos=(-2.50,6.00,20.00) size=(5.00,0.91,5.00) minz=15.00 maxz=20.00 minx=-7.50 maxx=-2.50 mat=PolygonHeist_Material_01_A
+SM_Env_Roof_05 | pos=(-7.50,6.00,20.00) size=(5.00,0.91,5.00) minz=15.00 maxz=20.00 minx=-12.50 maxx=-7.50 mat=PolygonHeist_Material_01_A
+SM_Env_Roof_05 | pos=(-7.50,6.00,15.00) size=(5.00,0.91,5.00) minz=10.00 maxz=15.00 minx=-12.50 maxx=-7.50 mat=PolygonHeist_Material_01_A
+SM_Env_Ceiling_01 | pos=(-7.50,3.45,10.00) size=(5.00,0.45,5.00) minz=10.00 maxz=15.00 minx=-12.50 maxx=-7.50 mat=PolygonHeist_Material_01_A
+SM_Env_Wall_Exterior_01 | pos=(7.58,0.00,20.00) size=(0.16,3.00,5.00) minz=15.00 maxz=20.00 minx=7.42 maxx=7.58 mat=PolygonHeist_Material_01_A
+SM_Env_Floor_02 | pos=(7.50,0.00,10.00) size=(5.00,0.00,5.00) minz=10.00 maxz=15.00 minx=2.50 maxx=7.50 mat=PolygonHeist_Material_01_A
+SM_Env_Roof_05 | pos=(2.50,6.00,20.00) size=(5.00,0.91,5.00) minz=15.00 maxz=20.00 minx=-2.50 maxx=2.50 mat=PolygonHeist_Material_01_A
+SM_Env_Floor_02 | pos=(2.50,0.00,10.00) size=(5.00,0.00,5.00) minz=10.00 maxz=15.00 minx=-2.50 maxx=2.50 mat=PolygonHeist_Material_01_A
+SM_Env_Wall_Exterior_01 | pos=(12.58,0.00,20.00) size=(0.16,3.00,5.00) minz=15.00 maxz=20.00 minx=12.42 maxx=12.58 mat=PolygonHeist_Material_01_A
+SM_Env_Wall_Exterior_01 | pos=(12.58,3.00,15.00) size=(0.16,3.00,5.00) minz=10.00 maxz=15.00 minx=12.42 maxx=12.58 mat=PolygonHeist_Material_01_A
+SM_Env_Wall_Exterior_01 | pos=(-12.58,3.00,15.00) size=(0.16,3.00,5.00) minz=15.00 maxz=20.00 minx=-12.58 maxx=-12.42 mat=PolygonHeist_Material_01_A
+SM_Env_Floor_02 | pos=(12.50,0.00,10.00) size=(5.00,0.00,5.00) minz=10.00 maxz=15.00 minx=7.50 maxx=12.50 mat=PolygonHeist_Material_01_A
+SM_Env_Ceiling_05 | pos=(2.50,3.45,10.00) size=(5.00,0.45,5.00) minz=10.00 maxz=15.00 minx=-2.50 maxx=2.50 mat=PolygonHeist_Material_01_A
+SM_Env_Floor_02 | pos=(12.50,0.00,15.00) size=(5.00,0.00,5.00) minz=15.00 maxz=20.00 minx=7.50 maxx=12.50 mat=PolygonHeist_Material_01_A
+SM_Env_Wall_Exterior_01 | pos=(12.58,3.00,20.00) size=(0.16,3.00,5.00) minz=15.00 maxz=20.00 minx=12.42 maxx=12.58 mat=PolygonHeist_Material_01_A
+SM_Env_Roof_05 | pos=(12.50,6.00,20.00) size=(5.00,0.91,5.00) minz=15.00 maxz=20.00 minx=7.50 maxx=12.50 mat=PolygonHeist_Material_01_A
+SM_Env_Sidewalk_01 | pos=(-2.50,-0.03,20.00) size=(5.00,0.03,5.00) minz=15.00 maxz=20.00 minx=-7.50 maxx=-2.50 mat=PolygonHeist_Material_01_A
+SM_Env_Ceiling_04 | pos=(12.50,3.45,15.00) size=(5.00,0.45,5.00) minz=15.00 maxz=20.00 minx=7.50 maxx=12.50 mat=PolygonHeist_Material_01_A
+SM_Env_Ceiling_03 | pos=(7.50,3.45,10.00) size=(5.00,0.45,5.00) minz=10.00 maxz=15.00 minx=2.50 maxx=7.50 mat=PolygonHeist_Material_01_A
+SM_Env_Wall_Exterior_01 | pos=(-12.58,0.00,10.00) size=(0.16,3.00,5.00) minz=10.00 maxz=15.00 minx=-12.58 maxx=-12.42 mat=PolygonHeist_Material_01_A
+SM_Prop_Desk_Glass_01 | pos=(-9.78,0.00,16.96) size=(1.77,0.02,1.98) minz=15.43 maxz=17.41 minx=-10.88 maxx=-9.11 mat=PolygonHeist_Material_01_A_Glass
+SM_Prop_Desk_01 | pos=(-9.78,0.00,16.96) size=(1.78,1.35,3.14) minz=15.43 maxz=18.57 minx=-10.89 maxx=-9.11 mat=PolygonHeist_Material_01_A
+SM_Env_Ceiling_04 | pos=(-7.50,3.45,15.00) size=(5.00,0.45,5.00) minz=15.00 maxz=20.00 minx=-12.50 maxx=-7.50 mat=PolygonHeist_Material_01_A
+SM_Env_VaultDoor_Handle_02 | pos=(-0.88,1.40,15.16) size=(0.69,0.69,0.06) minz=15.13 maxz=15.19 minx=-1.22 maxx=-0.54 mat=PolygonHeist_Material_01_A
+SM_Env_VaultDoor_Handle_01 | pos=(0.00,1.40,15.40) size=(1.23,1.38,0.14) minz=15.33 maxz=15.47 minx=-0.62 maxx=0.62 mat=PolygonHeist_Material_01_A
+SM_Env_VaultDoor_Lid_01 | pos=(1.31,1.04,15.03) size=(2.82,2.50,0.86) minz=14.59 maxz=15.44 minx=-1.35 maxx=1.47 mat=PolygonHeist_Material_01_A
+SM_Env_VaultDoor_Frame_01 | pos=(2.50,0.00,14.53) size=(5.00,3.00,0.74) minz=14.53 maxz=15.27 minx=-2.50 maxx=2.50 mat=PolygonHeist_Material_01_A
+SM_Env_Wall_Exterior_01 | pos=(-12.58,3.00,10.00) size=(0.16,3.00,5.00) minz=10.00 maxz=15.00 minx=-12.58 maxx=-12.42 mat=PolygonHeist_Material_01_A
+SM_Env_Floor_02 | pos=(-7.50,0.00,10.00) size=(5.00,0.00,5.00) minz=10.00 maxz=15.00 minx=-12.50 maxx=-7.50 mat=PolygonHeist_Material_01_A
+SM_Env_Wall_Exterior_01 | pos=(12.58,0.00,15.00) size=(0.16,3.00,5.00) minz=10.00 maxz=15.00 minx=12.42 maxx=12.58 mat=PolygonHeist_Material_01_A
+SM_Env_Wall_Exterior_01 | pos=(-2.50,0.00,14.92) size=(5.00,3.00,0.16) minz=14.92 maxz=15.08 minx=-7.50 maxx=-2.50 mat=PolygonHeist_Material_01_A
+SM_Env_Floor_02 | pos=(-7.50,0.00,15.00) size=(5.00,0.00,5.00) minz=15.00 maxz=20.00 minx=-12.50 maxx=-7.50 mat=PolygonHeist_Material_01_A
+SM_Env_Roof_05 | pos=(2.50,6.00,15.00) size=(5.00,0.91,5.00) minz=10.00 maxz=15.00 minx=-2.50 maxx=2.50 mat=PolygonHeist_Material_01_A
+Floor | pos=(0.00,-0.05,0.00) size=(200.00,0.00,200.00) minz=-100.00 maxz=100.00 minx=-100.00 maxx=100.00 mat=Default-Material
