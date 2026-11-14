@@ -163,7 +163,7 @@ for x in (-10, -5, 0, 5, 10):
         add(room_at(x, z), FLOOR_A if (round(x) + round(z)) % 10 == 0 else FLOOR_B, x, z)
 for x in (-5, 0, 5):
     for z in (17.5, 22.5):
-        add('vault', FLOOR_A if (x + z) % 10 == 0 else FLOOR_B, x, z)
+        add('vault', PLAZA, x, z, y=PLAZA_Y)
 for x in (-10, 10):
     for z in (17.5, 22.5):
         add('corridorL' if x < 0 else 'corridorR',
@@ -175,13 +175,17 @@ for x in (-17.5, -12.5, -7.5, -2.5, 2.5, 7.5, 12.5, 17.5):
 # ------------------------------------------------------------------ ceilings (bottom at room height)
 CEILINGS = ['SM_Env_Ceiling_01', 'SM_Env_Ceiling_02', 'SM_Env_Ceiling_03',
             'SM_Env_Ceiling_04', 'SM_Env_Ceiling_05']
+CEILING_CORRIDOR = 'SM_Env_Ceiling_05'  # both staff corridors share one design
 ci = 0
 for x in (-10, -5, 0, 5, 10):
     for z in (12.5, 17.5, 22.5):
         rid = room_at(x, z)
-        n = CEILINGS[ci % len(CEILINGS)]
+        if rid in ('corridorL', 'corridorR'):
+            n = CEILING_CORRIDOR
+        else:
+            n = CEILINGS[ci % len(CEILINGS)]
+            ci += 1
         add(rid, n, x, z, y=3.0 - P(n)['bounds']['min'][1])
-        ci += 1
 
 # Roof caps the entire footprint at 6m. The lobby has no ceiling tiles - the roof underside IS its ceiling.
 for x in (-10, -5, 0, 5, 10):
@@ -270,8 +274,10 @@ add('lobby', 'SM_Prop_Plant_03', -11.4, 9.0, 0.0)
 add('lobby', 'SM_Prop_Plant_01', 11.4, 9.0, 0.0)
 add('lobby', 'SM_Prop_ATM_01', -12.0, 5.5, 90.0)
 add('lobby', 'SM_Prop_ATM_01', 12.0, 5.5, 270.0)
-add('lobby', 'SM_Prop_Pillar_01', -5.0, 5.0, 0.0)
-add('lobby', 'SM_Prop_Pillar_01', 5.0, 5.0, 0.0)
+add('lobby', 'SM_Prop_Pillar_01', -5.0, 5.0, 0.0, key='lbustbaseL')
+add_on('lobby', 'lbustbaseL', 'SM_Prop_Statue_01', 0.0, 0.0, 180.0)
+add('lobby', 'SM_Prop_Pillar_01', 5.0, 5.0, 0.0, key='lbustbaseR')
+add_on('lobby', 'lbustbaseR', 'SM_Prop_Statue_01', 0.0, 0.0, 180.0)
 add('lobby', 'SM_Prop_WaterCooler_01', 11.4, 6.8, 270.0)
 add('lobby', 'SM_Prop_Bin_01', -11.4, 6.8, 0.0)
 for px in (-3.0, -1.2, 1.2, 3.0):
@@ -301,9 +307,7 @@ MOUNTED.append(add_mount('lobby', 'SM_Prop_Flag_Wall_02', 'x', 12.5, -1, 3.5, 1.
 for x in (-5.0, 0.0, 5.0):
     k = 'desk%d' % int(x * 10)
     add('lobby', 'SM_Prop_TellerDesk_01', x, 8.2, 180.0, key=k)
-    add_on('lobby', k, 'SM_Prop_Computer_Screen_01', 0.0, 0.12, 180.0)
-    add_on('lobby', k, 'SM_Prop_Computer_Keyboard_01', 0.0, 0.38, 0.0)
-    add_on('lobby', k, 'SM_Prop_Computer_Mouse_01', 0.42, 0.38, 0.0)
+    add_on('lobby', k, 'SM_Prop_Computer_01', 0.0, 0.0, 0.0)
     add_on('lobby', k, 'SM_Prop_Money_Stack_01', -0.55, 0.25, 15.0)
     add_on('lobby', k, 'SM_Prop_Folder_01', 0.72, 0.12, 90.0)
     add_on('lobby', k, 'SM_Prop_DeskLight_01', -0.85, 0.1, 180.0)
@@ -335,23 +339,26 @@ add('vault', 'SM_Prop_Drill_01', -2.6, 20.0, 90.0, key='vdrill')
 add('vault', 'SM_Prop_VaultTrolley_01', 3.2, 21.0, 0.0, key='vtrolley')
 add('vault', 'SM_Item_DuffleBag_Full_01', -3.4, 18.2, 270.0)
 add('vault', 'SM_Item_DuffleBag_Open_Empty_01', -4.2, 21.5, 90.0)
+add('vault', 'SM_Item_DuffleBag_Open_Full_01', 1.6, 18.4, 90.0)
 MOUNTED.append(add_mount('vault', 'SM_Prop_AirVent_01', 'z', 25.0, -1, -3.5, 2.6, 0.0))
 add_ceiling('vault', 'SM_Prop_Camera_01', 0.0, 24.6, 0.0, 3.0)
 
 # ------------------------------------------------------------------ corridors / offices
 add('corridorL', 'SM_Prop_Desk_01', -10.0, 17.0, 90.0, key='ldesk')
-add('corridorL', 'SM_Prop_Seat_01', -8.6, 17.0, 270.0)
-add_on('corridorL', 'ldesk', 'SM_Prop_Computer_01', 0.0, 0.3, 90.0)
-add_on('corridorL', 'ldesk', 'SM_Prop_Computer_Screen_01', 0.15, 0.3, 90.0, lift=0.18)
+add('corridorL', 'SM_Prop_Seat_01', -11.32, 17.0, 90.0)
 add_on('corridorL', 'ldesk', 'SM_Prop_Folder_02', -0.4, -0.2, 90.0)
+add('corridorL', 'SM_Prop_Pillar_01', -11.4, 23.4, 0.0, key='lstatuebase')
+add_on('corridorL', 'lstatuebase', 'SM_Prop_Statue_01', 0.0, 0.0, 180.0)
 add('corridorL', 'SM_Prop_Shelf_01', -12.0, 20.0, 90.0)
 add('corridorL', 'SM_Prop_Drawers_01', -10.0, 23.0, 0.0)
 add('corridorL', 'SM_Prop_Plant_02', -8.8, 23.6, 0.0)
 add_ceiling('corridorL', 'SM_Prop_Camera_01', -12.1, 22.0, 90.0, 3.0)
 add('corridorR', 'SM_Prop_Desk_02', 10.0, 17.0, 270.0, key='rdesk')
-add('corridorR', 'SM_Prop_Seat_01', 8.6, 17.0, 90.0)
+add('corridorR', 'SM_Prop_Seat_01', 11.32, 17.0, 270.0)
 add_on('corridorR', 'rdesk', 'SM_Prop_Computer_01', 0.0, 0.3, 270.0)
 add_on('corridorR', 'rdesk', 'SM_Prop_Folder_03', 0.4, -0.2, 270.0)
+add('corridorR', 'SM_Prop_Pillar_01', 11.4, 23.4, 0.0, key='rstatuebase')
+add_on('corridorR', 'rstatuebase', 'SM_Prop_Statue_01', 0.0, 0.0, 180.0)
 add('corridorR', 'SM_Prop_Shelf_01', 12.0, 20.0, 270.0)
 add('corridorR', 'SM_Prop_WaterCooler_01', 8.4, 23.4, 0.0)
 add('corridorR', 'SM_Prop_Drawers_01', 10.0, 23.0, 0.0)

@@ -344,6 +344,7 @@ using UnityEngine.SceneManagement;
 public static class LevelBuilder
 {
     static int spawnCounter;
+    static Material plazaMat;
     static readonly System.Collections.Generic.List<Vector3> spawnPositions = new System.Collections.Generic.List<Vector3>();
 
     public static void BuildFromLayoutAsset()
@@ -384,6 +385,8 @@ public static class LevelBuilder
         spawnPositions.Clear();
         int placed = 0;
         int missing = 0;
+        int lightCount = 0;
+        int tintedCount = 0;
 
         foreach (LevelRoomData room in layout.rooms)
         {
@@ -431,6 +434,36 @@ public static class LevelBuilder
                         Debug.Log("LEVEL_BUILDER: vault opened lids=" + lids + " collidersRemoved=" + cols +
                             " children=" + inst.transform.childCount);
                     }
+                    // Ceiling light fixtures get a real warm point light so interiors are
+                    // not lit by ambient alone. Shadows off keeps the low-end profile cheap.
+                    if (inst.name.Contains("Ceiling_Light"))
+                    {
+                        Light roomLight = inst.AddComponent<Light>();
+                        roomLight.type = LightType.Point;
+                        roomLight.range = 11f;
+                        roomLight.intensity = 1.15f;
+                        roomLight.color = new Color(1f, 0.94f, 0.84f);
+                        roomLight.shadows = LightShadows.None;
+                        lightCount++;
+                    }
+
+                    // The kit's paving atlas is near-white; darken the exterior slabs so
+                    // the plaza does not blow out under direct sun. One shared material.
+                    if (inst.name.Contains("Sidewalk"))
+                    {
+                        Renderer[] tileRenderers = inst.GetComponentsInChildren<Renderer>(true);
+                        if (plazaMat == null && tileRenderers.Length > 0)
+                        {
+                            plazaMat = new Material(tileRenderers[0].sharedMaterial);
+                            plazaMat.color = new Color(0.62f, 0.62f, 0.60f, 1f);
+                        }
+                        if (plazaMat != null)
+                        {
+                            foreach (Renderer r in tileRenderers) r.sharedMaterial = plazaMat;
+                            tintedCount++;
+                        }
+                    }
+
                     placed++;
                 }
             }
@@ -443,6 +476,9 @@ public static class LevelBuilder
                 }
             }
         }
+
+        Debug.Log("LEVEL_BUILDER: props placed=" + placed + " missing=" + missing +
+            " pointLights=" + lightCount + " plazaTilesTinted=" + tintedCount);
 
         if (layout.globalSpawnPoints != null)
         {
