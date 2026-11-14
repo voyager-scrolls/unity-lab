@@ -133,11 +133,15 @@ CEILING_MOUNTED = []
 
 
 def add_ceiling(room, name, x, z, rot, ceil_y):
-    """Hang a pendant fixture from the ceiling (its AABB top touches ceil_y)."""
+    """Hang a pendant fixture from the ceiling (its AABB top touches ceil_y).
+    A fire-detector boss is placed at the same ceiling point so the fixture has a
+    visible mount plate instead of reading as a floating prop."""
     y = ceil_y - P(name)['bounds']['max'][1]
     cx, cz = rot_center(name, rot)
     _emit(room, name, x - cx, y, z - cz, rot, {'mounted': True})
     CEILING_MOUNTED.append({'name': name, 'x': x, 'z': z, 'top': y + P(name)['bounds']['max'][1], 'ceil': ceil_y})
+    dy = ceil_y - P('SM_Prop_Fire_Detector_01')['bounds']['max'][1]
+    _emit(room, 'SM_Prop_Fire_Detector_01', x, dy, z, 0.0, {'mounted': True})
 
 
 MOUNTED = []
@@ -173,20 +177,20 @@ for x in (-17.5, -12.5, -7.5, -2.5, 2.5, 7.5, 12.5, 17.5):
         add('exterior', PLAZA, x, z, y=PLAZA_Y)
 
 # ------------------------------------------------------------------ ceilings (bottom at room height)
-CEILINGS = ['SM_Env_Ceiling_01', 'SM_Env_Ceiling_02', 'SM_Env_Ceiling_03',
-            'SM_Env_Ceiling_04', 'SM_Env_Ceiling_05']
-# the right corridor's original pair is 04 (z=17.5) + 05 (z=22.5); corridorL copies that
-# exact pair so both staff corridors match. Other rooms keep their own designs.
-CORRIDOR_CEILINGS = ['SM_Env_Ceiling_04', 'SM_Env_Ceiling_05']
-ci = 0
+# Ceilings: one design per room so tile joins are invisible (a mixed-design ceiling
+# reads as a gap because the modules have different coffer depths).
+# vault = Ceiling_01 (deep coffer), teller + both corridors = Ceiling_04 (beam panel).
 for x in (-10, -5, 0, 5, 10):
     for z in (12.5, 17.5, 22.5):
         rid = room_at(x, z)
         if rid in ('corridorL', 'corridorR'):
-            n = CORRIDOR_CEILINGS[0 if z < 20 else 1]
+            n = 'SM_Env_Ceiling_04'
+        elif rid == 'vault':
+            n = 'SM_Env_Ceiling_01'
+        elif rid == 'teller':
+            n = 'SM_Env_Ceiling_04'
         else:
-            n = CEILINGS[ci % len(CEILINGS)]
-            ci += 1
+            n = 'SM_Env_Ceiling_04'
         add(rid, n, x, z, y=3.0 - P(n)['bounds']['min'][1])
 
 # Roof caps the entire footprint at 6m. The lobby has no ceiling tiles - the roof underside IS its ceiling.
@@ -337,8 +341,24 @@ add_ceiling('lobby', 'SM_Prop_Camera_01', -9.5, 3.0, 180.0, 6.0)
 add_ceiling('lobby', 'SM_Prop_Camera_01', 9.5, 3.0, 180.0, 6.0)
 add_ceiling('lobby', 'SM_Prop_Camera_01', -12.1, 5.0, 90.0, 6.0)
 MOUNTED.append(add_mount('lobby', 'SM_Prop_AlarmButton_01', 'z', 10.0, -1, 7.0, 1.2, 180.0))
-MOUNTED.append(add_mount('lobby', 'SM_Prop_Flag_Wall_01', 'x', -12.5, 1, 3.5, 1.4, 90.0))
-MOUNTED.append(add_mount('lobby', 'SM_Prop_Flag_Wall_02', 'x', 12.5, -1, 3.5, 1.4, 270.0))
+# ---- the BANK wall becomes a hero composition: four flags in vertical rhythm around the sign ----
+MOUNTED.append(add_mount('lobby', 'SM_Prop_Sign_Jewellery_01', 'x', -12.5, 1, 4.40, 3.20, 90.0))
+MOUNTED.append(add_mount('lobby', 'SM_Prop_Sign_Jewellery_01', 'x', 12.5, -1, 4.40, 3.20, 270.0))
+MOUNTED.append(add_mount('lobby', 'SM_Prop_Aircon_01', 'x', -12.5, 1, 8.40, 4.80, 90.0))
+MOUNTED.append(add_mount('lobby', 'SM_Prop_Aircon_01', 'x', 12.5, -1, 8.40, 4.80, 270.0))
+# ---- the BANK wall becomes a hero composition: four flags in vertical rhythm around the sign ----
+MOUNTED.append(add_mount('lobby', 'SM_Prop_Flag_Wall_01', 'z', 10.0, -1, -3.20, 4.15, 180.0))
+MOUNTED.append(add_mount('lobby', 'SM_Prop_Flag_Wall_02', 'z', 10.0, -1, 3.20, 4.15, 180.0))
+MOUNTED.append(add_mount('lobby', 'SM_Prop_Flag_Wall_01', 'z', 10.0, -1, -6.40, 4.35, 180.0))
+MOUNTED.append(add_mount('lobby', 'SM_Prop_Flag_Wall_02', 'z', 10.0, -1, 6.40, 4.35, 180.0))
+# security checkpoint in the side nooks, clear of the coffee tables and cases
+add('lobby', 'SM_Prop_MetalDetector_01', -11.60, 3.20, 90.0)
+add('lobby', 'SM_Prop_MetalDetector_Baggage_01', 11.60, 3.20, 270.0)
+# ceiling utility kit on the roof underside
+for spx in (-6.0, 6.0):
+    for spz in (2.5, 7.5):
+        add('lobby', 'SM_Prop_Sprinkler_01', spx, spz, 0.0, y=6.0)
+add('lobby', 'SM_Prop_Fire_Detector_01', 0.0, 9.0, 0.0, y=6.0)
 
 # ------------------------------------------------------------------ teller (3m suspended ceiling)
 # teller counters stand in the lobby, pulled 1.8m off the partition so staff have a workable aisle
@@ -394,12 +414,24 @@ add('lobby', 'SM_Item_Crowbar_01', -6.00, 9.45, 80.0, y=0.09)
 MOUNTED.append(add_mount('teller', 'SM_Prop_AirVent_01', 'z', 14.92, -1, 5.0, 2.6, 0.0))
 add_ceiling('teller', 'SM_Prop_Camera_01', -8.0, 14.6, 0.0, 3.0)
 MOUNTED.append(add_mount('teller', 'SM_Prop_AlarmButton_01', 'z', 10.0, 1, 7.0, 1.2, 0.0))
+# back-office wall dressing: AC units on both side walls, ceiling utility kit
+MOUNTED.append(add_mount('teller', 'SM_Prop_Aircon_01', 'x', -12.5, 1, 12.60, 2.70, 90.0))
+MOUNTED.append(add_mount('teller', 'SM_Prop_Aircon_01', 'x', 12.5, -1, 12.60, 2.70, 270.0))
+add('teller', 'SM_Prop_Sprinkler_01', -6.0, 11.0, 0.0, y=3.0)
+add('teller', 'SM_Prop_Sprinkler_01', 6.0, 11.0, 0.0, y=3.0)
 
 # ------------------------------------------------------------------ vault (3m)
 for z in (17.5, 22.5):
     pass
 MOUNTED.append(add_mount('vault', 'SM_Prop_SafeDepositBoxes_01', 'x', -7.5, 1, 20.0, 0.0, 90.0))
-MOUNTED.append(add_mount('vault', 'SM_Prop_SafeDepositBoxes_01', 'x', 7.5, -1, 20.0, 0.0, 270.0))
+MOUNTED.append(add_mount('vault', 'SM_Prop_SafeDepositBoxes_Looted_01', 'x', 7.5, -1, 20.0, 0.0, 270.0))
+# drawers torn out of the looted box wall and dumped on the floor
+add('vault', 'SM_Prop_SafeDepositBox_Container_01', 5.60, 21.60, 20.0)
+add('vault', 'SM_Prop_SafeDepositBox_Container_01', 4.90, 22.40, 340.0)
+add('vault', 'SM_Prop_SafeDepositBox_Cover_01', 6.10, 22.10, 10.0, y=0.39)
+add('vault', 'SM_Prop_SafeDepositBox_Cover_01', 4.40, 21.90, 300.0, y=0.39)
+add('vault', 'SM_Prop_Sprinkler_01', -3.5, 18.5, 0.0, y=3.0)
+add('vault', 'SM_Prop_Sprinkler_01', 3.5, 18.5, 0.0, y=3.0)
 add('vault', 'SM_Prop_Table_01', 0.0, 20.0, 0.0, key='vtable')
 add_on('vault', 'vtable', 'SM_Prop_GoldBar_01', -0.6, 0.0, 20.0)
 add_on('vault', 'vtable', 'SM_Prop_GoldBar_02', -0.2, 0.05, 65.0)
@@ -447,6 +479,9 @@ add('corridorL', 'SM_Prop_Drawers_01', -10.0, 23.0, 0.0)
 add('corridorL', 'SM_Prop_Plant_02', -8.8, 23.6, 0.0)
 add_ceiling('corridorL', 'SM_Prop_Camera_01', -12.1, 22.0, 90.0, 3.0)
 add('corridorL', 'SM_Prop_Money_Stack_01', -8.60, 19.40, 25.0)
+MOUNTED.append(add_mount('corridorL', 'SM_Prop_Aircon_01', 'x', -12.5, 1, 19.00, 2.60, 90.0))
+MOUNTED.append(add_mount('corridorL', 'SM_Prop_AirVent_01', 'z', 25.0, -1, -10.50, 2.55, 180.0))
+add('corridorL', 'SM_Prop_Sprinkler_01', -10.0, 17.0, 0.0, y=3.0)
 add('corridorR', 'SM_Prop_Desk_02', 10.0, 17.0, 270.0, key='rdesk')
 add('corridorR', 'SM_Prop_Seat_01', 11.32, 17.0, 270.0)
 add_on('corridorR', 'rdesk', 'SM_Prop_Computer_01', 0.0, 0.3, 270.0)
@@ -458,6 +493,9 @@ add('corridorR', 'SM_Prop_WaterCooler_01', 8.4, 23.4, 0.0)
 add('corridorR', 'SM_Prop_Drawers_01', 10.0, 23.0, 0.0)
 add_ceiling('corridorR', 'SM_Prop_Camera_01', 12.1, 22.0, 270.0, 3.0)
 add('corridorR', 'SM_Item_Briefcase_01', 9.40, 19.20, 95.0, y=0.10)
+MOUNTED.append(add_mount('corridorR', 'SM_Prop_Aircon_01', 'x', 12.5, -1, 19.00, 2.60, 270.0))
+MOUNTED.append(add_mount('corridorR', 'SM_Prop_AirVent_01', 'z', 25.0, -1, 10.50, 2.55, 180.0))
+add('corridorR', 'SM_Prop_Sprinkler_01', 10.0, 17.0, 0.0, y=3.0)
 
 # ------------------------------------------------------------------ exterior
 add('exterior', 'SM_Env_Pillar_Exterior_Floor_01', -14.5, -3.0, 0.0)
@@ -476,6 +514,26 @@ add('exterior', 'SM_Prop_Plant_03', -15.0, -4.0, 0.0)
 add('exterior', 'SM_Prop_Plant_03', 15.0, -4.0, 0.0)
 for px in (-3.0, 3.0):
     add('exterior', 'SM_Prop_RopeBarrier_Pole_01', px, -1.6, 0.0)
+# ---- tactical perimeter: police cordon across the approach, breached in the middle ----
+for px in (-9.0, -7.0, -5.0, -3.0, 3.0, 5.0, 7.0, 9.0):
+    add('exterior', 'SM_Prop_RopeBarrier_Pole_01', px, -5.6, 0.0)
+for px in (-8.0, -6.0, -4.0, 4.0, 6.0, 8.0):
+    add('exterior', 'SM_Prop_RopeBarrier_01', px, -5.6, 0.0)
+add('exterior', 'SM_Veh_SwatVan_01', -12.0, -13.0, 20.0)
+add('exterior', 'SM_Veh_Car_Police_Heist_01', 12.5, -3.5, 290.0)
+add('exterior', 'SM_Prop_Box_01', 6.2, -10.2, 15.0)
+add('exterior', 'SM_Prop_Box_01', 5.6, -10.8, 340.0)
+add('exterior', 'SM_Prop_Box_01', -11.6, -6.6, 20.0)
+# ---- squads: entrance flankers, cordon pair, van crew, rooftop overwatch ----
+add('exterior', 'Character_Male_SWAT_01', -3.20, -2.60, 160.0, y=0.11)
+add('exterior', 'Character_Male_SWAT_01', 3.20, -2.60, 200.0, y=0.11)
+add('exterior', 'Character_Male_SWAT_01', -6.60, -6.40, 180.0, y=0.11)
+add('exterior', 'Character_Male_SWAT_01', 6.60, -6.40, 180.0, y=0.11)
+add('exterior', 'Character_Male_SWAT_01', 6.40, -9.60, 20.0, y=0.11)
+add('exterior', 'Character_Male_SWAT_01', -5.50, 1.20, 180.0, y=7.02)
+add('exterior', 'Character_Male_SWAT_01', 5.50, 1.20, 180.0, y=7.02)
+add('exterior', 'Character_Male_FBI', -10.80, -9.20, 70.0, y=0.11)
+add('exterior', 'Character_Female_FBI', 10.20, -12.00, 300.0, y=0.11)
 
 # ------------------------------------------------------------------ spawns + killzone
 ROOMS['lobby']['spawnPoints'] = [
@@ -720,6 +778,9 @@ for i in range(len(MOUNTED_BOXES)):
     for j in range(i + 1, len(MOUNTED_BOXES)):
         na, a = MOUNTED_BOXES[i]
         nb, b = MOUNTED_BOXES[j]
+        # a fire-detector boss is deliberately centred under a pendant camera
+        if 'Fire_Detector' in na or 'Fire_Detector' in nb:
+            continue
         if all(a[k] < b[k + 3] - 0.02 and b[k] < a[k + 3] - 0.02 for k in range(3)):
             FAIL.append('mounted fixtures overlap: %s <-> %s' % (na, nb))
 print('SOLID_WALL_MODULES:', len(SOLID_BOXES))

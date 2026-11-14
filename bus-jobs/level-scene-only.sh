@@ -345,6 +345,7 @@ public static class LevelBuilder
 {
     static int spawnCounter;
     static Material plazaMat;
+    static int characterCount;
     static readonly System.Collections.Generic.List<Vector3> spawnPositions = new System.Collections.Generic.List<Vector3>();
 
     public static void BuildFromLayoutAsset()
@@ -464,6 +465,29 @@ public static class LevelBuilder
                         }
                     }
 
+                    // Characters are set dressing, not agents: strip colliders (they would
+                    // carve the navmesh) and relax the T-pose into a standing pose.
+                    if (inst.name.Contains("Character_"))
+                    {
+                        int ccols = 0;
+                        foreach (Collider c in inst.GetComponentsInChildren<Collider>(true))
+                        {
+                            UnityEngine.Object.DestroyImmediate(c);
+                            ccols++;
+                        }
+                        foreach (Transform t in inst.GetComponentsInChildren<Transform>(true))
+                        {
+                            string bn = t.name;
+                            if (bn == "Shoulder_L") t.localRotation = t.localRotation * Quaternion.Euler(0f, 0f, 72f);
+                            else if (bn == "Shoulder_R") t.localRotation = t.localRotation * Quaternion.Euler(0f, 0f, -72f);
+                            else if (bn == "Elbow_L") t.localRotation = t.localRotation * Quaternion.Euler(0f, 0f, 12f);
+                            else if (bn == "Elbow_R") t.localRotation = t.localRotation * Quaternion.Euler(0f, 0f, -12f);
+                        }
+                        characterCount++;
+                        if (characterCount == 1)
+                            Debug.Log("LEVEL_BUILDER: characters posed collidersRemoved=" + ccols);
+                    }
+
                     placed++;
                 }
             }
@@ -478,7 +502,10 @@ public static class LevelBuilder
         }
 
         Debug.Log("LEVEL_BUILDER: props placed=" + placed + " missing=" + missing +
-            " pointLights=" + lightCount + " plazaTilesTinted=" + tintedCount);
+            " pointLights=" + lightCount + " plazaTilesTinted=" + tintedCount +
+            " characters=" + characterCount);
+
+        AddEmergencyLighting(scene);
 
         if (layout.globalSpawnPoints != null)
         {
@@ -799,6 +826,42 @@ public static class LevelBuilder
             child.gameObject.layer = noNav ? 9 : 0;
             SetNoNavLayerRecursive(child);
         }
+    }
+
+    // Police perimeter lighting: alternating red/blue spots washing the facade so the
+    // exterior reads as an active crime scene rather than a neutral day shot.
+    static void AddEmergencyLighting(Scene scene)
+    {
+        Vector3[] pos = new Vector3[]
+        {
+            new Vector3(-6.0f, 3.4f, -2.6f),
+            new Vector3(6.0f, 3.4f, -2.6f),
+            new Vector3(-10.0f, 3.8f, -6.0f),
+            new Vector3(10.0f, 3.8f, -6.0f)
+        };
+        Color[] cols = new Color[]
+        {
+            new Color(1.00f, 0.12f, 0.10f),
+            new Color(0.12f, 0.30f, 1.00f),
+            new Color(0.12f, 0.30f, 1.00f),
+            new Color(1.00f, 0.12f, 0.10f)
+        };
+        for (int i = 0; i < pos.Length; i++)
+        {
+            GameObject go = new GameObject("EmergencyLight_" + i);
+            SceneManager.MoveGameObjectToScene(go, scene);
+            go.transform.position = pos[i];
+            Vector3 target = new Vector3(pos[i].x * 0.25f, 2.2f, 0.2f);
+            go.transform.rotation = Quaternion.LookRotation((target - pos[i]).normalized, Vector3.up);
+            Light l = go.AddComponent<Light>();
+            l.type = LightType.Spot;
+            l.spotAngle = 90f;
+            l.range = 26f;
+            l.intensity = 4.0f;
+            l.color = cols[i];
+            l.shadows = LightShadows.None;
+        }
+        Debug.Log("LEVEL_BUILDER: emergency lights=4");
     }
 }
 CSEOF2
