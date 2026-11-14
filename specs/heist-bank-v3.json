@@ -2698,15 +2698,15 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Jewellery_01.prefab",
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Jewellery_04.prefab",
           "position": [
             -9.0,
             0.8,
-            1.45
+            0.95
           ],
           "rotation": [
             0.0,
-            0.0,
+            90.0,
             0.0
           ],
           "scale": [
@@ -2716,15 +2716,15 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Jewellery_02.prefab",
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Jewellery_Rings_01.prefab",
           "position": [
             -9.0,
             0.8,
-            1.6
+            1.55
           ],
           "rotation": [
             0.0,
-            0.0,
+            90.0,
             0.0
           ],
           "scale": [
@@ -2734,15 +2734,33 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Jewellery_Ring_01.prefab",
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Jewellery_Necklace_02.prefab",
           "position": [
             -9.0,
             0.8,
-            1.75
+            2.0
           ],
           "rotation": [
             0.0,
+            90.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Jewellery_Necklace_01.prefab",
+          "position": [
+            -9.0099,
+            0.8,
+            2.4604
+          ],
+          "rotation": [
             0.0,
+            90.0,
             0.0
           ],
           "scale": [
@@ -2770,33 +2788,15 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Jewellery_03.prefab",
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Jewellery_04.prefab",
           "position": [
             9.0,
             0.8,
-            1.15
+            0.95
           ],
           "rotation": [
             0.0,
-            0.0,
-            0.0
-          ],
-          "scale": [
-            1.0,
-            1.0,
-            1.0
-          ]
-        },
-        {
-          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Jewellery_Necklace_01.prefab",
-          "position": [
-            8.9896,
-            0.8,
-            1.5901
-          ],
-          "rotation": [
-            0.0,
-            0.0,
+            90.0,
             0.0
           ],
           "scale": [
@@ -2810,11 +2810,47 @@
           "position": [
             9.0,
             0.8,
-            2.05
+            1.55
           ],
           "rotation": [
             0.0,
+            90.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Jewellery_Necklace_02.prefab",
+          "position": [
+            9.0,
+            0.8,
+            2.0
+          ],
+          "rotation": [
             0.0,
+            90.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Jewellery_Necklace_01.prefab",
+          "position": [
+            8.9901,
+            0.8,
+            2.4604
+          ],
+          "rotation": [
+            0.0,
+            90.0,
             0.0
           ],
           "scale": [
@@ -2828,42 +2864,6 @@
           "position": [
             -4.0,
             0,
-            0.75
-          ],
-          "rotation": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "scale": [
-            1.0,
-            1.0,
-            1.0
-          ]
-        },
-        {
-          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Jewellery_Necklace_03.prefab",
-          "position": [
-            -4.75,
-            0.8,
-            0.75
-          ],
-          "rotation": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "scale": [
-            1.0,
-            1.0,
-            1.0
-          ]
-        },
-        {
-          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Jewellery_03.prefab",
-          "position": [
-            -4.0,
-            0.8,
             0.75
           ],
           "rotation": [
@@ -2880,43 +2880,7 @@
         {
           "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Jewellery_04.prefab",
           "position": [
-            -3.25,
-            0.8,
-            0.75
-          ],
-          "rotation": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "scale": [
-            1.0,
-            1.0,
-            1.0
-          ]
-        },
-        {
-          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_DisplayCase_01.prefab",
-          "position": [
-            4.0,
-            0,
-            0.75
-          ],
-          "rotation": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "scale": [
-            1.0,
-            1.0,
-            1.0
-          ]
-        },
-        {
-          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Jewellery_02.prefab",
-          "position": [
-            3.25,
+            -4.9,
             0.8,
             0.75
           ],
@@ -2934,7 +2898,25 @@
         {
           "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Jewellery_Rings_01.prefab",
           "position": [
-            4.0,
+            -4.3,
+            0.8,
+            0.75
+          ],
+          "rotation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Jewellery_Ring_01.prefab",
+          "position": [
+            -3.7,
             0.8,
             0.75
           ],
@@ -2952,13 +2934,481 @@
         {
           "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Jewellery_Necklace_04.prefab",
           "position": [
-            4.75,
+            -3.1,
             0.8,
             0.75
           ],
           "rotation": [
             0.0,
             0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_DisplayCase_01.prefab",
+          "position": [
+            4.0,
+            0,
+            0.75
+          ],
+          "rotation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Jewellery_04.prefab",
+          "position": [
+            4.9,
+            0.8,
+            0.75
+          ],
+          "rotation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Jewellery_Rings_01.prefab",
+          "position": [
+            4.3,
+            0.8,
+            0.75
+          ],
+          "rotation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Jewellery_Ring_01.prefab",
+          "position": [
+            3.7,
+            0.8,
+            0.75
+          ],
+          "rotation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Jewellery_Necklace_04.prefab",
+          "position": [
+            3.1,
+            0.8,
+            0.75
+          ],
+          "rotation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Items/SM_Item_DuffleBag_Open_Empty_01.prefab",
+          "position": [
+            -2.05,
+            0,
+            2.35
+          ],
+          "rotation": [
+            0.0,
+            25.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Money_Note_03.prefab",
+          "position": [
+            -1.35,
+            0.02,
+            2.55
+          ],
+          "rotation": [
+            0.0,
+            40.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Money_Note_05.prefab",
+          "position": [
+            -2.6,
+            0.02,
+            2.9
+          ],
+          "rotation": [
+            0.0,
+            300.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Money_Note_07.prefab",
+          "position": [
+            -1.7,
+            0.02,
+            3.2
+          ],
+          "rotation": [
+            0.0,
+            15.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Items/SM_Item_Crowbar_01.prefab",
+          "position": [
+            -2.4946,
+            0.09,
+            1.7
+          ],
+          "rotation": [
+            0.0,
+            65.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Masks/SM_Item_Mask_Clown_01.prefab",
+          "position": [
+            -0.7482,
+            0.13,
+            2.8997
+          ],
+          "rotation": [
+            0.0,
+            220.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Items/SM_Item_Briefcase_01.prefab",
+          "position": [
+            0.327,
+            0.18,
+            5.0
+          ],
+          "rotation": [
+            0.0,
+            100.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Money_Stack_03.prefab",
+          "position": [
+            -0.55,
+            0.18,
+            5.3
+          ],
+          "rotation": [
+            0.0,
+            12.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Jewellery_Necklace_03.prefab",
+          "position": [
+            0.9,
+            0.18,
+            5.8
+          ],
+          "rotation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Jewellery_Rings_01.prefab",
+          "position": [
+            -0.15,
+            0.19,
+            5.9
+          ],
+          "rotation": [
+            0.0,
+            20.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Jewellery_04.prefab",
+          "position": [
+            0.65,
+            0.18,
+            5.6
+          ],
+          "rotation": [
+            0.0,
+            40.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Money_Note_01.prefab",
+          "position": [
+            -0.9,
+            0.18,
+            5.7
+          ],
+          "rotation": [
+            0.0,
+            75.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Jewellery_Rings_01.prefab",
+          "position": [
+            -8.75,
+            0.02,
+            1.05
+          ],
+          "rotation": [
+            0.0,
+            30.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Jewellery_Ring_01.prefab",
+          "position": [
+            -8.55,
+            0.02,
+            1.35
+          ],
+          "rotation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Jewellery_04.prefab",
+          "position": [
+            -8.9,
+            0.0,
+            1.45
+          ],
+          "rotation": [
+            0.0,
+            15.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Jewellery_03.prefab",
+          "position": [
+            8.75,
+            0.0,
+            1.05
+          ],
+          "rotation": [
+            0.0,
+            25.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Jewellery_Ring_01.prefab",
+          "position": [
+            8.55,
+            0.02,
+            1.35
+          ],
+          "rotation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Money_Stack_02.prefab",
+          "position": [
+            -11.35,
+            0,
+            5.0
+          ],
+          "rotation": [
+            0.0,
+            20.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Money_Stack_02.prefab",
+          "position": [
+            11.35,
+            0,
+            6.0
+          ],
+          "rotation": [
+            0.0,
+            340.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Money_Note_04.prefab",
+          "position": [
+            -11.05,
+            0.02,
+            4.65
+          ],
+          "rotation": [
+            0.0,
+            55.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Money_Note_06.prefab",
+          "position": [
+            11.05,
+            0.02,
+            6.35
+          ],
+          "rotation": [
+            0.0,
+            290.0,
             0.0
           ],
           "scale": [
@@ -3324,6 +3774,168 @@
             1.0
           ],
           "surface": true
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Money_Stack_03.prefab",
+          "position": [
+            -4.3,
+            0,
+            9.35
+          ],
+          "rotation": [
+            0.0,
+            10.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Money_Stack_02.prefab",
+          "position": [
+            1.1,
+            0,
+            9.3
+          ],
+          "rotation": [
+            0.0,
+            350.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Money_Stack_01.prefab",
+          "position": [
+            5.4,
+            0,
+            9.4
+          ],
+          "rotation": [
+            0.0,
+            20.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Money_Note_04.prefab",
+          "position": [
+            -3.2,
+            0.02,
+            9.55
+          ],
+          "rotation": [
+            0.0,
+            15.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Money_Note_01.prefab",
+          "position": [
+            2.2,
+            0.02,
+            9.5
+          ],
+          "rotation": [
+            0.0,
+            100.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Money_Note_07.prefab",
+          "position": [
+            0.2,
+            0.02,
+            9.6
+          ],
+          "rotation": [
+            0.0,
+            250.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Items/SM_Item_DuffleBag_Open_Empty_01.prefab",
+          "position": [
+            3.6,
+            0,
+            9.3
+          ],
+          "rotation": [
+            0.0,
+            200.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Masks/SM_Item_Mask_Balaclava_01.prefab",
+          "position": [
+            2.7407,
+            0.11,
+            9.5497
+          ],
+          "rotation": [
+            0.0,
+            140.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Items/SM_Item_Crowbar_01.prefab",
+          "position": [
+            -5.9446,
+            0.09,
+            9.45
+          ],
+          "rotation": [
+            0.0,
+            80.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
         }
       ],
       "spawnPoints": [
@@ -3857,15 +4469,15 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Jewellery_Necklace_02.prefab",
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Jewellery_04.prefab",
           "position": [
             -12.15,
             0.8,
-            12.3
+            11.55
           ],
           "rotation": [
             0.0,
-            0.0,
+            90.0,
             0.0
           ],
           "scale": [
@@ -3875,15 +4487,51 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Jewellery_04.prefab",
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Jewellery_Rings_01.prefab",
           "position": [
             -12.15,
             0.8,
-            12.7
+            12.05
           ],
           "rotation": [
             0.0,
+            90.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Jewellery_Necklace_03.prefab",
+          "position": [
+            -12.15,
+            0.8,
+            12.55
+          ],
+          "rotation": [
             0.0,
+            90.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Jewellery_03.prefab",
+          "position": [
+            -12.15,
+            0.8,
+            13.05
+          ],
+          "rotation": [
+            0.0,
+            90.0,
             0.0
           ],
           "scale": [
@@ -3911,33 +4559,15 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Jewellery_02.prefab",
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Jewellery_04.prefab",
           "position": [
             12.15,
             0.8,
-            12.1
+            11.55
           ],
           "rotation": [
             0.0,
-            0.0,
-            0.0
-          ],
-          "scale": [
-            1.0,
-            1.0,
-            1.0
-          ]
-        },
-        {
-          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Jewellery_Ring_01.prefab",
-          "position": [
-            12.15,
-            0.8,
-            12.5
-          ],
-          "rotation": [
-            0.0,
-            0.0,
+            90.0,
             0.0
           ],
           "scale": [
@@ -3951,11 +4581,371 @@
           "position": [
             12.15,
             0.8,
-            12.9
+            12.05
+          ],
+          "rotation": [
+            0.0,
+            90.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Jewellery_Necklace_03.prefab",
+          "position": [
+            12.15,
+            0.8,
+            12.55
+          ],
+          "rotation": [
+            0.0,
+            90.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Jewellery_03.prefab",
+          "position": [
+            12.15,
+            0.8,
+            13.05
+          ],
+          "rotation": [
+            0.0,
+            90.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Jewellery_Rings_01.prefab",
+          "position": [
+            -11.35,
+            0.02,
+            12.15
+          ],
+          "rotation": [
+            0.0,
+            20.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Jewellery_Ring_01.prefab",
+          "position": [
+            -11.2,
+            0.02,
+            12.75
           ],
           "rotation": [
             0.0,
             0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Jewellery_04.prefab",
+          "position": [
+            11.3,
+            0.0,
+            12.3
+          ],
+          "rotation": [
+            0.0,
+            35.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Jewellery_Necklace_04.prefab",
+          "position": [
+            11.45,
+            0.0,
+            13.0
+          ],
+          "rotation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Money_Stack_01.prefab",
+          "position": [
+            -6.4,
+            0,
+            11.6
+          ],
+          "rotation": [
+            0.0,
+            20.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Money_Stack_02.prefab",
+          "position": [
+            -3.1,
+            0,
+            12.7
+          ],
+          "rotation": [
+            0.0,
+            350.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Money_Note_02.prefab",
+          "position": [
+            -4.6,
+            0.02,
+            12.2
+          ],
+          "rotation": [
+            0.0,
+            60.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Money_Note_05.prefab",
+          "position": [
+            -1.6,
+            0.02,
+            13.1
+          ],
+          "rotation": [
+            0.0,
+            300.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Money_Stack_03.prefab",
+          "position": [
+            -3.6,
+            0,
+            13.9
+          ],
+          "rotation": [
+            0.0,
+            5.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Money_Stack_02.prefab",
+          "position": [
+            2.9,
+            0,
+            13.95
+          ],
+          "rotation": [
+            0.0,
+            355.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Money_Note_06.prefab",
+          "position": [
+            1.2,
+            0.02,
+            13.4
+          ],
+          "rotation": [
+            0.0,
+            25.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Items/SM_Item_Bomb_01.prefab",
+          "position": [
+            -1.15,
+            0,
+            14.35
+          ],
+          "rotation": [
+            0.0,
+            20.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Items/SM_Item_Bomb_01.prefab",
+          "position": [
+            1.35,
+            0,
+            14.35
+          ],
+          "rotation": [
+            0.0,
+            340.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Items/SM_Item_Briefcase_02.prefab",
+          "position": [
+            -2.3712,
+            0.1,
+            14.15
+          ],
+          "rotation": [
+            0.0,
+            75.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Masks/SM_Item_Mask_Balaclava_01.prefab",
+          "position": [
+            1.7407,
+            0.11,
+            13.7497
+          ],
+          "rotation": [
+            0.0,
+            200.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Masks/SM_Item_Mask_Hockey_01.prefab",
+          "position": [
+            -1.9087,
+            0.1,
+            13.4997
+          ],
+          "rotation": [
+            0.0,
+            120.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Weapons/SM_Wep_RifleBandit_01.prefab",
+          "position": [
+            7.8033,
+            0.16,
+            10.6884
+          ],
+          "rotation": [
+            0.0,
+            70.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Items/SM_Item_AmmoPack_01.prefab",
+          "position": [
+            7.204,
+            0,
+            11.1
+          ],
+          "rotation": [
+            0.0,
+            30.0,
             0.0
           ],
           "scale": [
@@ -4896,24 +5886,6 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Items/SM_Item_Bomb_01.prefab",
-          "position": [
-            -2.9,
-            0,
-            16.5
-          ],
-          "rotation": [
-            0.0,
-            25.0,
-            0.0
-          ],
-          "scale": [
-            1.0,
-            1.0,
-            1.0
-          ]
-        },
-        {
           "prefab": "Assets/PolygonHeist/Prefab/Weapons/SM_Wep_RifleBandit_01.prefab",
           "position": [
             -6.1033,
@@ -5013,6 +5985,168 @@
           "rotation": [
             0.0,
             15.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Jewellery_Necklace_03.prefab",
+          "position": [
+            -1.9,
+            0,
+            19.3
+          ],
+          "rotation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Jewellery_Rings_01.prefab",
+          "position": [
+            -1.2,
+            0.02,
+            19.7
+          ],
+          "rotation": [
+            0.0,
+            25.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Jewellery_04.prefab",
+          "position": [
+            0.9,
+            0,
+            21.3
+          ],
+          "rotation": [
+            0.0,
+            40.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Jewellery_Ring_01.prefab",
+          "position": [
+            2.0,
+            0.02,
+            20.6
+          ],
+          "rotation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Money_Stack_02.prefab",
+          "position": [
+            -4.8,
+            0,
+            22.1
+          ],
+          "rotation": [
+            0.0,
+            15.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Money_Stack_03.prefab",
+          "position": [
+            2.6,
+            0,
+            22.3
+          ],
+          "rotation": [
+            0.0,
+            345.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Money_Note_03.prefab",
+          "position": [
+            -3.9,
+            0.02,
+            22.5
+          ],
+          "rotation": [
+            0.0,
+            70.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Money_Note_07.prefab",
+          "position": [
+            4.4,
+            0.02,
+            20.4
+          ],
+          "rotation": [
+            0.0,
+            240.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Money_Stack_01.prefab",
+          "position": [
+            3.2,
+            1.083,
+            21.0
+          ],
+          "rotation": [
+            0.0,
+            0.0,
             0.0
           ],
           "scale": [
@@ -5480,6 +6614,24 @@
             1.0
           ],
           "mounted": true
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Money_Stack_01.prefab",
+          "position": [
+            -8.6,
+            0,
+            19.4
+          ],
+          "rotation": [
+            0.0,
+            25.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
         }
       ],
       "spawnPoints": [],
@@ -5897,6 +7049,24 @@
             1.0
           ],
           "mounted": true
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Items/SM_Item_Briefcase_01.prefab",
+          "position": [
+            9.177,
+            0.1,
+            19.2
+          ],
+          "rotation": [
+            0.0,
+            95.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
         }
       ],
       "spawnPoints": [],

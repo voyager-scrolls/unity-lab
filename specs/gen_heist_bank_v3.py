@@ -287,24 +287,49 @@ add('lobby', 'SM_Prop_WaterCooler_01', 11.4, 6.8, 270.0)
 add('lobby', 'SM_Prop_Bin_01', -11.4, 6.8, 0.0)
 for px in (-3.0, -1.2, 1.2, 3.0):
     add('lobby', 'SM_Prop_RopeBarrier_Pole_01', px, 1.2, 0.0)
-# display cases flanking the entrance, jewellery presented inside the glass
+# ---- jewellery counters: four cases, stocked dense, trays aligned with the case axis ----
+CASE_LONG = [('SM_Prop_Jewellery_04', 0.95), ('SM_Prop_Jewellery_Rings_01', 1.55),
+             ('SM_Prop_Jewellery_Necklace_02', 2.00), ('SM_Prop_Jewellery_Necklace_01', 2.45)]
+CASE_FRONT = [('SM_Prop_Jewellery_04', -4.90), ('SM_Prop_Jewellery_Rings_01', -4.30),
+              ('SM_Prop_Jewellery_Ring_01', -3.70), ('SM_Prop_Jewellery_Necklace_04', -3.10)]
+# side-wall cases (long axis runs along Z)
 add('lobby', 'SM_Prop_DisplayCase_01', -9.0, 1.6, 90.0, key='caseL1')
-add('lobby', 'SM_Prop_Jewellery_01', -9.0, 1.45, 0.0, key='jL1', y=0.80)
-add('lobby', 'SM_Prop_Jewellery_02', -9.0, 1.6, 0.0, key='jL2', y=0.80)
-add('lobby', 'SM_Prop_Jewellery_Ring_01', -9.0, 1.75, 0.0, key='jL3', y=0.80)
+for i, (n, z) in enumerate(CASE_LONG):
+    add('lobby', n, -9.0, z, 90.0, y=0.80)
 add('lobby', 'SM_Prop_DisplayCase_01', 9.0, 1.6, 270.0, key='caseR1')
-add('lobby', 'SM_Prop_Jewellery_03', 9.0, 1.15, 0.0, key='jR1', y=0.80)
-add('lobby', 'SM_Prop_Jewellery_Necklace_01', 9.0, 1.6, 0.0, key='jR2', y=0.80)
-add('lobby', 'SM_Prop_Jewellery_Rings_01', 9.0, 2.05, 0.0, key='jR3', y=0.80)
-# two more jewellery counters against the facade wall, flanking the entrance
+for i, (n, z) in enumerate(CASE_LONG):
+    add('lobby', n, 9.0, z, 90.0, y=0.80)
+# entrance cases against the facade (long axis runs along X)
 add('lobby', 'SM_Prop_DisplayCase_01', -4.0, 0.75, 0.0, key='caseL2')
-add('lobby', 'SM_Prop_Jewellery_Necklace_03', -4.75, 0.75, 0.0, key='jL4', y=0.80)
-add('lobby', 'SM_Prop_Jewellery_03', -4.0, 0.75, 0.0, key='jL5', y=0.80)
-add('lobby', 'SM_Prop_Jewellery_04', -3.25, 0.75, 0.0, key='jL6', y=0.80)
+for i, (n, x) in enumerate(CASE_FRONT):
+    add('lobby', n, x, 0.75, 0.0, y=0.80)
 add('lobby', 'SM_Prop_DisplayCase_01', 4.0, 0.75, 0.0, key='caseR2')
-add('lobby', 'SM_Prop_Jewellery_02', 3.25, 0.75, 0.0, key='jR4', y=0.80)
-add('lobby', 'SM_Prop_Jewellery_Rings_01', 4.0, 0.75, 0.0, key='jR5', y=0.80)
-add('lobby', 'SM_Prop_Jewellery_Necklace_04', 4.75, 0.75, 0.0, key='jR6', y=0.80)
+for i, (n, x) in enumerate(CASE_FRONT):
+    add('lobby', n, -x, 0.75, 0.0, y=0.80)
+# ---- robbery staging: entry spill, loot being sorted on the rug, cases being cleared ----
+add('lobby', 'SM_Item_DuffleBag_Open_Empty_01', -2.05, 2.35, 25.0)
+add('lobby', 'SM_Prop_Money_Note_03', -1.35, 2.55, 40.0, y=0.02)
+add('lobby', 'SM_Prop_Money_Note_05', -2.60, 2.90, 300.0, y=0.02)
+add('lobby', 'SM_Prop_Money_Note_07', -1.70, 3.20, 15.0, y=0.02)
+add('lobby', 'SM_Item_Crowbar_01', -2.55, 1.70, 65.0, y=0.09)
+add('lobby', 'SM_Item_Mask_Clown_01', -0.75, 2.90, 220.0, y=0.13)
+add('lobby', 'SM_Item_Briefcase_01', 0.55, 5.00, 100.0, y=0.18)
+add('lobby', 'SM_Prop_Money_Stack_03', -0.55, 5.30, 12.0, y=0.18)
+add('lobby', 'SM_Prop_Jewellery_Necklace_03', 0.90, 5.80, 0.0, y=0.18)
+add('lobby', 'SM_Prop_Jewellery_Rings_01', -0.15, 5.90, 20.0, y=0.19)
+add('lobby', 'SM_Prop_Jewellery_04', 0.65, 5.60, 40.0, y=0.18)
+add('lobby', 'SM_Prop_Money_Note_01', -0.90, 5.70, 75.0, y=0.18)
+# pieces dropped at the foot of the two side cases
+add('lobby', 'SM_Prop_Jewellery_Rings_01', -8.75, 1.05, 30.0, y=0.02)
+add('lobby', 'SM_Prop_Jewellery_Ring_01', -8.55, 1.35, 0.0, y=0.02)
+add('lobby', 'SM_Prop_Jewellery_04', -8.90, 1.45, 15.0, y=0.0)
+add('lobby', 'SM_Prop_Jewellery_03', 8.75, 1.05, 25.0, y=0.0)
+add('lobby', 'SM_Prop_Jewellery_Ring_01', 8.55, 1.35, 0.0, y=0.02)
+# cash dragged off the ATMs
+add('lobby', 'SM_Prop_Money_Stack_02', -11.35, 5.00, 20.0)
+add('lobby', 'SM_Prop_Money_Stack_02', 11.35, 6.00, 340.0)
+add('lobby', 'SM_Prop_Money_Note_04', -11.05, 4.65, 55.0, y=0.02)
+add('lobby', 'SM_Prop_Money_Note_06', 11.05, 6.35, 290.0, y=0.02)
 # wall fixtures
 MOUNTED.append(add_mount('lobby', 'SM_Prop_Sign_Bank_01', 'z', 10.0, -1, 0.0, 3.3, 180.0))
 # ceiling pendant cameras (the kit's Camera_01 hangs below its pivot - mount at ceiling, not wall)
@@ -326,14 +351,46 @@ for x, s in ((-5.0, 1.0), (0.0, -1.0), (5.0, -1.0)):
     add_on('lobby', k, 'SM_Prop_Computer_01', 0.0, 0.0, 0.0)
     add_on('lobby', k, 'SM_Prop_Money_Stack_01', 0.72 * s, -0.10, 0.0)
     add_on('lobby', k, 'SM_Prop_DeskLight_01', -0.58 * s, -0.26, 180.0)
-# display cases against the side walls (they previously blocked the z=15 passages)
+# display cases against the side walls, stocked and being emptied
+TCASE = [('SM_Prop_Jewellery_04', 11.55), ('SM_Prop_Jewellery_Rings_01', 12.05),
+         ('SM_Prop_Jewellery_Necklace_03', 12.55), ('SM_Prop_Jewellery_03', 13.05)]
 add('teller', 'SM_Prop_DisplayCase_01', -12.15, 12.5, 90.0, key='tcase1')
-add('teller', 'SM_Prop_Jewellery_Necklace_02', -12.15, 12.3, 0.0, y=0.80)
-add('teller', 'SM_Prop_Jewellery_04', -12.15, 12.7, 0.0, y=0.80)
+for i, (n, z) in enumerate(TCASE):
+    add('teller', n, -12.15, z, 90.0, y=0.80)
 add('teller', 'SM_Prop_DisplayCase_01', 12.15, 12.5, 270.0, key='tcase2')
-add('teller', 'SM_Prop_Jewellery_02', 12.15, 12.1, 0.0, y=0.80)
-add('teller', 'SM_Prop_Jewellery_Ring_01', 12.15, 12.5, 0.0, y=0.80)
-add('teller', 'SM_Prop_Jewellery_Rings_01', 12.15, 12.9, 0.0, y=0.80)
+for i, (n, z) in enumerate(TCASE):
+    add('teller', n, 12.15, z, 90.0, y=0.80)
+add('teller', 'SM_Prop_Jewellery_Rings_01', -11.35, 12.15, 20.0, y=0.02)
+add('teller', 'SM_Prop_Jewellery_Ring_01', -11.20, 12.75, 0.0, y=0.02)
+add('teller', 'SM_Prop_Jewellery_04', 11.30, 12.30, 35.0, y=0.0)
+add('teller', 'SM_Prop_Jewellery_Necklace_04', 11.45, 13.00, 0.0, y=0.0)
+# ---- robbery staging behind the wall: cash trail from the passages to the vault door ----
+add('teller', 'SM_Prop_Money_Stack_01', -6.40, 11.60, 20.0)
+add('teller', 'SM_Prop_Money_Stack_02', -3.10, 12.70, 350.0)
+add('teller', 'SM_Prop_Money_Note_02', -4.60, 12.20, 60.0, y=0.02)
+add('teller', 'SM_Prop_Money_Note_05', -1.60, 13.10, 300.0, y=0.02)
+add('teller', 'SM_Prop_Money_Stack_03', -3.60, 13.90, 5.0)
+add('teller', 'SM_Prop_Money_Stack_02', 2.90, 13.95, 355.0)
+add('teller', 'SM_Prop_Money_Note_06', 1.20, 13.40, 25.0, y=0.02)
+# ---- the breach: two charges planted on the floor right in front of the vault door ----
+add('teller', 'SM_Item_Bomb_01', -1.15, 14.35, 20.0)
+add('teller', 'SM_Item_Bomb_01', 1.35, 14.35, 340.0)
+add('teller', 'SM_Item_Briefcase_02', -2.15, 14.15, 75.0, y=0.10)
+# gear dropped at the breach point
+add('teller', 'SM_Item_Mask_Balaclava_01', 1.75, 13.75, 200.0, y=0.11)
+add('teller', 'SM_Item_Mask_Hockey_01', -1.90, 13.50, 120.0, y=0.10)
+add('teller', 'SM_Wep_RifleBandit_01', 7.60, 10.70, 70.0, y=0.16)
+add('teller', 'SM_Item_AmmoPack_01', 7.20, 11.10, 30.0)
+# ---- staff aisle behind the counters: cash swept off the tills, bag being filled ----
+add('lobby', 'SM_Prop_Money_Stack_03', -4.30, 9.35, 10.0)
+add('lobby', 'SM_Prop_Money_Stack_02', 1.10, 9.30, 350.0)
+add('lobby', 'SM_Prop_Money_Stack_01', 5.40, 9.40, 20.0)
+add('lobby', 'SM_Prop_Money_Note_04', -3.20, 9.55, 15.0, y=0.02)
+add('lobby', 'SM_Prop_Money_Note_01', 2.20, 9.50, 100.0, y=0.02)
+add('lobby', 'SM_Prop_Money_Note_07', 0.20, 9.60, 250.0, y=0.02)
+add('lobby', 'SM_Item_DuffleBag_Open_Empty_01', 3.60, 9.30, 200.0)
+add('lobby', 'SM_Item_Mask_Balaclava_01', 2.75, 9.55, 140.0, y=0.11)
+add('lobby', 'SM_Item_Crowbar_01', -6.00, 9.45, 80.0, y=0.09)
 MOUNTED.append(add_mount('teller', 'SM_Prop_AirVent_01', 'z', 14.92, -1, 5.0, 2.6, 0.0))
 add_ceiling('teller', 'SM_Prop_Camera_01', -8.0, 14.6, 0.0, 3.0)
 MOUNTED.append(add_mount('teller', 'SM_Prop_AlarmButton_01', 'z', 10.0, 1, 7.0, 1.2, 0.0))
@@ -358,14 +415,24 @@ add('vault', 'SM_Prop_VaultTrolley_01', 3.2, 21.0, 0.0, key='vtrolley')
 add('vault', 'SM_Item_DuffleBag_Full_01', -3.4, 18.2, 270.0)
 add('vault', 'SM_Item_DuffleBag_Open_Empty_01', -4.2, 21.5, 90.0)
 add('vault', 'SM_Item_DuffleBag_Open_Full_01', 1.6, 18.4, 90.0)
-# hijacked-vault dressing: robber gear and a charge at the door
-add('vault', 'SM_Item_Bomb_01', -2.9, 16.5, 25.0)
+# hijacked-vault dressing: the score scattered where it was dropped
 add('vault', 'SM_Wep_RifleBandit_01', -5.9, 18.6, 90.0, y=0.16)
 add('vault', 'SM_Item_AmmoPack_01', -5.4, 19.5, 30.0)
 add('vault', 'SM_Item_Mask_Balaclava_01', -4.9, 19.2, 200.0, y=0.11)
 add('vault', 'SM_Item_Mask_Hockey_01', -4.5, 19.9, 120.0, y=0.10)
 add('vault', 'SM_Item_Briefcase_01', 2.4, 19.2, 40.0, y=0.10)
 add('vault', 'SM_Item_Hacksaw_01', 5.8, 18.9, 15.0, y=0.11)
+# jewellery spilling out of the trays
+add('vault', 'SM_Prop_Jewellery_Necklace_03', -1.90, 19.30, 0.0)
+add('vault', 'SM_Prop_Jewellery_Rings_01', -1.20, 19.70, 25.0, y=0.02)
+add('vault', 'SM_Prop_Jewellery_04', 0.90, 21.30, 40.0)
+add('vault', 'SM_Prop_Jewellery_Ring_01', 2.00, 20.60, 0.0, y=0.02)
+# cash piles staged for the carry-out, plus loot on the trolley deck
+add('vault', 'SM_Prop_Money_Stack_02', -4.80, 22.10, 15.0)
+add('vault', 'SM_Prop_Money_Stack_03', 2.60, 22.30, 345.0)
+add('vault', 'SM_Prop_Money_Note_03', -3.90, 22.50, 70.0, y=0.02)
+add('vault', 'SM_Prop_Money_Note_07', 4.40, 20.40, 240.0, y=0.02)
+add('vault', 'SM_Prop_Money_Stack_01', 3.2, 21.0, 0.0, y=1.083)
 MOUNTED.append(add_mount('vault', 'SM_Prop_AirVent_01', 'z', 25.0, -1, -3.5, 2.6, 0.0))
 add_ceiling('vault', 'SM_Prop_Camera_01', 0.0, 24.6, 0.0, 3.0)
 
@@ -379,6 +446,7 @@ add('corridorL', 'SM_Prop_Shelf_01', -12.0, 20.0, 90.0)
 add('corridorL', 'SM_Prop_Drawers_01', -10.0, 23.0, 0.0)
 add('corridorL', 'SM_Prop_Plant_02', -8.8, 23.6, 0.0)
 add_ceiling('corridorL', 'SM_Prop_Camera_01', -12.1, 22.0, 90.0, 3.0)
+add('corridorL', 'SM_Prop_Money_Stack_01', -8.60, 19.40, 25.0)
 add('corridorR', 'SM_Prop_Desk_02', 10.0, 17.0, 270.0, key='rdesk')
 add('corridorR', 'SM_Prop_Seat_01', 11.32, 17.0, 270.0)
 add_on('corridorR', 'rdesk', 'SM_Prop_Computer_01', 0.0, 0.3, 270.0)
@@ -389,6 +457,7 @@ add('corridorR', 'SM_Prop_Shelf_01', 12.0, 20.0, 270.0)
 add('corridorR', 'SM_Prop_WaterCooler_01', 8.4, 23.4, 0.0)
 add('corridorR', 'SM_Prop_Drawers_01', 10.0, 23.0, 0.0)
 add_ceiling('corridorR', 'SM_Prop_Camera_01', 12.1, 22.0, 270.0, 3.0)
+add('corridorR', 'SM_Item_Briefcase_01', 9.40, 19.20, 95.0, y=0.10)
 
 # ------------------------------------------------------------------ exterior
 add('exterior', 'SM_Env_Pillar_Exterior_Floor_01', -14.5, -3.0, 0.0)
