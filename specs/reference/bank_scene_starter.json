@@ -1,0 +1,279 @@
+{
+  "name": "bank_scene_starter",
+  "note": "Starter element sheet for exercising tools/match.py sheet. Replace with a calibrated deconstruction of the reference image before building.",
+  "reference": "C:/Users/ABCD/Downloads/Bank_robbery_map_scene_74c35317_2K.jpg",
+  "camera": {},
+  "elements": [
+    {
+      "id": "E01",
+      "label": "teller counter",
+      "qty": 3,
+      "required": true,
+      "size_min": [
+        2.0,
+        0.5,
+        1.0
+      ],
+      "size_max": [
+        3.0,
+        1.2,
+        1.6
+      ],
+      "prefab": "SM_Prop_TellerDesk_01",
+      "match": "exact",
+      "match_confidence": 1.0,
+      "match_note": "fits; ambiguous with SM_Prop_TellerDesk_02",
+      "alternatives": [
+        "SM_Prop_TellerDesk_02",
+        "SM_Prop_TellerDesk_03"
+      ]
+    },
+    {
+      "id": "E02",
+      "label": "jewellery display case",
+      "qty": 4,
+      "required": true,
+      "size_min": [
+        2.0,
+        0.4,
+        0.8
+      ],
+      "size_max": [
+        3.0,
+        0.8,
+        1.4
+      ],
+      "prefab": "SM_Prop_DisplayCase_01",
+      "match": "exact",
+      "match_confidence": 0.84,
+      "match_note": "fits",
+      "alternatives": [
+        "SM_Prop_DisplayCase_02",
+        "SM_Item_Briefcase_01"
+      ]
+    },
+    {
+      "id": "E03",
+      "label": "vault door",
+      "qty": 1,
+      "required": true,
+      "size_min": [
+        4.0,
+        0.4,
+        2.5
+      ],
+      "size_max": [
+        6.0,
+        1.4,
+        3.2
+      ],
+      "prefab": "SM_Env_VaultDoor_Frame_01",
+      "match": "exact",
+      "match_confidence": 1.0,
+      "match_note": "fits",
+      "alternatives": [
+        "SM_Env_Wall_Glass_DoorFrame_01",
+        "SM_Env_VaultGate_Door_01"
+      ]
+    },
+    {
+      "id": "E04",
+      "label": "safe deposit boxes",
+      "qty": 2,
+      "required": false,
+      "size_min": [
+        3.0,
+        0.4,
+        2.5
+      ],
+      "size_max": [
+        6.0,
+        1.4,
+        3.2
+      ],
+      "prefab": "SM_Prop_SafeDepositBoxes_01",
+      "match": "exact",
+      "match_confidence": 1.0,
+      "match_note": "fits",
+      "alternatives": [
+        "SM_Prop_SafeDepositBoxes_Empty_01",
+        "SM_Prop_SafeDepositBoxes_Half_01"
+      ]
+    },
+    {
+      "id": "E05",
+      "label": "marble column",
+      "qty": 4,
+      "required": false,
+      "prefab": "SM_Prop_Pillar_01",
+      "match": "approx",
+      "match_confidence": 0.635,
+      "match_note": "fits; unmatched: marble; ambiguous with SM_Prop_Pillar_02",
+      "alternatives": [
+        "SM_Prop_Pillar_02",
+        "SM_Env_Pillar_01"
+      ]
+    },
+    {
+      "id": "E06",
+      "label": "chandelier",
+      "qty": 1,
+      "required": false,
+      "match": "none",
+      "match_confidence": 0.0,
+      "match_note": "no catalogue candidate"
+    },
+    {
+      "id": "E07",
+      "label": "wall clock",
+      "qty": 1,
+      "required": false,
+      "match": "none",
+      "match_confidence": 0.179,
+      "match_note": "fits; unmatched: clock; ambiguous with SM_Env_Wall_Glass_01",
+      "alternatives": [
+        "SM_Env_Wall_Exterior_01",
+        "SM_Env_Wall_Glass_01",
+        "SM_Env_Wall_Interior_01"
+      ]
+    },
+    {
+      "id": "E08",
+      "label": "police van",
+      "qty": 2,
+      "required": false,
+      "prefab": "SM_Veh_SwatVan_01",
+      "match": "approx",
+      "match_confidence": 0.561,
+      "match_note": "fits",
+      "alternatives": [
+        "SM_Veh_Car_Police_Heist_01"
+      ]
+    },
+    {
+      "id": "E09",
+      "label": "police cruiser",
+      "qty": 2,
+      "required": false,
+      "prefab": "SM_Veh_Car_Police_Heist_01",
+      "match": "exact",
+      "match_confidence": 0.87,
+      "match_note": "fits",
+      "alternatives": []
+    },
+    {
+      "id": "E10",
+      "label": "helicopter",
+      "qty": 1,
+      "required": false,
+      "prefab": "SM_Veh_Helicopter_01",
+      "match": "exact",
+      "match_confidence": 0.952,
+      "match_note": "fits",
+      "alternatives": []
+    },
+    {
+      "id": "E11",
+      "label": "duffle bag",
+      "qty": 5,
+      "required": false,
+      "prefab": "SM_Item_DuffleBag_01",
+      "match": "exact",
+      "match_confidence": 1.0,
+      "match_note": "fits",
+      "alternatives": [
+        "SM_Item_DuffleBag_Empty_01",
+        "SM_Item_DuffleBag_Full_01"
+      ]
+    },
+    {
+      "id": "E12",
+      "label": "rope barrier",
+      "qty": 8,
+      "required": false,
+      "prefab": "SM_Prop_RopeBarrier_01",
+      "match": "exact",
+      "match_confidence": 1.0,
+      "match_note": "fits; ambiguous with SM_Prop_RopeBarrier_02",
+      "alternatives": [
+        "SM_Prop_RopeBarrier_02",
+        "SM_Prop_RopeBarrier_03"
+      ]
+    },
+    {
+      "id": "E13",
+      "label": "security camera",
+      "qty": 6,
+      "required": false,
+      "prefab": "SM_Prop_Camera_01",
+      "match": "approx",
+      "match_confidence": 0.661,
+      "match_note": "fits; unmatched: security",
+      "alternatives": []
+    },
+    {
+      "id": "E14",
+      "label": "money stack",
+      "qty": 6,
+      "required": false,
+      "prefab": "SM_Prop_Money_Stack_01",
+      "match": "exact",
+      "match_confidence": 1.0,
+      "match_note": "fits; ambiguous with SM_Prop_Money_Stack_02",
+      "alternatives": [
+        "SM_Prop_Money_Stack_02",
+        "SM_Prop_Money_Stack_03"
+      ]
+    },
+    {
+      "id": "E15",
+      "label": "jewellery necklace",
+      "qty": 6,
+      "required": false,
+      "prefab": "SM_Prop_Jewellery_Necklace_01",
+      "match": "exact",
+      "match_confidence": 1.0,
+      "match_note": "fits; ambiguous with SM_Prop_Jewellery_Necklace_02",
+      "alternatives": [
+        "SM_Prop_Jewellery_Necklace_02",
+        "SM_Prop_Jewellery_Necklace_03"
+      ]
+    },
+    {
+      "id": "E16",
+      "label": "desk lamp",
+      "qty": 3,
+      "required": false,
+      "match": "exact",
+      "match_confidence": 1.0,
+      "match_note": "fits",
+      "alternatives": [
+        "SM_Env_Skylight_01",
+        "SM_Prop_Desk_01"
+      ],
+      "prefab": "SM_Prop_DeskLight_01"
+    },
+    {
+      "id": "E17",
+      "label": "office chair",
+      "qty": 4,
+      "required": false,
+      "prefab": "SM_Prop_Seat_01",
+      "match": "approx",
+      "match_confidence": 0.657,
+      "match_note": "fits; unmatched: office; ambiguous with SM_Prop_Seat_02",
+      "alternatives": [
+        "SM_Prop_Seat_02"
+      ]
+    },
+    {
+      "id": "E18",
+      "label": "escalator",
+      "qty": 1,
+      "required": false,
+      "match": "none",
+      "match_confidence": 0.0,
+      "match_note": "no catalogue candidate"
+    }
+  ]
+}
