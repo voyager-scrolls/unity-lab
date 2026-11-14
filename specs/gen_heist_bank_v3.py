@@ -144,6 +144,10 @@ MOUNTED = []
 
 # ------------------------------------------------------------------ floors (5m kit)
 FLOOR_A, FLOOR_B = 'SM_Env_Floor_01', 'SM_Env_Floor_02'
+# Plaza surface: the Floor_01/02 atlas region is a black-and-white checker, not a paving slab.
+# Sidewalk_01 reads as concrete paving and is the only exterior-grade slab in the kit.
+PLAZA = 'SM_Env_Sidewalk_01'
+PLAZA_Y = -P(PLAZA)['bounds']['max'][1]  # slab top flush to y=0 so props sit on it
 
 
 def room_at(x, z):
@@ -166,7 +170,7 @@ for x in (-10, 10):
             FLOOR_A if (x + z) % 10 == 0 else FLOOR_B, x, z)
 for x in (-17.5, -12.5, -7.5, -2.5, 2.5, 7.5, 12.5, 17.5):
     for z in (-2.5, -7.5, -12.5, -17.5, -22.5):
-        add('exterior', FLOOR_A, x, z)
+        add('exterior', PLAZA, x, z, y=PLAZA_Y)
 
 # ------------------------------------------------------------------ ceilings (bottom at room height)
 CEILINGS = ['SM_Env_Ceiling_01', 'SM_Env_Ceiling_02', 'SM_Env_Ceiling_03',
@@ -183,6 +187,24 @@ for x in (-10, -5, 0, 5, 10):
 for x in (-10, -5, 0, 5, 10):
     for z in (2.5, 7.5, 12.5, 17.5, 22.5):
         add('lobby', 'SM_Env_Roof_05', x, z, y=6.0 - P('SM_Env_Roof_05')['bounds']['min'][1])
+
+# ------------------------------------------------------------------ ceiling light fixtures
+# SM_Env_Ceiling_Light_01 is a 0.73m emissive disc whose AABB top is y=0.
+# LevelBuilder attaches a warm point light to every instance of this prefab.
+def light(room, x, z, ceil_y):
+    add(room, 'SM_Env_Ceiling_Light_01', x, z, 0.0, y=ceil_y)
+
+
+for lx in (-8.0, 0.0, 8.0):
+    for lz in (3.0, 7.0):
+        light('lobby', lx, lz, 6.0)
+for lx in (-8.0, 0.0, 8.0):
+    light('teller', lx, 12.5, 3.0)
+for lx in (-3.5, 3.5):
+    for lz in (17.5, 22.5):
+        light('vault', lx, lz, 3.0)
+light('corridorL', -10.0, 20.0, 3.0)
+light('corridorR', 10.0, 20.0, 3.0)
 
 # ------------------------------------------------------------------ walls (two 3m courses)
 W_EXT = 'SM_Env_Wall_Exterior_01'
@@ -270,19 +292,20 @@ add_ceiling('lobby', 'SM_Prop_Camera_01', -9.5, 3.0, 180.0, 6.0)
 add_ceiling('lobby', 'SM_Prop_Camera_01', 9.5, 3.0, 180.0, 6.0)
 add_ceiling('lobby', 'SM_Prop_Camera_01', -12.1, 5.0, 90.0, 6.0)
 MOUNTED.append(add_mount('lobby', 'SM_Prop_AlarmButton_01', 'z', 10.0, -1, 7.0, 1.2, 180.0))
-MOUNTED.append(add_mount('lobby', 'SM_Prop_Flag_Wall_01', 'z', 10.0, -1, -6.0, 1.4, 180.0))
-MOUNTED.append(add_mount('lobby', 'SM_Prop_Flag_Wall_02', 'z', 10.0, -1, 6.0, 1.4, 180.0))
+MOUNTED.append(add_mount('lobby', 'SM_Prop_Flag_Wall_01', 'x', -12.5, 1, 3.5, 1.4, 90.0))
+MOUNTED.append(add_mount('lobby', 'SM_Prop_Flag_Wall_02', 'x', 12.5, -1, 3.5, 1.4, 270.0))
 
 # ------------------------------------------------------------------ teller (3m suspended ceiling)
-# teller counters stand in the lobby against the solid z=10 partition, fronts facing the lobby
+# teller counters stand in the lobby, pulled 1.8m off the partition so staff have a workable aisle
+# (fronts face the lobby; the workstation sits on the staff side, +z towards the partition)
 for x in (-5.0, 0.0, 5.0):
     k = 'desk%d' % int(x * 10)
-    add('lobby', 'SM_Prop_TellerDesk_01', x, 9.1, 180.0, key=k)
-    add_on('lobby', k, 'SM_Prop_Computer_Screen_01', 0.0, -0.12, 0.0)
-    add_on('lobby', k, 'SM_Prop_Computer_Keyboard_01', 0.0, -0.38, 0.0)
-    add_on('lobby', k, 'SM_Prop_Computer_Mouse_01', 0.35, -0.38, 0.0)
+    add('lobby', 'SM_Prop_TellerDesk_01', x, 8.2, 180.0, key=k)
+    add_on('lobby', k, 'SM_Prop_Computer_Screen_01', 0.0, 0.12, 180.0)
+    add_on('lobby', k, 'SM_Prop_Computer_Keyboard_01', 0.0, 0.38, 0.0)
+    add_on('lobby', k, 'SM_Prop_Computer_Mouse_01', 0.42, 0.38, 0.0)
     add_on('lobby', k, 'SM_Prop_Money_Stack_01', -0.55, 0.25, 15.0)
-    add_on('lobby', k, 'SM_Prop_Folder_01', 0.65, 0.15, 90.0)
+    add_on('lobby', k, 'SM_Prop_Folder_01', 0.72, 0.12, 90.0)
     add_on('lobby', k, 'SM_Prop_DeskLight_01', -0.85, 0.1, 180.0)
 # display cases against the side walls (they previously blocked the z=15 passages)
 add('teller', 'SM_Prop_DisplayCase_01', -12.15, 12.5, 90.0, key='tcase1')
@@ -304,9 +327,11 @@ add('vault', 'SM_Prop_Table_01', 0.0, 20.0, 0.0, key='vtable')
 add_on('vault', 'vtable', 'SM_Prop_GoldBar_01', -0.6, 0.0, 20.0)
 add_on('vault', 'vtable', 'SM_Prop_GoldBar_02', -0.2, 0.05, 65.0)
 add_on('vault', 'vtable', 'SM_Prop_GoldBar_01', 0.25, 0.0, 340.0)
-add_on('vault', 'vtable', 'SM_Prop_Money_Stack_01', 0.8, 0.0, 15.0)
-add_on('vault', 'vtable', 'SM_Prop_Drill_01', -1.2, 0.0, 90.0)
-add_on('vault', 'vtable', 'SM_Item_Crowbar_01', 1.2, 0.1, 80.0)
+add_on('vault', 'vtable', 'SM_Prop_Money_Stack_01', 0.45, 0.3, 15.0)
+# crowbar lies along the table's long axis, fully on the top (table top x +-1.06, z +-0.65)
+add_on('vault', 'vtable', 'SM_Item_Crowbar_01', 0.82, 0.0, 0.0, lift=0.02)
+# the drill is 1.6m long - too big for the table, it goes on the floor beside it
+add('vault', 'SM_Prop_Drill_01', -2.6, 20.0, 90.0, key='vdrill')
 add('vault', 'SM_Prop_VaultTrolley_01', 3.2, 21.0, 0.0, key='vtrolley')
 add('vault', 'SM_Item_DuffleBag_Full_01', -3.4, 18.2, 270.0)
 add('vault', 'SM_Item_DuffleBag_Open_Empty_01', -4.2, 21.5, 90.0)
@@ -430,8 +455,10 @@ COUNTS = {rid: {'floors': 0, 'ceilings': 0, 'walls': 0, 'props': 0} for rid in O
 for rid in ORDER:
     for p in ROOMS[rid]['props']:
         n = p['prefab'].split('/')[-1].replace('.prefab', '')
-        if n.startswith('SM_Env_Floor'):
+        if n.startswith('SM_Env_Floor') or n.startswith('SM_Env_Sidewalk'):
             COUNTS[rid]['floors'] += 1
+        elif n.startswith('SM_Env_Ceiling_Light'):
+            COUNTS[rid]['lights'] = COUNTS[rid].get('lights', 0) + 1
         elif n.startswith('SM_Env_Ceiling'):
             COUNTS[rid]['ceilings'] += 1
         elif n.startswith('SM_Env_Wall') or n.startswith('SM_Env_Vault'):
