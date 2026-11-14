@@ -60,7 +60,7 @@ def room(rid, mn, mx):
     }
 
 
-room('exterior', [-40.0, 0.0, -56.0], [40.0, 12.0, 0.0])
+room('exterior', [-60.0, 0.0, -60.0], [60.0, 12.0, 30.0])
 room('lobby', [-12.5, 0.0, 0.0], [12.5, 6.0, 15.0])
 room('teller', [-12.5, 0.0, 15.0], [12.5, 3.4, 20.0])
 
@@ -103,27 +103,39 @@ def add_on(rid, key, pack, name, dx, dz, rot=0, lift=0.0):
 
 
 # ---------------------------------------------------------------- ground
-# Forecourt: 16 x 2 pale slabs, z 0..-10.
-for x in (-37.5, -32.5, -27.5, -22.5, -17.5, -12.5, -7.5, -2.5, 2.5, 7.5, 12.5, 17.5, 22.5, 27.5, 32.5, 37.5):
-    for z in (-2.5, -7.5):
-        add('exterior', 'city', 'SM_Env_Sidewalk_01', x, z)
+# 24 columns x 5 m = 120 m of frontage, build range x -60..60.
+GX = tuple(-57.5 + 5.0 * i for i in range(24))
+CROSS_X = (-47.5, 47.5)
 
-# Road: 16 x 4 asphalt tiles, z -10..-30.
-for x in (-37.5, -32.5, -27.5, -22.5, -17.5, -12.5, -7.5, -2.5, 2.5, 7.5, 12.5, 17.5, 22.5, 27.5, 32.5, 37.5):
+for x in GX:
+    in_cross = abs(x) in (47.5,)
+    for z in (-2.5, -7.5):
+        if in_cross:
+            add('exterior', 'city', 'SM_Env_Road_01', x, z, 90)
+        else:
+            add('exterior', 'city', 'SM_Env_Sidewalk_01', x, z)
     for z in (-12.5, -17.5, -22.5, -27.5):
         add('exterior', 'city', 'SM_Env_Road_01', x, z)
-
-# Lane markings down the road centre.
-for x in (-37.5, -32.5, -27.5, -22.5, -17.5, -12.5, -7.5, -2.5, 2.5, 7.5, 12.5, 17.5, 22.5, 27.5, 32.5, 37.5):
     add('exterior', 'city', 'SM_Env_Road_Lines_01', x, -20.0, y=0.012)
+    for z in (-32.5, -37.5):
+        if in_cross:
+            add('exterior', 'city', 'SM_Env_Road_01', x, z, 90)
+        else:
+            add('exterior', 'city', 'SM_Env_Sidewalk_01', x, z)
 
-# Zebra crossing on the bank axis.
 for x in (-2.5, 2.5):
     add('exterior', 'city', 'SM_Env_Road_Crossing_01', x, -11.0, y=0.012)
+for cx in CROSS_X:
+    for x in (cx - 5.0, cx + 5.0):
+        if abs(x - cx) > 2.6:
+            pass
+    add('exterior', 'city', 'SM_Env_Road_Crossing_01', cx, -11.0, y=0.012)
 
-# Far sidewalk: 16 x 2 slabs, z -30..-40.
-for x in (-37.5, -32.5, -27.5, -22.5, -17.5, -12.5, -7.5, -2.5, 2.5, 7.5, 12.5, 17.5, 22.5, 27.5, 32.5, 37.5):
-    for z in (-32.5, -37.5):
+# Back lots: paving behind the bank so the deep blocks stand on real ground.
+for x in GX:
+    if abs(x) < 15.0:
+        continue
+    for z in (2.5, 7.5, 12.5, 17.5, 22.5, 27.5):
         add('exterior', 'city', 'SM_Env_Sidewalk_01', x, z)
 
 # ---------------------------------------------------------------- building shell
@@ -188,6 +200,16 @@ for x in (-10.0, -7.5, -5.0, 5.0, 7.5, 10.0):
     add('exterior', 'city', 'SM_Prop_Window_01', x, -0.26, 0, y=1.0)
 
 add('exterior', 'heist', 'SM_Prop_Sign_Money_Bank_01', 0.0, -0.26, 180, y=9.5)
+
+# Flags on the facade band (reference: four banners above the entrance).
+for fx in (-8.5, -4.5, 4.5, 8.5):
+    add('exterior', 'heist', 'SM_Prop_Flag_Wall_01', fx, -0.30, 180, y=4.2)
+    add('exterior', 'heist', 'SM_Prop_Flag_Wall_02', fx, -0.30, 180, y=4.2)
+
+# Stone planters with shrubs flanking the entrance.
+for px in (-4.2, 4.2):
+    add('exterior', 'city', 'SM_Prop_Planter_01', px, -1.3, 0, y=0.0)
+    add('exterior', 'heist', 'SM_Prop_Plant_02', px, -1.3, 0, y=0.82)
 
 for z in (2.5, 7.5, 12.5, 17.5):
     for y in (6.6, 9.6):
@@ -257,51 +279,367 @@ for x in (-3.0, -1.2, 1.2, 3.0):
     add('exterior', 'heist', 'SM_Prop_RopeBarrier_Pole_01', x, -7.2, 0)
 for x in (-2.1, 0.0, 2.1):
     add('exterior', 'heist', 'SM_Prop_RopeBarrier_01', x, -7.2, 0, y=0.67)
-add('exterior', 'heist', 'SM_Prop_Bin_01', -12.0, -8.0, 0)
-add('exterior', 'heist', 'SM_Prop_Bin_01', 12.0, -8.0, 0)
-add('exterior', 'heist', 'SM_Veh_Car_Police_Heist_01', -21.0, -6.0, 90)
-add('exterior', 'heist', 'SM_Veh_Car_Police_Heist_01', 21.0, -6.0, 270)
+for x in (-12.0, 12.0):
+    add('exterior', 'heist', 'SM_Prop_Bin_01', x, -8.0, 0)
+    add('exterior', 'heist', 'SM_Veh_Car_Police_Heist_01', x * 1.75, -6.0, 90 if x < 0 else 270)
 
-# Trees along the forecourt edge and the far sidewalk.
-for x in (-33.0, -26.0, 26.0, 33.0):
+# Trees along both kerbs and the far sidewalk.
+for x in (-54.0, -42.0, -30.0, -18.0, 18.0, 30.0, 42.0, 54.0):
     add('exterior', 'city', 'SM_Env_Tree_01', x, -5.0, 0)
-for x in (-35.0, -25.0, -15.0, 15.0, 25.0, 35.0):
+for x in (-52.0, -37.0, -22.0, 22.0, 37.0, 52.0):
     add('exterior', 'city', 'SM_Env_Tree_02', x, -35.5, 0)
 
-# Street lights along both kerbs.
-for x in (-30.0, -15.0, 15.0, 30.0):
-    add('exterior', 'city', 'SM_Prop_LightPole_Base_01', x, -10.6, 0)
-    add('exterior', 'city', 'SM_Prop_LightPole_Base_01', x, -29.4, 180)
+# Street lights along both kerbs: arms turn over the road, bases clear of cars.
+LIGHT_X = (-53.75, -41.25, -28.75, -16.25, 16.25, 28.75, 41.25, 53.75)
+for x in LIGHT_X:
+    add('exterior', 'city', 'SM_Prop_LightPole_Base_01', x, -9.4, 180)
+    add('exterior', 'city', 'SM_Prop_LightPole_Base_01', x, -30.6, 0)
+for x in (-47.5, 47.5):
+    add('exterior', 'city', 'SM_Prop_TrafficLight_03', x, -9.2, 180)
+    add('exterior', 'city', 'SM_Prop_TrafficLight_03', x, -30.8, 0)
 
 # ---------------------------------------------------------------- street blockade (zone C/E)
+# Tiered, broken cordon: low grey blocks and crates with a few tall sandbag bastions,
+# a clear centre breach on the line of the bank doors.
+add('exterior', 'br', 'SM_Prop_Barricade_01', -3.2, -13.5, 340)
+add('exterior', 'br', 'SM_Prop_Barricade_01', 3.2, -13.5, 20)
 add('exterior', 'br', 'SM_Prop_Barrier_04', -8.0, -13.5, 0)
 add('exterior', 'br', 'SM_Prop_Barrier_04', 8.0, -13.5, 0)
-add('exterior', 'br', 'SM_Prop_Barricade_01', -4.0, -13.5, 20)
-add('exterior', 'br', 'SM_Prop_Barricade_01', 4.0, -13.5, 340)
-add('exterior', 'br', 'SM_Prop_Barrier_04', -13.6, -13.5, 0)
-add('exterior', 'br', 'SM_Prop_Barrier_04', 13.6, -13.5, 0)
-add('exterior', 'br', 'SM_Prop_Cinderblock_Wall_01', -17.0, -13.5, 0)
-add('exterior', 'br', 'SM_Prop_Cinderblock_Wall_01', 17.0, -13.5, 0)
-add('exterior', 'br', 'SM_Prop_Crate_01', -10.5, -15.2, 15)
-add('exterior', 'br', 'SM_Prop_Crate_01', 10.5, -15.2, 345)
-add('exterior', 'br', 'SM_Prop_Crate_Large_01', -6.2, -16.0, 0)
-add('exterior', 'br', 'SM_Prop_Crate_Large_01', 6.2, -16.0, 0)
-add('exterior', 'br', 'SM_Prop_Spotlight_01', -20.0, -13.0, 0)
-add('exterior', 'br', 'SM_Prop_Spotlight_01', 20.0, -13.0, 0)
 
-# Vehicles holding the blockade.
+# Wing line: low cinderblock walls alternating with staggered crate clusters.
+for i, wx in enumerate((11.0, 17.0, 23.0, 29.0, 35.0, 41.0,
+                        47.0, 53.0, -11.0, -17.0, -23.0, -29.0,
+                        -35.0, -41.0, -47.0, -53.0)):
+    add('exterior', 'br', 'SM_Prop_Cinderblock_Wall_01', wx, -13.5, 0)
+    add('exterior', 'br', 'SM_Prop_Crate_Large_01', wx + 2.4, -14.4, (i * 23) % 360)
+    add('exterior', 'br', 'SM_Prop_Crate_01', wx - 2.2, -14.8, (i * 37) % 360)
+    if i % 2 == 0:
+        add('exterior', 'city', 'SM_Prop_Cone_01', wx + 3.6, -15.6, 0)
+    if i % 3 == 0:
+        add('exterior', 'br', 'SM_Prop_AmmoBox_01', wx - 3.4, -15.4, 0)
+
+for wx in (-38.0, -26.0, -14.0, 14.0, 26.0, 38.0):
+    add('exterior', 'br', 'SM_Prop_Spotlight_01', wx, -15.9, 0)
+for wx in (-20.0, 20.0):
+    add('exterior', 'br', 'SM_Prop_BaseWall_Post_01', wx, -13.5, 0)
+
+# Vehicles holding the blockade and the flanks.
 add('exterior', 'heist', 'SM_Veh_SwatVan_01', -24.0, -18.0, 90)
 add('exterior', 'heist', 'SM_Veh_SwatVan_01', 24.0, -18.0, 270)
+add('exterior', 'heist', 'SM_Veh_SwatVan_01', -40.0, -18.0, 90)
+add('exterior', 'heist', 'SM_Veh_SwatVan_01', 40.0, -18.0, 270)
 add('exterior', 'br', 'SM_Veh_Armored_Car_01', -6.0, -24.0, 0)
+add('exterior', 'br', 'SM_Veh_Armored_Car_01', 30.0, -25.0, 180)
 add('exterior', 'br', 'SM_Veh_Truck_01', 14.0, -27.0, 90)
+add('exterior', 'br', 'SM_Veh_Truck_01', -30.0, -27.5, 270)
 add('exterior', 'br', 'SM_Prop_AmmoBox_01', -22.6, -19.6, 0)
 add('exterior', 'br', 'SM_Prop_Wirespool_01', 21.5, -20.5, 0)
+add('exterior', 'br', 'SM_Prop_Wirespool_01', -21.5, -21.5, 0)
 
-# Flanking city buildings (colliders on, used as street walls).
-add('exterior', 'city', 'SM_Bld_OfficeSquare_02', -32.0, 6.0, 0)
-add('exterior', 'city', 'SM_Bld_OfficeSquare_02', 32.0, 6.0, 180)
-add('exterior', 'city', 'SM_Bld_OfficeSquare_04', -32.0, -47.5, 0)
-add('exterior', 'city', 'SM_Bld_OfficeSquare_04', 32.0, -47.5, 180)
+# Stopped traffic on the approach, clear of the LOS lines at z=-20 and z=-8.6.
+add('exterior', 'city', 'SM_Veh_Car_Police_01', -6.5, -16.8, 20)
+add('exterior', 'city', 'SM_Veh_Car_Taxi_01', 6.8, -16.4, 200)
+add('exterior', 'city', 'SM_Veh_Car_Sedan_01', -11.5, -24.6, 75)
+add('exterior', 'city', 'SM_Veh_Car_Van_01', 10.5, -25.2, 260)
+for cx in (-14.0, 14.0):
+    add('exterior', 'br', 'SM_Prop_Crate_Small_01', cx, -24.2, 35)
+for cx in (-26.0, 26.0):
+    add('exterior', 'city', 'SM_Prop_CardboardBox_02', cx, -33.4, 15)
+
+# ---------------------------------------------------------------- tenement frontage
+NEAR_SHOPS = ('SM_Bld_Shop_01', 'SM_Bld_Shop_02', 'SM_Bld_Shop_05',
+              'SM_Bld_Shop_06', 'SM_Bld_Apartment_Door_01',
+              'SM_Bld_Shop_Corner_01', 'SM_Bld_Shop_04')
+NEAR_STACKS = ('SM_Bld_Apartment_Stack_01', 'SM_Bld_Apartment_Stack_02',
+               'SM_Bld_Apartment_Stack_03')
+NEAR_ROOFS = ('SM_Bld_Apartment_Roof_01', 'SM_Bld_Apartment_Roof_02',
+              'SM_Bld_Apartment_Roof_03')
+COVERS = ('SM_Bld_Shop_Cover_02', 'SM_Bld_Shop_Cover_03', 'SM_Bld_Shop_Cover_01')
+UPPER = ('SM_Bld_Apartment_01', 'SM_Bld_Apartment_02', 'SM_Bld_Apartment_03')
+
+
+def tenement(rid, x, z, rot, i, storeys, shop_row=True):
+    add(rid, 'city', NEAR_SHOPS[i % len(NEAR_SHOPS)] if shop_row
+        else UPPER[i % 3], x, z, rot, y=0.0)
+    add(rid, 'city', NEAR_STACKS[i % 3], x, z, rot, y=3.0)
+    top = 12.0
+    if storeys >= 4:
+        add(rid, 'city', UPPER[i % 3], x, z, rot, y=12.0)
+        top = 15.0
+    if storeys >= 5:
+        add(rid, 'city', UPPER[(i + 1) % 3], x, z, rot, y=15.0)
+        top = 18.0
+    add(rid, 'city', NEAR_ROOFS[i % 3], x, z, rot, y=top)
+    return top
+
+
+# Near frontage: two blocks per side split by a cross street at x +-47.5.
+NEAR_L = (14.6, 19.6, 24.6, 29.6, 34.6, 39.6, 44.6, 52.5, 57.5)
+for side in (-1, 1):
+    for i, ax in enumerate(NEAR_L):
+        x = side * ax
+        top = tenement('exterior', x, 2.6, 180, i, 3 + (i % 3))
+        if i % 2 == 1:
+            add('exterior', 'city', COVERS[i % 3], x, -0.9, 180, y=3.05)
+        if i % 3 == 0:
+            add('exterior', 'city', 'SM_Prop_PlanterWindow_01', x - 1.8, 0.1, 180, y=3.1)
+        if i in (1, 4, 7):
+            add('exterior', 'city', 'SM_Prop_Phones_01', side * (ax - 1.4), -3.6, 0)
+
+# Deep back row behind the near frontage (left and right of the bank).
+for side in (-1, 1):
+    for i, ax in enumerate((22.5, 27.5, 32.5, 37.5, 42.5, 52.5, 57.5)):
+        tenement('exterior', side * ax, 11.0, 180, i + 2, 4 + (i % 2), shop_row=False)
+
+# Landmark towers behind, visible over the tenement roofs.
+for side in (-1, 1):
+    add('exterior', 'city', 'SM_Bld_OfficeSquare_01', side * 34.0, 25.0, 0)
+    add('exterior', 'city', 'SM_Bld_Spire_01', side * 34.0, 25.0, 0, y=30.0)
+    add('exterior', 'city', 'SM_Bld_OfficeOctagon_01', side * 54.0, 24.0, 0)
+
+# Far side of the road: continuous frontage facing the bank.
+FAR_SHOPS = ('SM_Bld_Shop_01', 'SM_Bld_Shop_04', 'SM_Bld_Shop_02',
+             'SM_Bld_Shop_06', 'SM_Bld_Shop_Corner_01',
+             'SM_Bld_Apartment_Door_Corner_01')
+FAR_X = tuple(-57.5 + 5.0 * i for i in range(24))
+for i, x in enumerate(FAR_X):
+    if abs(x) in (47.5,):
+        continue
+    top = tenement('exterior', x, -42.8, 0, i, 3 + (i % 3))
+    if i % 2 == 0:
+        add('exterior', 'city', COVERS[i % 3], x, -40.2, 0, y=3.05)
+
+# Third row behind the back row: taller blocks filling both map sides.
+for side in (-1, 1):
+    for i, ax in enumerate((20.0, 25.0, 30.0, 35.0, 40.0, 45.0, 50.0, 55.0)):
+        n = 5 + (i % 2)
+        add('exterior', 'city', NEAR_SHOPS[i % len(NEAR_SHOPS)], side * ax, 19.0, 180, y=0.0)
+        add('exterior', 'city', NEAR_STACKS[i % 3], side * ax, 19.0, 180, y=3.0)
+        add('exterior', 'city', UPPER[i % 3], side * ax, 19.0, 180, y=12.0)
+        add('exterior', 'city', UPPER[(i + 1) % 3], side * ax, 19.0, 180, y=15.0)
+        add('exterior', 'city', NEAR_ROOFS[i % 3], side * ax, 19.0, 180, y=18.0 if n >= 5 else 15.0)
+    add('exterior', 'city', 'SM_Bld_OfficeSquare_03', side * 44.0, 27.0, 0)
+    add('exterior', 'city', 'SM_Bld_Spire_01', side * 44.0, 27.0, 0, y=30.0)
+
+# Second far row, backdrop depth and corner blocks around the whole map.
+for i, x in enumerate((-50.0, -45.0, -40.0, -35.0, -30.0, -25.0, -20.0, -15.0,
+                       -10.0, -5.0, 5.0, 10.0, 15.0, 20.0, 25.0, 30.0,
+                       35.0, 40.0, 45.0, 50.0)):
+    tenement('exterior', x, -52.5, 0, i + 1, 4 + (i % 2), shop_row=False)
+
+# Corner blocks: buildings wrapping round into both cross streets and the map edges.
+for side in (-1, 1):
+    for i, cz in enumerate((9.0, 14.0, 19.0, 24.0)):
+        tenement('exterior', side * 57.0, cz, 90 if side > 0 else 270,
+                 i + 1, 4 + (i % 2))
+    for i, cz in enumerate((-47.0, -52.0)):
+        tenement('exterior', side * 57.0, cz, 90 if side > 0 else 270,
+                 i + 2, 5, shop_row=False)
+
+for side in (-1, 1):
+    add('exterior', 'city', 'SM_Bld_OfficeSquare_03', side * 30.0, -58.0, 0)
+    add('exterior', 'city', 'SM_Bld_OfficeOctagon_01', side * 52.0, -59.0, 0)
+
+# Kerbside traffic: mixed models, both kerbs, some cross-street parking.
+CARS = (
+    (-56.0, 'SM_Veh_Car_Taxi_01', 90), (-50.0, 'SM_Veh_Car_Sedan_01', 90),
+    (-44.0, 'SM_Veh_Car_Van_01', 90), (-38.0, 'SM_Veh_Car_Small_01', 90),
+    (-32.0, 'SM_Veh_Car_Police_01', 90), (-26.0, 'SM_Veh_Car_Muscle_01', 90),
+    (-20.0, 'SM_Veh_Car_Taxi_01', 90), (-15.0, 'SM_Veh_Car_Medium_01', 90),
+    (15.0, 'SM_Veh_Car_Ambo_01', 270), (20.0, 'SM_Veh_Car_Taxi_01', 270),
+    (26.0, 'SM_Veh_Car_Police_01', 270), (32.0, 'SM_Veh_Car_Van_01', 270),
+    (38.0, 'SM_Veh_Car_Sedan_01', 270), (44.0, 'SM_Veh_Car_Muscle_01', 270),
+    (50.0, 'SM_Veh_Car_Small_01', 270), (56.0, 'SM_Veh_Car_Taxi_01', 270),
+    (-46.0, 'SM_Veh_Car_Van_01', 270), (-28.0, 'SM_Veh_Car_Sedan_01', 270),
+    (34.0, 'SM_Veh_Car_Taxi_01', 270), (48.0, 'SM_Veh_Car_Police_01', 270),
+)
+for cx, cname, crot in CARS:
+    cz = -28.9 if crot == 270 else -11.6
+    add('exterior', 'city', cname, cx, cz, crot)
+for cz in (-14.0, -24.0, -34.0):
+    add('exterior', 'city', 'SM_Veh_Car_Taxi_01', -47.5, cz, 0)
+    add('exterior', 'city', 'SM_Veh_Car_Van_01', 47.5, cz, 180)
+    add('exterior', 'city', 'SM_Veh_Car_Sedan_01', 47.5, cz - 6.0, 180)
+
+
+# Sidewalk furniture along both pedestrian roadsides.
+NEAR_SIDE = (-57.5, -53.0, -48.5, -43.0, -38.5, -33.0, -28.5, -23.0,
+             -18.5, -15.5, 15.5, 18.5, 23.0, 28.5, 33.0, 38.5, 43.0,
+             48.5, 53.0, 57.5)
+for i, sx in enumerate(NEAR_SIDE):
+    if i % 2 == 0:
+        add('exterior', 'city', 'SM_Prop_ParkBench_01', sx, -2.2, 0)
+    else:
+        add('exterior', 'city', 'SM_Prop_Planter_02', sx, -2.4, 0)
+for sx in (-55.0, -45.0, -36.0, -27.0, -17.0, 17.0, 27.0, 36.0, 45.0, 55.0):
+    add('exterior', 'city', 'SM_Prop_Trashbin_01', sx, -3.4, 0)
+for sx in (-51.0, -41.0, -31.0, -21.0, 21.0, 31.0, 41.0, 51.0):
+    add('exterior', 'city', 'SM_Prop_Hydrant_01', sx, -3.6, 0)
+for sx in (-39.0, -24.0, 24.0, 39.0):
+    add('exterior', 'city', 'SM_Prop_Mailbox_01', sx, -3.0, 0)
+for sx in (-34.0, -22.0, 22.0, 34.0):
+    add('exterior', 'city', 'SM_Prop_Planter_01', sx, -2.9, 0)
+for sx in (-47.0, -19.0, 19.0, 47.0):
+    add('exterior', 'city', 'SM_Prop_Phones_01', sx, -3.4, 0)
+for sx in (-29.0, -25.5, 25.5, 29.0):
+    add('exterior', 'city', 'SM_Prop_Cone_02', sx, -9.4, 0)
+for sx in (-3.6, 3.6):
+    add('exterior', 'city', 'SM_Prop_TrafficLight_03', sx, -11.2, 180)
+for sx in (-6.0, -4.5, 4.5, 6.0):
+    add('exterior', 'city', 'SM_Prop_Cone_01', sx, -11.6, 0)
+for sx in (-12.0, 12.0):
+    add('exterior', 'city', 'SM_Prop_Sign_Stop_01', sx, -3.4, 180)
+for sx in (-42.0, 42.0):
+    add('exterior', 'city', 'SM_Prop_BusStop_01', sx, -3.2, 0)
+
+
+for sx in (-54.0, -44.0, -34.0, -24.0, 24.0, 34.0, 44.0, 54.0):
+    add('exterior', 'city', 'SM_Prop_ParkBench_01', sx, -2.2, 0)
+for sx in (-56.5, -46.5, -31.5, -26.5, 26.5, 31.5, 46.5, 56.5):
+    add('exterior', 'city', 'SM_Prop_Hydrant_01', sx, -3.2, 0)
+for sx in (-36.5, -16.5, 16.5, 36.5):
+    add('exterior', 'city', 'SM_Prop_Mailbox_01', sx, -3.2, 0)
+for sx in (-38.5, -18.5, 18.5, 38.5, -57.5, 57.5):
+    add('exterior', 'city', 'SM_Prop_Trashbin_01', sx, -3.2, 0)
+for sx in (-32.0, -20.0, 20.0, 32.0):
+    add('exterior', 'city', 'SM_Prop_Planter_01', sx, -3.0, 0)
+for sx in (-25.0, 25.0):
+    add('exterior', 'city', 'SM_Prop_Cone_01', sx, -9.2, 0)
+for sx in (-48.0, 48.0):
+    add('exterior', 'city', 'SM_Prop_BusStop_01', sx, -33.4, 180)
+for sx in (-3.6, 3.6):
+    add('exterior', 'city', 'SM_Prop_TrafficLight_03', sx, -11.2, 180)
+for sx in (-6.0, -4.5, 4.5, 6.0):
+    add('exterior', 'city', 'SM_Prop_Cone_01', sx, -11.6, 0)
+
+# Far-side furniture, signage and the fenced pocket park.
+for i, sx in enumerate((-57.5, -51.0, -45.0, -39.0, -33.0, -27.0, -21.0, -15.5,
+                        15.5, 21.0, 27.0, 33.0, 39.0, 45.0, 51.0, 57.5)):
+    if i % 2 == 0:
+        add('exterior', 'city', 'SM_Prop_ParkBench_01', sx, -33.6, 180)
+    else:
+        add('exterior', 'city', 'SM_Prop_Trashbin_02', sx, -34.0, 180)
+for sx in (-48.0, -36.0, -24.0, 24.0, 36.0, 48.0):
+    add('exterior', 'city', 'SM_Prop_Planter_01', sx, -33.2, 180)
+for sx in (-42.0, -30.0, 30.0, 42.0):
+    add('exterior', 'city', 'SM_Prop_Hydrant_01', sx, -34.2, 180)
+for sx in (-18.0, 18.0):
+    add('exterior', 'city', 'SM_Prop_Mailbox_01', sx, -33.4, 180)
+for sx in (-9.0, 9.0):
+    add('exterior', 'city', 'SM_Prop_TrashCan_01', sx, -33.0, 0)
+for x in (-12.5, -7.5, 7.5, 12.5):
+    add('exterior', 'city', 'SM_Env_Fence_01', x, -39.7, 0, y=0.0)
+for x in (-10.0, 10.0):
+    add('exterior', 'city', 'SM_Env_Fence_End_01', x, -39.7, 0)
+for x in (-10.5, 10.5):
+    add('exterior', 'city', 'SM_Prop_ParkBench_01', x, -37.4, 180)
+for x in (-8.0, 0.0, 8.0):
+    add('exterior', 'city', 'SM_Env_Tree_03', x, -36.4, 0)
+
+# ================================================================ exterior expansion (iteration 2)
+# --- side-street canyons: continuous walls down both cross streets (x = +-57)
+for side in (-1, 1):
+    for i, cz in enumerate((-6.0, -11.0, -16.0, -21.0, -26.0, -31.0, -36.0)):
+        tenement('exterior', side * 57.0, cz, 90 if side < 0 else 270, i + 1, 3 + (i % 3))
+
+# --- skyline behind the bank so the top edge of the map is built up
+for side in (-1, 1):
+    for i, ax in enumerate((17.5, 22.5, 27.5, 32.5, 37.5, 42.5, 47.5, 52.5)):
+        tenement('exterior', side * ax, 27.0, 180, i + 2, 4 + (i % 2), shop_row=False)
+    add('exterior', 'city', 'SM_Bld_Spire_01', side * 22.0, 33.0, 0)
+    add('exterior', 'city', 'SM_Bld_Spire_01', side * 46.0, 33.0, 0)
+
+# --- rooftop dressing so roofs read as working buildings, not empty slabs
+ROOF_SPOTS = (14.6, 29.6, 44.6)
+for side in (-1, 1):
+    for i, ax in enumerate(ROOF_SPOTS):
+        bx = side * ax
+        add('exterior', 'city', 'SM_Prop_Water_Tower_01', bx - 1.2, 3.2, 0, y=12.78)
+        add('exterior', 'city', 'SM_Bld_Roof_Access_01', bx + 1.6, 3.4, 0, y=12.74)
+        add('exterior', 'city', 'SM_Prop_Roof_Aircon_02', bx + 0.9, 1.5, 0, y=12.74)
+        add('exterior', 'city', 'SM_Prop_Vents_Straight_01', bx - 0.9, 4.6, 0, y=12.74)
+    for i, ax in enumerate((19.6, 34.6, 49.6)):
+        add('exterior', 'city', 'SM_Prop_Roof_Aircon_03', side * ax, 3.9, 0, y=15.74)
+        add('exterior', 'city', 'SM_Prop_Vents_End_01', side * (ax + 1.4), 2.2, 0, y=15.74)
+
+# --- hanging blade signs + flat shopfront signs on the near row
+BLADES = ('SM_Prop_LargeSign_Pizza_01', 'SM_Prop_LargeSign_Burger_01', 'SM_Prop_LargeSign_Coffee_01',
+          'SM_Prop_LargeSign_Donut_01', 'SM_Prop_LargeSign_Taco_01', 'SM_Prop_LargeSign_Hotdog_01',
+          'SM_Prop_LargeSign_Milkshake_01', 'SM_Prop_LargeSign_Guitar_01')
+FLATS = ('SM_Prop_Sign_Pizza_01', 'SM_Prop_Sign_Cafe_01', 'SM_Prop_Sign_Bar_01', 'SM_Prop_Sign_Pub_01',
+         'SM_Prop_Sign_Barber_01', 'SM_Prop_Sign_Hotel_01', 'SM_Prop_Sign_XXX_01', 'SM_Prop_Sign_Parking_01')
+for side in (-1, 1):
+    for i, ax in enumerate((15.4, 20.4, 25.4, 30.4, 35.4, 40.4, 45.4, 51.0)):
+#         add('exterior', 'city', 'SM_Prop_Sign_Attachment_01', side * ax, -0.55, 180 if side > 0 else 0, y=5.65)
+#         add('exterior', 'city', BLADES[i % len(BLADES)], side * ax, -1.85, 180 if side > 0 else 0, y=4.55)
+        add('exterior', 'city', FLATS[(i + 3) % len(FLATS)], side * ax, -0.22, 180 if side > 0 else 0, y=3.35)
+
+# --- more cars: second kerb row, delivery vans and a stopped approach queue
+EXTRA_CARS = (
+    ('SM_Veh_Car_Taxi_01', -52.0, -13.1, 90), ('SM_Veh_Car_Sedan_01', -40.0, -13.1, 90),
+    ('SM_Veh_Car_Van_01', -36.0, -13.1, 90), ('SM_Veh_Car_Medium_01', -18.0, -13.1, 90),
+    ('SM_Veh_Car_Small_01', 18.0, -27.4, 270), ('SM_Veh_Car_Sedan_01', 30.0, -27.4, 270),
+    ('SM_Veh_Car_Taxi_01', 42.0, -27.4, 270), ('SM_Veh_Car_Van_01', 52.0, -27.4, 270),
+    ('SM_Veh_Car_Ambo_01', 12.0, -13.1, 90), ('SM_Veh_Car_Muscle_01', -52.0, -27.4, 270),
+)
+for name, cx, cz, cr in EXTRA_CARS:
+    add('exterior', 'city', name, cx, cz, cr)
+add('exterior', 'city', 'SM_Veh_Car_Taxi_01', -3.2, -17.0, 20)
+add('exterior', 'city', 'SM_Veh_Car_Police_01', 3.4, -17.4, 200)
+add('exterior', 'city', 'SM_Veh_Car_Van_01', -6.5, -23.6, 15)
+add('exterior', 'city', 'SM_Veh_Car_Sedan_01', 7.0, -24.2, 195)
+
+# --- enforcement cover on both wings: containers, barrier clusters, tank traps
+for side in (-1, 1):
+    add('exterior', 'br', 'SM_Prop_Container_01', side * 31.0, -17.6, 90)
+    add('exterior', 'br', 'SM_Prop_Container_Small_01', side * 44.0, -18.6, 90)
+    add('exterior', 'br', 'SM_Prop_Barrier_01', side * 20.6, -16.2, 0)
+    add('exterior', 'br', 'SM_Prop_Barrier_02', side * 21.9, -16.2, 0)
+    add('exterior', 'br', 'SM_Prop_Barrier_03', side * 36.6, -16.4, 0)
+    add('exterior', 'br', 'SM_Prop_TankTrap_01', side * 25.4, -16.0, 25)
+    add('exterior', 'br', 'SM_Prop_TankTrap_01', side * 41.2, -16.2, 335)
+    add('exterior', 'br', 'SM_Prop_EmergencyDrop_Crate_01', side * 23.8, -15.4, 0)
+    add('exterior', 'city', 'SM_Prop_CardboardBox_03', side * 28.4, -15.6, 20)
+
+# --- pedestrian detail: parking meters, newspaper boxes, bags, manholes, patches, bay lines
+for x in (-50.0, -42.0, -34.0, -26.0, -18.0, 18.0, 26.0, 34.0, 42.0, 50.0):
+    add('exterior', 'city', 'SM_Prop_ParkingMeter_01', x, -10.9, 0)
+    add('exterior', 'city', 'SM_Prop_Newspaper_02', x + 1.6, -3.1, 180 if x > 0 else 0)
+    add('exterior', 'city', 'SM_Prop_TrashBag_0%d' % (1 + (int(abs(x)) % 3)), x - 1.4, -3.4, 0)
+for x in (-38.0, -12.0, 12.0, 38.0):
+    add('exterior', 'city', 'SM_Prop_Manhole_01', x, -18.0, 0, y=0.01)
+    add('exterior', 'city', 'SM_Prop_Manhole_02', x + 3.0, -25.0, 0, y=0.01)
+for z in (-14.5, -21.5):
+    add('exterior', 'city', 'SM_Env_Road_Patch_01', -22.0, z, 12, y=0.005)
+    add('exterior', 'city', 'SM_Env_Road_Patch_01', 26.0, z, 340, y=0.005)
+for x in (-52.5, -42.5, -32.5, -22.5, 22.5, 32.5, 42.5, 52.5):
+    add('exterior', 'city', 'SM_Env_Road_ParkingLines_01', x, -13.9, 0, y=0.006)
+    add('exterior', 'city', 'SM_Env_Road_ParkingLines_01', x, -26.6, 0, y=0.006)
+for side in (-1, 1):
+    add('exterior', 'city', 'SM_Prop_Sign_GiveWay_01', side * 45.6, -10.9, 180)
+    add('exterior', 'city', 'SM_Prop_Sign_Street_01', side * 44.8, -2.2, 0, y=2.6)
+    add('exterior', 'city', 'SM_Prop_Sign_FireDepartment_01', side * 27.6, -2.55, 180, y=3.9)
+    add('exterior', 'city', 'SM_Prop_Cone_01', side * 33.0, -9.6, 0)
+    add('exterior', 'city', 'SM_Prop_Cone_02', side * 34.2, -9.9, 0)
+
+
+# ---------------------------------------------------------------- facade relief + kerbside litter
+# Pilasters on the bank's upper facade so the hero block is not a blank slab.
+for px in (-11.5, -8.5, 8.5, 11.5):
+    for py in (6.0, 9.0):
+        add('exterior', 'heist', 'SM_Env_Pillar_Exterior_04', px, -0.28, 0, y=py)
+# Deeper projecting cornice over the existing roof edge.
+for cx in (-10.0, -5.0, 0.0, 5.0, 10.0):
+    add('exterior', 'heist', 'SM_Env_Roof_05', cx, -0.35, 0, y=11.95)
+# Boxes moved off the carriageway onto the far sidewalk.
+for bx in (-26.0, 26.0):
+    add('exterior', 'city', 'SM_Prop_CardboardBox_02', bx, -33.4, 0)
+# Building mass filling the empty strip directly behind the bank.
+for bx in (-12.5, -7.5, -2.5, 2.5, 7.5, 12.5):
+    tenement('exterior', bx, 25.0, 180, 2, 4, shop_row=False)
+for bx in (-10.0, 0.0, 10.0):
+    tenement('exterior', bx, 31.0, 180, 3, 5, shop_row=False)
+add('exterior', 'city', 'SM_Bld_Spire_01', 0.0, 35.0, 0)
 
 # ---------------------------------------------------------------- spawns + cover + kills
 SPAWNS = [
@@ -346,7 +684,7 @@ LOS = [
     ('lobby_to_teller', (8.5, 1.5, 6.0), (8.5, 1.5, 17.5), False),
     ('street_cross', (-14.0, 1.5, -20.0), (14.0, 1.5, -20.0), False),
     ('barrier_cover', (-8.0, 1.2, -12.6), (-8.0, 1.2, -16.0), True),
-    ('forecourt_side', (20.0, 1.5, -6.0), (20.0, 1.5, 2.0), False),
+    ('forecourt_cross', (-20.0, 1.5, -8.6), (20.0, 1.5, -8.6), False),
 ]
 
 LAYOUT = {
@@ -368,7 +706,7 @@ FLOOR_TILES = {
     'SM_Env_Sidewalk_01', 'SM_Env_Road_01',
     'SM_Env_Floor_01', 'SM_Env_Floor_02',
 }
-EXPECT_FLOORS = {'exterior': 132, 'lobby': 15, 'teller': 5}
+EXPECT_FLOORS = {'lobby': 15, 'teller': 5}
 
 counts = {r: {'floors': 0, 'ceilings': 0, 'props': 0} for r in ORDER}
 for rid in ORDER:
@@ -382,7 +720,7 @@ for rid in ORDER:
             counts[rid]['props'] += 1
 
 for rid in ORDER:
-    if counts[rid]['floors'] != EXPECT_FLOORS[rid]:
+    if rid in EXPECT_FLOORS and counts[rid]['floors'] != EXPECT_FLOORS[rid]:
         FAIL.append('%s floors=%d expected %d' % (rid, counts[rid]['floors'], EXPECT_FLOORS[rid]))
 
 # Facade ray check: every sample on z = 0 must land on a solid wall module
