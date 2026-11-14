@@ -165,7 +165,7 @@ for x in (-10, 10):
             FLOOR_A if (x + z) % 10 == 0 else FLOOR_B, x, z)
 for x in (-17.5, -12.5, -7.5, -2.5, 2.5, 7.5, 12.5, 17.5):
     for z in (-2.5, -7.5, -12.5, -17.5, -22.5):
-        add('exterior', FLOOR_A if (round(x) + round(z)) % 10 == 0 else FLOOR_B, x, z)
+        add('exterior', FLOOR_B, x, z)
 
 # ------------------------------------------------------------------ ceilings (bottom at room height)
 CEILINGS = ['SM_Env_Ceiling_01', 'SM_Env_Ceiling_02', 'SM_Env_Ceiling_03',
@@ -224,13 +224,13 @@ for x, n in ((-5, W_INT_WIN), (0, W_INT_WIN), (5, W_INT_WIN)):
     wall('teller', n, x, 10.0, 0.0, 0)
 for x in (-10, -5, 0, 5, 10):
     wall('lobby', W_INT, x, 10.0, 0.0, 1)
-# teller/vault wall Z=15: open passages at +-10, vault front at centre
-for x, n, r in ((-5, V_WALL, 'vault'), (0, V_FRAME, 'vault'), (5, V_WALL, 'vault')):
+# teller/vault wall Z=15 (solid walls either side of the vault door frame, no bars)
+for x, n, r in ((-5, W_EXT, 'vault'), (0, V_FRAME, 'vault'), (5, W_EXT, 'vault')):
     wall(r, n, x, 15.0, 0.0, 0)
-# vault side walls
+# vault side walls (solid)
 for z in (17.5, 22.5):
-    wall('vault', V_WALL, -7.5, z, 90.0, 0)
-    wall('vault', V_WALL, 7.5, z, 270.0, 0)
+    wall('vault', W_EXT, -7.5, z, 90.0, 0)
+    wall('vault', W_EXT, 7.5, z, 270.0, 0)
 
 # ------------------------------------------------------------------ lobby (6m grand hall)
 add('lobby', 'SM_Prop_Rug_01', 0.0, 4.5, 0.0, y=GAP)
@@ -269,6 +269,8 @@ add_ceiling('lobby', 'SM_Prop_Camera_01', -9.5, 0.35, 180.0, 6.0)
 add_ceiling('lobby', 'SM_Prop_Camera_01', 9.5, 0.35, 180.0, 6.0)
 add_ceiling('lobby', 'SM_Prop_Camera_01', -12.1, 5.0, 90.0, 6.0)
 MOUNTED.append(add_mount('lobby', 'SM_Prop_AlarmButton_01', 'z', 10.0, -1, 9.2, 1.2, 180.0))
+MOUNTED.append(add_mount('lobby', 'SM_Prop_Flag_Wall_01', 'z', 10.0, -1, -7.5, 1.4, 180.0))
+MOUNTED.append(add_mount('lobby', 'SM_Prop_Flag_Wall_02', 'z', 10.0, -1, 7.5, 1.4, 180.0))
 for wx in (-10, -5, 5, 10):
     MOUNTED.append(add_mount('lobby', 'SM_Env_Wall_Window_Blinds_01', 'z', 0.0, 1, wx, 0.87, 0.0))
 
@@ -276,11 +278,10 @@ for wx in (-10, -5, 5, 10):
 for x in (-5.0, 0.0, 5.0):
     k = 'desk%d' % int(x * 10)
     add('teller', 'SM_Prop_TellerDesk_01', x, 11.8, 180.0, key=k)
-    add('teller', 'SM_Prop_TellerDesk_Barrier_01', x, 10.45, 180.0)
     add('teller', 'SM_Prop_Seat_01', x, 13.2, 180.0)
-    add_on('teller', k, 'SM_Prop_Computer_Screen_01', 0.0, -0.12, 180.0)
-    add_on('teller', k, 'SM_Prop_Computer_Keyboard_01', 0.0, -0.38, 180.0)
-    add_on('teller', k, 'SM_Prop_Computer_Mouse_01', 0.35, -0.38, 180.0)
+    add_on('teller', k, 'SM_Prop_Computer_Screen_01', 0.0, -0.12, 0.0)
+    add_on('teller', k, 'SM_Prop_Computer_Keyboard_01', 0.0, -0.38, 0.0)
+    add_on('teller', k, 'SM_Prop_Computer_Mouse_01', 0.35, -0.38, 0.0)
     add_on('teller', k, 'SM_Prop_Money_Stack_01', -0.55, 0.25, 15.0)
     add_on('teller', k, 'SM_Prop_Folder_01', 0.65, 0.15, 90.0)
     add_on('teller', k, 'SM_Prop_DeskLight_01', -0.85, 0.1, 180.0)
@@ -301,8 +302,8 @@ MOUNTED.append(add_mount('teller', 'SM_Prop_AlarmButton_01', 'z', 10.0, 1, 9.2, 
 # ------------------------------------------------------------------ vault (3m)
 for z in (17.5, 22.5):
     pass
-MOUNTED.append(add_mount('vault', 'SM_Prop_SafeDepositBoxes_01', 'x', -7.5, 1, 20.0, 0.0, 270.0))
-MOUNTED.append(add_mount('vault', 'SM_Prop_SafeDepositBoxes_01', 'x', 7.5, -1, 20.0, 0.0, 90.0))
+MOUNTED.append(add_mount('vault', 'SM_Prop_SafeDepositBoxes_01', 'x', -7.5, 1, 20.0, 0.0, 90.0))
+MOUNTED.append(add_mount('vault', 'SM_Prop_SafeDepositBoxes_01', 'x', 7.5, -1, 20.0, 0.0, 270.0))
 add('vault', 'SM_Prop_Table_01', 0.0, 20.0, 0.0, key='vtable')
 add_on('vault', 'vtable', 'SM_Prop_GoldBar_01', -0.6, 0.0, 20.0)
 add_on('vault', 'vtable', 'SM_Prop_GoldBar_02', -0.2, 0.05, 65.0)
@@ -311,8 +312,6 @@ add_on('vault', 'vtable', 'SM_Prop_Money_Stack_01', 0.8, 0.0, 15.0)
 add_on('vault', 'vtable', 'SM_Prop_Drill_01', -1.2, 0.0, 90.0)
 add_on('vault', 'vtable', 'SM_Item_Crowbar_01', 1.2, 0.1, 80.0)
 add('vault', 'SM_Prop_VaultTrolley_01', 3.2, 21.0, 0.0, key='vtrolley')
-add_on('vault', 'vtrolley', 'SM_Prop_Money_Stack_02', 0.0, 0.0, 0.0)
-add_on('vault', 'vtrolley', 'SM_Prop_Money_Stack_03', 0.3, 0.2, 40.0)
 add('vault', 'SM_Item_DuffleBag_Full_01', -3.4, 18.2, 270.0)
 add('vault', 'SM_Item_DuffleBag_Open_Empty_01', -4.2, 21.5, 90.0)
 MOUNTED.append(add_mount('vault', 'SM_Prop_AirVent_01', 'x', -7.5, 1, 20.0, 2.6, 90.0))
@@ -342,12 +341,14 @@ add('exterior', 'SM_Env_Pillar_Exterior_Floor_01', -14.5, -3.0, 0.0)
 add('exterior', 'SM_Env_Pillar_Exterior_Floor_01', 14.5, -3.0, 0.0)
 add('exterior', 'SM_Env_Pillar_Exterior_Floor_01', -14.5, -9.0, 0.0)
 add('exterior', 'SM_Env_Pillar_Exterior_Floor_01', 14.5, -9.0, 0.0)
-MOUNTED.append(add_mount('exterior', 'SM_Prop_Sign_Money_Bank_01', 'z', 0.0, -1, 0.0, 3.4, 0.0))
+MOUNTED.append(add_mount('exterior', 'SM_Prop_Sign_Money_Bank_01', 'z', 0.0, -1, 0.0, 3.4, 180.0))
 add('exterior', 'SM_Veh_Car_Police_Heist_01', -9.0, -7.0, 90.0)
 add('exterior', 'SM_Veh_SwatVan_01', 9.0, -9.0, 270.0)
 add('exterior', 'SM_Veh_Helicopter_01', 0.0, -17.0, 0.0)
 add('exterior', 'SM_Prop_Bin_01', -15.0, -2.0, 0.0)
 add('exterior', 'SM_Prop_Bin_01', 15.0, -2.0, 0.0)
+add('exterior', 'SM_Prop_Flag_Pole_01', -6.0, -4.5, 0.0)
+add('exterior', 'SM_Prop_Flag_Pole_01', 6.0, -4.5, 0.0)
 add('exterior', 'SM_Prop_Plant_03', -15.0, -4.0, 0.0)
 add('exterior', 'SM_Prop_Plant_03', 15.0, -4.0, 0.0)
 add('exterior', 'SM_Prop_Statue_01', -4.0, -3.5, 0.0)
