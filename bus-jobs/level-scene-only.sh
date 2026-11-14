@@ -441,8 +441,8 @@ public static class LevelBuilder
                     {
                         Light roomLight = inst.AddComponent<Light>();
                         roomLight.type = LightType.Point;
-                        roomLight.range = 11f;
-                        roomLight.intensity = 1.15f;
+                        roomLight.range = 13f;
+                        roomLight.intensity = 1.35f;
                         roomLight.color = new Color(1f, 0.94f, 0.84f);
                         roomLight.shadows = LightShadows.None;
                         lightCount++;

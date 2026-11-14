@@ -584,6 +584,22 @@ add('exterior', 'SM_Prop_Sign_Base_01', 13.5, -33.0, 0.0)
 add('exterior', 'SM_Prop_Sign_Money_Bank_01', 13.5, -33.0, 0.0, y=1.05)
 add('exterior', 'SM_Prop_Bin_01', -28.0, -36.0, 0.0)
 add('exterior', 'SM_Prop_Bin_01', 28.0, -36.0, 0.0)
+# ---- readability pass: gate posts, mid-field cover, depth layer, doorway dressing ----
+# breach gate: two 1.4 m posts frame the only straight line to the door
+add('exterior', 'SM_Prop_Pillar_02', -2.20, -26.0, 0.0)
+add('exterior', 'SM_Prop_Pillar_02', 2.20, -26.0, 0.0)
+# mid-field flank cover: shortens the dead ground between the two cordons
+for cx, cz, cr in ((-12.5, -19.8, 12.0), (-11.9, -19.2, 335.0), (12.4, -21.0, 20.0), (13.0, -20.4, 300.0)):
+    add('exterior', 'SM_Prop_Box_01', cx, cz, cr)
+# depth layer at the far field so the south third is not empty
+add('exterior', 'SM_Veh_Car_Police_Heist_01', -16.0, -29.0, 70.0)
+add('exterior', 'SM_Prop_Plant_03', -17.5, -27.0, 0.0)
+add('exterior', 'SM_Prop_Plant_03', 17.5, -27.0, 0.0)
+add('exterior', 'SM_Prop_Box_01', -18.6, -27.4, 25.0)
+add('exterior', 'SM_Prop_Box_01', 18.9, -27.6, 340.0)
+# doorway dressing beside both service-block entrances
+add('exterior', 'SM_Prop_Box_01', -20.5, -24.6, 15.0)
+add('exterior', 'SM_Prop_Box_01', 20.5, -24.6, 340.0)
 
 # ------------------------------------------------------------------ spawns + killzone
 ROOMS['lobby']['spawnPoints'] = [
