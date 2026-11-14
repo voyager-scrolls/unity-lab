@@ -2362,9 +2362,9 @@
         {
           "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Box_01.prefab",
           "position": [
-            -11.6,
+            -13.2,
             0,
-            -6.6
+            -6.2
           ],
           "rotation": [
             0.0,
@@ -4344,7 +4344,7 @@
           "position": [
             -15.9094,
             0,
-            -29.0
+            -31.5
           ],
           "rotation": [
             0.0,
@@ -4487,9 +4487,9 @@
         },
         {
           "position": [
-            10.0,
+            7.0,
             1.0,
-            -5.0
+            -3.6
           ],
           "team": 2,
           "type": "recon"
@@ -4508,27 +4508,6 @@
             9.0,
             0.1,
             -7.0
-          ]
-        },
-        {
-          "position": [
-            0.0,
-            0.1,
-            -9.5
-          ]
-        },
-        {
-          "position": [
-            -12.0,
-            0.1,
-            -3.0
-          ]
-        },
-        {
-          "position": [
-            12.0,
-            0.1,
-            -3.0
           ]
         }
       ],
@@ -6049,42 +6028,6 @@
           "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_RopeBarrier_Pole_01.prefab",
           "position": [
             -3.0,
-            0,
-            1.2
-          ],
-          "rotation": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "scale": [
-            1.0,
-            1.0,
-            1.0
-          ]
-        },
-        {
-          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_RopeBarrier_Pole_01.prefab",
-          "position": [
-            -1.2,
-            0,
-            1.2
-          ],
-          "rotation": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "scale": [
-            1.0,
-            1.0,
-            1.0
-          ]
-        },
-        {
-          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_RopeBarrier_Pole_01.prefab",
-          "position": [
-            1.2,
             0,
             1.2
           ],
@@ -7676,18 +7619,18 @@
       "spawnPoints": [
         {
           "position": [
-            -8.0,
+            -9.6,
             1.0,
-            2.0
+            4.2
           ],
           "team": 1,
           "type": "delta"
         },
         {
           "position": [
-            8.0,
+            9.6,
             1.0,
-            2.0
+            4.2
           ],
           "team": 1,
           "type": "delta"
@@ -8690,6 +8633,42 @@
           ]
         },
         {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Box_01.prefab",
+          "position": [
+            -7.2,
+            0,
+            14.0
+          ],
+          "rotation": [
+            0.0,
+            20.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Box_01.prefab",
+          "position": [
+            7.2,
+            0,
+            14.0
+          ],
+          "rotation": [
+            0.0,
+            340.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
           "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_AirVent_01.prefab",
           "position": [
             5.0,
@@ -8854,44 +8833,30 @@
       "coverPoints": [
         {
           "position": [
-            -7.0,
+            -11.2,
             0.1,
-            12.9
+            11.6
           ]
         },
         {
           "position": [
-            7.0,
+            11.2,
             0.1,
-            12.9
+            11.6
           ]
         },
         {
           "position": [
-            -3.0,
+            -11.2,
             0.1,
             14.0
           ]
         },
         {
           "position": [
-            3.0,
+            11.2,
             0.1,
             14.0
-          ]
-        },
-        {
-          "position": [
-            -10.0,
-            0.1,
-            13.6
-          ]
-        },
-        {
-          "position": [
-            10.0,
-            0.1,
-            13.6
           ]
         }
       ],
@@ -9529,9 +9494,9 @@
         {
           "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_SafeDepositBox_Cover_01.prefab",
           "position": [
-            4.4041,
+            3.6041,
             0.39,
-            21.6017
+            22.5517
           ],
           "rotation": [
             0.0,
@@ -10177,16 +10142,16 @@
         },
         {
           "position": [
-            -3.5,
+            -1.6,
             0.1,
-            23.5
+            20.0
           ]
         },
         {
           "position": [
-            3.5,
+            1.6,
             0.1,
-            23.5
+            20.0
           ]
         }
       ],

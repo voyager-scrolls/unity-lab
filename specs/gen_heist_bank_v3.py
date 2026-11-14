@@ -292,7 +292,7 @@ add('lobby', 'SM_Prop_Pillar_01', 5.0, 5.0, 0.0, key='lbustbaseR')
 add_on('lobby', 'lbustbaseR', 'SM_Prop_Statue_01', 0.0, 0.0, 180.0)
 add('lobby', 'SM_Prop_WaterCooler_01', 11.4, 6.8, 270.0)
 add('lobby', 'SM_Prop_Bin_01', -11.4, 6.8, 0.0)
-for px in (-3.0, -1.2, 1.2, 3.0):
+for px in (-3.0, 3.0):
     add('lobby', 'SM_Prop_RopeBarrier_Pole_01', px, 1.2, 0.0)
 # ---- jewellery counters: four cases, stocked dense, trays aligned with the case axis ----
 CASE_LONG = [('SM_Prop_Jewellery_04', 0.95), ('SM_Prop_Jewellery_Rings_01', 1.55),
@@ -414,6 +414,8 @@ add('lobby', 'SM_Prop_Money_Note_07', 0.20, 9.60, 250.0, y=0.02)
 add('lobby', 'SM_Item_DuffleBag_Open_Empty_01', 3.60, 9.30, 200.0)
 add('lobby', 'SM_Item_Mask_Balaclava_01', 2.75, 9.55, 140.0, y=0.11)
 add('lobby', 'SM_Item_Crowbar_01', -6.00, 9.45, 80.0, y=0.09)
+add('teller', 'SM_Prop_Box_01', -7.20, 14.00, 20.0)
+add('teller', 'SM_Prop_Box_01', 7.20, 14.00, 340.0)
 MOUNTED.append(add_mount('teller', 'SM_Prop_AirVent_01', 'z', 14.92, -1, 5.0, 2.6, 0.0))
 add_ceiling('teller', 'SM_Prop_Camera_01', -8.0, 14.6, 0.0, 3.0)
 MOUNTED.append(add_mount('teller', 'SM_Prop_AlarmButton_01', 'z', 10.0, 1, 7.0, 1.2, 0.0))
@@ -432,7 +434,7 @@ MOUNTED.append(add_mount('vault', 'SM_Prop_SafeDepositBoxes_Looted_01', 'x', 7.5
 add('vault', 'SM_Prop_SafeDepositBox_Container_01', 5.60, 21.60, 20.0)
 add('vault', 'SM_Prop_SafeDepositBox_Container_01', 4.90, 22.40, 340.0)
 add('vault', 'SM_Prop_SafeDepositBox_Cover_01', 6.10, 22.10, 10.0, y=0.39)
-add('vault', 'SM_Prop_SafeDepositBox_Cover_01', 4.40, 21.90, 300.0, y=0.39)
+add('vault', 'SM_Prop_SafeDepositBox_Cover_01', 3.60, 22.85, 300.0, y=0.39)
 add('vault', 'SM_Prop_Sprinkler_01', -3.5, 18.5, 0.0, y=3.0)
 add('vault', 'SM_Prop_Sprinkler_01', 3.5, 18.5, 0.0, y=3.0)
 add('vault', 'SM_Prop_Table_01', 0.0, 20.0, 0.0, key='vtable')
@@ -526,7 +528,7 @@ add('exterior', 'SM_Veh_SwatVan_01', -12.0, -13.0, 20.0)
 add('exterior', 'SM_Veh_Car_Police_Heist_01', 12.5, -3.5, 290.0)
 add('exterior', 'SM_Prop_Box_01', 6.2, -10.2, 15.0)
 add('exterior', 'SM_Prop_Box_01', 5.6, -10.8, 340.0)
-add('exterior', 'SM_Prop_Box_01', -11.6, -6.6, 20.0)
+add('exterior', 'SM_Prop_Box_01', -13.2, -6.2, 20.0)
 # ---- zero characters: law-enforcement presence is set dressing only (vehicles, kit, cordons) ----
 
 # ---------------------------------------------------------------- outdoor district (x -30..30, z -40..0)
@@ -592,7 +594,7 @@ add('exterior', 'SM_Prop_Pillar_02', 2.20, -26.0, 0.0)
 for cx, cz, cr in ((-12.5, -19.8, 12.0), (-11.9, -19.2, 335.0), (12.4, -21.0, 20.0), (13.0, -20.4, 300.0)):
     add('exterior', 'SM_Prop_Box_01', cx, cz, cr)
 # depth layer at the far field so the south third is not empty
-add('exterior', 'SM_Veh_Car_Police_Heist_01', -16.0, -29.0, 70.0)
+add('exterior', 'SM_Veh_Car_Police_Heist_01', -16.0, -31.5, 70.0)
 add('exterior', 'SM_Prop_Plant_03', -17.5, -27.0, 0.0)
 add('exterior', 'SM_Prop_Plant_03', 17.5, -27.0, 0.0)
 add('exterior', 'SM_Prop_Box_01', -18.6, -27.4, 25.0)
@@ -603,8 +605,8 @@ add('exterior', 'SM_Prop_Box_01', 20.5, -24.6, 340.0)
 
 # ------------------------------------------------------------------ spawns + killzone
 ROOMS['lobby']['spawnPoints'] = [
-    {'position': [-8.0, 1.0, 2.0], 'team': 1, 'type': 'delta'},
-    {'position': [8.0, 1.0, 2.0], 'team': 1, 'type': 'delta'},
+    {'position': [-9.6, 1.0, 4.2], 'team': 1, 'type': 'delta'},
+    {'position': [9.6, 1.0, 4.2], 'team': 1, 'type': 'delta'},
     {'position': [0.0, 1.0, 6.5], 'team': 1, 'type': 'delta'},
 ]
 ROOMS['teller']['spawnPoints'] = [{'position': [-9.8, 1.0, 14.2], 'team': 2, 'type': 'recon'}]
@@ -612,7 +614,7 @@ ROOMS['vault']['spawnPoints'] = [{'position': [-3.5, 1.0, 23.5], 'team': 2, 'typ
 ROOMS['exterior']['spawnPoints'] = [
     {'position': [0.0, 1.0, -8.0], 'team': 2, 'type': 'recon'},
     {'position': [-10.0, 1.0, -5.0], 'team': 2, 'type': 'recon'},
-    {'position': [10.0, 1.0, -5.0], 'team': 2, 'type': 'recon'},
+    {'position': [7.0, 1.0, -3.6], 'team': 2, 'type': 'recon'},
 ]
 ROOMS['lobby']['killZones'] = [{'position': [0.0, -5.0, 0.0], 'size': [80.0, 1.0, 80.0]}]
 
@@ -632,11 +634,11 @@ COVER = {
     'lobby': [(-7.2, 1.0), (7.2, 1.0), (-7.0, 8.8), (7.0, 8.8), (-5.0, 4.3), (5.0, 4.3),
               (-9.8, 3.2), (9.8, 3.2), (-2.0, 1.6), (2.0, 1.6), (0.0, 7.2), (-11.0, 5.5),
               (11.0, 5.5)],
-    'teller': [(-7.0, 12.9), (7.0, 12.9), (-3.0, 14.0), (3.0, 14.0), (-10.0, 13.6), (10.0, 13.6)],
-    'vault': [(-6.0, 16.6), (6.0, 16.6), (-3.5, 23.5), (3.5, 23.5)],
+    'teller': [(-11.2, 11.6), (11.2, 11.6), (-11.2, 14.0), (11.2, 14.0)],
+    'vault': [(-6.0, 16.6), (6.0, 16.6), (-1.6, 20.0), (1.6, 20.0)],
     'corridorL': [(-11.3, 19.6), (-8.7, 21.5)],
     'corridorR': [(11.3, 19.6), (8.7, 21.5)],
-    'exterior': [(-9.0, -5.0), (9.0, -7.0), (0.0, -9.5), (-12.0, -3.0), (12.0, -3.0)],
+    'exterior': [(-9.0, -5.0), (9.0, -7.0)],
 }
 for rid, pts in COVER.items():
     ROOMS[rid]['coverPoints'] = [{'position': [x, 0.1, z]} for (x, z) in pts]
