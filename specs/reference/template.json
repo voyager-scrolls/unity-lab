@@ -1,0 +1,22 @@
+{
+  "name": "bank_scene",
+  "image": "C:/Users/ABCD/Downloads/Bank_robbery_map_scene_74c35317_2K.jpg",
+  "size_px": [0, 0],
+  "camera": {
+    "horizon_row": 0,
+    "cx_px": 0,
+    "hfov_deg": 60,
+    "f_px": 0,
+    "h_m": 0,
+    "ref_width_m": 0,
+    "ref_px": [0, 0, 0, 0]
+  },
+  "footprint_m": { "x": [-30, 30], "z": [-40, 0] },
+  "palette": [],
+  "zones": [],
+  "elements": [],
+  "acceptance": {
+    "shots": ["ref_cam"],
+    "min_ssim": 0.55
+  }
+}
