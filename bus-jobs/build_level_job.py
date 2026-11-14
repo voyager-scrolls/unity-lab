@@ -14,8 +14,8 @@ SOURCES = [
     ("PerfTune.cs", "game/mfps/PerfTune.cs", "CSEOF3"),
 ]
 MFPBUILD = ("MfpsBuild.cs", None, "CSEOF4")  # content inline below
-LAYOUT_JSON = os.path.join(ROOT, "specs", "heist-bank-v3.json")
-assert os.path.basename(LAYOUT_JSON) == "heist-bank-v3.json", "sync the LAYOUT_SRC literal when switching layout versions"
+LAYOUT_JSON = os.path.join(ROOT, "specs", "street-bank-v1.json")
+assert os.path.basename(LAYOUT_JSON) == "street-bank-v1.json", "sync the LAYOUT_SRC literal when switching layout versions"
 
 MFPS_BUILD_CS = """using System.IO;
 using UnityEditor;
@@ -205,7 +205,7 @@ sed -i 's/  offlineMode: 0/  offlineMode: 1/' "$GD"
 grep -q 'offlineMode: 1' "$GD" && echo OFFLINE_MODE_ON || { echo OFFLINE_FLIP_FAILED; grep -n 'offlineMode' "$GD"; exit 6; }
 
 echo "=== WRITE LAYOUT JSON (pulled from Drive) ==="
-LAYOUT_SRC="$MFPSROOT/specs/heist-bank-v3.json"
+LAYOUT_SRC="$MFPSROOT/specs/street-bank-v1.json"
 test -f "$LAYOUT_SRC" || { echo NO_LAYOUT_JSON; exit 6; }
 cp "$LAYOUT_SRC" /content/level-layout.json
 python3 -c "import json; d=json.load(open('/content/level-layout.json')); print('LAYOUT_JSON_OK rooms=' + str(len(d['rooms'])) + ' name=' + d['name'])"

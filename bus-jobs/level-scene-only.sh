@@ -159,7 +159,7 @@ sed -i 's/  offlineMode: 0/  offlineMode: 1/' "$GD"
 grep -q 'offlineMode: 1' "$GD" && echo OFFLINE_MODE_ON || { echo OFFLINE_FLIP_FAILED; grep -n 'offlineMode' "$GD"; exit 6; }
 
 echo "=== WRITE LAYOUT JSON (pulled from Drive) ==="
-LAYOUT_SRC="$MFPSROOT/specs/heist-bank-v3.json"
+LAYOUT_SRC="$MFPSROOT/specs/street-bank-v1.json"
 test -f "$LAYOUT_SRC" || { echo NO_LAYOUT_JSON; exit 6; }
 cp "$LAYOUT_SRC" /content/level-layout.json
 python3 -c "import json; d=json.load(open('/content/level-layout.json')); print('LAYOUT_JSON_OK rooms=' + str(len(d['rooms'])) + ' name=' + d['name'])"
@@ -345,6 +345,7 @@ public static class LevelBuilder
 {
     static int spawnCounter;
     static Material plazaMat;
+    static Material roadMat;
     static int characterCount;
     static readonly System.Collections.Generic.List<Vector3> spawnPositions = new System.Collections.Generic.List<Vector3>();
 
@@ -366,6 +367,12 @@ public static class LevelBuilder
         floor.name = "Floor";
         floor.transform.position = new Vector3(0f, -0.05f, 0f);
         floor.transform.localScale = new Vector3(20f, 1f, 20f);
+
+        // The default plane material is near-white; darken it so the ground beyond
+        // the kit tiles reads as terrain instead of a blown-out void.
+        Material groundMat = new Material(floor.GetComponent<Renderer>().sharedMaterial);
+        groundMat.color = new Color(0.30f, 0.30f, 0.31f, 1f);
+        floor.GetComponent<Renderer>().sharedMaterial = groundMat;
 
         // Sun + ambient so the scene is not flat grey
         GameObject sunGo = new GameObject("Sun");
@@ -461,6 +468,23 @@ public static class LevelBuilder
                         if (plazaMat != null)
                         {
                             foreach (Renderer r in tileRenderers) r.sharedMaterial = plazaMat;
+                            tintedCount++;
+                        }
+                    }
+
+                    // Asphalt tint: the City road tiles use the same near-white atlas as
+                    // the paving. Keep markings and crossings at their authored colour.
+                    if (inst.name.Contains("Road") && !inst.name.Contains("Lines") && !inst.name.Contains("Crossing"))
+                    {
+                        Renderer[] roadRenderers = inst.GetComponentsInChildren<Renderer>(true);
+                        if (roadMat == null && roadRenderers.Length > 0)
+                        {
+                            roadMat = new Material(roadRenderers[0].sharedMaterial);
+                            roadMat.color = new Color(0.26f, 0.26f, 0.27f, 1f);
+                        }
+                        if (roadMat != null)
+                        {
+                            foreach (Renderer r in roadRenderers) r.sharedMaterial = roadMat;
                             tintedCount++;
                         }
                     }
