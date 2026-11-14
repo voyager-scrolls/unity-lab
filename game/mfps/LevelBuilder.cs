@@ -314,6 +314,8 @@ public static class LevelBuilder
         Debug.Log("LEVEL_BUILDER: invisible colliders=" + invisible);
 
         // Integrity gate 3: sightlines. Walls must block listed lines; openings must stay clear.
+        // Physics queries in edit mode need freshly instantiated colliders synced first.
+        Physics.SyncTransforms();
         int losFails = 0;
         int losCount = 0;
         if (layout.losChecks != null)
