@@ -175,13 +175,15 @@ for x in (-17.5, -12.5, -7.5, -2.5, 2.5, 7.5, 12.5, 17.5):
 # ------------------------------------------------------------------ ceilings (bottom at room height)
 CEILINGS = ['SM_Env_Ceiling_01', 'SM_Env_Ceiling_02', 'SM_Env_Ceiling_03',
             'SM_Env_Ceiling_04', 'SM_Env_Ceiling_05']
-CEILING_CORRIDOR = 'SM_Env_Ceiling_05'  # both staff corridors share one design
+# the right corridor's original pair is 04 (z=17.5) + 05 (z=22.5); corridorL copies that
+# exact pair so both staff corridors match. Other rooms keep their own designs.
+CORRIDOR_CEILINGS = ['SM_Env_Ceiling_04', 'SM_Env_Ceiling_05']
 ci = 0
 for x in (-10, -5, 0, 5, 10):
     for z in (12.5, 17.5, 22.5):
         rid = room_at(x, z)
         if rid in ('corridorL', 'corridorR'):
-            n = CEILING_CORRIDOR
+            n = CORRIDOR_CEILINGS[0 if z < 20 else 1]
         else:
             n = CEILINGS[ci % len(CEILINGS)]
             ci += 1
@@ -291,6 +293,15 @@ add('lobby', 'SM_Prop_DisplayCase_02', 9.0, 1.6, 270.0, key='caseR1')
 add('lobby', 'SM_Prop_Jewellery_03', 9.0, 1.45, 0.0, key='jR1', y=0.52)
 add('lobby', 'SM_Prop_Jewellery_Necklace_01', 9.0, 1.65, 0.0, key='jR2', y=0.52)
 add('lobby', 'SM_Prop_Jewellery_Rings_01', 9.0, 1.8, 0.0, key='jR3', y=0.52)
+# two more jewellery counters against the facade wall, flanking the entrance
+add('lobby', 'SM_Prop_DisplayCase_01', -4.0, 0.75, 0.0, key='caseL2')
+add('lobby', 'SM_Prop_Jewellery_Necklace_03', -4.75, 0.75, 0.0, key='jL4', y=0.80)
+add('lobby', 'SM_Prop_Jewellery_03', -4.0, 0.75, 0.0, key='jL5', y=0.80)
+add('lobby', 'SM_Prop_Jewellery_04', -3.25, 0.75, 0.0, key='jL6', y=0.80)
+add('lobby', 'SM_Prop_DisplayCase_01', 4.0, 0.75, 0.0, key='caseR2')
+add('lobby', 'SM_Prop_Jewellery_02', 3.25, 0.75, 0.0, key='jR4', y=0.80)
+add('lobby', 'SM_Prop_Jewellery_Rings_01', 4.0, 0.75, 0.0, key='jR5', y=0.80)
+add('lobby', 'SM_Prop_Jewellery_Necklace_04', 4.75, 0.75, 0.0, key='jR6', y=0.80)
 # wall fixtures
 MOUNTED.append(add_mount('lobby', 'SM_Prop_Sign_Bank_01', 'z', 10.0, -1, 0.0, 3.3, 180.0))
 # ceiling pendant cameras (the kit's Camera_01 hangs below its pivot - mount at ceiling, not wall)
@@ -304,13 +315,14 @@ MOUNTED.append(add_mount('lobby', 'SM_Prop_Flag_Wall_02', 'x', 12.5, -1, 3.5, 1.
 # ------------------------------------------------------------------ teller (3m suspended ceiling)
 # teller counters stand in the lobby, pulled 1.8m off the partition so staff have a workable aisle
 # (fronts face the lobby; the workstation sits on the staff side, +z towards the partition)
-for x in (-5.0, 0.0, 5.0):
+# counter dressing: computer centred, cash on the side facing the neighbouring desk,
+# lamp on the opposite end pushed inboard so its base sits clear of the counter edge
+for x, s in ((-5.0, 1.0), (0.0, -1.0), (5.0, -1.0)):
     k = 'desk%d' % int(x * 10)
     add('lobby', 'SM_Prop_TellerDesk_01', x, 8.2, 180.0, key=k)
     add_on('lobby', k, 'SM_Prop_Computer_01', 0.0, 0.0, 0.0)
-    add_on('lobby', k, 'SM_Prop_Money_Stack_01', -0.55, 0.25, 15.0)
-    add_on('lobby', k, 'SM_Prop_Folder_01', 0.72, 0.12, 90.0)
-    add_on('lobby', k, 'SM_Prop_DeskLight_01', -0.85, 0.1, 180.0)
+    add_on('lobby', k, 'SM_Prop_Money_Stack_01', 0.72 * s, -0.10, 0.0)
+    add_on('lobby', k, 'SM_Prop_DeskLight_01', -0.58 * s, -0.26, 180.0)
 # display cases against the side walls (they previously blocked the z=15 passages)
 add('teller', 'SM_Prop_DisplayCase_01', -12.15, 12.5, 90.0, key='tcase1')
 add('teller', 'SM_Prop_Jewellery_Necklace_02', -12.15, 12.3, 0.0, y=0.80)
@@ -332,6 +344,8 @@ add_on('vault', 'vtable', 'SM_Prop_GoldBar_01', -0.6, 0.0, 20.0)
 add_on('vault', 'vtable', 'SM_Prop_GoldBar_02', -0.2, 0.05, 65.0)
 add_on('vault', 'vtable', 'SM_Prop_GoldBar_01', 0.25, 0.0, 340.0)
 add_on('vault', 'vtable', 'SM_Prop_Money_Stack_01', 0.45, 0.3, 15.0)
+add_on('vault', 'vtable', 'SM_Prop_Jewellery_Necklace_02', -0.75, 0.42, 0.0)
+add_on('vault', 'vtable', 'SM_Prop_Jewellery_Rings_01', 0.05, 0.40, 0.0)
 # crowbar lies along the table's long axis, fully on the top (table top x +-1.06, z +-0.65)
 add_on('vault', 'vtable', 'SM_Item_Crowbar_01', 0.82, 0.0, 0.0, lift=0.02)
 # the drill is 1.6m long - too big for the table, it goes on the floor beside it

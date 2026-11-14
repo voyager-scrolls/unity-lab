@@ -42,14 +42,16 @@ public static class CaptureExtra
             new Vector3(0f, 1.7f, 11.6f),
             new Vector3(-9.8f, 1.7f, 15.3f),
             new Vector3(-11.2f, 1.7f, 4.6f),
-            new Vector3(0f, 1.7f, 9.6f)
+            new Vector3(0f, 1.7f, 9.6f),
+            new Vector3(0f, 1.7f, 4.4f)
         };
         Vector3[] look = new Vector3[]
         {
             new Vector3(0f, 1.2f, 8.0f),
             new Vector3(-10f, 1.2f, 18.2f),
             new Vector3(0.5f, 1.2f, 9.2f),
-            new Vector3(0f, 1.3f, 8.2f)
+            new Vector3(0f, 1.3f, 8.2f),
+            new Vector3(0f, 1.2f, 0.8f)
         };
 
         for (int i = 0; i < pos.Length; i++)
@@ -59,7 +61,7 @@ public static class CaptureExtra
             RenderAndSave(cam, rt, W, H, "/content/shots2/extra_" + i + ".png");
         }
 
-        Debug.Log("CAPTURE_DONE 4");
+        Debug.Log("CAPTURE_DONE 5");
     }
 
     static void RenderAndSave(Camera cam, RenderTexture rt, int w, int h, string path)
@@ -89,7 +91,7 @@ fi
 grep -n "CAPTURE_DONE" /content/capture_extra.log | tail -1
 SHOTS=$(ls /content/shots2/*.png 2>/dev/null | wc -l)
 echo "SHOTS=$SHOTS"
-test "$SHOTS" -ge 4 || { echo TOO_FEW_SHOTS; tail -20 /content/capture_extra.log; exit 6; }
+test "$SHOTS" -ge 5 || { echo TOO_FEW_SHOTS; tail -20 /content/capture_extra.log; exit 6; }
 mkdir -p "/content/drive/MyDrive/unity-lab/screenshots/${STAMP}_extra"
 cp /content/shots2/*.png "/content/drive/MyDrive/unity-lab/screenshots/${STAMP}_extra/" && echo SHOTS_STAGED
 echo "SCREENSHOT_DIR=${STAMP}_extra"
