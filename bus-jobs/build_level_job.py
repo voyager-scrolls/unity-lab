@@ -325,10 +325,16 @@ cp "$PROJ/Assets/Editor/LevelLayout.cs" "$PROJ/Assets/Editor/LevelBuilder.cs" "$
 echo "LEVEL_BUILD_COMPLETE"
 """)
 
-out_path = os.path.join(ROOT, "bus-jobs", "level-build-json.sh")
+scene_only = "--scene-only" in sys.argv
+text = "".join(parts)
+if scene_only:
+    cut = text.index('echo "=== BUILD WINDOWS ==="')
+    text = text[:cut] + 'echo "SCENE_ONLY_OK"\necho "LEVEL_BUILD_COMPLETE"\n'
+out_name = "level-scene-only.sh" if scene_only else "level-build-json.sh"
+out_path = os.path.join(ROOT, "bus-jobs", out_name)
 with io.open(out_path, "w", encoding="utf-8", newline="\n") as f:
-    f.write("".join(parts))
+    f.write(text)
 
-blob = "".join(parts).encode("utf-8")
+blob = text.encode("utf-8")
 print("WROTE %s bytes=%d md5=%s lines=%d" % (
     out_path, len(blob), hashlib.md5(blob).hexdigest(), blob.count(b"\n") + 1))

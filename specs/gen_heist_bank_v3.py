@@ -8,6 +8,7 @@
 #  - Valuables placed ON/IN surfaces (display-case interiors, desk tops, trolley tops) - never floating
 #  - Flat overlays (rugs, signs, blinds) lifted 12mm off their host face to prevent z-fighting
 #  - Furniture footprints derived from catalog bmin/bmax (pivot-correct), checked for containment + overlap
+#  - Walls read solid: wall slots take only SOLID modules (W_EXT, W_INT, V_FRAME); glass, grille, blind and door-panel modules fail validation; mounts need solid backing; exterior shell is ray-checked
 import io
 import json
 import os
@@ -125,7 +126,7 @@ def add_mount(room, name, axis, plane, room_dir, u, h, rot):
             x = plane - GAP - dx1
     y = h - dy0
     _emit(room, name, x, y, z, rot, {'mounted': True})
-    return {'x': x, 'y': y, 'z': z, 'rot': rot, 'name': name, 'axis': axis, 'plane': plane, 'room_dir': room_dir}
+    return {'x': x, 'y': y, 'z': z, 'rot': rot, 'name': name, 'axis': axis, 'plane': plane, 'room_dir': room_dir, 'u': u, 'h': h}
 
 
 CEILING_MOUNTED = []
@@ -165,7 +166,7 @@ for x in (-10, 10):
             FLOOR_A if (x + z) % 10 == 0 else FLOOR_B, x, z)
 for x in (-17.5, -12.5, -7.5, -2.5, 2.5, 7.5, 12.5, 17.5):
     for z in (-2.5, -7.5, -12.5, -17.5, -22.5):
-        add('exterior', FLOOR_B, x, z)
+        add('exterior', FLOOR_A, x, z)
 
 # ------------------------------------------------------------------ ceilings (bottom at room height)
 CEILINGS = ['SM_Env_Ceiling_01', 'SM_Env_Ceiling_02', 'SM_Env_Ceiling_03',
@@ -192,20 +193,20 @@ W_INT_WIN = 'SM_Env_Wall_Interior_Window_01'
 W_INT_DOOR = 'SM_Env_Wall_Interior_Door_01'
 V_FRAME = 'SM_Env_VaultDoor_Frame_01'
 V_WALL = 'SM_Env_VaultGate_Wall_01'
+SOLID = (W_EXT, W_INT, V_FRAME)
 
 
 def wall(room, name, x, z, rot, course):
+    if name not in SOLID:
+        raise SystemExit('NON-SOLID WALL MODULE: ' + name)
     add(room, name, x, z, rot, y=course * 3.0 - P(name)['bounds']['min'][1])
 
 
-# facade Z=0: 5m entrance opening flanked by windows (no closed-door module: its mesh/collider blocks passage)
-for x, n in ((-10, W_EXT_WIN), (-5, W_EXT_WIN), (5, W_EXT_WIN), (10, W_EXT_WIN)):
-    wall('lobby', n, x, 0.0, 0.0, 0)
-# hinged-open door panels inside the entrance
-add('lobby', 'SM_Env_Door_01', -2.45, 0.62, 90.0)
-add('lobby', 'SM_Env_Door_02', 2.45, 0.62, 270.0)
-for x, n in ((-10, W_EXT_WIN), (-5, W_EXT_WIN), (0, W_EXT), (5, W_EXT_WIN), (10, W_EXT_WIN)):
-    wall('lobby', n, x, 0.0, 0.0, 1)
+# facade Z=0: solid both courses; 5m entrance opening in the lower course (no door modules: they block passage or read as glass)
+for x in (-10, -5, 5, 10):
+    wall('lobby', W_EXT, x, 0.0, 0.0, 0)
+for x in (-10, -5, 0, 5, 10):
+    wall('lobby', W_EXT, x, 0.0, 0.0, 1)
 # back Z=25: two courses (6m shell)
 for x in (-10, -5, 0, 5, 10):
     wall(room_at(x, 24.9), W_EXT, x, 25.0, 180.0, 0)
@@ -213,15 +214,15 @@ for x in (-10, -5, 0, 5, 10):
 # sides X=+-12.5: two courses
 for z in (2.5, 7.5, 12.5, 17.5, 22.5):
     rid = room_at(-12.4, z)
-    wall(rid, W_EXT_WIN if z == 7.5 else W_EXT, -12.5, z, 90.0, 0)
+    wall(rid, W_EXT, -12.5, z, 90.0, 0)
     wall(rid, W_EXT, -12.5, z, 90.0, 1)
 for z in (2.5, 7.5, 12.5, 17.5, 22.5):
     rid = room_at(12.4, z)
-    wall(rid, W_EXT_WIN if z == 7.5 else W_EXT, 12.5, z, 270.0, 0)
+    wall(rid, W_EXT, 12.5, z, 270.0, 0)
     wall(rid, W_EXT, 12.5, z, 270.0, 1)
-# lobby/teller wall Z=10: open passages at +-10 (closed door modules block the NavMesh)
-for x, n in ((-5, W_INT_WIN), (0, W_INT_WIN), (5, W_INT_WIN)):
-    wall('teller', n, x, 10.0, 0.0, 0)
+# lobby/teller wall Z=10: solid, open passages at +-10 (closed door modules block the NavMesh)
+for x in (-5, 0, 5):
+    wall('teller', W_INT, x, 10.0, 0.0, 0)
 for x in (-10, -5, 0, 5, 10):
     wall('lobby', W_INT, x, 10.0, 0.0, 1)
 # teller/vault wall Z=15 (solid walls either side of the vault door frame, no bars)
@@ -265,29 +266,24 @@ add('lobby', 'SM_Prop_Jewellery_Rings_01', 9.0, 1.8, 0.0, key='jR3', y=0.52)
 # wall fixtures
 MOUNTED.append(add_mount('lobby', 'SM_Prop_Sign_Bank_01', 'z', 10.0, -1, 0.0, 3.3, 180.0))
 # ceiling pendant cameras (the kit's Camera_01 hangs below its pivot - mount at ceiling, not wall)
-add_ceiling('lobby', 'SM_Prop_Camera_01', -9.5, 0.35, 180.0, 6.0)
-add_ceiling('lobby', 'SM_Prop_Camera_01', 9.5, 0.35, 180.0, 6.0)
+add_ceiling('lobby', 'SM_Prop_Camera_01', -9.5, 3.0, 180.0, 6.0)
+add_ceiling('lobby', 'SM_Prop_Camera_01', 9.5, 3.0, 180.0, 6.0)
 add_ceiling('lobby', 'SM_Prop_Camera_01', -12.1, 5.0, 90.0, 6.0)
-MOUNTED.append(add_mount('lobby', 'SM_Prop_AlarmButton_01', 'z', 10.0, -1, 9.2, 1.2, 180.0))
-MOUNTED.append(add_mount('lobby', 'SM_Prop_Flag_Wall_01', 'z', 10.0, -1, -7.5, 1.4, 180.0))
-MOUNTED.append(add_mount('lobby', 'SM_Prop_Flag_Wall_02', 'z', 10.0, -1, 7.5, 1.4, 180.0))
-for wx in (-10, -5, 5, 10):
-    MOUNTED.append(add_mount('lobby', 'SM_Env_Wall_Window_Blinds_01', 'z', 0.0, 1, wx, 0.87, 0.0))
+MOUNTED.append(add_mount('lobby', 'SM_Prop_AlarmButton_01', 'z', 10.0, -1, 7.0, 1.2, 180.0))
+MOUNTED.append(add_mount('lobby', 'SM_Prop_Flag_Wall_01', 'z', 10.0, -1, -6.0, 1.4, 180.0))
+MOUNTED.append(add_mount('lobby', 'SM_Prop_Flag_Wall_02', 'z', 10.0, -1, 6.0, 1.4, 180.0))
 
 # ------------------------------------------------------------------ teller (3m suspended ceiling)
+# teller counters stand in the lobby against the solid z=10 partition, fronts facing the lobby
 for x in (-5.0, 0.0, 5.0):
     k = 'desk%d' % int(x * 10)
-    add('teller', 'SM_Prop_TellerDesk_01', x, 11.8, 180.0, key=k)
-    add('teller', 'SM_Prop_Seat_01', x, 13.2, 180.0)
-    add_on('teller', k, 'SM_Prop_Computer_Screen_01', 0.0, -0.12, 0.0)
-    add_on('teller', k, 'SM_Prop_Computer_Keyboard_01', 0.0, -0.38, 0.0)
-    add_on('teller', k, 'SM_Prop_Computer_Mouse_01', 0.35, -0.38, 0.0)
-    add_on('teller', k, 'SM_Prop_Money_Stack_01', -0.55, 0.25, 15.0)
-    add_on('teller', k, 'SM_Prop_Folder_01', 0.65, 0.15, 90.0)
-    add_on('teller', k, 'SM_Prop_DeskLight_01', -0.85, 0.1, 180.0)
-# PC towers on the floor against the back wall (never blocking the side aisles)
-for tx in (-6.4, 0.0, 6.4):
-    add('teller', 'SM_Prop_Computer_01', tx, 14.35, 0.0)
+    add('lobby', 'SM_Prop_TellerDesk_01', x, 9.1, 180.0, key=k)
+    add_on('lobby', k, 'SM_Prop_Computer_Screen_01', 0.0, -0.12, 0.0)
+    add_on('lobby', k, 'SM_Prop_Computer_Keyboard_01', 0.0, -0.38, 0.0)
+    add_on('lobby', k, 'SM_Prop_Computer_Mouse_01', 0.35, -0.38, 0.0)
+    add_on('lobby', k, 'SM_Prop_Money_Stack_01', -0.55, 0.25, 15.0)
+    add_on('lobby', k, 'SM_Prop_Folder_01', 0.65, 0.15, 90.0)
+    add_on('lobby', k, 'SM_Prop_DeskLight_01', -0.85, 0.1, 180.0)
 # display cases against the side walls (they previously blocked the z=15 passages)
 add('teller', 'SM_Prop_DisplayCase_01', -12.15, 12.5, 90.0, key='tcase1')
 add('teller', 'SM_Prop_Jewellery_Necklace_02', -12.15, 12.3, 0.0, y=0.80)
@@ -295,9 +291,9 @@ add('teller', 'SM_Prop_Jewellery_04', -12.15, 12.7, 0.0, y=0.80)
 add('teller', 'SM_Prop_DisplayCase_02', 12.15, 12.5, 270.0, key='tcase2')
 add('teller', 'SM_Prop_Jewellery_02', 12.15, 12.3, 0.0, y=0.52)
 add('teller', 'SM_Prop_Jewellery_Ring_01', 12.15, 12.7, 0.0, y=0.52)
-MOUNTED.append(add_mount('teller', 'SM_Prop_AirVent_01', 'z', 15.0, -1, 8.0, 2.6, 0.0))
+MOUNTED.append(add_mount('teller', 'SM_Prop_AirVent_01', 'z', 15.0, -1, 5.0, 2.6, 0.0))
 add_ceiling('teller', 'SM_Prop_Camera_01', -8.0, 14.6, 0.0, 3.0)
-MOUNTED.append(add_mount('teller', 'SM_Prop_AlarmButton_01', 'z', 10.0, 1, 9.2, 1.2, 0.0))
+MOUNTED.append(add_mount('teller', 'SM_Prop_AlarmButton_01', 'z', 10.0, 1, 7.0, 1.2, 0.0))
 
 # ------------------------------------------------------------------ vault (3m)
 for z in (17.5, 22.5):
@@ -314,7 +310,7 @@ add_on('vault', 'vtable', 'SM_Item_Crowbar_01', 1.2, 0.1, 80.0)
 add('vault', 'SM_Prop_VaultTrolley_01', 3.2, 21.0, 0.0, key='vtrolley')
 add('vault', 'SM_Item_DuffleBag_Full_01', -3.4, 18.2, 270.0)
 add('vault', 'SM_Item_DuffleBag_Open_Empty_01', -4.2, 21.5, 90.0)
-MOUNTED.append(add_mount('vault', 'SM_Prop_AirVent_01', 'x', -7.5, 1, 20.0, 2.6, 90.0))
+MOUNTED.append(add_mount('vault', 'SM_Prop_AirVent_01', 'z', 25.0, -1, -3.5, 2.6, 0.0))
 add_ceiling('vault', 'SM_Prop_Camera_01', 0.0, 24.6, 0.0, 3.0)
 
 # ------------------------------------------------------------------ corridors / offices
@@ -344,15 +340,13 @@ add('exterior', 'SM_Env_Pillar_Exterior_Floor_01', 14.5, -9.0, 0.0)
 MOUNTED.append(add_mount('exterior', 'SM_Prop_Sign_Money_Bank_01', 'z', 0.0, -1, 0.0, 3.4, 180.0))
 add('exterior', 'SM_Veh_Car_Police_Heist_01', -9.0, -7.0, 90.0)
 add('exterior', 'SM_Veh_SwatVan_01', 9.0, -9.0, 270.0)
-add('exterior', 'SM_Veh_Helicopter_01', 0.0, -17.0, 0.0)
+add('exterior', 'SM_Veh_Helicopter_01', -17.0, -15.0, 0.0)
 add('exterior', 'SM_Prop_Bin_01', -15.0, -2.0, 0.0)
 add('exterior', 'SM_Prop_Bin_01', 15.0, -2.0, 0.0)
 add('exterior', 'SM_Prop_Flag_Pole_01', -6.0, -4.5, 0.0)
 add('exterior', 'SM_Prop_Flag_Pole_01', 6.0, -4.5, 0.0)
 add('exterior', 'SM_Prop_Plant_03', -15.0, -4.0, 0.0)
 add('exterior', 'SM_Prop_Plant_03', 15.0, -4.0, 0.0)
-add('exterior', 'SM_Prop_Statue_01', -4.0, -3.5, 0.0)
-add('exterior', 'SM_Prop_Statue_01', 4.0, -3.5, 0.0)
 for px in (-3.0, 3.0):
     add('exterior', 'SM_Prop_RopeBarrier_Pole_01', px, -1.6, 0.0)
 
@@ -457,14 +451,16 @@ for rid, (ef, ec) in EXPECT.items():
     if COUNTS[rid]['ceilings'] != ec:
         FAIL.append('%s ceilings=%d expected %d' % (rid, COUNTS[rid]['ceilings'], ec))
 
-for label, names, opens in (('front-lower', [W_EXT_WIN, W_EXT_WIN, W_EXT_WIN, W_EXT_WIN], 1),
-                            ('front-upper', [W_EXT_WIN, W_EXT_WIN, W_EXT, W_EXT_WIN, W_EXT_WIN], 0),
-                            ('z10-lower', [W_INT_WIN, W_INT_WIN, W_INT_WIN], 2),
-                            ('z15', [V_WALL, V_FRAME, V_WALL], 2)):
+for label, names, opens in (('front-lower', [W_EXT, W_EXT, W_EXT, W_EXT], 1),
+                            ('front-upper', [W_EXT, W_EXT, W_EXT, W_EXT, W_EXT], 0),
+                            ('z10-lower', [W_INT, W_INT, W_INT], 2),
+                            ('z10-upper', [W_INT, W_INT, W_INT, W_INT, W_INT], 0),
+                            ('z15', [W_EXT, V_FRAME, W_EXT], 2),
+                            ('back', [W_EXT, W_EXT, W_EXT, W_EXT, W_EXT], 0)):
     span = sum(sz(n)[0] for n in names) + 5.0 * opens
     if abs(span - 25.0) > 0.01:
         FAIL.append('%s wall span %.2f != 25' % (label, span))
-side = sum(sz(W_EXT_WIN if z == 7.5 else W_EXT)[0] for z in (2.5, 7.5, 12.5, 17.5, 22.5))
+side = sum(sz(W_EXT)[0] for z in (2.5, 7.5, 12.5, 17.5, 22.5))
 if abs(side - 25.0) > 0.01:
     FAIL.append('side wall span %.2f != 25' % side)
 
@@ -525,6 +521,82 @@ for i in range(len(all_cp)):
             FAIL.append('cover points closer than 2m: %s<->%s' % (all_cp[i], all_cp[j]))
 if len(all_cp) < 20:
     FAIL.append('only %d cover points (need >= 20 for bot coverage)' % len(all_cp))
+
+# ------------------------------------------------------------------ solid-wall gate
+FORBIDDEN_NAMES = {W_EXT_WIN, W_EXT_DD, W_INT_WIN, W_INT_DOOR, V_WALL,
+                   'SM_Env_Wall_Window_Blinds_01', 'SM_Env_Door_01', 'SM_Env_Door_02'}
+
+
+def pname(p):
+    return p['prefab'].split('/')[-1].replace('.prefab', '')
+
+
+def is_forbidden(n):
+    return (n in FORBIDDEN_NAMES or 'Window' in n or 'Blinds' in n
+            or 'VaultGate' in n or n.startswith('SM_Env_Door'))
+
+
+def world_box(p):
+    dx0, dx1, dz0, dz1, dy0, dy1 = rot_box(pname(p), p['rotation'][1])
+    x, y, z = p['position']
+    return (x + dx0, y + dy0, z + dz0, x + dx1, y + dy1, z + dz1)
+
+
+ALL_PROPS = [(rid, p) for rid in ORDER for p in ROOMS[rid]['props']]
+SOLID_BOXES = [world_box(p) for rid, p in ALL_PROPS if pname(p) in SOLID]
+FORBIDDEN_HITS = [pname(p) + ' in ' + rid for rid, p in ALL_PROPS if is_forbidden(pname(p))]
+for hit in FORBIDDEN_HITS:
+    FAIL.append('forbidden wall-type module: ' + hit)
+
+
+def solid_at(axis, plane, u, y):
+    for x0, y0, z0, x1, y1, z1 in SOLID_BOXES:
+        if axis == 'z':
+            a0, a1, b0, b1 = z0, z1, x0, x1
+        else:
+            a0, a1, b0, b1 = x0, x1, z0, z1
+        if a0 - 0.05 <= plane <= a1 + 0.05 and b0 - 0.01 <= u <= b1 + 0.01 and y0 - 0.01 <= y <= y1 + 0.01:
+            return True
+    return False
+
+
+SHELL_SAMPLES = 0
+SHELL_FAILS = []
+for axis, plane, lo, hi, exempt in (
+        ('z', 0.0, -12.5, 12.5, lambda u, y: abs(u) <= 2.5 and y < 3.0),
+        ('z', 25.0, -12.5, 12.5, lambda u, y: False),
+        ('x', -12.5, 0.0, 25.0, lambda u, y: False),
+        ('x', 12.5, 0.0, 25.0, lambda u, y: False)):
+    for i in range(int(round((hi - lo) / 0.5)) + 1):
+        u = lo + 0.5 * i
+        for y in (0.5, 1.6, 2.5, 3.5, 4.5, 5.5):
+            if exempt(u, y):
+                continue
+            SHELL_SAMPLES += 1
+            if not solid_at(axis, plane, u, y):
+                SHELL_FAILS.append('%s=%.1f u=%.1f y=%.1f' % (axis, plane, u, y))
+if SHELL_FAILS:
+    FAIL.append('shell not solid at %d samples, first: %s' % (len(SHELL_FAILS), SHELL_FAILS[:6]))
+if solid_at('z', 0.0, 0.0, 1.0):
+    FAIL.append('entrance opening blocked at x=0 z=0')
+
+MOUNT_FAILS = []
+for m in MOUNTED:
+    if not solid_at(m['axis'], m['plane'], m['u'], m['h'] + 0.05):
+        MOUNT_FAILS.append(m['name'])
+        FAIL.append('mount without solid backing: %s u=%.2f h=%.2f' % (m['name'], m['u'], m['h']))
+
+MOUNTED_BOXES = [(pname(p), world_box(p)) for rid, p in ALL_PROPS if p.get('mounted')]
+for i in range(len(MOUNTED_BOXES)):
+    for j in range(i + 1, len(MOUNTED_BOXES)):
+        na, a = MOUNTED_BOXES[i]
+        nb, b = MOUNTED_BOXES[j]
+        if all(a[k] < b[k + 3] - 0.02 and b[k] < a[k + 3] - 0.02 for k in range(3)):
+            FAIL.append('mounted fixtures overlap: %s <-> %s' % (na, nb))
+print('SOLID_WALL_MODULES:', len(SOLID_BOXES))
+print('FORBIDDEN_WALL_MODULES:', len(FORBIDDEN_HITS))
+print('SHELL_SAMPLES:', SHELL_SAMPLES, 'SHELL_FAILS:', len(SHELL_FAILS))
+print('MOUNT_BACKING_FAILS:', len(MOUNT_FAILS))
 
 print('ROOMS:', ORDER)
 for rid in ORDER:

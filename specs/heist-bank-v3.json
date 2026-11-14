@@ -19,10 +19,10 @@
       },
       "props": [
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_02.prefab",
+          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_01.prefab",
           "position": [
             -15.0,
-            0,
+            0.0,
             -5.0
           ],
           "rotation": [
@@ -37,10 +37,10 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_02.prefab",
+          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_01.prefab",
           "position": [
             -15.0,
-            0,
+            0.0,
             -10.0
           ],
           "rotation": [
@@ -55,10 +55,10 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_02.prefab",
+          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_01.prefab",
           "position": [
             -15.0,
-            0,
+            0.0,
             -15.0
           ],
           "rotation": [
@@ -73,10 +73,10 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_02.prefab",
+          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_01.prefab",
           "position": [
             -15.0,
-            0,
+            0.0,
             -20.0
           ],
           "rotation": [
@@ -91,10 +91,10 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_02.prefab",
+          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_01.prefab",
           "position": [
             -15.0,
-            0,
+            0.0,
             -25.0
           ],
           "rotation": [
@@ -109,10 +109,10 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_02.prefab",
+          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_01.prefab",
           "position": [
             -10.0,
-            0,
+            0.0,
             -5.0
           ],
           "rotation": [
@@ -127,10 +127,10 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_02.prefab",
+          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_01.prefab",
           "position": [
             -10.0,
-            0,
+            0.0,
             -10.0
           ],
           "rotation": [
@@ -145,10 +145,10 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_02.prefab",
+          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_01.prefab",
           "position": [
             -10.0,
-            0,
+            0.0,
             -15.0
           ],
           "rotation": [
@@ -163,10 +163,10 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_02.prefab",
+          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_01.prefab",
           "position": [
             -10.0,
-            0,
+            0.0,
             -20.0
           ],
           "rotation": [
@@ -181,10 +181,10 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_02.prefab",
+          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_01.prefab",
           "position": [
             -10.0,
-            0,
+            0.0,
             -25.0
           ],
           "rotation": [
@@ -199,10 +199,10 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_02.prefab",
+          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_01.prefab",
           "position": [
             -5.0,
-            0,
+            0.0,
             -5.0
           ],
           "rotation": [
@@ -217,10 +217,10 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_02.prefab",
+          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_01.prefab",
           "position": [
             -5.0,
-            0,
+            0.0,
             -10.0
           ],
           "rotation": [
@@ -235,10 +235,10 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_02.prefab",
+          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_01.prefab",
           "position": [
             -5.0,
-            0,
+            0.0,
             -15.0
           ],
           "rotation": [
@@ -253,10 +253,10 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_02.prefab",
+          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_01.prefab",
           "position": [
             -5.0,
-            0,
+            0.0,
             -20.0
           ],
           "rotation": [
@@ -271,10 +271,10 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_02.prefab",
+          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_01.prefab",
           "position": [
             -5.0,
-            0,
+            0.0,
             -25.0
           ],
           "rotation": [
@@ -289,10 +289,10 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_02.prefab",
+          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_01.prefab",
           "position": [
             0.0,
-            0,
+            0.0,
             -5.0
           ],
           "rotation": [
@@ -307,10 +307,10 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_02.prefab",
+          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_01.prefab",
           "position": [
             0.0,
-            0,
+            0.0,
             -10.0
           ],
           "rotation": [
@@ -325,10 +325,10 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_02.prefab",
+          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_01.prefab",
           "position": [
             0.0,
-            0,
+            0.0,
             -15.0
           ],
           "rotation": [
@@ -343,10 +343,10 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_02.prefab",
+          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_01.prefab",
           "position": [
             0.0,
-            0,
+            0.0,
             -20.0
           ],
           "rotation": [
@@ -361,10 +361,10 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_02.prefab",
+          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_01.prefab",
           "position": [
             0.0,
-            0,
+            0.0,
             -25.0
           ],
           "rotation": [
@@ -379,10 +379,10 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_02.prefab",
+          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_01.prefab",
           "position": [
             5.0,
-            0,
+            0.0,
             -5.0
           ],
           "rotation": [
@@ -397,10 +397,10 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_02.prefab",
+          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_01.prefab",
           "position": [
             5.0,
-            0,
+            0.0,
             -10.0
           ],
           "rotation": [
@@ -415,10 +415,10 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_02.prefab",
+          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_01.prefab",
           "position": [
             5.0,
-            0,
+            0.0,
             -15.0
           ],
           "rotation": [
@@ -433,10 +433,10 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_02.prefab",
+          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_01.prefab",
           "position": [
             5.0,
-            0,
+            0.0,
             -20.0
           ],
           "rotation": [
@@ -451,10 +451,10 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_02.prefab",
+          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_01.prefab",
           "position": [
             5.0,
-            0,
+            0.0,
             -25.0
           ],
           "rotation": [
@@ -469,10 +469,10 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_02.prefab",
+          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_01.prefab",
           "position": [
             10.0,
-            0,
+            0.0,
             -5.0
           ],
           "rotation": [
@@ -487,10 +487,10 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_02.prefab",
+          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_01.prefab",
           "position": [
             10.0,
-            0,
+            0.0,
             -10.0
           ],
           "rotation": [
@@ -505,10 +505,10 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_02.prefab",
+          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_01.prefab",
           "position": [
             10.0,
-            0,
+            0.0,
             -15.0
           ],
           "rotation": [
@@ -523,10 +523,10 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_02.prefab",
+          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_01.prefab",
           "position": [
             10.0,
-            0,
+            0.0,
             -20.0
           ],
           "rotation": [
@@ -541,10 +541,10 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_02.prefab",
+          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_01.prefab",
           "position": [
             10.0,
-            0,
+            0.0,
             -25.0
           ],
           "rotation": [
@@ -559,10 +559,10 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_02.prefab",
+          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_01.prefab",
           "position": [
             15.0,
-            0,
+            0.0,
             -5.0
           ],
           "rotation": [
@@ -577,10 +577,10 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_02.prefab",
+          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_01.prefab",
           "position": [
             15.0,
-            0,
+            0.0,
             -10.0
           ],
           "rotation": [
@@ -595,10 +595,10 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_02.prefab",
+          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_01.prefab",
           "position": [
             15.0,
-            0,
+            0.0,
             -15.0
           ],
           "rotation": [
@@ -613,10 +613,10 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_02.prefab",
+          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_01.prefab",
           "position": [
             15.0,
-            0,
+            0.0,
             -20.0
           ],
           "rotation": [
@@ -631,10 +631,10 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_02.prefab",
+          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_01.prefab",
           "position": [
             15.0,
-            0,
+            0.0,
             -25.0
           ],
           "rotation": [
@@ -649,10 +649,10 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_02.prefab",
+          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_01.prefab",
           "position": [
             20.0,
-            0,
+            0.0,
             -5.0
           ],
           "rotation": [
@@ -667,10 +667,10 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_02.prefab",
+          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_01.prefab",
           "position": [
             20.0,
-            0,
+            0.0,
             -10.0
           ],
           "rotation": [
@@ -685,10 +685,10 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_02.prefab",
+          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_01.prefab",
           "position": [
             20.0,
-            0,
+            0.0,
             -15.0
           ],
           "rotation": [
@@ -703,10 +703,10 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_02.prefab",
+          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_01.prefab",
           "position": [
             20.0,
-            0,
+            0.0,
             -20.0
           ],
           "rotation": [
@@ -721,10 +721,10 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_02.prefab",
+          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Floor_01.prefab",
           "position": [
             20.0,
-            0,
+            0.0,
             -25.0
           ],
           "rotation": [
@@ -868,9 +868,9 @@
         {
           "prefab": "Assets/PolygonHeist/Prefab/Vehicles/SM_Veh_Helicopter_01.prefab",
           "position": [
-            0.0,
+            -17.0,
             0.0317,
-            -17.2244
+            -15.2244
           ],
           "rotation": [
             0.0,
@@ -979,42 +979,6 @@
             15.0402,
             0,
             -4.0214
-          ],
-          "rotation": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "scale": [
-            1.0,
-            1.0,
-            1.0
-          ]
-        },
-        {
-          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Statue_01.prefab",
-          "position": [
-            -4.0,
-            0,
-            -3.5
-          ],
-          "rotation": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "scale": [
-            1.0,
-            1.0,
-            1.0
-          ]
-        },
-        {
-          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Statue_01.prefab",
-          "position": [
-            4.0,
-            0,
-            -3.5
           ],
           "rotation": [
             0.0,
@@ -1778,7 +1742,7 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Wall_Exterior_Window_01.prefab",
+          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Wall_Exterior_01.prefab",
           "position": [
             -7.5,
             0.0,
@@ -1796,7 +1760,7 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Wall_Exterior_Window_01.prefab",
+          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Wall_Exterior_01.prefab",
           "position": [
             -2.5,
             0.0,
@@ -1814,7 +1778,7 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Wall_Exterior_Window_01.prefab",
+          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Wall_Exterior_01.prefab",
           "position": [
             7.5,
             0.0,
@@ -1832,7 +1796,7 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Wall_Exterior_Window_01.prefab",
+          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Wall_Exterior_01.prefab",
           "position": [
             12.5,
             0.0,
@@ -1850,43 +1814,7 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Door_01.prefab",
-          "position": [
-            -2.45,
-            0,
-            0.1195
-          ],
-          "rotation": [
-            0.0,
-            90.0,
-            0.0
-          ],
-          "scale": [
-            1.0,
-            1.0,
-            1.0
-          ]
-        },
-        {
-          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Door_02.prefab",
-          "position": [
-            2.45,
-            0,
-            0.1186
-          ],
-          "rotation": [
-            0.0,
-            270.0,
-            0.0
-          ],
-          "scale": [
-            1.0,
-            1.0,
-            1.0
-          ]
-        },
-        {
-          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Wall_Exterior_Window_01.prefab",
+          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Wall_Exterior_01.prefab",
           "position": [
             -7.5,
             3.0,
@@ -1904,7 +1832,7 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Wall_Exterior_Window_01.prefab",
+          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Wall_Exterior_01.prefab",
           "position": [
             -2.5,
             3.0,
@@ -1940,7 +1868,7 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Wall_Exterior_Window_01.prefab",
+          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Wall_Exterior_01.prefab",
           "position": [
             7.5,
             3.0,
@@ -1958,7 +1886,7 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Wall_Exterior_Window_01.prefab",
+          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Wall_Exterior_01.prefab",
           "position": [
             12.5,
             3.0,
@@ -2012,7 +1940,7 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Wall_Exterior_Window_01.prefab",
+          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Wall_Exterior_01.prefab",
           "position": [
             -12.5789,
             0.0,
@@ -2084,7 +2012,7 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Wall_Exterior_Window_01.prefab",
+          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Wall_Exterior_01.prefab",
           "position": [
             12.5789,
             0.0,
@@ -2773,7 +2701,7 @@
           "position": [
             -9.5,
             6.0,
-            0.363
+            3.013
           ],
           "rotation": [
             0.0,
@@ -2792,7 +2720,7 @@
           "position": [
             9.5,
             6.0,
-            0.363
+            3.013
           ],
           "rotation": [
             0.0,
@@ -2828,7 +2756,7 @@
         {
           "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_AlarmButton_01.prefab",
           "position": [
-            9.2,
+            7.0,
             1.2,
             9.8272
           ],
@@ -2847,7 +2775,7 @@
         {
           "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Flag_Wall_01.prefab",
           "position": [
-            -7.5,
+            -6.0,
             2.0327,
             9.9874
           ],
@@ -2866,7 +2794,7 @@
         {
           "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Flag_Wall_02.prefab",
           "position": [
-            7.4924,
+            5.9924,
             1.9965,
             9.9874
           ],
@@ -2883,30 +2811,29 @@
           "mounted": true
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Wall_Window_Blinds_01.prefab",
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_TellerDesk_01.prefab",
           "position": [
-            -7.5,
-            0.0037,
-            -0.1107
+            -5.0,
+            0,
+            9.1
           ],
           "rotation": [
             0.0,
-            0.0,
+            180.0,
             0.0
           ],
           "scale": [
             1.0,
             1.0,
             1.0
-          ],
-          "mounted": true
+          ]
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Wall_Window_Blinds_01.prefab",
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Computer_Screen_01.prefab",
           "position": [
-            -2.5,
-            0.0037,
-            -0.1107
+            -5.0,
+            1.3141,
+            8.98
           ],
           "rotation": [
             0.0,
@@ -2918,14 +2845,14 @@
             1.0,
             1.0
           ],
-          "mounted": true
+          "surface": true
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Wall_Window_Blinds_01.prefab",
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Computer_Keyboard_01.prefab",
           "position": [
-            7.5,
-            0.0037,
-            -0.1107
+            -5.0,
+            1.3141,
+            8.72
           ],
           "rotation": [
             0.0,
@@ -2937,14 +2864,14 @@
             1.0,
             1.0
           ],
-          "mounted": true
+          "surface": true
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Wall_Window_Blinds_01.prefab",
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Computer_Mouse_01.prefab",
           "position": [
-            12.5,
-            0.0037,
-            -0.1107
+            -4.65,
+            1.3141,
+            8.72
           ],
           "rotation": [
             0.0,
@@ -2956,7 +2883,328 @@
             1.0,
             1.0
           ],
-          "mounted": true
+          "surface": true
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Money_Stack_01.prefab",
+          "position": [
+            -5.55,
+            1.3141,
+            9.35
+          ],
+          "rotation": [
+            0.0,
+            15.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "surface": true
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Folder_01.prefab",
+          "position": [
+            -4.35,
+            1.3141,
+            9.25
+          ],
+          "rotation": [
+            0.0,
+            90.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "surface": true
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_DeskLight_01.prefab",
+          "position": [
+            -5.85,
+            1.3141,
+            9.2
+          ],
+          "rotation": [
+            0.0,
+            180.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "surface": true
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_TellerDesk_01.prefab",
+          "position": [
+            0.0,
+            0,
+            9.1
+          ],
+          "rotation": [
+            0.0,
+            180.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Computer_Screen_01.prefab",
+          "position": [
+            0.0,
+            1.3141,
+            8.98
+          ],
+          "rotation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "surface": true
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Computer_Keyboard_01.prefab",
+          "position": [
+            0.0,
+            1.3141,
+            8.72
+          ],
+          "rotation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "surface": true
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Computer_Mouse_01.prefab",
+          "position": [
+            0.35,
+            1.3141,
+            8.72
+          ],
+          "rotation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "surface": true
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Money_Stack_01.prefab",
+          "position": [
+            -0.55,
+            1.3141,
+            9.35
+          ],
+          "rotation": [
+            0.0,
+            15.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "surface": true
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Folder_01.prefab",
+          "position": [
+            0.65,
+            1.3141,
+            9.25
+          ],
+          "rotation": [
+            0.0,
+            90.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "surface": true
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_DeskLight_01.prefab",
+          "position": [
+            -0.85,
+            1.3141,
+            9.2
+          ],
+          "rotation": [
+            0.0,
+            180.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "surface": true
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_TellerDesk_01.prefab",
+          "position": [
+            5.0,
+            0,
+            9.1
+          ],
+          "rotation": [
+            0.0,
+            180.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Computer_Screen_01.prefab",
+          "position": [
+            5.0,
+            1.3141,
+            8.98
+          ],
+          "rotation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "surface": true
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Computer_Keyboard_01.prefab",
+          "position": [
+            5.0,
+            1.3141,
+            8.72
+          ],
+          "rotation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "surface": true
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Computer_Mouse_01.prefab",
+          "position": [
+            5.35,
+            1.3141,
+            8.72
+          ],
+          "rotation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "surface": true
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Money_Stack_01.prefab",
+          "position": [
+            4.45,
+            1.3141,
+            9.35
+          ],
+          "rotation": [
+            0.0,
+            15.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "surface": true
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Folder_01.prefab",
+          "position": [
+            5.65,
+            1.3141,
+            9.25
+          ],
+          "rotation": [
+            0.0,
+            90.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "surface": true
+        },
+        {
+          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_DeskLight_01.prefab",
+          "position": [
+            4.15,
+            1.3141,
+            9.2
+          ],
+          "rotation": [
+            0.0,
+            180.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "surface": true
         }
       ],
       "spawnPoints": [
@@ -3364,7 +3612,7 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Wall_Interior_Window_01.prefab",
+          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Wall_Interior_01.prefab",
           "position": [
             -2.5,
             0.0,
@@ -3382,7 +3630,7 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Wall_Interior_Window_01.prefab",
+          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Wall_Interior_01.prefab",
           "position": [
             2.5,
             0.0,
@@ -3400,515 +3648,11 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Wall_Interior_Window_01.prefab",
+          "prefab": "Assets/PolygonHeist/Prefab/Environment/SM_Env_Wall_Interior_01.prefab",
           "position": [
             7.5,
             0.0,
             9.9182
-          ],
-          "rotation": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "scale": [
-            1.0,
-            1.0,
-            1.0
-          ]
-        },
-        {
-          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_TellerDesk_01.prefab",
-          "position": [
-            -5.0,
-            0,
-            11.8
-          ],
-          "rotation": [
-            0.0,
-            180.0,
-            0.0
-          ],
-          "scale": [
-            1.0,
-            1.0,
-            1.0
-          ]
-        },
-        {
-          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Seat_01.prefab",
-          "position": [
-            -5.0,
-            0,
-            13.2
-          ],
-          "rotation": [
-            0.0,
-            180.0,
-            0.0
-          ],
-          "scale": [
-            1.0,
-            1.0,
-            1.0
-          ]
-        },
-        {
-          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Computer_Screen_01.prefab",
-          "position": [
-            -5.0,
-            1.3141,
-            11.68
-          ],
-          "rotation": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "scale": [
-            1.0,
-            1.0,
-            1.0
-          ],
-          "surface": true
-        },
-        {
-          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Computer_Keyboard_01.prefab",
-          "position": [
-            -5.0,
-            1.3141,
-            11.42
-          ],
-          "rotation": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "scale": [
-            1.0,
-            1.0,
-            1.0
-          ],
-          "surface": true
-        },
-        {
-          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Computer_Mouse_01.prefab",
-          "position": [
-            -4.65,
-            1.3141,
-            11.42
-          ],
-          "rotation": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "scale": [
-            1.0,
-            1.0,
-            1.0
-          ],
-          "surface": true
-        },
-        {
-          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Money_Stack_01.prefab",
-          "position": [
-            -5.55,
-            1.3141,
-            12.05
-          ],
-          "rotation": [
-            0.0,
-            15.0,
-            0.0
-          ],
-          "scale": [
-            1.0,
-            1.0,
-            1.0
-          ],
-          "surface": true
-        },
-        {
-          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Folder_01.prefab",
-          "position": [
-            -4.35,
-            1.3141,
-            11.95
-          ],
-          "rotation": [
-            0.0,
-            90.0,
-            0.0
-          ],
-          "scale": [
-            1.0,
-            1.0,
-            1.0
-          ],
-          "surface": true
-        },
-        {
-          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_DeskLight_01.prefab",
-          "position": [
-            -5.85,
-            1.3141,
-            11.9
-          ],
-          "rotation": [
-            0.0,
-            180.0,
-            0.0
-          ],
-          "scale": [
-            1.0,
-            1.0,
-            1.0
-          ],
-          "surface": true
-        },
-        {
-          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_TellerDesk_01.prefab",
-          "position": [
-            0.0,
-            0,
-            11.8
-          ],
-          "rotation": [
-            0.0,
-            180.0,
-            0.0
-          ],
-          "scale": [
-            1.0,
-            1.0,
-            1.0
-          ]
-        },
-        {
-          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Seat_01.prefab",
-          "position": [
-            0.0,
-            0,
-            13.2
-          ],
-          "rotation": [
-            0.0,
-            180.0,
-            0.0
-          ],
-          "scale": [
-            1.0,
-            1.0,
-            1.0
-          ]
-        },
-        {
-          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Computer_Screen_01.prefab",
-          "position": [
-            0.0,
-            1.3141,
-            11.68
-          ],
-          "rotation": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "scale": [
-            1.0,
-            1.0,
-            1.0
-          ],
-          "surface": true
-        },
-        {
-          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Computer_Keyboard_01.prefab",
-          "position": [
-            0.0,
-            1.3141,
-            11.42
-          ],
-          "rotation": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "scale": [
-            1.0,
-            1.0,
-            1.0
-          ],
-          "surface": true
-        },
-        {
-          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Computer_Mouse_01.prefab",
-          "position": [
-            0.35,
-            1.3141,
-            11.42
-          ],
-          "rotation": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "scale": [
-            1.0,
-            1.0,
-            1.0
-          ],
-          "surface": true
-        },
-        {
-          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Money_Stack_01.prefab",
-          "position": [
-            -0.55,
-            1.3141,
-            12.05
-          ],
-          "rotation": [
-            0.0,
-            15.0,
-            0.0
-          ],
-          "scale": [
-            1.0,
-            1.0,
-            1.0
-          ],
-          "surface": true
-        },
-        {
-          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Folder_01.prefab",
-          "position": [
-            0.65,
-            1.3141,
-            11.95
-          ],
-          "rotation": [
-            0.0,
-            90.0,
-            0.0
-          ],
-          "scale": [
-            1.0,
-            1.0,
-            1.0
-          ],
-          "surface": true
-        },
-        {
-          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_DeskLight_01.prefab",
-          "position": [
-            -0.85,
-            1.3141,
-            11.9
-          ],
-          "rotation": [
-            0.0,
-            180.0,
-            0.0
-          ],
-          "scale": [
-            1.0,
-            1.0,
-            1.0
-          ],
-          "surface": true
-        },
-        {
-          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_TellerDesk_01.prefab",
-          "position": [
-            5.0,
-            0,
-            11.8
-          ],
-          "rotation": [
-            0.0,
-            180.0,
-            0.0
-          ],
-          "scale": [
-            1.0,
-            1.0,
-            1.0
-          ]
-        },
-        {
-          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Seat_01.prefab",
-          "position": [
-            5.0,
-            0,
-            13.2
-          ],
-          "rotation": [
-            0.0,
-            180.0,
-            0.0
-          ],
-          "scale": [
-            1.0,
-            1.0,
-            1.0
-          ]
-        },
-        {
-          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Computer_Screen_01.prefab",
-          "position": [
-            5.0,
-            1.3141,
-            11.68
-          ],
-          "rotation": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "scale": [
-            1.0,
-            1.0,
-            1.0
-          ],
-          "surface": true
-        },
-        {
-          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Computer_Keyboard_01.prefab",
-          "position": [
-            5.0,
-            1.3141,
-            11.42
-          ],
-          "rotation": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "scale": [
-            1.0,
-            1.0,
-            1.0
-          ],
-          "surface": true
-        },
-        {
-          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Computer_Mouse_01.prefab",
-          "position": [
-            5.35,
-            1.3141,
-            11.42
-          ],
-          "rotation": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "scale": [
-            1.0,
-            1.0,
-            1.0
-          ],
-          "surface": true
-        },
-        {
-          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Money_Stack_01.prefab",
-          "position": [
-            4.45,
-            1.3141,
-            12.05
-          ],
-          "rotation": [
-            0.0,
-            15.0,
-            0.0
-          ],
-          "scale": [
-            1.0,
-            1.0,
-            1.0
-          ],
-          "surface": true
-        },
-        {
-          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Folder_01.prefab",
-          "position": [
-            5.65,
-            1.3141,
-            11.95
-          ],
-          "rotation": [
-            0.0,
-            90.0,
-            0.0
-          ],
-          "scale": [
-            1.0,
-            1.0,
-            1.0
-          ],
-          "surface": true
-        },
-        {
-          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_DeskLight_01.prefab",
-          "position": [
-            4.15,
-            1.3141,
-            11.9
-          ],
-          "rotation": [
-            0.0,
-            180.0,
-            0.0
-          ],
-          "scale": [
-            1.0,
-            1.0,
-            1.0
-          ],
-          "surface": true
-        },
-        {
-          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Computer_01.prefab",
-          "position": [
-            -6.4,
-            0,
-            14.35
-          ],
-          "rotation": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "scale": [
-            1.0,
-            1.0,
-            1.0
-          ]
-        },
-        {
-          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Computer_01.prefab",
-          "position": [
-            0.0,
-            0,
-            14.35
-          ],
-          "rotation": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "scale": [
-            1.0,
-            1.0,
-            1.0
-          ]
-        },
-        {
-          "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_Computer_01.prefab",
-          "position": [
-            6.4,
-            0,
-            14.35
           ],
           "rotation": [
             0.0,
@@ -4032,7 +3776,7 @@
         {
           "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_AirVent_01.prefab",
           "position": [
-            8.0,
+            5.0,
             2.8127,
             14.941
           ],
@@ -4070,7 +3814,7 @@
         {
           "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_AlarmButton_01.prefab",
           "position": [
-            9.2,
+            7.0,
             1.2,
             10.1728
           ],
@@ -4836,13 +4580,13 @@
         {
           "prefab": "Assets/PolygonHeist/Prefab/Props/SM_Prop_AirVent_01.prefab",
           "position": [
-            -7.488,
+            -3.5,
             2.8127,
-            20.0
+            24.941
           ],
           "rotation": [
             0.0,
-            90.0,
+            0.0,
             0.0
           ],
           "scale": [
