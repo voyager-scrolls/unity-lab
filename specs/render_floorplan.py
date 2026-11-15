@@ -20,6 +20,8 @@ MARGIN = 60
 
 with io.open(os.path.join(ROOT, 'specs', 'heist-catalog.json'), encoding='utf-8') as f:
     CATALOG = json.load(f)
+with io.open(os.path.join(ROOT, 'specs', 'city-catalog.json'), encoding='utf-8') as f:
+    CATALOG += json.load(f)['entries']
 BY = {}
 for e in CATALOG:
     BY.setdefault(e['name'], e)

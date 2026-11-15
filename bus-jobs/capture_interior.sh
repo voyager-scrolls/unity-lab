@@ -40,22 +40,34 @@ public static class CaptureInterior
         // 00 lobby wide / 01 lobby-left / 02 lobby-right / 03 left passage from lobby
         // 04 left passage from teller / 05 corridorL length / 06 corridorL vault wall
         // 07 vault door context / 08 vault door close / 09 vault interior / 10 vault right side
-        // 11 right passage from lobby / 12 corridorR length / 13 lobby ceiling / 14 roof topdown
+        // 11 right passage from lobby / 12 corridorR length / 13 lobby ceiling / 14 lobby portrait wall
+        // 15 entrance clock / 16 queue ropes left / 17 teller left cage / 18 teller right cage
+        // 19 vault counting table / 20 corridorL manager desk / 21 corridorR watch desk
+        // 22 vault left deposit wall / 23 lobby mirror wall / 24 queue ropes right
         float[][] pos = new float[][] {
             new float[]{0f,1.7f,1.0f}, new float[]{-11f,1.8f,3f}, new float[]{11f,1.8f,3f},
-            new float[]{-10f,1.7f,5.5f}, new float[]{-10f,1.7f,12.5f}, new float[]{-10.8f,1.7f,15.2f},
+            new float[]{-10f,1.7f,5.5f}, new float[]{-8.5f,1.7f,12.3f}, new float[]{-10.8f,1.7f,15.2f},
             new float[]{-10.5f,1.7f,19.2f}, new float[]{0f,1.7f,11.3f}, new float[]{0f,1.7f,13.5f},
-            new float[]{0f,1.7f,19.5f}, new float[]{0f,1.7f,17.5f}, new float[]{10f,1.7f,5.5f},
-            new float[]{11.4f,1.7f,19.3f}, new float[]{0f,1.7f,2.5f}, new float[]{0f,24f,10f}
+            new float[]{0f,1.7f,18.4f}, new float[]{0f,1.7f,17.5f}, new float[]{10f,1.7f,5.5f},
+            new float[]{10.6f,1.7f,18.8f}, new float[]{0f,1.7f,2.5f}, new float[]{0f,1.7f,5.5f},
+            new float[]{0f,1.7f,4.5f}, new float[]{-9.0f,1.7f,4.6f}, new float[]{-8.0f,1.7f,10.7f},
+            new float[]{8.0f,1.7f,10.7f}, new float[]{0f,1.7f,16.2f}, new float[]{-11.6f,1.9f,15.6f},
+            new float[]{11.6f,1.9f,15.6f}, new float[]{-3.5f,1.7f,16.2f}, new float[]{0f,1.7f,5.5f},
+            new float[]{9.0f,1.7f,4.6f}
         };
         float[][] look = new float[][] {
             new float[]{0f,2.2f,10.5f}, new float[]{4f,1.2f,9f}, new float[]{-4f,1.2f,9f},
-            new float[]{-10f,1.4f,12f}, new float[]{-10f,1.4f,5f}, new float[]{-10.8f,1.2f,19.5f},
+            new float[]{-10f,1.4f,12f}, new float[]{-10.5f,1.3f,7f}, new float[]{-10.8f,1.2f,19.5f},
             new float[]{-7.5f,1.2f,15.2f}, new float[]{0f,1.5f,15f}, new float[]{0f,1.5f,15f},
             new float[]{0f,1.4f,15f}, new float[]{7.5f,1.4f,19f}, new float[]{10f,1.4f,12f},
-            new float[]{11.4f,1.2f,14.5f}, new float[]{0f,5.9f,8.5f}, new float[]{0f,0f,10f}
+            new float[]{10.6f,1.2f,15f}, new float[]{0f,5.9f,8.5f}, new float[]{-12.2f,2.4f,5.5f},
+            new float[]{0f,3.9f,0.1f}, new float[]{0f,0.9f,6.8f}, new float[]{-10.3f,1.1f,12.2f},
+            new float[]{10.3f,1.1f,12.2f}, new float[]{0f,1.1f,19.4f}, new float[]{-9.8f,1.0f,17.2f},
+            new float[]{9.8f,1.0f,17.2f}, new float[]{-6.5f,1.4f,18.6f}, new float[]{12.2f,2.4f,5.5f},
+            new float[]{0f,0.9f,6.8f}
         };
-        float[] fov = new float[] {70f,65f,65f,65f,65f,65f,65f,60f,55f,65f,65f,65f,65f,75f,60f};
+        float[] fov = new float[] {70f,65f,65f,65f,65f,65f,65f,60f,55f,65f,65f,65f,65f,75f,65f,
+                                   60f,70f,60f,60f,65f,65f,65f,65f,65f,70f};
 
         Texture2D tex = new Texture2D(W, H, TextureFormat.RGB24, false);
         for (int i = 0; i < pos.Length; i++)
@@ -81,7 +93,7 @@ xvfb-run -a -s "-screen 0 1280x720x24" "$UNITY" -batchmode -quit -projectPath "$
 
 SHOTS=$(ls /content/shots_int/*.png 2>/dev/null | wc -l)
 echo SHOTS=$SHOTS
-[ "$SHOTS" -ge 15 ] || { echo TOO_FEW_SHOTS; tail -20 /content/capture_int.log; exit 6; }
+[ "$SHOTS" -ge 25 ] || { echo TOO_FEW_SHOTS; tail -20 /content/capture_int.log; exit 6; }
 
 mkdir -p /content/drive/MyDrive/unity-lab/screenshots/${STAMP}_int
 cp /content/shots_int/*.png /content/drive/MyDrive/unity-lab/screenshots/${STAMP}_int/

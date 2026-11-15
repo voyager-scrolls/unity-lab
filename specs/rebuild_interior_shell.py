@@ -20,6 +20,7 @@ import sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LAYOUT = os.path.join(ROOT, "specs", "city-bank-v2.json")
 CATALOG = os.path.join(ROOT, "specs", "heist-catalog.json")
+CITY_CATALOG = os.path.join(ROOT, "specs", "city-catalog.json")
 
 W_EXT = "SM_Env_Wall_Exterior_01"
 W_INT = "SM_Env_Wall_Interior_01"
@@ -30,6 +31,11 @@ ROOF = "SM_Env_Roof_05"
 LIGHT = "SM_Env_Ceiling_Light_01"
 
 ENVELOPE = (-13.0, 13.0, -0.5, 20.5)  # xmin,xmax,zmin,zmax
+# City buildings that flank the bank and can intrude through the side walls.
+# They are shifted out as a group so the apartment/shop/roof stay aligned.
+CITY_BUILDINGS = ("SM_Bld_Apartment_Stack_01", "SM_Bld_Apartment_Roof_01", "SM_Bld_Shop_01")
+CITY_CLEAR_X = 12.62  # bank wall outer face plus a small margin
+CITY_SETBACK = 0.90  # clears the side-window props at x=+-12.95
 TOL = 1e-4
 
 ROOM_BOUNDS = {
@@ -68,6 +74,8 @@ def rotated_rect(bmin, bmax, yaw):
 class Catalog:
     def __init__(self, path):
         data = json.load(open(path, encoding="utf-8"))
+        if isinstance(data, dict) and "entries" in data:
+            data = data["entries"]
         self.by_name = {e["name"]: e for e in data}
 
     def bounds(self, name):
@@ -185,6 +193,60 @@ def build(cat):
             add("exterior", ROOF, cx, cz, 0, 11.90, "roof_cap")
 
     return props, shell
+
+
+def apply_city_setback(layout, city):
+    """Push flanking city buildings out of the bank side walls.
+
+    The apartment stack / shop / roof are authored flush with the bank flank in
+    the city layout, which puts their pink facades 0.3-0.6 m inside the lobby.
+    Shift each side as a group by at least CITY_SETBACK so the wall and the
+    side-window props are clear. Idempotent: clear buildings are untouched.
+    """
+    pending = []
+    need = {-1: 0.0, 1: 0.0}
+    for room in layout["rooms"]:
+        for p in room.get("props") or []:
+            name = short(p["prefab"])
+            if name not in CITY_BUILDINGS:
+                continue
+            x0, x1, z0, z1 = rect_of(city, p)
+            if z1 <= ENVELOPE[2] or z0 >= ENVELOPE[3]:
+                continue  # background city block, not flanking the bank
+            if x1 <= -CITY_CLEAR_X or x0 >= CITY_CLEAR_X:
+                continue
+            side = -1 if (x0 + x1) * 0.5 < 0.0 else 1
+            required = (x1 + CITY_CLEAR_X) if side < 0 else (CITY_CLEAR_X - x0)
+            need[side] = max(need[side], required)
+            pending.append((name, p, side))
+
+    shifted = 0
+    for side in (-1, 1):
+        if need[side] <= 0.0:
+            continue
+        dx = side * max(CITY_SETBACK, need[side])
+        for name, p, s in pending:
+            if s != side:
+                continue
+            p["position"][0] = round(p["position"][0] + dx, 4)
+            shifted += 1
+            print("SETBACK_CITY %s dx=%+.2f x=%.2f" % (name, dx, p["position"][0]))
+    print("SETBACK_CITY_TOTAL %d" % shifted)
+
+
+def validate_city_setback(layout, city):
+    fails = []
+    for room in layout["rooms"]:
+        for p in room.get("props") or []:
+            name = short(p["prefab"])
+            if name not in CITY_BUILDINGS:
+                continue
+            x0, x1, z0, z1 = rect_of(city, p)
+            if z1 <= ENVELOPE[2] or z0 >= ENVELOPE[3]:
+                continue
+            if x1 > -CITY_CLEAR_X + TOL and x0 < CITY_CLEAR_X - TOL:
+                fails.append("city building %s intrudes bank x[%.2f..%.2f]" % (name, x0, x1))
+    return fails
 
 
 def validate(layout, cat, props, shell):
@@ -350,6 +412,7 @@ def validate(layout, cat, props, shell):
 def main():
     layout = json.load(open(LAYOUT, encoding="utf-8"))
     cat = Catalog(CATALOG)
+    city = Catalog(CITY_CATALOG)
 
     removed = {}
     kept = {}
@@ -398,7 +461,11 @@ def main():
             if short(p["prefab"]) in ceiling_fixtures and 2.5 < p["position"][1] < 3.4:
                 p["position"][1] = 3.4
 
+    # city buildings authored flush with the bank flank intrude into the lobby
+    apply_city_setback(layout, city)
+
     fails = validate(layout, cat, new_props, shell)
+    fails += validate_city_setback(layout, city)
     if fails:
         print("SHELL_REBUILD_FAILED %d" % len(fails))
         for f in fails[:40]:
@@ -415,6 +482,7 @@ def main():
     for room in layout["rooms"]:
         print("ROOM %s props=%d" % (room["id"], len(room.get("props") or [])))
     print("AFTER_PROPS %d" % after)
+    print("SETBACK_OK")
     print("SHELL_REBUILD_OK")
 
 
