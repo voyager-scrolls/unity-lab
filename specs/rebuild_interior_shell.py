@@ -177,6 +177,13 @@ def build(cat):
     add("corridorL", LIGHT, -10.0, 17.5, 0, 3.39, "light_corridorL")
     add("corridorR", LIGHT, 10.0, 17.5, 0, 3.39, "light_corridorR")
 
+    # ---- flat roof cap over the whole footprint: closes the open top seen from
+    # high angles. Sits 5 cm below the front overhang so the approved fascia edge
+    # stays on top and the two slabs never z-fight. ----
+    for cx in (-10.0, -5.0, 0.0, 5.0, 10.0):
+        for cz in (2.5, 7.5, 12.5, 17.5):
+            add("exterior", ROOF, cx, cz, 0, 11.90, "roof_cap")
+
     return props, shell
 
 
@@ -269,6 +276,27 @@ def validate(layout, cat, props, shell):
             fails.append("ceiling tile %s owned by %s" % (p["position"], owners))
     print("CEILING_TOTAL %d" % len(ceiling_tiles))
 
+    # (c2) roof cap closes the top: exactly one tile over every footprint sample
+    cap = [p for _, name, p, purpose in shell if purpose == "roof_cap"]
+    if len(cap) != 20:
+        fails.append("roof cap has %d tiles, expected 20" % len(cap))
+    for ix in range(int(round(25.0 / 0.5))):
+        x = -12.5 + (ix + 0.5) * 0.5
+        for iz in range(int(round(20.0 / 0.5))):
+            z = 0.0 + (iz + 0.5) * 0.5
+            hits = 0
+            for p in cap:
+                rx0, rx1, rz0, rz1 = rect_of(cat, p)
+                if rx0 - TOL <= x <= rx1 + TOL and rz0 - TOL <= z <= rz1 + TOL:
+                    hits += 1
+            if hits != 1:
+                fails.append("roof cap at (%.2f,%.2f) has %d tiles" % (x, z, hits))
+                break
+        else:
+            continue
+        break
+    print("ROOF_CAP_TILES %d" % len(cap))
+
     # (d) vault doorway clear, frame centred and flush with the wall face
     frame = next((p for _, name, p, purpose in shell if purpose == "vault_frame"), None)
     if frame is None:
@@ -342,6 +370,8 @@ def main():
                     drop = True
                 elif name == ROOF and 5.5 <= y <= 7.5 and z > 0.5:
                     drop = True
+                elif name == ROOF and 11.5 <= y <= 12.5 and z > 3.0:
+                    drop = True  # roof cap rows; the z=2.15 front overhang stays
             if drop:
                 removed[name] = removed.get(name, 0) + 1
             else:

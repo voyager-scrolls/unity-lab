@@ -20,6 +20,7 @@ WALLS = ("SM_Env_Wall_Exterior_01", "SM_Env_Wall_Interior_01")
 FRAME = "SM_Env_VaultDoor_Frame_01"
 CEIL = "SM_Env_Ceiling_01"
 LIGHT = "SM_Env_Ceiling_Light_01"
+ROOF = "SM_Env_Roof_05"
 ROOMS = ("lobby", "teller", "vault", "corridorL", "corridorR")
 
 SCALE = 30
@@ -59,7 +60,7 @@ def main():
     for room in data["rooms"]:
         for p in room.get("props") or []:
             n = short(p["prefab"])
-            if n in WALLS or n == FRAME or n == CEIL or n == LIGHT:
+            if n in WALLS or n == FRAME or n == CEIL or n == LIGHT or n == ROOF:
                 props.append((room["id"], n, p))
 
     xmin, xmax, zmin, zmax = -16.0, 16.0, -4.0, 23.0
@@ -114,8 +115,15 @@ def main():
         r = 4
         d.ellipse([X(x) - r, Y(z) - r, X(x) + r, Y(z) + r], fill=(255, 190, 0), outline=(120, 80, 0))
 
+    # roof: outline only, so the ceiling layer below stays readable
+    for _, n, p in props:
+        if n != ROOF:
+            continue
+        x0, x1, z0, z1 = rect(cat, p)
+        d.rectangle([X(x0), Y(z0), X(x1), Y(z1)], outline=(150, 120, 70), width=2)
+
     d.text((PAD, 8), "TOP-DOWN  grey=exterior wall  blue=interior wall  red=vault frame  "
-                     "light-grey=ceiling  yellow=light", fill=(20, 20, 20))
+                     "light-grey=ceiling  yellow=light  tan outline=roof", fill=(20, 20, 20))
 
     # front elevation strip: x vs y at z<0.3
     ey0 = H - 250
