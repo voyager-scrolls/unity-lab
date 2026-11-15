@@ -121,10 +121,10 @@ def main():
     ey0 = H - 250
     ey1 = H - 40
     def EYy(y):
-        return ey1 - y * (ey1 - ey0) / 9.2
+        return ey1 - y * (ey1 - ey0) / 12.2
 
     d.rectangle([X(xmin), ey0, X(xmax), ey1], outline=(150, 150, 150))
-    d.text((PAD, ey0 - 18), "FRONT ELEVATION (walls at z<0.3, y 0..9)", fill=(20, 20, 20))
+    d.text((PAD, ey0 - 18), "FRONT ELEVATION (walls at z<0.3, y 0..12)", fill=(20, 20, 20))
     for _, n, p in props:
         if n not in WALLS:
             continue
@@ -136,7 +136,7 @@ def main():
         d.rectangle([X(x0), EYy(y1), X(x1), EYy(y0)],
                     fill=(60, 60, 60) if n == "SM_Env_Wall_Exterior_01" else (70, 90, 150),
                     outline=(0, 0, 0))
-    for y in (0, 3, 6, 9):
+    for y in (0, 3, 6, 9, 12):
         d.text((X(xmin) - 30, EYy(y) - 6), "%d" % y, fill=(60, 60, 60))
         d.line([X(xmin), EYy(y), X(xmax), EYy(y)], fill=(220, 220, 220))
 

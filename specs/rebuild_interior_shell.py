@@ -3,7 +3,7 @@
 
 Post-processes specs/city-bank-v2.json:
   - strips every wall / vault-frame / ceiling / low roof prop inside the bank
-  - rebuilds one solid perimeter (3 courses), interior partitions, vault doorway
+  - rebuilds one solid perimeter (4 courses to 12 m), interior partitions, vault doorway
   - rebuilds exactly one ceiling layer per room
   - moves ceiling fixtures onto the new ceiling planes and lights both corridors
 
@@ -121,9 +121,10 @@ def build(cat):
         shell.append((room, name, p, purpose))
         return p
 
-    # ---- perimeter: 3 courses to 9 m, matching the approved street pivots ----
+    # ---- perimeter: 4 courses to 12 m, so the sign, top window row, pilasters
+    # and high roof all sit on solid wall instead of floating over the street ----
     facade_x = [-10.0, -5.0, 0.0, 5.0, 10.0]
-    for course in (0, 1, 2):
+    for course in (0, 1, 2, 3):
         y = course * 3.0
         for cx in facade_x:
             if course == 0 and cx == 0.0:
@@ -207,11 +208,11 @@ def validate(layout, cat, props, shell):
                 if not wall_at(x, z, y):
                     fails.append("%s gap at %s=%.2f y=%.1f" % (label, axis, t, y))
 
-    sweep("facade", 0.0, "x", -12.5, 12.5, (0.5, 1.5, 2.5, 4.5, 5.5, 7.5, 8.5),
+    sweep("facade", 0.0, "x", -12.5, 12.5, (0.5, 1.5, 2.5, 4.5, 5.5, 7.5, 8.5, 10.5, 11.5),
           exempt=lambda t, y: y < 3.0 and abs(t) < 2.49)
-    sweep("side_left", -12.5, "z", 0.0, 20.0, (0.5, 1.5, 2.5, 4.5, 5.5, 7.5, 8.5))
-    sweep("side_right", 12.5, "z", 0.0, 20.0, (0.5, 1.5, 2.5, 4.5, 5.5, 7.5, 8.5))
-    sweep("back", 20.0, "x", -12.5, 12.5, (0.5, 1.5, 2.5, 4.5, 5.5, 7.5, 8.5))
+    sweep("side_left", -12.5, "z", 0.0, 20.0, (0.5, 1.5, 2.5, 4.5, 5.5, 7.5, 8.5, 10.5, 11.5))
+    sweep("side_right", 12.5, "z", 0.0, 20.0, (0.5, 1.5, 2.5, 4.5, 5.5, 7.5, 8.5, 10.5, 11.5))
+    sweep("back", 20.0, "x", -12.5, 12.5, (0.5, 1.5, 2.5, 4.5, 5.5, 7.5, 8.5, 10.5, 11.5))
 
     # (b) interior partitions
     sweep("partition_z10_low", 10.0, "x", -12.5, 12.5, (0.5, 1.5, 2.5),
