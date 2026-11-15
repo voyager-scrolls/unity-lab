@@ -25,6 +25,7 @@ CITY_CATALOG = os.path.join(ROOT, "specs", "city-catalog.json")
 W_EXT = "SM_Env_Wall_Exterior_01"
 W_INT = "SM_Env_Wall_Interior_01"
 FRAME = "SM_Env_VaultDoor_Frame_01"
+GLASS = "SM_Env_Wall_Glass_DoorFrame_01"
 CEIL = "SM_Env_Ceiling_01"
 CEIL4 = "SM_Env_Ceiling_04"
 ROOF = "SM_Env_Roof_05"
@@ -144,6 +145,9 @@ def build(cat):
         for cx in (-10.0, -5.0, 0.0, 5.0, 10.0):
             add("exterior", W_EXT, cx, 20.0, 180, y, "back")
 
+    # ---- entrance glass storefront at the 5 m facade gap; colliders are cleared in LevelBuilder ----
+    add("exterior", GLASS, 0.0, 0.0, 0, 0.0, "entrance_glass")
+
     # ---- lobby/teller partition z=10: solid centre 15 m, 5 m passages at both ends ----
     for cx in (-5.0, 0.0, 5.0):
         add("teller", W_INT, cx, 10.0, 0, 0.0, "partition_z10_low")
@@ -256,7 +260,7 @@ def validate(layout, cat, props, shell):
     # (a) perimeter wall planes: every sample must be backed by a wall module
     def wall_at(x, z, y):
         for _, name, p, _purpose in shell:
-            if name not in (W_EXT, W_INT, FRAME):
+            if name not in (W_EXT, W_INT, FRAME, GLASS):
                 continue
             x0, x1, z0, z1 = rect_of(cat, p)
             py = p["position"][1]
@@ -425,7 +429,7 @@ def main():
             in_bank = ENVELOPE[0] <= x <= ENVELOPE[1] and ENVELOPE[2] <= z <= ENVELOPE[3]
             drop = False
             if in_bank and y < 13.0:
-                if name in (W_EXT, W_INT, FRAME):
+                if name in (W_EXT, W_INT, FRAME, GLASS):
                     drop = True
                 elif name in (CEIL, CEIL4) and y < 7.0:
                     drop = True

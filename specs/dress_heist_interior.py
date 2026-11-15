@@ -84,9 +84,15 @@ REMOVE_BASE = [
     ("corridorL", "SM_Prop_Folder_02", -10.40, 16.80),
     ("corridorR", "SM_Prop_Folder_03", 10.40, 16.80),
     ("corridorR", "SM_Prop_Computer_01", 10.00, 17.30),
-    ("lobby", "SM_Prop_Computer_01", -5.00, 8.20),
-    ("lobby", "SM_Prop_Computer_01", 0.00, 8.20),
-    ("lobby", "SM_Prop_Computer_01", 5.00, 8.20),
+    ("lobby", "SM_Prop_AlarmButton_01", 7.00, 9.8272),
+    ("teller", "SM_Prop_AlarmButton_01", 7.00, 10.1728),
+    ("lobby", "SM_Prop_Plant_01", -11.40, 1.20),
+    ("lobby", "SM_Prop_Plant_01", 11.40, 1.20),
+    ("lobby", "SM_Prop_Plant_03", -11.40, 9.00),
+    ("lobby", "SM_Prop_Plant_03", 11.40, 9.00),
+    ("lobby", "SM_Prop_DeskLight_01", -5.58, 7.94),
+    ("lobby", "SM_Prop_DeskLight_01", 0.58, 7.94),
+    ("lobby", "SM_Prop_DeskLight_01", 5.58, 7.94),
     ("lobby", "SM_Prop_Money_Stack_01", -4.28, 8.10),
     ("lobby", "SM_Prop_Money_Stack_01", -0.72, 8.10),
     ("lobby", "SM_Prop_Money_Stack_01", 4.28, 8.10),
@@ -193,10 +199,10 @@ PLACEMENTS = [
     ("lobby", "SM_Prop_RopeBarrier_Pole_01", 3.50, 6.80, 0, 0.0),
     ("lobby", "SM_Prop_RopeBarrier_Pole_01", 5.50, 6.80, 0, 0.0),
     ("lobby", "SM_Prop_RopeBarrier_Pole_01", 7.50, 6.80, 0, 0.0),
-    ("lobby", "SM_Prop_RopeBarrier_01", -6.50, 6.80, 0, 0.67),
-    ("lobby", "SM_Prop_RopeBarrier_01", -4.50, 6.80, 0, 0.67),
-    ("lobby", "SM_Prop_RopeBarrier_01", 4.50, 6.80, 0, 0.67),
-    ("lobby", "SM_Prop_RopeBarrier_01", 6.50, 6.80, 0, 0.67),
+    ("lobby", "SM_Prop_RopeBarrier_01", -6.50, 6.80, 0, 0.0),
+    ("lobby", "SM_Prop_RopeBarrier_01", -4.50, 6.80, 0, 0.0),
+    ("lobby", "SM_Prop_RopeBarrier_01", 4.50, 6.80, 0, 0.0),
+    ("lobby", "SM_Prop_RopeBarrier_01", 6.50, 6.80, 0, 0.0),
     # ---------------- teller hall: The Cages ----------------
     ("teller", "SM_Prop_TellerDesk_02", -10.30, 11.90, 180, 0.0),
     ("teller", "SM_Prop_TellerDesk_02", 10.30, 11.90, 180, 0.0),
@@ -204,8 +210,6 @@ PLACEMENTS = [
     ("teller", "SM_Prop_TellerDesk_Barrier_01", 10.30, 11.62, 180, 1.302),
     ("teller", "SM_Prop_DeskLight_01", -11.25, 12.00, 180, 1.302),
     ("teller", "SM_Prop_DeskLight_01", 11.25, 12.00, 180, 1.302),
-    ("teller", "SM_Prop_Book_Group_02", -10.30, 12.22, 0, 1.302),
-    ("teller", "SM_Prop_Book_Group_03", 10.30, 12.22, 180, 1.302),
     ("teller", "SM_Prop_Folder_02", -9.40, 12.18, 15, 1.302),
     ("teller", "SM_Prop_Folder_02", 9.40, 12.18, 195, 1.302),
     ("teller", "SM_Prop_Chair_02", -10.30, 12.80, 0, 0.0),
@@ -267,21 +271,20 @@ PLACEMENTS = [
     ("corridorR", "SM_Prop_Television_Old_01", 10.00, 17.30, 90, 0.879),
 ]
 
-# Gold and cash on the trolley/table: laid out explicitly so it reads as a haul.
-for x in (-0.45, -0.15, 0.15, 0.45):
-    PLACEMENTS.append(("vault", "SM_Prop_GoldBar_01", x, 17.50, 0, 1.071))
-for x in (-0.70, -0.35, 0.00, 0.35, 0.70):
-    PLACEMENTS.append(("vault", "SM_Prop_GoldBar_02", x, 19.30, 0, 0.794))
+# Cash on the counting table; the gold haul is removed at the user's request.
 PLACEMENTS += [
+    # User request: return the three teller-desk PCs.
+    ("lobby", "SM_Prop_Computer_01", -5.0, 8.20, 0, 1.3141),
+    ("lobby", "SM_Prop_Computer_01", 0.0, 8.20, 0, 1.3141),
+    ("lobby", "SM_Prop_Computer_01", 5.0, 8.20, 0, 1.3141),
+    ("lobby", "SM_Prop_DeskLight_01", -5.95, 7.85, 0, 1.3141),
+    ("lobby", "SM_Prop_DeskLight_01", 0.95, 7.85, 0, 1.3141),
+    ("lobby", "SM_Prop_DeskLight_01", 5.95, 7.85, 0, 1.3141),
     ("vault", "SM_Prop_Money_Stack_01", -1.15, 19.50, 15, 0.794),
     ("vault", "SM_Prop_Money_Stack_01", 1.15, 19.50, 340, 0.794),
 ]
 
-# 1979 teller stations: ledgers, folders and cash, no screens at all.
-for x in (-5.0, 0.0, 5.0):
-    PLACEMENTS.append(("lobby", "SM_Prop_Book_Group_01", x, 8.25, 0, 1.305))
-    PLACEMENTS.append(("lobby", "SM_Prop_Folder_02", x + 0.70, 8.45, 0, 1.302))
-    PLACEMENTS.append(("lobby", "SM_Prop_Money_Stack_01", x - 0.70, 8.45, 0, 1.302))
+# 1979 teller stations: the original computers return; no books on the desks.
 
 DOORWAYS = [
     # x0, z0, x1, z1
@@ -374,7 +377,7 @@ def main() -> int:
                 qb = prop_box(q)
                 if qb is None:
                     continue
-                if aabb_overlap(pb, qb):
+                if not ((name.startswith("SM_Prop_RopeBarrier") and qn.startswith("SM_Prop_RopeBarrier_Pole")) or (name.startswith("SM_Prop_RopeBarrier_Pole") and qn.startswith("SM_Prop_RopeBarrier"))) and aabb_overlap(pb, qb):
                     errors.append(
                         f"OVERLAP {room['id']} {name}@{p['position']} with {qn}@{q['position']}"
                     )

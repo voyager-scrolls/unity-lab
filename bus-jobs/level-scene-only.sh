@@ -452,9 +452,9 @@ public static class LevelBuilder
                     inst.transform.eulerAngles = ToV3(prop.rotation, Vector3.zero);
                     inst.transform.localScale = ToV3(prop.scale, Vector3.one);
                     inst.transform.SetParent(roomRoot.transform, true);
-                    // The vault door prefab embeds its closed round Lid AND a frame collider that can seal
-                    // the 5m doorway. Make the vault passable: disable the Lid visual and drop all
-                    // colliders belonging to the frame instance (walls around it keep the room sealed).
+                    // The vault door prefab embeds a round Lid leaf AND frame colliders that can seal
+                    // the 5m doorway. Keep the Lid visible, swing it open into the vault, hide the loose
+                    // handle props, and drop every collider so the doorway stays passable.
                     if (inst.name.Contains("VaultDoor_Frame"))
                     {
                         int lids = 0;
@@ -462,8 +462,13 @@ public static class LevelBuilder
                         {
                             if (child.name.Contains("Lid"))
                             {
-                                child.gameObject.SetActive(false);
+                                child.gameObject.SetActive(true);
+                                child.localRotation = Quaternion.Euler(0f, 90f, 0f);
                                 lids++;
+                            }
+                            else if (child.name.Contains("Handle"))
+                            {
+                                child.gameObject.SetActive(false);
                             }
                         }
                         int cols = 0;
@@ -472,8 +477,24 @@ public static class LevelBuilder
                             UnityEngine.Object.DestroyImmediate(c);
                             cols++;
                         }
-                        Debug.Log("LEVEL_BUILDER: vault opened lids=" + lids + " collidersRemoved=" + cols +
+                        Debug.Log("LEVEL_BUILDER: vault door open lids=" + lids + " collidersRemoved=" + cols +
                             " children=" + inst.transform.childCount);
+                    }
+                    // Entrance glass storefront: keep the visual, but never let its colliders seal the
+                    // doorway. The 5m opening must stay walkable for the nav gate.
+                    if (inst.name.Contains("Glass_DoorFrame"))
+                    {
+                        int gcols = 0;
+                        foreach (Collider c in inst.GetComponentsInChildren<Collider>(true))
+                        {
+                            UnityEngine.Object.DestroyImmediate(c);
+                            gcols++;
+                        }
+                        foreach (Transform t in inst.GetComponentsInChildren<Transform>(true))
+                    {
+                        if (t.name.Contains("Panels")) t.gameObject.SetActive(false);
+                    }
+                    Debug.Log("LEVEL_BUILDER: glass door opened collidersRemoved=" + gcols);
                     }
                     // Ceiling light fixtures get a real warm point light so interiors are
                     // not lit by ambient alone. Shadows off keeps the low-end profile cheap.
