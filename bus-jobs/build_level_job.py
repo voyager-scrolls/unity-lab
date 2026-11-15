@@ -14,8 +14,8 @@ SOURCES = [
     ("PerfTune.cs", "game/mfps/PerfTune.cs", "CSEOF3"),
 ]
 MFPBUILD = ("MfpsBuild.cs", None, "CSEOF4")  # content inline below
-LAYOUT_JSON = os.path.join(ROOT, "specs", "street-bank-v1.json")
-assert os.path.basename(LAYOUT_JSON) == "street-bank-v1.json", "sync the LAYOUT_SRC literal when switching layout versions"
+LAYOUT_JSON = os.path.join(ROOT, "specs", "city-bank-v2.json")
+assert os.path.basename(LAYOUT_JSON) == "city-bank-v2.json", "sync the LAYOUT_SRC literal when switching layout versions"
 
 MFPS_BUILD_CS = """using System.IO;
 using UnityEditor;
@@ -187,6 +187,38 @@ echo "=== IMPORT HEIST PACK (tolerant) ==="
 "$UNITY" -batchmode -nographics -quit -projectPath "$PROJ" -importPackage "$HEISTPKG" -logFile /content/heist_import.log 2>&1 || true
 if [ -d "$PROJ/Assets/PolygonHeist" ]; then echo "HEIST_DIR_OK"; else echo "HEIST_DIR_MISSING"; exit 6; fi
 
+echo "=== IMPORT CITY / BATTLE ROYALE / TOWN PACKS (tolerant) ==="
+for pair in "city:PolygonCity:pack_city" "br:PolygonBattleRoyale:pack_battleroyale" "town:PolygonTown:pack_town"; do
+  tag=${pair%%:*}; rest=${pair#*:}; pdir=${rest%%:*}; ppkg=${rest#*:}
+  if [ -f "$MFPSROOT/assets/packs/$ppkg.unitypackage" ]; then
+    "$UNITY" -batchmode -nographics -quit -projectPath "$PROJ" -importPackage "$MFPSROOT/assets/packs/$ppkg.unitypackage" -logFile /content/${tag}_import.log 2>&1 || true
+    if [ -d "$PROJ/Assets/$pdir" ]; then echo "PACK_OK_$tag"; else echo "PACK_MISSING_$tag"; fi
+  else
+    echo "NO_PKG_$tag"
+  fi
+done
+if [ ! -d "$PROJ/Assets/PolygonCity" ] || [ ! -d "$PROJ/Assets/PolygonBattleRoyale" ]; then echo "CITY_OR_BR_MISSING"; exit 6; fi
+
+echo "=== COPY FANTASY SKYBOX TEXTURES (no package import: its demo scripts clash with MFPS) ==="
+mkdir -p "$PROJ/Assets/Fantasy Skybox/Textures"
+mkdir -p "$PROJ/Assets/Fantasy Skybox/Textures3"
+cp $MFPSROOT/assets/skybox/textures3/*.tga "$PROJ/Assets/Fantasy Skybox/Textures3/" 2>/dev/null || true
+mkdir -p "$PROJ/Assets/Fantasy Skybox/Textures2"
+cp $MFPSROOT/assets/skybox/textures2/*.tga "$PROJ/Assets/Fantasy Skybox/Textures2/" 2>/dev/null || true
+if cp $MFPSROOT/assets/skybox/textures/*.tga "$PROJ/Assets/Fantasy Skybox/Textures/" 2>/dev/null; then
+  echo "SKYBOX_TEXTURES_COPIED"
+else
+  echo "NO_SKYBOX_TEXTURES"
+fi
+# Purge any demo scripts brought in by earlier skybox package imports: the pack ships a
+# MouseLook class that shadows MFPS's own and breaks bl_FirstPersonController/bl_Recoil.
+if [ -d "$PROJ/Assets/Fantasy Skybox" ]; then
+  find "$PROJ/Assets/Fantasy Skybox" -name "*.cs" -delete 2>/dev/null || true
+  rm -rf "$PROJ/Assets/Fantasy Skybox/Demo" 2>/dev/null || true
+fi
+find "$PROJ/Assets" -name "MouseLook*.cs" -not -path "*/MFPS/*" -delete 2>/dev/null || true
+echo "SKYBOX_SCRIPTS_PURGED"
+
 echo "=== MANIFEST REWRITE (after imports) ==="
 python3 - "$PROJ" <<'PYEOF'
 """ + MANIFEST_PY + """PYEOF
@@ -205,7 +237,7 @@ sed -i 's/  offlineMode: 0/  offlineMode: 1/' "$GD"
 grep -q 'offlineMode: 1' "$GD" && echo OFFLINE_MODE_ON || { echo OFFLINE_FLIP_FAILED; grep -n 'offlineMode' "$GD"; exit 6; }
 
 echo "=== WRITE LAYOUT JSON (pulled from Drive) ==="
-LAYOUT_SRC="$MFPSROOT/specs/street-bank-v1.json"
+LAYOUT_SRC="$MFPSROOT/specs/city-bank-v2.json"
 test -f "$LAYOUT_SRC" || { echo NO_LAYOUT_JSON; exit 6; }
 cp "$LAYOUT_SRC" /content/level-layout.json
 python3 -c "import json; d=json.load(open('/content/level-layout.json')); print('LAYOUT_JSON_OK rooms=' + str(len(d['rooms'])) + ' name=' + d['name'])"

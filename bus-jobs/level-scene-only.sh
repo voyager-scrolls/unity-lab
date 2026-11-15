@@ -115,6 +115,38 @@ echo "=== IMPORT HEIST PACK (tolerant) ==="
 "$UNITY" -batchmode -nographics -quit -projectPath "$PROJ" -importPackage "$HEISTPKG" -logFile /content/heist_import.log 2>&1 || true
 if [ -d "$PROJ/Assets/PolygonHeist" ]; then echo "HEIST_DIR_OK"; else echo "HEIST_DIR_MISSING"; exit 6; fi
 
+echo "=== IMPORT CITY / BATTLE ROYALE / TOWN PACKS (tolerant) ==="
+for pair in "city:PolygonCity:pack_city" "br:PolygonBattleRoyale:pack_battleroyale" "town:PolygonTown:pack_town"; do
+  tag=${pair%%:*}; rest=${pair#*:}; pdir=${rest%%:*}; ppkg=${rest#*:}
+  if [ -f "$MFPSROOT/assets/packs/$ppkg.unitypackage" ]; then
+    "$UNITY" -batchmode -nographics -quit -projectPath "$PROJ" -importPackage "$MFPSROOT/assets/packs/$ppkg.unitypackage" -logFile /content/${tag}_import.log 2>&1 || true
+    if [ -d "$PROJ/Assets/$pdir" ]; then echo "PACK_OK_$tag"; else echo "PACK_MISSING_$tag"; fi
+  else
+    echo "NO_PKG_$tag"
+  fi
+done
+if [ ! -d "$PROJ/Assets/PolygonCity" ] || [ ! -d "$PROJ/Assets/PolygonBattleRoyale" ]; then echo "CITY_OR_BR_MISSING"; exit 6; fi
+
+echo "=== COPY FANTASY SKYBOX TEXTURES (no package import: its demo scripts clash with MFPS) ==="
+mkdir -p "$PROJ/Assets/Fantasy Skybox/Textures"
+mkdir -p "$PROJ/Assets/Fantasy Skybox/Textures3"
+cp $MFPSROOT/assets/skybox/textures3/*.tga "$PROJ/Assets/Fantasy Skybox/Textures3/" 2>/dev/null || true
+mkdir -p "$PROJ/Assets/Fantasy Skybox/Textures2"
+cp $MFPSROOT/assets/skybox/textures2/*.tga "$PROJ/Assets/Fantasy Skybox/Textures2/" 2>/dev/null || true
+if cp $MFPSROOT/assets/skybox/textures/*.tga "$PROJ/Assets/Fantasy Skybox/Textures/" 2>/dev/null; then
+  echo "SKYBOX_TEXTURES_COPIED"
+else
+  echo "NO_SKYBOX_TEXTURES"
+fi
+# Purge any demo scripts brought in by earlier skybox package imports: the pack ships a
+# MouseLook class that shadows MFPS's own and breaks bl_FirstPersonController/bl_Recoil.
+if [ -d "$PROJ/Assets/Fantasy Skybox" ]; then
+  find "$PROJ/Assets/Fantasy Skybox" -name "*.cs" -delete 2>/dev/null || true
+  rm -rf "$PROJ/Assets/Fantasy Skybox/Demo" 2>/dev/null || true
+fi
+find "$PROJ/Assets" -name "MouseLook*.cs" -not -path "*/MFPS/*" -delete 2>/dev/null || true
+echo "SKYBOX_SCRIPTS_PURGED"
+
 echo "=== MANIFEST REWRITE (after imports) ==="
 python3 - "$PROJ" <<'PYEOF'
 import json, os, sys
@@ -159,7 +191,7 @@ sed -i 's/  offlineMode: 0/  offlineMode: 1/' "$GD"
 grep -q 'offlineMode: 1' "$GD" && echo OFFLINE_MODE_ON || { echo OFFLINE_FLIP_FAILED; grep -n 'offlineMode' "$GD"; exit 6; }
 
 echo "=== WRITE LAYOUT JSON (pulled from Drive) ==="
-LAYOUT_SRC="$MFPSROOT/specs/street-bank-v1.json"
+LAYOUT_SRC="$MFPSROOT/specs/city-bank-v2.json"
 test -f "$LAYOUT_SRC" || { echo NO_LAYOUT_JSON; exit 6; }
 cp "$LAYOUT_SRC" /content/level-layout.json
 python3 -c "import json; d=json.load(open('/content/level-layout.json')); print('LAYOUT_JSON_OK rooms=' + str(len(d['rooms'])) + ' name=' + d['name'])"
@@ -387,6 +419,7 @@ public static class LevelBuilder
         RenderSettings.ambientEquatorColor = new Color(0.55f, 0.51f, 0.46f);
         RenderSettings.ambientGroundColor = new Color(0.34f, 0.31f, 0.27f);
         Debug.Log("LEVEL_BUILDER: lighting set (sun + warm trilight ambient)");
+        ApplyFantasySkybox();
 
         GameObject levelRoot = new GameObject("LevelRoot_" + layout.levelName.Replace(" ", "_"));
         spawnCounter = 0;
@@ -885,6 +918,38 @@ public static class LevelBuilder
         Vector3 dir = child.position - bone.position;
         if (dir.sqrMagnitude < 0.0001f) return;
         bone.rotation = Quaternion.FromToRotation(dir.normalized, targetDir) * bone.rotation;
+    }
+
+    // Six-sided fantasy skybox built at runtime from the imported texture set.
+    static void ApplyFantasySkybox()
+    {
+        string baseDir = "Assets/Fantasy Skybox/Textures/";
+        string[] sets = { "Sunny_01A", "Sunny_02A", "Sunny_03AnoSun" };
+        foreach (string s in sets)
+        {
+            Texture up = UnityEditor.AssetDatabase.LoadAssetAtPath<Texture>(baseDir + s + "_up.tga");
+            if (up == null) continue;
+            Shader sh = Shader.Find("Skybox/6 Sided");
+            if (sh == null) { Debug.Log("SKYBOX: shader missing"); return; }
+            Material mat = new Material(sh);
+            mat.SetTexture("_UpTex", up);
+            Texture t;
+            t = UnityEditor.AssetDatabase.LoadAssetAtPath<Texture>(baseDir + s + "_down.tga"); if (t != null) mat.SetTexture("_DownTex", t);
+            t = UnityEditor.AssetDatabase.LoadAssetAtPath<Texture>(baseDir + s + "_front.tga"); if (t != null) mat.SetTexture("_FrontTex", t);
+            t = UnityEditor.AssetDatabase.LoadAssetAtPath<Texture>(baseDir + s + "_back.tga"); if (t != null) mat.SetTexture("_BackTex", t);
+            t = UnityEditor.AssetDatabase.LoadAssetAtPath<Texture>(baseDir + s + "_left.tga"); if (t != null) mat.SetTexture("_LeftTex", t);
+            t = UnityEditor.AssetDatabase.LoadAssetAtPath<Texture>(baseDir + s + "_right.tga"); if (t != null) mat.SetTexture("_RightTex", t);
+            mat.SetFloat("_Exposure", 1.15f);
+            mat.SetFloat("_Rotation", 0f);
+            mat.name = "FantasySkybox_" + s;
+            RenderSettings.skybox = mat;
+            RenderSettings.ambientMode = UnityEngine.Rendering.AmbientMode.Skybox;
+            RenderSettings.ambientIntensity = 1f;
+            DynamicGI.UpdateEnvironment();
+            Debug.Log("SKYBOX: applied " + s);
+            return;
+        }
+        Debug.Log("SKYBOX: no fantasy skybox textures found, keeping trilight ambient");
     }
 }
 CSEOF2

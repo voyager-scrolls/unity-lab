@@ -115,6 +115,26 @@ echo "=== IMPORT HEIST PACK (tolerant) ==="
 "$UNITY" -batchmode -nographics -quit -projectPath "$PROJ" -importPackage "$HEISTPKG" -logFile /content/heist_import.log 2>&1 || true
 if [ -d "$PROJ/Assets/PolygonHeist" ]; then echo "HEIST_DIR_OK"; else echo "HEIST_DIR_MISSING"; exit 6; fi
 
+echo "=== COPY FANTASY SKYBOX TEXTURES (no package import: its demo scripts clash with MFPS) ==="
+mkdir -p "$PROJ/Assets/Fantasy Skybox/Textures"
+mkdir -p "$PROJ/Assets/Fantasy Skybox/Textures3"
+cp $MFPSROOT/assets/skybox/textures3/*.tga "$PROJ/Assets/Fantasy Skybox/Textures3/" 2>/dev/null || true
+mkdir -p "$PROJ/Assets/Fantasy Skybox/Textures2"
+cp $MFPSROOT/assets/skybox/textures2/*.tga "$PROJ/Assets/Fantasy Skybox/Textures2/" 2>/dev/null || true
+if cp $MFPSROOT/assets/skybox/textures/*.tga "$PROJ/Assets/Fantasy Skybox/Textures/" 2>/dev/null; then
+  echo "SKYBOX_TEXTURES_COPIED"
+else
+  echo "NO_SKYBOX_TEXTURES"
+fi
+# Purge any demo scripts brought in by earlier skybox package imports: the pack ships a
+# MouseLook class that shadows MFPS's own and breaks bl_FirstPersonController/bl_Recoil.
+if [ -d "$PROJ/Assets/Fantasy Skybox" ]; then
+  find "$PROJ/Assets/Fantasy Skybox" -name "*.cs" -delete 2>/dev/null || true
+  rm -rf "$PROJ/Assets/Fantasy Skybox/Demo" 2>/dev/null || true
+fi
+find "$PROJ/Assets" -name "MouseLook*.cs" -not -path "*/MFPS/*" -delete 2>/dev/null || true
+echo "SKYBOX_SCRIPTS_PURGED"
+
 echo "=== MANIFEST REWRITE (after imports) ==="
 python3 - "$PROJ" <<'PYEOF'
 import json, os, sys
@@ -159,7 +179,7 @@ sed -i 's/  offlineMode: 0/  offlineMode: 1/' "$GD"
 grep -q 'offlineMode: 1' "$GD" && echo OFFLINE_MODE_ON || { echo OFFLINE_FLIP_FAILED; grep -n 'offlineMode' "$GD"; exit 6; }
 
 echo "=== WRITE LAYOUT JSON (pulled from Drive) ==="
-LAYOUT_SRC="$MFPSROOT/specs/heist-bank-v3.json"
+LAYOUT_SRC="$MFPSROOT/specs/street-bank-v1.json"
 test -f "$LAYOUT_SRC" || { echo NO_LAYOUT_JSON; exit 6; }
 cp "$LAYOUT_SRC" /content/level-layout.json
 python3 -c "import json; d=json.load(open('/content/level-layout.json')); print('LAYOUT_JSON_OK rooms=' + str(len(d['rooms'])) + ' name=' + d['name'])"
@@ -344,6 +364,9 @@ using UnityEngine.SceneManagement;
 public static class LevelBuilder
 {
     static int spawnCounter;
+    static Material plazaMat;
+    static Material roadMat;
+    static int characterCount;
     static readonly System.Collections.Generic.List<Vector3> spawnPositions = new System.Collections.Generic.List<Vector3>();
 
     public static void BuildFromLayoutAsset()
@@ -365,6 +388,12 @@ public static class LevelBuilder
         floor.transform.position = new Vector3(0f, -0.05f, 0f);
         floor.transform.localScale = new Vector3(20f, 1f, 20f);
 
+        // The default plane material is near-white; darken it so the ground beyond
+        // the kit tiles reads as terrain instead of a blown-out void.
+        Material groundMat = new Material(floor.GetComponent<Renderer>().sharedMaterial);
+        groundMat.color = new Color(0.30f, 0.30f, 0.31f, 1f);
+        floor.GetComponent<Renderer>().sharedMaterial = groundMat;
+
         // Sun + ambient so the scene is not flat grey
         GameObject sunGo = new GameObject("Sun");
         Light sun = sunGo.AddComponent<Light>();
@@ -378,12 +407,15 @@ public static class LevelBuilder
         RenderSettings.ambientEquatorColor = new Color(0.55f, 0.51f, 0.46f);
         RenderSettings.ambientGroundColor = new Color(0.34f, 0.31f, 0.27f);
         Debug.Log("LEVEL_BUILDER: lighting set (sun + warm trilight ambient)");
+        ApplyFantasySkybox();
 
         GameObject levelRoot = new GameObject("LevelRoot_" + layout.levelName.Replace(" ", "_"));
         spawnCounter = 0;
         spawnPositions.Clear();
         int placed = 0;
         int missing = 0;
+        int lightCount = 0;
+        int tintedCount = 0;
 
         foreach (LevelRoomData room in layout.rooms)
         {
@@ -431,6 +463,69 @@ public static class LevelBuilder
                         Debug.Log("LEVEL_BUILDER: vault opened lids=" + lids + " collidersRemoved=" + cols +
                             " children=" + inst.transform.childCount);
                     }
+                    // Ceiling light fixtures get a real warm point light so interiors are
+                    // not lit by ambient alone. Shadows off keeps the low-end profile cheap.
+                    if (inst.name.Contains("Ceiling_Light"))
+                    {
+                        Light roomLight = inst.AddComponent<Light>();
+                        roomLight.type = LightType.Point;
+                        roomLight.range = 13f;
+                        roomLight.intensity = 1.35f;
+                        roomLight.color = new Color(1f, 0.94f, 0.84f);
+                        roomLight.shadows = LightShadows.None;
+                        lightCount++;
+                    }
+
+                    // The kit's paving atlas is near-white; darken the exterior slabs so
+                    // the plaza does not blow out under direct sun. One shared material.
+                    if (inst.name.Contains("Sidewalk"))
+                    {
+                        Renderer[] tileRenderers = inst.GetComponentsInChildren<Renderer>(true);
+                        if (plazaMat == null && tileRenderers.Length > 0)
+                        {
+                            plazaMat = new Material(tileRenderers[0].sharedMaterial);
+                            plazaMat.color = new Color(0.62f, 0.62f, 0.60f, 1f);
+                        }
+                        if (plazaMat != null)
+                        {
+                            foreach (Renderer r in tileRenderers) r.sharedMaterial = plazaMat;
+                            tintedCount++;
+                        }
+                    }
+
+                    // Asphalt tint: the City road tiles use the same near-white atlas as
+                    // the paving. Keep markings and crossings at their authored colour.
+                    if (inst.name.Contains("Road") && !inst.name.Contains("Lines") && !inst.name.Contains("Crossing"))
+                    {
+                        Renderer[] roadRenderers = inst.GetComponentsInChildren<Renderer>(true);
+                        if (roadMat == null && roadRenderers.Length > 0)
+                        {
+                            roadMat = new Material(roadRenderers[0].sharedMaterial);
+                            roadMat.color = new Color(0.26f, 0.26f, 0.27f, 1f);
+                        }
+                        if (roadMat != null)
+                        {
+                            foreach (Renderer r in roadRenderers) r.sharedMaterial = roadMat;
+                            tintedCount++;
+                        }
+                    }
+
+                    // Characters are set dressing, not agents: strip colliders (they would
+                    // carve the navmesh) and relax the T-pose into a standing pose.
+                    if (inst.name.Contains("Character_"))
+                    {
+                        int ccols = 0;
+                        foreach (Collider c in inst.GetComponentsInChildren<Collider>(true))
+                        {
+                            UnityEngine.Object.DestroyImmediate(c);
+                            ccols++;
+                        }
+                        RelaxArms(inst);
+                        characterCount++;
+                        if (characterCount == 1)
+                            Debug.Log("LEVEL_BUILDER: characters posed collidersRemoved=" + ccols);
+                    }
+
                     placed++;
                 }
             }
@@ -443,6 +538,11 @@ public static class LevelBuilder
                 }
             }
         }
+
+        Debug.Log("LEVEL_BUILDER: props placed=" + placed + " missing=" + missing +
+            " pointLights=" + lightCount + " plazaTilesTinted=" + tintedCount +
+            " characters=" + characterCount);
+
 
         if (layout.globalSpawnPoints != null)
         {
@@ -487,6 +587,9 @@ public static class LevelBuilder
         // Gameplay geometry stays on Default (0) so MFPS AI/weapon raycasts hit walls.
         // Only ceilings/roof go to layer 9 (NoNav) and are excluded from the bake.
         SetNoNavLayerRecursive(levelRoot.transform);
+        // The POLYGON kit ships with shadow casting off on many meshes; without it the
+        // perimeter spot lights pass straight through the facade and tint the interior.
+        EnableCastShadows(levelRoot.transform);
 
         // Assign Photon scene-view IDs (PUN needs 1..999 for scene objects; ID 0 breaks
         // RPC delivery -> countdown never finishes -> player never spawns)
@@ -763,6 +866,78 @@ public static class LevelBuilder
             child.gameObject.layer = noNav ? 9 : 0;
             SetNoNavLayerRecursive(child);
         }
+    }
+
+    static Transform FindDeep(Transform root, string name)
+    {
+        foreach (Transform t in root.GetComponentsInChildren<Transform>(true))
+            if (t.name == name) return t;
+        return null;
+    }
+
+    static void EnableCastShadows(Transform root)
+    {
+        foreach (Renderer r in root.GetComponentsInChildren<Renderer>(true))
+        {
+            r.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
+            r.receiveShadows = true;
+        }
+    }
+
+    // Point the upper arm straight down and the forearm slightly forward, in world space, so
+    // the pose does not depend on the rig's bind axes.
+    static void RelaxArms(GameObject inst)
+    {
+        Transform sl = FindDeep(inst.transform, "Shoulder_L");
+        Transform el = FindDeep(inst.transform, "Elbow_L");
+        Transform sr = FindDeep(inst.transform, "Shoulder_R");
+        Transform er = FindDeep(inst.transform, "Elbow_R");
+        Transform hl = FindDeep(inst.transform, "Hand_L");
+        Transform hr = FindDeep(inst.transform, "Hand_R");
+        AlignBone(sl, el, new Vector3(-0.16f, -1f, 0.05f).normalized);
+        AlignBone(sr, er, new Vector3(0.16f, -1f, 0.05f).normalized);
+        AlignBone(el, hl, new Vector3(-0.10f, -0.75f, 0.66f).normalized);
+        AlignBone(er, hr, new Vector3(0.10f, -0.75f, 0.66f).normalized);
+    }
+
+    static void AlignBone(Transform bone, Transform child, Vector3 targetDir)
+    {
+        if (bone == null || child == null) return;
+        Vector3 dir = child.position - bone.position;
+        if (dir.sqrMagnitude < 0.0001f) return;
+        bone.rotation = Quaternion.FromToRotation(dir.normalized, targetDir) * bone.rotation;
+    }
+
+    // Six-sided fantasy skybox built at runtime from the imported texture set.
+    static void ApplyFantasySkybox()
+    {
+        string baseDir = "Assets/Fantasy Skybox/Textures/";
+        string[] sets = { "Sunny_01A", "Sunny_02A", "Sunny_03AnoSun" };
+        foreach (string s in sets)
+        {
+            Texture up = UnityEditor.AssetDatabase.LoadAssetAtPath<Texture>(baseDir + s + "_up.tga");
+            if (up == null) continue;
+            Shader sh = Shader.Find("Skybox/6 Sided");
+            if (sh == null) { Debug.Log("SKYBOX: shader missing"); return; }
+            Material mat = new Material(sh);
+            mat.SetTexture("_UpTex", up);
+            Texture t;
+            t = UnityEditor.AssetDatabase.LoadAssetAtPath<Texture>(baseDir + s + "_down.tga"); if (t != null) mat.SetTexture("_DownTex", t);
+            t = UnityEditor.AssetDatabase.LoadAssetAtPath<Texture>(baseDir + s + "_front.tga"); if (t != null) mat.SetTexture("_FrontTex", t);
+            t = UnityEditor.AssetDatabase.LoadAssetAtPath<Texture>(baseDir + s + "_back.tga"); if (t != null) mat.SetTexture("_BackTex", t);
+            t = UnityEditor.AssetDatabase.LoadAssetAtPath<Texture>(baseDir + s + "_left.tga"); if (t != null) mat.SetTexture("_LeftTex", t);
+            t = UnityEditor.AssetDatabase.LoadAssetAtPath<Texture>(baseDir + s + "_right.tga"); if (t != null) mat.SetTexture("_RightTex", t);
+            mat.SetFloat("_Exposure", 1.15f);
+            mat.SetFloat("_Rotation", 0f);
+            mat.name = "FantasySkybox_" + s;
+            RenderSettings.skybox = mat;
+            RenderSettings.ambientMode = UnityEngine.Rendering.AmbientMode.Skybox;
+            RenderSettings.ambientIntensity = 1f;
+            DynamicGI.UpdateEnvironment();
+            Debug.Log("SKYBOX: applied " + s);
+            return;
+        }
+        Debug.Log("SKYBOX: no fantasy skybox textures found, keeping trilight ambient");
     }
 }
 CSEOF2

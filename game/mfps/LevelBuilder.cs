@@ -54,6 +54,7 @@ public static class LevelBuilder
         RenderSettings.ambientEquatorColor = new Color(0.55f, 0.51f, 0.46f);
         RenderSettings.ambientGroundColor = new Color(0.34f, 0.31f, 0.27f);
         Debug.Log("LEVEL_BUILDER: lighting set (sun + warm trilight ambient)");
+        ApplyFantasySkybox();
 
         GameObject levelRoot = new GameObject("LevelRoot_" + layout.levelName.Replace(" ", "_"));
         spawnCounter = 0;
@@ -552,5 +553,37 @@ public static class LevelBuilder
         Vector3 dir = child.position - bone.position;
         if (dir.sqrMagnitude < 0.0001f) return;
         bone.rotation = Quaternion.FromToRotation(dir.normalized, targetDir) * bone.rotation;
+    }
+
+    // Six-sided fantasy skybox built at runtime from the imported texture set.
+    static void ApplyFantasySkybox()
+    {
+        string baseDir = "Assets/Fantasy Skybox/Textures/";
+        string[] sets = { "Sunny_01A", "Sunny_02A", "Sunny_03AnoSun" };
+        foreach (string s in sets)
+        {
+            Texture up = UnityEditor.AssetDatabase.LoadAssetAtPath<Texture>(baseDir + s + "_up.tga");
+            if (up == null) continue;
+            Shader sh = Shader.Find("Skybox/6 Sided");
+            if (sh == null) { Debug.Log("SKYBOX: shader missing"); return; }
+            Material mat = new Material(sh);
+            mat.SetTexture("_UpTex", up);
+            Texture t;
+            t = UnityEditor.AssetDatabase.LoadAssetAtPath<Texture>(baseDir + s + "_down.tga"); if (t != null) mat.SetTexture("_DownTex", t);
+            t = UnityEditor.AssetDatabase.LoadAssetAtPath<Texture>(baseDir + s + "_front.tga"); if (t != null) mat.SetTexture("_FrontTex", t);
+            t = UnityEditor.AssetDatabase.LoadAssetAtPath<Texture>(baseDir + s + "_back.tga"); if (t != null) mat.SetTexture("_BackTex", t);
+            t = UnityEditor.AssetDatabase.LoadAssetAtPath<Texture>(baseDir + s + "_left.tga"); if (t != null) mat.SetTexture("_LeftTex", t);
+            t = UnityEditor.AssetDatabase.LoadAssetAtPath<Texture>(baseDir + s + "_right.tga"); if (t != null) mat.SetTexture("_RightTex", t);
+            mat.SetFloat("_Exposure", 1.15f);
+            mat.SetFloat("_Rotation", 0f);
+            mat.name = "FantasySkybox_" + s;
+            RenderSettings.skybox = mat;
+            RenderSettings.ambientMode = UnityEngine.Rendering.AmbientMode.Skybox;
+            RenderSettings.ambientIntensity = 1f;
+            DynamicGI.UpdateEnvironment();
+            Debug.Log("SKYBOX: applied " + s);
+            return;
+        }
+        Debug.Log("SKYBOX: no fantasy skybox textures found, keeping trilight ambient");
     }
 }
