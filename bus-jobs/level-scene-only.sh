@@ -642,6 +642,11 @@ public static class LevelBuilder
         // perimeter spot lights pass straight through the facade and tint the interior.
         EnableCastShadows(levelRoot.transform);
 
+        // Hard play-area perimeter: street box x +-40, z -40..0, with the bank
+        // entrance left open at the centre of the north edge. The colliders are
+        // baked into the NavMesh, so bots cannot path into the surrounding city.
+        BuildPlayAreaBoundary(levelRoot.transform);
+
         // The bank perimeter uses single-sided exterior wall modules; the city
         // shopfronts behind them show through from inside. Render W_EXT two-sided.
         int doubled = 0;
@@ -810,7 +815,8 @@ public static class LevelBuilder
             if (col.GetComponentInChildren<Renderer>() != null) continue;
             string n = col.gameObject.name;
             if (n.Contains("KillZone") || n.Contains("Spawn") || n.Contains("Manager") ||
-                n.Contains("UI") || n.Contains("Canvas") || n.Contains("Floor")) continue;
+                n.Contains("UI") || n.Contains("Canvas") || n.Contains("Floor") ||
+                n.Contains("PlayArea")) continue;
             invisible++;
             Debug.LogWarning("INVISIBLE_COLLIDER " + n + " (" + col.GetType().Name + ")");
         }
@@ -949,6 +955,31 @@ public static class LevelBuilder
             r.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
             r.receiveShadows = true;
         }
+    }
+
+    static void BuildPlayAreaBoundary(Transform parent)
+    {
+        GameObject root = new GameObject("PlayAreaBoundary");
+        root.transform.SetParent(parent, false);
+
+        // Street box: x -40..40, z -40..0. North edge is split around the bank
+        // facade so the entrance at x +-2.5 stays open.
+        AddBoundaryWall(root.transform, "PlayArea_West", new Vector3(-40.2f, 4f, -20f), new Vector3(0.6f, 8f, 40f));
+        AddBoundaryWall(root.transform, "PlayArea_East", new Vector3(40.2f, 4f, -20f), new Vector3(0.6f, 8f, 40f));
+        AddBoundaryWall(root.transform, "PlayArea_South", new Vector3(0f, 4f, -40.2f), new Vector3(80f, 8f, 0.6f));
+        AddBoundaryWall(root.transform, "PlayArea_NorthLeft", new Vector3(-26.25f, 4f, 0.2f), new Vector3(27.5f, 8f, 0.6f));
+        AddBoundaryWall(root.transform, "PlayArea_NorthRight", new Vector3(26.25f, 4f, 0.2f), new Vector3(27.5f, 8f, 0.6f));
+    }
+
+    static void AddBoundaryWall(Transform parent, string name, Vector3 center, Vector3 size)
+    {
+        GameObject go = new GameObject(name);
+        go.transform.SetParent(parent, false);
+        go.transform.position = center;
+        BoxCollider box = go.AddComponent<BoxCollider>();
+        box.center = Vector3.zero;
+        box.size = size;
+        box.isTrigger = false;
     }
 
     // Point the upper arm straight down and the forearm slightly forward, in world space, so
