@@ -115,6 +115,18 @@ echo "=== IMPORT HEIST PACK (tolerant) ==="
 "$UNITY" -batchmode -nographics -quit -projectPath "$PROJ" -importPackage "$HEISTPKG" -logFile /content/heist_import.log 2>&1 || true
 if [ -d "$PROJ/Assets/PolygonHeist" ]; then echo "HEIST_DIR_OK"; else echo "HEIST_DIR_MISSING"; exit 6; fi
 
+echo "=== IMPORT CITY / BATTLE ROYALE / TOWN PACKS (tolerant) ==="
+for pair in "city:PolygonCity:pack_city" "br:PolygonBattleRoyale:pack_battleroyale" "town:PolygonTown:pack_town"; do
+  tag=${pair%%:*}; rest=${pair#*:}; pdir=${rest%%:*}; ppkg=${rest#*:}
+  if [ -f "$MFPSROOT/assets/packs/$ppkg.unitypackage" ]; then
+    "$UNITY" -batchmode -nographics -quit -projectPath "$PROJ" -importPackage "$MFPSROOT/assets/packs/$ppkg.unitypackage" -logFile /content/${tag}_import.log 2>&1 || true
+    if [ -d "$PROJ/Assets/$pdir" ]; then echo "PACK_OK_$tag"; else echo "PACK_MISSING_$tag"; fi
+  else
+    echo "NO_PKG_$tag"
+  fi
+done
+if [ ! -d "$PROJ/Assets/PolygonCity" ] || [ ! -d "$PROJ/Assets/PolygonBattleRoyale" ]; then echo "CITY_OR_BR_MISSING"; exit 6; fi
+
 echo "=== COPY FANTASY SKYBOX TEXTURES (no package import: its demo scripts clash with MFPS) ==="
 mkdir -p "$PROJ/Assets/Fantasy Skybox/Textures"
 mkdir -p "$PROJ/Assets/Fantasy Skybox/Textures3"
@@ -179,7 +191,7 @@ sed -i 's/  offlineMode: 0/  offlineMode: 1/' "$GD"
 grep -q 'offlineMode: 1' "$GD" && echo OFFLINE_MODE_ON || { echo OFFLINE_FLIP_FAILED; grep -n 'offlineMode' "$GD"; exit 6; }
 
 echo "=== WRITE LAYOUT JSON (pulled from Drive) ==="
-LAYOUT_SRC="$MFPSROOT/specs/street-bank-v1.json"
+LAYOUT_SRC="$MFPSROOT/specs/city-bank-v2.json"
 test -f "$LAYOUT_SRC" || { echo NO_LAYOUT_JSON; exit 6; }
 cp "$LAYOUT_SRC" /content/level-layout.json
 python3 -c "import json; d=json.load(open('/content/level-layout.json')); print('LAYOUT_JSON_OK rooms=' + str(len(d['rooms'])) + ' name=' + d['name'])"
@@ -440,9 +452,9 @@ public static class LevelBuilder
                     inst.transform.eulerAngles = ToV3(prop.rotation, Vector3.zero);
                     inst.transform.localScale = ToV3(prop.scale, Vector3.one);
                     inst.transform.SetParent(roomRoot.transform, true);
-                    // The vault door prefab embeds its closed round Lid AND a frame collider that can seal
-                    // the 5m doorway. Make the vault passable: disable the Lid visual and drop all
-                    // colliders belonging to the frame instance (walls around it keep the room sealed).
+                    // The vault door prefab embeds a round Lid leaf AND frame colliders that can seal
+                    // the 5m doorway. Keep the Lid visible, swing it open into the vault, hide the loose
+                    // handle props, and drop every collider so the doorway stays passable.
                     if (inst.name.Contains("VaultDoor_Frame"))
                     {
                         int lids = 0;
@@ -450,8 +462,13 @@ public static class LevelBuilder
                         {
                             if (child.name.Contains("Lid"))
                             {
-                                child.gameObject.SetActive(false);
+                                child.gameObject.SetActive(true);
+                                child.localRotation = Quaternion.Euler(0f, 90f, 0f);
                                 lids++;
+                            }
+                            else if (child.name.Contains("Handle"))
+                            {
+                                child.gameObject.SetActive(false);
                             }
                         }
                         int cols = 0;
@@ -460,8 +477,42 @@ public static class LevelBuilder
                             UnityEngine.Object.DestroyImmediate(c);
                             cols++;
                         }
-                        Debug.Log("LEVEL_BUILDER: vault opened lids=" + lids + " collidersRemoved=" + cols +
+                        Debug.Log("LEVEL_BUILDER: vault door open lids=" + lids + " collidersRemoved=" + cols +
                             " children=" + inst.transform.childCount);
+                    }
+                    // Entrance glass storefront: keep the visual, but never let its colliders seal the
+                    // doorway. The 5m opening must stay walkable for the nav gate.
+                    if (inst.name.Contains("Glass_DoorFrame"))
+                    {
+                        int gcols = 0;
+                        foreach (Collider c in inst.GetComponentsInChildren<Collider>(true))
+                        {
+                            UnityEngine.Object.DestroyImmediate(c);
+                            gcols++;
+                        }
+                        foreach (Transform t in inst.GetComponentsInChildren<Transform>(true))
+                    {
+                        if (t.name.Contains("Panels")) t.gameObject.SetActive(false);
+                    }
+                                        foreach (var gr in inst.GetComponentsInChildren<Renderer>(true))
+                    {
+                        if (!gr.name.Contains("Glass")) continue;
+                        foreach (var gm in gr.materials)
+                        {
+                            if (gm.HasProperty("_Color")) gm.color = new Color(0.38f, 0.50f, 0.58f, 0.55f);
+                            if (gm.HasProperty("_Glossiness")) gm.SetFloat("_Glossiness", 0.65f);
+                            if (gm.HasProperty("_Metallic")) gm.SetFloat("_Metallic", 0.10f);
+                            if (gm.HasProperty("_Mode")) gm.SetFloat("_Mode", 3f);
+                            gm.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
+                            gm.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+                            gm.SetInt("_ZWrite", 0);
+                            gm.DisableKeyword("_ALPHATEST_ON");
+                            gm.EnableKeyword("_ALPHABLEND_ON");
+                            gm.DisableKeyword("_ALPHAPREMULTIPLY_ON");
+                            gm.renderQueue = 3000;
+                        }
+                    }
+                    Debug.Log("LEVEL_BUILDER: glass door opened collidersRemoved=" + gcols);
                     }
                     // Ceiling light fixtures get a real warm point light so interiors are
                     // not lit by ambient alone. Shadows off keeps the low-end profile cheap.
@@ -590,6 +641,27 @@ public static class LevelBuilder
         // The POLYGON kit ships with shadow casting off on many meshes; without it the
         // perimeter spot lights pass straight through the facade and tint the interior.
         EnableCastShadows(levelRoot.transform);
+
+        // Hard play-area perimeter: street box x +-40, z -40..0, with the bank
+        // entrance left open at the centre of the north edge. The colliders are
+        // baked into the NavMesh, so bots cannot path into the surrounding city.
+        BuildPlayAreaBoundary(levelRoot.transform);
+
+        // The bank perimeter uses single-sided exterior wall modules; the city
+        // shopfronts behind them show through from inside. Render W_EXT two-sided.
+        int doubled = 0;
+        foreach (Transform t in levelRoot.GetComponentsInChildren<Transform>(true))
+        {
+            if (!t.name.Contains("SM_Env_Wall_Exterior_01")) continue;
+            foreach (Renderer r in t.GetComponentsInChildren<Renderer>(true))
+            {
+                Material m = r.material;
+                if (m == null) continue;
+                if (m.HasProperty("_Cull")) { m.SetFloat("_Cull", 0f); doubled++; }
+                else if (m.HasProperty("_CullMode")) { m.SetFloat("_CullMode", 0f); doubled++; }
+            }
+        }
+        Debug.Log("LEVEL_BUILDER: exterior walls double-sided=" + doubled);
 
         // Assign Photon scene-view IDs (PUN needs 1..999 for scene objects; ID 0 breaks
         // RPC delivery -> countdown never finishes -> player never spawns)
@@ -743,7 +815,8 @@ public static class LevelBuilder
             if (col.GetComponentInChildren<Renderer>() != null) continue;
             string n = col.gameObject.name;
             if (n.Contains("KillZone") || n.Contains("Spawn") || n.Contains("Manager") ||
-                n.Contains("UI") || n.Contains("Canvas") || n.Contains("Floor")) continue;
+                n.Contains("UI") || n.Contains("Canvas") || n.Contains("Floor") ||
+                n.Contains("PlayArea")) continue;
             invisible++;
             Debug.LogWarning("INVISIBLE_COLLIDER " + n + " (" + col.GetType().Name + ")");
         }
@@ -882,6 +955,31 @@ public static class LevelBuilder
             r.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
             r.receiveShadows = true;
         }
+    }
+
+    static void BuildPlayAreaBoundary(Transform parent)
+    {
+        GameObject root = new GameObject("PlayAreaBoundary");
+        root.transform.SetParent(parent, false);
+
+        // Street box: x -40..40, z -40..0. North edge is split around the bank
+        // facade so the entrance at x +-2.5 stays open.
+        AddBoundaryWall(root.transform, "PlayArea_West", new Vector3(-40.2f, 4f, -20f), new Vector3(0.6f, 8f, 40f));
+        AddBoundaryWall(root.transform, "PlayArea_East", new Vector3(40.2f, 4f, -20f), new Vector3(0.6f, 8f, 40f));
+        AddBoundaryWall(root.transform, "PlayArea_South", new Vector3(0f, 4f, -40.2f), new Vector3(80f, 8f, 0.6f));
+        AddBoundaryWall(root.transform, "PlayArea_NorthLeft", new Vector3(-26.25f, 4f, 0.2f), new Vector3(27.5f, 8f, 0.6f));
+        AddBoundaryWall(root.transform, "PlayArea_NorthRight", new Vector3(26.25f, 4f, 0.2f), new Vector3(27.5f, 8f, 0.6f));
+    }
+
+    static void AddBoundaryWall(Transform parent, string name, Vector3 center, Vector3 size)
+    {
+        GameObject go = new GameObject(name);
+        go.transform.SetParent(parent, false);
+        go.transform.position = center;
+        BoxCollider box = go.AddComponent<BoxCollider>();
+        box.center = Vector3.zero;
+        box.size = size;
+        box.isTrigger = false;
     }
 
     // Point the upper arm straight down and the forearm slightly forward, in world space, so
