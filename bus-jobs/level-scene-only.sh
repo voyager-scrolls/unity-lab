@@ -494,6 +494,24 @@ public static class LevelBuilder
                     {
                         if (t.name.Contains("Panels")) t.gameObject.SetActive(false);
                     }
+                                        foreach (var gr in inst.GetComponentsInChildren<Renderer>(true))
+                    {
+                        if (!gr.name.Contains("Glass")) continue;
+                        foreach (var gm in gr.materials)
+                        {
+                            if (gm.HasProperty("_Color")) gm.color = new Color(0.38f, 0.50f, 0.58f, 0.55f);
+                            if (gm.HasProperty("_Glossiness")) gm.SetFloat("_Glossiness", 0.65f);
+                            if (gm.HasProperty("_Metallic")) gm.SetFloat("_Metallic", 0.10f);
+                            if (gm.HasProperty("_Mode")) gm.SetFloat("_Mode", 3f);
+                            gm.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
+                            gm.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+                            gm.SetInt("_ZWrite", 0);
+                            gm.DisableKeyword("_ALPHATEST_ON");
+                            gm.EnableKeyword("_ALPHABLEND_ON");
+                            gm.DisableKeyword("_ALPHAPREMULTIPLY_ON");
+                            gm.renderQueue = 3000;
+                        }
+                    }
                     Debug.Log("LEVEL_BUILDER: glass door opened collidersRemoved=" + gcols);
                     }
                     // Ceiling light fixtures get a real warm point light so interiors are

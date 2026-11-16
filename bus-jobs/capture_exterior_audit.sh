@@ -93,8 +93,8 @@ public static class CaptureExteriorAudit
         }
 
         cam.orthographic = true;
-        cam.orthographicSize = 45f;
-        cam.transform.position = new Vector3(0f, 90f, -2f);
+        cam.orthographicSize = 80f;
+        cam.transform.position = new Vector3(0f, 130f, -17.5f);
         cam.transform.rotation = Quaternion.Euler(90f, 0f, 0f);
         cam.Render();
         RenderTexture.active = rt;

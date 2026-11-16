@@ -23,6 +23,7 @@ TOL = 1e-4
 
 # room id -> (xmin, zmin, xmax, zmax, ceiling)
 ROOMS = {
+    "exterior": (-70.0, -75.0, 70.0, 40.0, 12.0),
     "lobby": (-12.5, 0.0, 12.5, 10.0, 6.0),
     "teller": (-12.5, 10.0, 12.5, 15.0, 3.4),
     "vault": (-7.5, 15.0, 7.5, 20.0, 3.4),
@@ -73,6 +74,10 @@ RUG_NAMES = {"SM_Prop_Rug_01", "SM_Prop_Rug_02", "SM_Prop_Rug_03"}
 
 # Base props to clear before adding the table (idempotent: absent is fine).
 REMOVE_BASE = [
+    ("exterior", "SM_Prop_Plant_02", -4.20, -1.30),
+    ("exterior", "SM_Prop_Plant_02", 4.20, -1.30),
+    ("exterior", "SM_Prop_Planter_01", -4.20, -1.30),
+    ("exterior", "SM_Prop_Planter_01", 4.20, -1.30),
     ("vault", "SM_Prop_Jewellery_Rings_01", -1.20, 19.00),
     ("corridorR", "SM_Item_Briefcase_01", 9.18, 19.20),
     ("teller", "SM_Prop_Jewellery_Rings_01", -11.35, 12.15),
@@ -271,17 +276,40 @@ PLACEMENTS = [
     ("corridorR", "SM_Prop_Television_Old_01", 10.00, 17.30, 90, 0.879),
 ]
 
-# Cash on the counting table; the gold haul is removed at the user's request.
+# Cash on the counting table and the gold haul on proper host surfaces.
 PLACEMENTS += [
-    # User request: return the three teller-desk PCs.
-    ("lobby", "SM_Prop_Computer_01", -5.0, 8.20, 0, 1.3141),
-    ("lobby", "SM_Prop_Computer_01", 0.0, 8.20, 0, 1.3141),
-    ("lobby", "SM_Prop_Computer_01", 5.0, 8.20, 0, 1.3141),
+    # The three teller-desk PCs are base props restored by the merge; keep them.
     ("lobby", "SM_Prop_DeskLight_01", -5.95, 7.85, 0, 1.3141),
     ("lobby", "SM_Prop_DeskLight_01", 0.95, 7.85, 0, 1.3141),
     ("lobby", "SM_Prop_DeskLight_01", 5.95, 7.85, 0, 1.3141),
+    # Single-tier entrance planters: one low planter and one plant per side.
+    ("exterior", "SM_Prop_Planter_02", -4.20, -1.30, 0, 0.0),
+    ("exterior", "SM_Prop_Planter_02", 4.20, -1.30, 0, 0.0),
+    ("exterior", "SM_Prop_Plant_03", -4.20, -1.30, 0, 0.782),
+    ("exterior", "SM_Prop_Plant_03", 4.20, -1.30, 0, 0.782),
     ("vault", "SM_Prop_Money_Stack_01", -1.15, 19.50, 15, 0.794),
     ("vault", "SM_Prop_Money_Stack_01", 1.15, 19.50, 340, 0.794),
+    # Gold: four-layer stack on the counting table (table top 0.7941).
+    ("vault", "SM_Prop_GoldBar_01", -0.60, 19.10, 0, 0.7952),
+    ("vault", "SM_Prop_GoldBar_01", -0.30, 19.10, 0, 0.7952),
+    ("vault", "SM_Prop_GoldBar_01", 0.00, 19.10, 0, 0.7952),
+    ("vault", "SM_Prop_GoldBar_01", 0.30, 19.10, 0, 0.7952),
+    ("vault", "SM_Prop_GoldBar_01", 0.60, 19.10, 0, 0.7952),
+    ("vault", "SM_Prop_GoldBar_02", -0.45, 19.10, 0, 0.8651),
+    ("vault", "SM_Prop_GoldBar_02", -0.15, 19.10, 0, 0.8651),
+    ("vault", "SM_Prop_GoldBar_02", 0.15, 19.10, 0, 0.8651),
+    ("vault", "SM_Prop_GoldBar_02", 0.45, 19.10, 0, 0.8651),
+    ("vault", "SM_Prop_GoldBar_01", -0.30, 19.10, 0, 0.9350),
+    ("vault", "SM_Prop_GoldBar_01", 0.00, 19.10, 0, 0.9350),
+    ("vault", "SM_Prop_GoldBar_01", 0.30, 19.10, 0, 0.9350),
+    ("vault", "SM_Prop_GoldBar_02", -0.15, 19.10, 0, 1.0049),
+    ("vault", "SM_Prop_GoldBar_02", 0.15, 19.10, 0, 1.0049),
+    # Gold spill on the floor in front of the table, clear of the trolley.
+    ("vault", "SM_Prop_GoldBar_01", -0.60, 18.40, 0, 0.0),
+    ("vault", "SM_Prop_GoldBar_02", -0.30, 18.40, 0, 0.0),
+    ("vault", "SM_Prop_GoldBar_01", 0.00, 18.40, 0, 0.0),
+    ("vault", "SM_Prop_GoldBar_02", 0.30, 18.40, 0, 0.0),
+    ("vault", "SM_Prop_GoldBar_01", 0.60, 18.40, 0, 0.0),
 ]
 
 # 1979 teller stations: the original computers return; no books on the desks.

@@ -1,9 +1,9 @@
 """Curated street de-clutter for the merged bank level.
 
 The old global AABB solver cascaded and removed too much of the street.
-This pass is deliberately removal-only: a short list of audited overlapping
-props is deleted by prefab name + position. No prop is moved, so the result
-is deterministic and idempotent.
+This pass uses a short audited removal list plus deterministic orientation
+fixes: duplicate benches and phone banks are deleted, remaining benches are
+turned to face the street and moved off the wall. No global solver.
 """
 
 from __future__ import annotations
@@ -73,6 +73,18 @@ REMOVALS = [
     ("Container_01", 32.0, -17.2005, 0.80),
     ("AmmoBox", -22.6, -19.60, 0.60),
     ("AmmoBox", 22.6, -19.60, 0.60),
+    # duplicate benches on the left-hand pavement (mirror of the right)
+    ("ParkBench", -54.05, -2.202, 0.60),
+    ("ParkBench", -44.05, -2.202, 0.60),
+    ("ParkBench", -34.05, -2.202, 0.60),
+    ("ParkBench", -24.05, -2.202, 0.60),
+    # freestanding phone banks; left one shows the black side-panel glitch
+    ("Phones", -18.2, -3.60, 0.80),
+    ("Phones", -33.2, -3.60, 0.80),
+    ("Phones", -51.1, -3.60, 0.80),
+    ("Phones", 18.2, -3.60, 0.80),
+    ("Phones", 33.2, -3.60, 0.80),
+    ("Phones", 51.1, -3.60, 0.80),
 ]
 
 
@@ -106,18 +118,42 @@ def main() -> None:
             print(f"REMOVE {name} at ({px:.2f},{pz:.2f})")
             break
 
-    if not removed:
-        print(f"STREET_FIX removed=0 props={before}")
-        print("STREET_FIX_OK")
-        return
-
     room["props"] = [p for p in props if id(p) not in removed]
+
+    # Remove the paired duplicate benches reintroduced by the street generator.
+    deduped = 0
+    bench_seen = []
+    kept = []
+    for p in room["props"]:
+        if short(p["prefab"]) == "SM_Prop_ParkBench_01":
+            px, pz = p["position"][0], p["position"][2]
+            if any(math.hypot(px - bx, pz - bz) < 1.0 for bx, bz in bench_seen):
+                deduped += 1
+                print(f"REMOVE duplicate bench at ({px:.2f},{pz:.2f})")
+                continue
+            bench_seen.append((px, pz))
+        kept.append(p)
+    room["props"] = kept
+
+    oriented = 0
+    for p in room["props"]:
+        n = short(p["prefab"])
+        if n == "SM_Prop_ParkBench_01":
+            if abs(p["rotation"][1]) > 1e-6 or abs(p["position"][2] + 3.20) > 1e-6:
+                p["rotation"][1] = 0.0
+                p["position"][2] = -3.20
+                oriented += 1
+        elif n == "SM_Prop_BusStop_01":
+            if abs(p["rotation"][1]) > 1e-6:
+                p["rotation"][1] = 0.0
+                oriented += 1
     after = len(room["props"])
-    LAYOUT.write_text(
-        json.dumps(layout, indent=2, ensure_ascii=False) + "\n",
-        encoding="utf-8",
-    )
-    print(f"STREET_FIX removed={len(removed)} props {before}->{after}")
+    if removed or deduped or oriented:
+        LAYOUT.write_text(
+            json.dumps(layout, indent=2, ensure_ascii=False) + "\n",
+            encoding="utf-8",
+        )
+    print(f"STREET_FIX removed={len(removed)} deduped={deduped} oriented={oriented} props {before}->{after}")
     print("STREET_FIX_OK")
 
 
