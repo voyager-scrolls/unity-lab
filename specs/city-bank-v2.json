@@ -37527,36 +37527,36 @@
       "spawnPoints": [
         {
           "position": [
-            -12.0,
+            -32.0,
             0.0,
-            -22.0
+            -36.0
           ],
           "team": 1,
           "type": "delta"
         },
         {
           "position": [
-            12.0,
+            32.0,
             0.0,
-            -22.0
+            -36.0
           ],
           "team": 1,
           "type": "delta"
         },
         {
           "position": [
-            -4.0,
+            -32.0,
             0.0,
-            -30.0
+            -18.0
           ],
           "team": 1,
           "type": "recon"
         },
         {
           "position": [
-            4.0,
+            32.0,
             0.0,
-            -30.0
+            -18.0
           ],
           "team": 1,
           "type": "recon"
