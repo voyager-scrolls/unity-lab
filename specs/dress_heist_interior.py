@@ -186,7 +186,7 @@ PLACEMENTS = [
     ("lobby", "SM_Prop_Art_06", -12.40, 5.50, 90, 2.20),
     ("lobby", "SM_Prop_Art_07", 12.40, 3.20, 270, 2.40),
     ("lobby", "SM_Prop_Art_03", 12.40, 7.40, 270, 2.50),
-    ("lobby", "SM_Prop_Mirror_02", 12.40, 5.50, 270, 2.50),
+    ("lobby", "SM_Prop_Art_06", 12.40, 5.50, 270, 2.20),
     ("lobby", "SM_Prop_WallLight_01", -12.32, 2.00, 90, 3.20),
     ("lobby", "SM_Prop_WallLight_01", -12.32, 8.80, 90, 3.20),
     ("lobby", "SM_Prop_WallLight_01", 12.32, 2.00, 270, 3.20),
@@ -357,7 +357,7 @@ def main() -> int:
         p = place(name, cx, cz, yaw, y)
         if name == "SM_Prop_Clock_02" and abs(cx) < 0.01 and abs(cz - 0.12) < 0.01:
             p["scale"] = [1.7, 1.7, 1.0]
-        elif name == "SM_Prop_Art_06" and cx < -12.0 and abs(cz - 5.50) < 0.01:
+        elif name == "SM_Prop_Art_06" and abs(abs(cx) - 12.40) < 0.01 and abs(cz - 5.50) < 0.01:
             p["scale"] = [1.8, 1.8, 1.0]
         by_id[room_id]["props"].append(p)
         added += 1

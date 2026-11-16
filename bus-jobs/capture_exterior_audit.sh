@@ -45,7 +45,7 @@ public static class CaptureExteriorAudit
         // 05 sign / 06-07 top window row / 08-09 pilaster tops / 10 entrance
         // 11 portico underside / 12-13 facade mids / 14-15 side walls high
         // 16-17 side walls 3/4 / 18-19 back wall / 20-21 high 3/4 corners
-        // 22 roof edge / 23 orthographic topdown
+        // 22 roof edge / 23-26 street furniture + benches / 27 orthographic topdown
         float[][] pos = new float[][] {
             new float[]{0f,6.0f,-30f},   new float[]{0f,6.5f,-22f},
             new float[]{-20f,8f,-18f},   new float[]{20f,8f,-18f},
@@ -58,7 +58,10 @@ public static class CaptureExteriorAudit
             new float[]{-22f,14f,-12f},  new float[]{22f,14f,-12f},
             new float[]{0f,16f,35f},     new float[]{0f,20f,30f},
             new float[]{-26f,18f,-26f},  new float[]{26f,18f,-26f},
-            new float[]{0f,18f,-18f},    new float[]{0f,90f,-2f}
+            new float[]{0f,18f,-18f},
+            new float[]{-37.5f,1.6f,-8.5f}, new float[]{37.5f,1.6f,-8.5f},
+            new float[]{-57.5f,1.5f,-8.0f}, new float[]{52.95f,1.5f,-8.0f},
+            new float[]{0f,90f,-2f}
         };
         float[][] look = new float[][] {
             new float[]{0f,6f,0f},       new float[]{0f,6.5f,0f},
@@ -72,14 +75,17 @@ public static class CaptureExteriorAudit
             new float[]{-10f,7f,10f},    new float[]{10f,7f,10f},
             new float[]{0f,8f,20f},      new float[]{0f,10f,20f},
             new float[]{0f,8f,6f},       new float[]{0f,8f,6f},
-            new float[]{0f,12f,0f},      new float[]{0f,0f,0f}
+            new float[]{0f,12f,0f},
+            new float[]{-37.5f,0.9f,-3.8f}, new float[]{37.5f,0.9f,-3.8f},
+            new float[]{-57.5f,0.7f,-3.8f}, new float[]{52.95f,0.7f,-3.8f},
+            new float[]{0f,0f,0f}
         };
         float[] fov = new float[] {50f,55f,55f,55f,55f,30f,40f,40f,35f,35f,
                                    60f,70f,45f,45f,50f,50f,55f,55f,55f,50f,
-                                   55f,55f,55f,60f};
+                                   55f,55f,55f,60f,60f,60f,45f,45f};
 
         Texture2D tex = new Texture2D(W, H, TextureFormat.RGB24, false);
-        for (int i = 0; i < 23; i++)
+        for (int i = 0; i < 27; i++)
         {
             cam.orthographic = false;
             cam.fieldOfView = fov[i];
@@ -117,7 +123,7 @@ echo CAPTURE_LOG_OK
 
 SHOTS=$(ls /content/shots_extaudit/*.png 2>/dev/null | wc -l)
 echo SHOTS=$SHOTS
-[ "$SHOTS" -ge 24 ] || { echo TOO_FEW_SHOTS; tail -20 /content/capture_extaudit.log; exit 6; }
+[ "$SHOTS" -ge 28 ] || { echo TOO_FEW_SHOTS; tail -20 /content/capture_extaudit.log; exit 6; }
 
 mkdir -p /content/drive/MyDrive/unity-lab/screenshots/${STAMP}_extaudit
 cp /content/shots_extaudit/*.png /content/drive/MyDrive/unity-lab/screenshots/${STAMP}_extaudit/

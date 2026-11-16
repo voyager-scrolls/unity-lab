@@ -642,6 +642,22 @@ public static class LevelBuilder
         // perimeter spot lights pass straight through the facade and tint the interior.
         EnableCastShadows(levelRoot.transform);
 
+        // The bank perimeter uses single-sided exterior wall modules; the city
+        // shopfronts behind them show through from inside. Render W_EXT two-sided.
+        int doubled = 0;
+        foreach (Transform t in levelRoot.GetComponentsInChildren<Transform>(true))
+        {
+            if (!t.name.Contains("SM_Env_Wall_Exterior_01")) continue;
+            foreach (Renderer r in t.GetComponentsInChildren<Renderer>(true))
+            {
+                Material m = r.material;
+                if (m == null) continue;
+                if (m.HasProperty("_Cull")) { m.SetFloat("_Cull", 0f); doubled++; }
+                else if (m.HasProperty("_CullMode")) { m.SetFloat("_CullMode", 0f); doubled++; }
+            }
+        }
+        Debug.Log("LEVEL_BUILDER: exterior walls double-sided=" + doubled);
+
         // Assign Photon scene-view IDs (PUN needs 1..999 for scene objects; ID 0 breaks
         // RPC delivery -> countdown never finishes -> player never spawns)
         Photon.Pun.PhotonView[] pvs = UnityEngine.Object.FindObjectsByType<Photon.Pun.PhotonView>(FindObjectsSortMode.None);

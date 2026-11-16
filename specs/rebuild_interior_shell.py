@@ -34,7 +34,7 @@ LIGHT = "SM_Env_Ceiling_Light_01"
 ENVELOPE = (-13.0, 13.0, -0.5, 20.5)  # xmin,xmax,zmin,zmax
 # City buildings that flank the bank and can intrude through the side walls.
 # They are shifted out as a group so the apartment/shop/roof stay aligned.
-CITY_BUILDINGS = ("SM_Bld_Apartment_Stack_01", "SM_Bld_Apartment_Roof_01", "SM_Bld_Shop_01")
+CITY_BUILDINGS = ("SM_Bld_Apartment_Stack_01", "SM_Bld_Apartment_Roof_01", "SM_Bld_Shop_01", "SM_Bld_Shop_02")
 CITY_CLEAR_X = 12.62  # bank wall outer face plus a small margin
 CITY_SETBACK = 0.90  # clears the side-window props at x=+-12.95
 TOL = 1e-4
@@ -209,6 +209,7 @@ def apply_city_setback(layout, city):
     """
     pending = []
     need = {-1: 0.0, 1: 0.0}
+    shifted = 0
     for room in layout["rooms"]:
         for p in room.get("props") or []:
             name = short(p["prefab"])
@@ -221,10 +222,18 @@ def apply_city_setback(layout, city):
                 continue
             side = -1 if (x0 + x1) * 0.5 < 0.0 else 1
             required = (x1 + CITY_CLEAR_X) if side < 0 else (CITY_CLEAR_X - x0)
+            # The wide corner shop spans several lots and its west face reaches
+            # into the bank. Shift it alone; moving the whole right-side group
+            # would open a gap under the apartment stacks.
+            if name == "SM_Bld_Shop_02":
+                dx = side * max(CITY_SETBACK, required)
+                p["position"][0] = round(p["position"][0] + dx, 4)
+                shifted += 1
+                print("SETBACK_CITY %s dx=%+.2f x=%.2f" % (name, dx, p["position"][0]))
+                continue
             need[side] = max(need[side], required)
             pending.append((name, p, side))
 
-    shifted = 0
     for side in (-1, 1):
         if need[side] <= 0.0:
             continue

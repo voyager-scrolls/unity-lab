@@ -139,14 +139,30 @@ def main() -> None:
     for p in room["props"]:
         n = short(p["prefab"])
         if n == "SM_Prop_ParkBench_01":
-            if abs(p["rotation"][1]) > 1e-6 or abs(p["position"][2] + 3.20) > 1e-6:
-                p["rotation"][1] = 0.0
-                p["position"][2] = -3.20
+            if abs(p["rotation"][1] - 180.0) > 1e-6 or abs(p["position"][2] + 3.80) > 1e-6:
+                p["rotation"][1] = 180.0
+                p["position"][2] = -3.80
                 oriented += 1
         elif n == "SM_Prop_BusStop_01":
-            if abs(p["rotation"][1]) > 1e-6:
-                p["rotation"][1] = 0.0
+            if abs(p["rotation"][1] - 180.0) > 1e-6:
+                p["rotation"][1] = 180.0
                 oriented += 1
+
+    # Final duplicate pass after orientation; the generator can leave a
+    # second bench 0.1 m from its pair.
+    seen = []
+    kept = []
+    for p in room["props"]:
+        if short(p["prefab"]) == "SM_Prop_ParkBench_01":
+            px, pz = p["position"][0], p["position"][2]
+            if any(math.hypot(px - bx, pz - bz) < 1.0 for bx, bz in seen):
+                deduped += 1
+                print(f"REMOVE duplicate bench at ({px:.2f},{pz:.2f})")
+                continue
+            seen.append((px, pz))
+        kept.append(p)
+    room["props"] = kept
+
     after = len(room["props"])
     if removed or deduped or oriented:
         LAYOUT.write_text(

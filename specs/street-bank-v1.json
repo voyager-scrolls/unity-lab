@@ -7,14 +7,14 @@
    "id": "exterior",
    "bounds": {
     "min": [
-     -70.0,
+     -80.0,
      0.0,
-     -75.0
+     -85.0
     ],
     "max": [
-     70.0,
+     80.0,
      12.0,
-     40.0
+     50.0
     ]
    },
    "props": [
@@ -28108,6 +28108,9906 @@
      "rotation": [
       0.0,
       0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      -77.402,
+      0.0,
+      -75.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_01.prefab",
+     "position": [
+      -77.402,
+      3.0,
+      -75.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      -77.402,
+      12.0,
+      -75.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      -77.478,
+      15.0,
+      -75.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_01.prefab",
+     "position": [
+      -77.2095,
+      18.0,
+      -75.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      -77.478,
+      0.0,
+      -70.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_02.prefab",
+     "position": [
+      -77.478,
+      3.0,
+      -70.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      -77.478,
+      12.0,
+      -70.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      -77.3975,
+      15.0,
+      -70.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_02.prefab",
+     "position": [
+      -77.408,
+      18.0,
+      -70.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      -77.3975,
+      0.0,
+      -65.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_03.prefab",
+     "position": [
+      -77.3975,
+      3.0,
+      -65.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      -77.3975,
+      12.0,
+      -65.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      -77.402,
+      15.0,
+      -65.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_03.prefab",
+     "position": [
+      -77.356,
+      18.0,
+      -65.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      -77.402,
+      0.0,
+      -60.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_01.prefab",
+     "position": [
+      -77.402,
+      3.0,
+      -60.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      -77.402,
+      12.0,
+      -60.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      -77.478,
+      15.0,
+      -60.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_01.prefab",
+     "position": [
+      -77.2095,
+      18.0,
+      -60.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      -77.478,
+      0.0,
+      -55.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_02.prefab",
+     "position": [
+      -77.478,
+      3.0,
+      -55.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      -77.478,
+      12.0,
+      -55.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      -77.3975,
+      15.0,
+      -55.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_02.prefab",
+     "position": [
+      -77.408,
+      18.0,
+      -55.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      -77.3975,
+      0.0,
+      -50.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_03.prefab",
+     "position": [
+      -77.3975,
+      3.0,
+      -50.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      -77.3975,
+      12.0,
+      -50.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      -77.402,
+      15.0,
+      -50.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_03.prefab",
+     "position": [
+      -77.356,
+      18.0,
+      -50.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      -77.402,
+      0.0,
+      -45.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_01.prefab",
+     "position": [
+      -77.402,
+      3.0,
+      -45.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      -77.402,
+      12.0,
+      -45.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      -77.478,
+      15.0,
+      -45.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_01.prefab",
+     "position": [
+      -77.2095,
+      18.0,
+      -45.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      -77.478,
+      0.0,
+      -40.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_02.prefab",
+     "position": [
+      -77.478,
+      3.0,
+      -40.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      -77.478,
+      12.0,
+      -40.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      -77.3975,
+      15.0,
+      -40.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_02.prefab",
+     "position": [
+      -77.408,
+      18.0,
+      -40.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      -77.3975,
+      0.0,
+      -35.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_03.prefab",
+     "position": [
+      -77.3975,
+      3.0,
+      -35.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      -77.3975,
+      12.0,
+      -35.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      -77.402,
+      15.0,
+      -35.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_03.prefab",
+     "position": [
+      -77.356,
+      18.0,
+      -35.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      -77.402,
+      0.0,
+      -30.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_01.prefab",
+     "position": [
+      -77.402,
+      3.0,
+      -30.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      -77.402,
+      12.0,
+      -30.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      -77.478,
+      15.0,
+      -30.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_01.prefab",
+     "position": [
+      -77.2095,
+      18.0,
+      -30.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      -77.478,
+      0.0,
+      -25.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_02.prefab",
+     "position": [
+      -77.478,
+      3.0,
+      -25.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      -77.478,
+      12.0,
+      -25.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      -77.3975,
+      15.0,
+      -25.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_02.prefab",
+     "position": [
+      -77.408,
+      18.0,
+      -25.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      -77.3975,
+      0.0,
+      -20.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_03.prefab",
+     "position": [
+      -77.3975,
+      3.0,
+      -20.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      -77.3975,
+      12.0,
+      -20.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      -77.402,
+      15.0,
+      -20.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_03.prefab",
+     "position": [
+      -77.356,
+      18.0,
+      -20.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      -77.402,
+      0.0,
+      -15.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_01.prefab",
+     "position": [
+      -77.402,
+      3.0,
+      -15.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      -77.402,
+      12.0,
+      -15.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      -77.478,
+      15.0,
+      -15.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_01.prefab",
+     "position": [
+      -77.2095,
+      18.0,
+      -15.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      -77.478,
+      0.0,
+      -10.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_02.prefab",
+     "position": [
+      -77.478,
+      3.0,
+      -10.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      -77.478,
+      12.0,
+      -10.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      -77.3975,
+      15.0,
+      -10.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_02.prefab",
+     "position": [
+      -77.408,
+      18.0,
+      -10.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      -77.3975,
+      0.0,
+      -5.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_03.prefab",
+     "position": [
+      -77.3975,
+      3.0,
+      -5.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      -77.3975,
+      12.0,
+      -5.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      -77.402,
+      15.0,
+      -5.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_03.prefab",
+     "position": [
+      -77.356,
+      18.0,
+      -5.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      -77.402,
+      0.0,
+      -0.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_01.prefab",
+     "position": [
+      -77.402,
+      3.0,
+      -0.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      -77.402,
+      12.0,
+      -0.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      -77.478,
+      15.0,
+      -0.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_01.prefab",
+     "position": [
+      -77.2095,
+      18.0,
+      -0.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      -77.478,
+      0.0,
+      5.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_02.prefab",
+     "position": [
+      -77.478,
+      3.0,
+      5.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      -77.478,
+      12.0,
+      5.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      -77.3975,
+      15.0,
+      5.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_02.prefab",
+     "position": [
+      -77.408,
+      18.0,
+      5.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      -77.3975,
+      0.0,
+      10.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_03.prefab",
+     "position": [
+      -77.3975,
+      3.0,
+      10.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      -77.3975,
+      12.0,
+      10.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      -77.402,
+      15.0,
+      10.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_03.prefab",
+     "position": [
+      -77.356,
+      18.0,
+      10.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      -77.402,
+      0.0,
+      15.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_01.prefab",
+     "position": [
+      -77.402,
+      3.0,
+      15.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      -77.402,
+      12.0,
+      15.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      -77.478,
+      15.0,
+      15.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_01.prefab",
+     "position": [
+      -77.2095,
+      18.0,
+      15.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      -77.478,
+      0.0,
+      20.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_02.prefab",
+     "position": [
+      -77.478,
+      3.0,
+      20.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      -77.478,
+      12.0,
+      20.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      -77.3975,
+      15.0,
+      20.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_02.prefab",
+     "position": [
+      -77.408,
+      18.0,
+      20.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      -77.3975,
+      0.0,
+      25.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_03.prefab",
+     "position": [
+      -77.3975,
+      3.0,
+      25.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      -77.3975,
+      12.0,
+      25.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      -77.402,
+      15.0,
+      25.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_03.prefab",
+     "position": [
+      -77.356,
+      18.0,
+      25.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      -77.402,
+      0.0,
+      30.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_01.prefab",
+     "position": [
+      -77.402,
+      3.0,
+      30.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      -77.402,
+      12.0,
+      30.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      -77.478,
+      15.0,
+      30.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_01.prefab",
+     "position": [
+      -77.2095,
+      18.0,
+      30.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      -77.478,
+      0.0,
+      35.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_02.prefab",
+     "position": [
+      -77.478,
+      3.0,
+      35.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      -77.478,
+      12.0,
+      35.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      -77.3975,
+      15.0,
+      35.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_02.prefab",
+     "position": [
+      -77.408,
+      18.0,
+      35.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      -77.3975,
+      0.0,
+      40.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_03.prefab",
+     "position": [
+      -77.3975,
+      3.0,
+      40.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      -77.3975,
+      12.0,
+      40.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      -77.402,
+      15.0,
+      40.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_03.prefab",
+     "position": [
+      -77.356,
+      18.0,
+      40.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      -77.402,
+      0.0,
+      45.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_01.prefab",
+     "position": [
+      -77.402,
+      3.0,
+      45.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      -77.402,
+      12.0,
+      45.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      -77.478,
+      15.0,
+      45.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_01.prefab",
+     "position": [
+      -77.2095,
+      18.0,
+      45.0
+     ],
+     "rotation": [
+      0.0,
+      270.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      77.402,
+      0.0,
+      -80.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_01.prefab",
+     "position": [
+      77.402,
+      3.0,
+      -80.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      77.402,
+      12.0,
+      -80.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      77.478,
+      15.0,
+      -80.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_01.prefab",
+     "position": [
+      77.2095,
+      18.0,
+      -80.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      77.478,
+      0.0,
+      -75.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_02.prefab",
+     "position": [
+      77.478,
+      3.0,
+      -75.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      77.478,
+      12.0,
+      -75.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      77.3975,
+      15.0,
+      -75.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_02.prefab",
+     "position": [
+      77.408,
+      18.0,
+      -75.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      77.3975,
+      0.0,
+      -70.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_03.prefab",
+     "position": [
+      77.3975,
+      3.0,
+      -70.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      77.3975,
+      12.0,
+      -70.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      77.402,
+      15.0,
+      -70.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_03.prefab",
+     "position": [
+      77.356,
+      18.0,
+      -70.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      77.402,
+      0.0,
+      -65.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_01.prefab",
+     "position": [
+      77.402,
+      3.0,
+      -65.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      77.402,
+      12.0,
+      -65.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      77.478,
+      15.0,
+      -65.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_01.prefab",
+     "position": [
+      77.2095,
+      18.0,
+      -65.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      77.478,
+      0.0,
+      -60.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_02.prefab",
+     "position": [
+      77.478,
+      3.0,
+      -60.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      77.478,
+      12.0,
+      -60.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      77.3975,
+      15.0,
+      -60.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_02.prefab",
+     "position": [
+      77.408,
+      18.0,
+      -60.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      77.3975,
+      0.0,
+      -55.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_03.prefab",
+     "position": [
+      77.3975,
+      3.0,
+      -55.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      77.3975,
+      12.0,
+      -55.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      77.402,
+      15.0,
+      -55.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_03.prefab",
+     "position": [
+      77.356,
+      18.0,
+      -55.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      77.402,
+      0.0,
+      -50.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_01.prefab",
+     "position": [
+      77.402,
+      3.0,
+      -50.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      77.402,
+      12.0,
+      -50.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      77.478,
+      15.0,
+      -50.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_01.prefab",
+     "position": [
+      77.2095,
+      18.0,
+      -50.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      77.478,
+      0.0,
+      -45.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_02.prefab",
+     "position": [
+      77.478,
+      3.0,
+      -45.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      77.478,
+      12.0,
+      -45.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      77.3975,
+      15.0,
+      -45.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_02.prefab",
+     "position": [
+      77.408,
+      18.0,
+      -45.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      77.3975,
+      0.0,
+      -40.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_03.prefab",
+     "position": [
+      77.3975,
+      3.0,
+      -40.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      77.3975,
+      12.0,
+      -40.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      77.402,
+      15.0,
+      -40.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_03.prefab",
+     "position": [
+      77.356,
+      18.0,
+      -40.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      77.402,
+      0.0,
+      -35.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_01.prefab",
+     "position": [
+      77.402,
+      3.0,
+      -35.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      77.402,
+      12.0,
+      -35.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      77.478,
+      15.0,
+      -35.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_01.prefab",
+     "position": [
+      77.2095,
+      18.0,
+      -35.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      77.478,
+      0.0,
+      -30.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_02.prefab",
+     "position": [
+      77.478,
+      3.0,
+      -30.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      77.478,
+      12.0,
+      -30.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      77.3975,
+      15.0,
+      -30.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_02.prefab",
+     "position": [
+      77.408,
+      18.0,
+      -30.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      77.3975,
+      0.0,
+      -25.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_03.prefab",
+     "position": [
+      77.3975,
+      3.0,
+      -25.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      77.3975,
+      12.0,
+      -25.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      77.402,
+      15.0,
+      -25.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_03.prefab",
+     "position": [
+      77.356,
+      18.0,
+      -25.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      77.402,
+      0.0,
+      -20.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_01.prefab",
+     "position": [
+      77.402,
+      3.0,
+      -20.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      77.402,
+      12.0,
+      -20.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      77.478,
+      15.0,
+      -20.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_01.prefab",
+     "position": [
+      77.2095,
+      18.0,
+      -20.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      77.478,
+      0.0,
+      -15.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_02.prefab",
+     "position": [
+      77.478,
+      3.0,
+      -15.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      77.478,
+      12.0,
+      -15.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      77.3975,
+      15.0,
+      -15.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_02.prefab",
+     "position": [
+      77.408,
+      18.0,
+      -15.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      77.3975,
+      0.0,
+      -10.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_03.prefab",
+     "position": [
+      77.3975,
+      3.0,
+      -10.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      77.3975,
+      12.0,
+      -10.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      77.402,
+      15.0,
+      -10.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_03.prefab",
+     "position": [
+      77.356,
+      18.0,
+      -10.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      77.402,
+      0.0,
+      -5.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_01.prefab",
+     "position": [
+      77.402,
+      3.0,
+      -5.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      77.402,
+      12.0,
+      -5.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      77.478,
+      15.0,
+      -5.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_01.prefab",
+     "position": [
+      77.2095,
+      18.0,
+      -5.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      77.478,
+      0.0,
+      0.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_02.prefab",
+     "position": [
+      77.478,
+      3.0,
+      0.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      77.478,
+      12.0,
+      0.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      77.3975,
+      15.0,
+      0.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_02.prefab",
+     "position": [
+      77.408,
+      18.0,
+      0.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      77.3975,
+      0.0,
+      5.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_03.prefab",
+     "position": [
+      77.3975,
+      3.0,
+      5.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      77.3975,
+      12.0,
+      5.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      77.402,
+      15.0,
+      5.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_03.prefab",
+     "position": [
+      77.356,
+      18.0,
+      5.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      77.402,
+      0.0,
+      10.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_01.prefab",
+     "position": [
+      77.402,
+      3.0,
+      10.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      77.402,
+      12.0,
+      10.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      77.478,
+      15.0,
+      10.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_01.prefab",
+     "position": [
+      77.2095,
+      18.0,
+      10.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      77.478,
+      0.0,
+      15.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_02.prefab",
+     "position": [
+      77.478,
+      3.0,
+      15.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      77.478,
+      12.0,
+      15.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      77.3975,
+      15.0,
+      15.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_02.prefab",
+     "position": [
+      77.408,
+      18.0,
+      15.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      77.3975,
+      0.0,
+      20.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_03.prefab",
+     "position": [
+      77.3975,
+      3.0,
+      20.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      77.3975,
+      12.0,
+      20.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      77.402,
+      15.0,
+      20.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_03.prefab",
+     "position": [
+      77.356,
+      18.0,
+      20.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      77.402,
+      0.0,
+      25.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_01.prefab",
+     "position": [
+      77.402,
+      3.0,
+      25.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      77.402,
+      12.0,
+      25.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      77.478,
+      15.0,
+      25.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_01.prefab",
+     "position": [
+      77.2095,
+      18.0,
+      25.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      77.478,
+      0.0,
+      30.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_02.prefab",
+     "position": [
+      77.478,
+      3.0,
+      30.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      77.478,
+      12.0,
+      30.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      77.3975,
+      15.0,
+      30.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_02.prefab",
+     "position": [
+      77.408,
+      18.0,
+      30.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      77.3975,
+      0.0,
+      35.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_03.prefab",
+     "position": [
+      77.3975,
+      3.0,
+      35.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      77.3975,
+      12.0,
+      35.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      77.402,
+      15.0,
+      35.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_03.prefab",
+     "position": [
+      77.356,
+      18.0,
+      35.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      77.402,
+      0.0,
+      40.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_01.prefab",
+     "position": [
+      77.402,
+      3.0,
+      40.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      77.402,
+      12.0,
+      40.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      77.478,
+      15.0,
+      40.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_01.prefab",
+     "position": [
+      77.2095,
+      18.0,
+      40.0
+     ],
+     "rotation": [
+      0.0,
+      90.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      -70.0,
+      0.0,
+      -75.1025
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_03.prefab",
+     "position": [
+      -70.0,
+      3.0,
+      -75.1025
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      -70.0,
+      12.0,
+      -75.1025
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      -70.0,
+      15.0,
+      -75.098
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_03.prefab",
+     "position": [
+      -70.0,
+      18.0,
+      -75.144
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      -75.0,
+      0.0,
+      40.022
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_02.prefab",
+     "position": [
+      -75.0,
+      3.0,
+      40.022
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      -75.0,
+      12.0,
+      40.022
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      -75.0,
+      15.0,
+      40.1025
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_02.prefab",
+     "position": [
+      -75.0,
+      18.0,
+      40.092
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      -65.0,
+      0.0,
+      -75.098
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_01.prefab",
+     "position": [
+      -65.0,
+      3.0,
+      -75.098
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      -65.0,
+      12.0,
+      -75.098
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      -65.0,
+      15.0,
+      -75.022
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_01.prefab",
+     "position": [
+      -65.0,
+      18.0,
+      -75.2905
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      -70.0,
+      0.0,
+      40.1025
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_03.prefab",
+     "position": [
+      -70.0,
+      3.0,
+      40.1025
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      -70.0,
+      12.0,
+      40.1025
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      -70.0,
+      15.0,
+      40.098
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_03.prefab",
+     "position": [
+      -70.0,
+      18.0,
+      40.144
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      -60.0,
+      0.0,
+      -75.022
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_02.prefab",
+     "position": [
+      -60.0,
+      3.0,
+      -75.022
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      -60.0,
+      12.0,
+      -75.022
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      -60.0,
+      15.0,
+      -75.1025
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_02.prefab",
+     "position": [
+      -60.0,
+      18.0,
+      -75.092
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      -65.0,
+      0.0,
+      40.098
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_01.prefab",
+     "position": [
+      -65.0,
+      3.0,
+      40.098
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      -65.0,
+      12.0,
+      40.098
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      -65.0,
+      15.0,
+      40.022
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_01.prefab",
+     "position": [
+      -65.0,
+      18.0,
+      40.2905
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      -55.0,
+      0.0,
+      -75.1025
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_03.prefab",
+     "position": [
+      -55.0,
+      3.0,
+      -75.1025
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      -55.0,
+      12.0,
+      -75.1025
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      -55.0,
+      15.0,
+      -75.098
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_03.prefab",
+     "position": [
+      -55.0,
+      18.0,
+      -75.144
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      -60.0,
+      0.0,
+      40.022
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_02.prefab",
+     "position": [
+      -60.0,
+      3.0,
+      40.022
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      -60.0,
+      12.0,
+      40.022
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      -60.0,
+      15.0,
+      40.1025
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_02.prefab",
+     "position": [
+      -60.0,
+      18.0,
+      40.092
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      -50.0,
+      0.0,
+      -75.098
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_01.prefab",
+     "position": [
+      -50.0,
+      3.0,
+      -75.098
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      -50.0,
+      12.0,
+      -75.098
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      -50.0,
+      15.0,
+      -75.022
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_01.prefab",
+     "position": [
+      -50.0,
+      18.0,
+      -75.2905
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      -55.0,
+      0.0,
+      40.1025
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_03.prefab",
+     "position": [
+      -55.0,
+      3.0,
+      40.1025
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      -55.0,
+      12.0,
+      40.1025
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      -55.0,
+      15.0,
+      40.098
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_03.prefab",
+     "position": [
+      -55.0,
+      18.0,
+      40.144
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      -45.0,
+      0.0,
+      -75.022
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_02.prefab",
+     "position": [
+      -45.0,
+      3.0,
+      -75.022
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      -45.0,
+      12.0,
+      -75.022
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      -45.0,
+      15.0,
+      -75.1025
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_02.prefab",
+     "position": [
+      -45.0,
+      18.0,
+      -75.092
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      -50.0,
+      0.0,
+      40.098
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_01.prefab",
+     "position": [
+      -50.0,
+      3.0,
+      40.098
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      -50.0,
+      12.0,
+      40.098
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      -50.0,
+      15.0,
+      40.022
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_01.prefab",
+     "position": [
+      -50.0,
+      18.0,
+      40.2905
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      -40.0,
+      0.0,
+      -75.1025
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_03.prefab",
+     "position": [
+      -40.0,
+      3.0,
+      -75.1025
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      -40.0,
+      12.0,
+      -75.1025
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      -40.0,
+      15.0,
+      -75.098
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_03.prefab",
+     "position": [
+      -40.0,
+      18.0,
+      -75.144
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      -45.0,
+      0.0,
+      40.022
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_02.prefab",
+     "position": [
+      -45.0,
+      3.0,
+      40.022
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      -45.0,
+      12.0,
+      40.022
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      -45.0,
+      15.0,
+      40.1025
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_02.prefab",
+     "position": [
+      -45.0,
+      18.0,
+      40.092
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      -35.0,
+      0.0,
+      -75.098
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_01.prefab",
+     "position": [
+      -35.0,
+      3.0,
+      -75.098
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      -35.0,
+      12.0,
+      -75.098
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      -35.0,
+      15.0,
+      -75.022
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_01.prefab",
+     "position": [
+      -35.0,
+      18.0,
+      -75.2905
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      -40.0,
+      0.0,
+      40.1025
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_03.prefab",
+     "position": [
+      -40.0,
+      3.0,
+      40.1025
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      -40.0,
+      12.0,
+      40.1025
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      -40.0,
+      15.0,
+      40.098
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_03.prefab",
+     "position": [
+      -40.0,
+      18.0,
+      40.144
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      -30.0,
+      0.0,
+      -75.022
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_02.prefab",
+     "position": [
+      -30.0,
+      3.0,
+      -75.022
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      -30.0,
+      12.0,
+      -75.022
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      -30.0,
+      15.0,
+      -75.1025
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_02.prefab",
+     "position": [
+      -30.0,
+      18.0,
+      -75.092
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      -35.0,
+      0.0,
+      40.098
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_01.prefab",
+     "position": [
+      -35.0,
+      3.0,
+      40.098
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      -35.0,
+      12.0,
+      40.098
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      -35.0,
+      15.0,
+      40.022
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_01.prefab",
+     "position": [
+      -35.0,
+      18.0,
+      40.2905
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      -25.0,
+      0.0,
+      -75.1025
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_03.prefab",
+     "position": [
+      -25.0,
+      3.0,
+      -75.1025
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      -25.0,
+      12.0,
+      -75.1025
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      -25.0,
+      15.0,
+      -75.098
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_03.prefab",
+     "position": [
+      -25.0,
+      18.0,
+      -75.144
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      -30.0,
+      0.0,
+      40.022
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_02.prefab",
+     "position": [
+      -30.0,
+      3.0,
+      40.022
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      -30.0,
+      12.0,
+      40.022
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      -30.0,
+      15.0,
+      40.1025
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_02.prefab",
+     "position": [
+      -30.0,
+      18.0,
+      40.092
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      -20.0,
+      0.0,
+      -75.098
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_01.prefab",
+     "position": [
+      -20.0,
+      3.0,
+      -75.098
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      -20.0,
+      12.0,
+      -75.098
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      -20.0,
+      15.0,
+      -75.022
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_01.prefab",
+     "position": [
+      -20.0,
+      18.0,
+      -75.2905
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      -25.0,
+      0.0,
+      40.1025
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_03.prefab",
+     "position": [
+      -25.0,
+      3.0,
+      40.1025
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      -25.0,
+      12.0,
+      40.1025
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      -25.0,
+      15.0,
+      40.098
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_03.prefab",
+     "position": [
+      -25.0,
+      18.0,
+      40.144
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      -15.0,
+      0.0,
+      -75.022
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_02.prefab",
+     "position": [
+      -15.0,
+      3.0,
+      -75.022
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      -15.0,
+      12.0,
+      -75.022
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      -15.0,
+      15.0,
+      -75.1025
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_02.prefab",
+     "position": [
+      -15.0,
+      18.0,
+      -75.092
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      -20.0,
+      0.0,
+      40.098
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_01.prefab",
+     "position": [
+      -20.0,
+      3.0,
+      40.098
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      -20.0,
+      12.0,
+      40.098
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      -20.0,
+      15.0,
+      40.022
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_01.prefab",
+     "position": [
+      -20.0,
+      18.0,
+      40.2905
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      -10.0,
+      0.0,
+      -75.1025
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_03.prefab",
+     "position": [
+      -10.0,
+      3.0,
+      -75.1025
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      -10.0,
+      12.0,
+      -75.1025
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      -10.0,
+      15.0,
+      -75.098
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_03.prefab",
+     "position": [
+      -10.0,
+      18.0,
+      -75.144
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      -15.0,
+      0.0,
+      40.022
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_02.prefab",
+     "position": [
+      -15.0,
+      3.0,
+      40.022
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      -15.0,
+      12.0,
+      40.022
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      -15.0,
+      15.0,
+      40.1025
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_02.prefab",
+     "position": [
+      -15.0,
+      18.0,
+      40.092
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      -5.0,
+      0.0,
+      -75.098
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_01.prefab",
+     "position": [
+      -5.0,
+      3.0,
+      -75.098
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      -5.0,
+      12.0,
+      -75.098
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      -5.0,
+      15.0,
+      -75.022
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_01.prefab",
+     "position": [
+      -5.0,
+      18.0,
+      -75.2905
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      -10.0,
+      0.0,
+      40.1025
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_03.prefab",
+     "position": [
+      -10.0,
+      3.0,
+      40.1025
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      -10.0,
+      12.0,
+      40.1025
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      -10.0,
+      15.0,
+      40.098
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_03.prefab",
+     "position": [
+      -10.0,
+      18.0,
+      40.144
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      0.0,
+      0.0,
+      -75.022
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_02.prefab",
+     "position": [
+      0.0,
+      3.0,
+      -75.022
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      0.0,
+      12.0,
+      -75.022
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      0.0,
+      15.0,
+      -75.1025
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_02.prefab",
+     "position": [
+      0.0,
+      18.0,
+      -75.092
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      -5.0,
+      0.0,
+      40.098
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_01.prefab",
+     "position": [
+      -5.0,
+      3.0,
+      40.098
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      -5.0,
+      12.0,
+      40.098
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      -5.0,
+      15.0,
+      40.022
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_01.prefab",
+     "position": [
+      -5.0,
+      18.0,
+      40.2905
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      5.0,
+      0.0,
+      -75.1025
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_03.prefab",
+     "position": [
+      5.0,
+      3.0,
+      -75.1025
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      5.0,
+      12.0,
+      -75.1025
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      5.0,
+      15.0,
+      -75.098
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_03.prefab",
+     "position": [
+      5.0,
+      18.0,
+      -75.144
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      0.0,
+      0.0,
+      40.022
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_02.prefab",
+     "position": [
+      0.0,
+      3.0,
+      40.022
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      0.0,
+      12.0,
+      40.022
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      0.0,
+      15.0,
+      40.1025
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_02.prefab",
+     "position": [
+      0.0,
+      18.0,
+      40.092
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      10.0,
+      0.0,
+      -75.098
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_01.prefab",
+     "position": [
+      10.0,
+      3.0,
+      -75.098
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      10.0,
+      12.0,
+      -75.098
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      10.0,
+      15.0,
+      -75.022
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_01.prefab",
+     "position": [
+      10.0,
+      18.0,
+      -75.2905
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      5.0,
+      0.0,
+      40.1025
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_03.prefab",
+     "position": [
+      5.0,
+      3.0,
+      40.1025
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      5.0,
+      12.0,
+      40.1025
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      5.0,
+      15.0,
+      40.098
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_03.prefab",
+     "position": [
+      5.0,
+      18.0,
+      40.144
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      15.0,
+      0.0,
+      -75.022
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_02.prefab",
+     "position": [
+      15.0,
+      3.0,
+      -75.022
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      15.0,
+      12.0,
+      -75.022
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      15.0,
+      15.0,
+      -75.1025
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_02.prefab",
+     "position": [
+      15.0,
+      18.0,
+      -75.092
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      10.0,
+      0.0,
+      40.098
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_01.prefab",
+     "position": [
+      10.0,
+      3.0,
+      40.098
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      10.0,
+      12.0,
+      40.098
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      10.0,
+      15.0,
+      40.022
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_01.prefab",
+     "position": [
+      10.0,
+      18.0,
+      40.2905
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      20.0,
+      0.0,
+      -75.1025
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_03.prefab",
+     "position": [
+      20.0,
+      3.0,
+      -75.1025
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      20.0,
+      12.0,
+      -75.1025
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      20.0,
+      15.0,
+      -75.098
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_03.prefab",
+     "position": [
+      20.0,
+      18.0,
+      -75.144
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      15.0,
+      0.0,
+      40.022
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_02.prefab",
+     "position": [
+      15.0,
+      3.0,
+      40.022
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      15.0,
+      12.0,
+      40.022
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      15.0,
+      15.0,
+      40.1025
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_02.prefab",
+     "position": [
+      15.0,
+      18.0,
+      40.092
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      25.0,
+      0.0,
+      -75.098
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_01.prefab",
+     "position": [
+      25.0,
+      3.0,
+      -75.098
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      25.0,
+      12.0,
+      -75.098
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      25.0,
+      15.0,
+      -75.022
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_01.prefab",
+     "position": [
+      25.0,
+      18.0,
+      -75.2905
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      20.0,
+      0.0,
+      40.1025
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_03.prefab",
+     "position": [
+      20.0,
+      3.0,
+      40.1025
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      20.0,
+      12.0,
+      40.1025
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      20.0,
+      15.0,
+      40.098
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_03.prefab",
+     "position": [
+      20.0,
+      18.0,
+      40.144
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      30.0,
+      0.0,
+      -75.022
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_02.prefab",
+     "position": [
+      30.0,
+      3.0,
+      -75.022
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      30.0,
+      12.0,
+      -75.022
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      30.0,
+      15.0,
+      -75.1025
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_02.prefab",
+     "position": [
+      30.0,
+      18.0,
+      -75.092
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      25.0,
+      0.0,
+      40.098
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_01.prefab",
+     "position": [
+      25.0,
+      3.0,
+      40.098
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      25.0,
+      12.0,
+      40.098
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      25.0,
+      15.0,
+      40.022
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_01.prefab",
+     "position": [
+      25.0,
+      18.0,
+      40.2905
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      35.0,
+      0.0,
+      -75.1025
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_03.prefab",
+     "position": [
+      35.0,
+      3.0,
+      -75.1025
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      35.0,
+      12.0,
+      -75.1025
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      35.0,
+      15.0,
+      -75.098
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_03.prefab",
+     "position": [
+      35.0,
+      18.0,
+      -75.144
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      30.0,
+      0.0,
+      40.022
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_02.prefab",
+     "position": [
+      30.0,
+      3.0,
+      40.022
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      30.0,
+      12.0,
+      40.022
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      30.0,
+      15.0,
+      40.1025
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_02.prefab",
+     "position": [
+      30.0,
+      18.0,
+      40.092
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      40.0,
+      0.0,
+      -75.098
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_01.prefab",
+     "position": [
+      40.0,
+      3.0,
+      -75.098
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      40.0,
+      12.0,
+      -75.098
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      40.0,
+      15.0,
+      -75.022
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_01.prefab",
+     "position": [
+      40.0,
+      18.0,
+      -75.2905
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      35.0,
+      0.0,
+      40.1025
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_03.prefab",
+     "position": [
+      35.0,
+      3.0,
+      40.1025
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      35.0,
+      12.0,
+      40.1025
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      35.0,
+      15.0,
+      40.098
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_03.prefab",
+     "position": [
+      35.0,
+      18.0,
+      40.144
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      45.0,
+      0.0,
+      -75.022
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_02.prefab",
+     "position": [
+      45.0,
+      3.0,
+      -75.022
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      45.0,
+      12.0,
+      -75.022
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      45.0,
+      15.0,
+      -75.1025
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_02.prefab",
+     "position": [
+      45.0,
+      18.0,
+      -75.092
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      40.0,
+      0.0,
+      40.098
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_01.prefab",
+     "position": [
+      40.0,
+      3.0,
+      40.098
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      40.0,
+      12.0,
+      40.098
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      40.0,
+      15.0,
+      40.022
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_01.prefab",
+     "position": [
+      40.0,
+      18.0,
+      40.2905
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      50.0,
+      0.0,
+      -75.1025
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_03.prefab",
+     "position": [
+      50.0,
+      3.0,
+      -75.1025
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      50.0,
+      12.0,
+      -75.1025
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      50.0,
+      15.0,
+      -75.098
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_03.prefab",
+     "position": [
+      50.0,
+      18.0,
+      -75.144
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      45.0,
+      0.0,
+      40.022
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_02.prefab",
+     "position": [
+      45.0,
+      3.0,
+      40.022
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      45.0,
+      12.0,
+      40.022
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      45.0,
+      15.0,
+      40.1025
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_02.prefab",
+     "position": [
+      45.0,
+      18.0,
+      40.092
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      55.0,
+      0.0,
+      -75.098
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_01.prefab",
+     "position": [
+      55.0,
+      3.0,
+      -75.098
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      55.0,
+      12.0,
+      -75.098
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      55.0,
+      15.0,
+      -75.022
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_01.prefab",
+     "position": [
+      55.0,
+      18.0,
+      -75.2905
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      50.0,
+      0.0,
+      40.1025
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_03.prefab",
+     "position": [
+      50.0,
+      3.0,
+      40.1025
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      50.0,
+      12.0,
+      40.1025
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      50.0,
+      15.0,
+      40.098
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_03.prefab",
+     "position": [
+      50.0,
+      18.0,
+      40.144
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      60.0,
+      0.0,
+      -75.022
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_02.prefab",
+     "position": [
+      60.0,
+      3.0,
+      -75.022
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      60.0,
+      12.0,
+      -75.022
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      60.0,
+      15.0,
+      -75.1025
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_02.prefab",
+     "position": [
+      60.0,
+      18.0,
+      -75.092
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      55.0,
+      0.0,
+      40.098
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_01.prefab",
+     "position": [
+      55.0,
+      3.0,
+      40.098
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      55.0,
+      12.0,
+      40.098
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      55.0,
+      15.0,
+      40.022
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_01.prefab",
+     "position": [
+      55.0,
+      18.0,
+      40.2905
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      65.0,
+      0.0,
+      -75.1025
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_03.prefab",
+     "position": [
+      65.0,
+      3.0,
+      -75.1025
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      65.0,
+      12.0,
+      -75.1025
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      65.0,
+      15.0,
+      -75.098
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_03.prefab",
+     "position": [
+      65.0,
+      18.0,
+      -75.144
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      60.0,
+      0.0,
+      40.022
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_02.prefab",
+     "position": [
+      60.0,
+      3.0,
+      40.022
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      60.0,
+      12.0,
+      40.022
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      60.0,
+      15.0,
+      40.1025
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_02.prefab",
+     "position": [
+      60.0,
+      18.0,
+      40.092
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      70.0,
+      0.0,
+      -75.098
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_01.prefab",
+     "position": [
+      70.0,
+      3.0,
+      -75.098
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      70.0,
+      12.0,
+      -75.098
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      70.0,
+      15.0,
+      -75.022
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_01.prefab",
+     "position": [
+      70.0,
+      18.0,
+      -75.2905
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      65.0,
+      0.0,
+      40.1025
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_03.prefab",
+     "position": [
+      65.0,
+      3.0,
+      40.1025
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      65.0,
+      12.0,
+      40.1025
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      65.0,
+      15.0,
+      40.098
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_03.prefab",
+     "position": [
+      65.0,
+      18.0,
+      40.144
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      75.0,
+      0.0,
+      -75.022
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_02.prefab",
+     "position": [
+      75.0,
+      3.0,
+      -75.022
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      75.0,
+      12.0,
+      -75.022
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_03.prefab",
+     "position": [
+      75.0,
+      15.0,
+      -75.1025
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_02.prefab",
+     "position": [
+      75.0,
+      18.0,
+      -75.092
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      70.0,
+      0.0,
+      40.098
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Stack_01.prefab",
+     "position": [
+      70.0,
+      3.0,
+      40.098
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_01.prefab",
+     "position": [
+      70.0,
+      12.0,
+      40.098
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_02.prefab",
+     "position": [
+      70.0,
+      15.0,
+      40.022
+     ],
+     "rotation": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "prefab": "Assets/PolygonCity/Prefabs/Buildings/SM_Bld_Apartment_Roof_01.prefab",
+     "position": [
+      70.0,
+      18.0,
+      40.2905
+     ],
+     "rotation": [
+      0.0,
+      180.0,
       0.0
      ],
      "scale": [

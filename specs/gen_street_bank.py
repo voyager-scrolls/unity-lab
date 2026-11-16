@@ -60,7 +60,7 @@ def room(rid, mn, mx):
     }
 
 
-room('exterior', [-70.0, 0.0, -75.0], [70.0, 12.0, 40.0])
+room('exterior', [-80.0, 0.0, -85.0], [80.0, 12.0, 50.0])
 room('lobby', [-12.5, 0.0, 0.0], [12.5, 6.0, 15.0])
 room('teller', [-12.5, 0.0, 15.0], [12.5, 3.4, 20.0])
 
@@ -649,6 +649,18 @@ for ri, z in enumerate((-64.5, -69.5)):
     for i, x in enumerate(FAR_X):
         if free_row(x, z):
             tenement('exterior', x, z, 0, i + ri + 5, 5, shop_row=False)
+
+# Continuous backdrop ring: one extra block deep on every side so the
+# skybox is not visible between the outer columns and rows.
+RING_X = 75.0
+RING_Z0, RING_Z1 = -77.5, 42.5
+for side in (-1, 1):
+    rot = 90 if side > 0 else 270
+    for i, z in enumerate(RING_Z0 + 5.0 * k for k in range(25)):
+        tenement('exterior', side * RING_X, z, rot, i + 9, 5, shop_row=False)
+for i, x in enumerate(-72.5 + 5.0 * k for k in range(30)):
+    tenement('exterior', x, RING_Z0, 0, i + 11, 5, shop_row=False)
+    tenement('exterior', x, RING_Z1, 180, i + 13, 5, shop_row=False)
 
 # ---------------------------------------------------------------- spawns + cover + kills
 SPAWNS = [
