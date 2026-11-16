@@ -16887,24 +16887,6 @@
         {
           "prefab": "Assets/PolygonCity/Prefabs/Props/SM_Prop_ParkBench_01.prefab",
           "position": [
-            -38.5505,
-            0,
-            -3.8
-          ],
-          "rotation": [
-            0.0,
-            180.0,
-            0.0
-          ],
-          "scale": [
-            1.0,
-            1.0,
-            1.0
-          ]
-        },
-        {
-          "prefab": "Assets/PolygonCity/Prefabs/Props/SM_Prop_ParkBench_01.prefab",
-          "position": [
             -28.5505,
             0,
             -3.8
@@ -17880,24 +17862,6 @@
             33.0,
             0,
             -34.0
-          ],
-          "rotation": [
-            0.0,
-            180.0,
-            0.0
-          ],
-          "scale": [
-            1.0,
-            1.0,
-            1.0
-          ]
-        },
-        {
-          "prefab": "Assets/PolygonCity/Prefabs/Props/SM_Prop_ParkBench_01.prefab",
-          "position": [
-            39.0505,
-            0,
-            -3.8
           ],
           "rotation": [
             0.0,
@@ -21781,45 +21745,9 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonCity/Prefabs/Props/SM_Prop_TrashBag_03.prefab",
-          "position": [
-            -52.2,
-            0,
-            -0.9
-          ],
-          "rotation": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "scale": [
-            1.0,
-            1.0,
-            1.0
-          ]
-        },
-        {
           "prefab": "Assets/PolygonCity/Prefabs/Props/SM_Prop_Newspaper_02.prefab",
           "position": [
             -39.6,
-            0,
-            -0.9
-          ],
-          "rotation": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "scale": [
-            1.0,
-            1.0,
-            1.0
-          ]
-        },
-        {
-          "prefab": "Assets/PolygonCity/Prefabs/Props/SM_Prop_TrashBag_01.prefab",
-          "position": [
-            -44.2,
             0,
             -0.9
           ],
@@ -21853,45 +21781,9 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonCity/Prefabs/Props/SM_Prop_TrashBag_02.prefab",
-          "position": [
-            -36.2,
-            0,
-            -0.9
-          ],
-          "rotation": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "scale": [
-            1.0,
-            1.0,
-            1.0
-          ]
-        },
-        {
           "prefab": "Assets/PolygonCity/Prefabs/Props/SM_Prop_Newspaper_02.prefab",
           "position": [
             -23.6,
-            0,
-            -0.9
-          ],
-          "rotation": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "scale": [
-            1.0,
-            1.0,
-            1.0
-          ]
-        },
-        {
-          "prefab": "Assets/PolygonCity/Prefabs/Props/SM_Prop_TrashBag_03.prefab",
-          "position": [
-            -28.2,
             0,
             -0.9
           ],
@@ -21943,24 +21835,6 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonCity/Prefabs/Props/SM_Prop_TrashBag_01.prefab",
-          "position": [
-            -20.2,
-            0,
-            -0.9
-          ],
-          "rotation": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "scale": [
-            1.0,
-            1.0,
-            1.0
-          ]
-        },
-        {
           "prefab": "Assets/PolygonCity/Prefabs/Props/SM_Prop_ParkingMeter_01.prefab",
           "position": [
             18.0,
@@ -21997,24 +21871,6 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonCity/Prefabs/Props/SM_Prop_TrashBag_01.prefab",
-          "position": [
-            15.8,
-            0,
-            -0.9
-          ],
-          "rotation": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "scale": [
-            1.0,
-            1.0,
-            1.0
-          ]
-        },
-        {
           "prefab": "Assets/PolygonCity/Prefabs/Props/SM_Prop_Newspaper_02.prefab",
           "position": [
             28.4,
@@ -22024,24 +21880,6 @@
           "rotation": [
             0.0,
             180.0,
-            0.0
-          ],
-          "scale": [
-            1.0,
-            1.0,
-            1.0
-          ]
-        },
-        {
-          "prefab": "Assets/PolygonCity/Prefabs/Props/SM_Prop_TrashBag_03.prefab",
-          "position": [
-            23.8,
-            0,
-            -0.9
-          ],
-          "rotation": [
-            0.0,
-            0.0,
             0.0
           ],
           "scale": [
@@ -22069,24 +21907,6 @@
           ]
         },
         {
-          "prefab": "Assets/PolygonCity/Prefabs/Props/SM_Prop_TrashBag_02.prefab",
-          "position": [
-            31.8,
-            0,
-            -0.9
-          ],
-          "rotation": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "scale": [
-            1.0,
-            1.0,
-            1.0
-          ]
-        },
-        {
           "prefab": "Assets/PolygonCity/Prefabs/Props/SM_Prop_Newspaper_02.prefab",
           "position": [
             44.4,
@@ -22096,24 +21916,6 @@
           "rotation": [
             0.0,
             180.0,
-            0.0
-          ],
-          "scale": [
-            1.0,
-            1.0,
-            1.0
-          ]
-        },
-        {
-          "prefab": "Assets/PolygonCity/Prefabs/Props/SM_Prop_TrashBag_01.prefab",
-          "position": [
-            39.8,
-            0,
-            -0.9
-          ],
-          "rotation": [
-            0.0,
-            0.0,
             0.0
           ],
           "scale": [
@@ -22150,24 +21952,6 @@
           "rotation": [
             0.0,
             180.0,
-            0.0
-          ],
-          "scale": [
-            1.0,
-            1.0,
-            1.0
-          ]
-        },
-        {
-          "prefab": "Assets/PolygonCity/Prefabs/Props/SM_Prop_TrashBag_03.prefab",
-          "position": [
-            47.8,
-            0,
-            -0.9
-          ],
-          "rotation": [
-            0.0,
-            0.0,
             0.0
           ],
           "scale": [
@@ -37662,6 +37446,82 @@
             1.0
           ],
           "tag": "frontage_left"
+        },
+        {
+          "prefab": "Assets/PolygonCity/Prefabs/Props/SM_Prop_Cone_01.prefab",
+          "position": [
+            -6.0,
+            0.0,
+            -11.6
+          ],
+          "rotation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "tag": "entrance_cone"
+        },
+        {
+          "prefab": "Assets/PolygonCity/Prefabs/Props/SM_Prop_Cone_01.prefab",
+          "position": [
+            -4.5,
+            0.0,
+            -11.6
+          ],
+          "rotation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "tag": "entrance_cone"
+        },
+        {
+          "prefab": "Assets/PolygonCity/Prefabs/Props/SM_Prop_Cone_01.prefab",
+          "position": [
+            4.5,
+            0.0,
+            -11.6
+          ],
+          "rotation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "tag": "entrance_cone"
+        },
+        {
+          "prefab": "Assets/PolygonCity/Prefabs/Props/SM_Prop_Cone_01.prefab",
+          "position": [
+            6.0,
+            0.0,
+            -11.6
+          ],
+          "rotation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "tag": "entrance_cone"
         }
       ],
       "spawnPoints": [
@@ -44043,5 +43903,10 @@
       "blocked": false
     }
   ],
-  "navMesh": null
+  "navMesh": null,
+  "street_details": {
+    "trash_bags_removed": 10,
+    "benches_cleared": 2,
+    "entrance_cones": 4
+  }
 }
